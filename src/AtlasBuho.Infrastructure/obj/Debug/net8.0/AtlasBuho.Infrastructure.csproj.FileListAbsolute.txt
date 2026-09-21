@@ -1,9 +1,0 @@
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Infrastructure\bin\Debug\net8.0\AtlasBuho.Infrastructure.deps.json
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Infrastructure\bin\Debug\net8.0\AtlasBuho.Infrastructure.dll
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Infrastructure\bin\Debug\net8.0\AtlasBuho.Infrastructure.pdb
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Infrastructure\obj\Debug\net8.0\AtlasBuho.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Infrastructure\obj\Debug\net8.0\AtlasBuho.Infrastructure.csproj.CoreCompileInputs.cache
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Infrastructure\obj\Debug\net8.0\AtlasBuho.Infrastructure.dll
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Infrastructure\obj\Debug\net8.0\refint\AtlasBuho.Infrastructure.dll
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Infrastructure\obj\Debug\net8.0\AtlasBuho.Infrastructure.pdb
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Infrastructure\obj\Debug\net8.0\ref\AtlasBuho.Infrastructure.dll

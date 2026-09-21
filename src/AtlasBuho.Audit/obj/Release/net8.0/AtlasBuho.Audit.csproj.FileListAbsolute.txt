@@ -1,9 +1,0 @@
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audit\bin\Release\net8.0\AtlasBuho.Audit.deps.json
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audit\bin\Release\net8.0\AtlasBuho.Audit.dll
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audit\bin\Release\net8.0\AtlasBuho.Audit.pdb
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audit\obj\Release\net8.0\AtlasBuho.Audit.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audit\obj\Release\net8.0\AtlasBuho.Audit.csproj.CoreCompileInputs.cache
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audit\obj\Release\net8.0\AtlasBuho.Audit.dll
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audit\obj\Release\net8.0\refint\AtlasBuho.Audit.dll
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audit\obj\Release\net8.0\AtlasBuho.Audit.pdb
-C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audit\obj\Release\net8.0\ref\AtlasBuho.Audit.dll

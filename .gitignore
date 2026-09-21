@@ -1,0 +1,61 @@
+# Build outputs
+bin/
+obj/
+*.dll
+*.pdb
+*.exe
+*.deps.json
+*.runtimeconfig.json
+
+# IDE
+.vs/
+*.suo
+*.user
+*.sln.docstates
+
+# NuGet
+packages/
+*.nupkg
+project.lock.json
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.cobertura.xml
+
+# EF Core migrations (optional - keep if you want to track)
+# src/*/Migrations/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# Secret files
+*.secrets.json
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
