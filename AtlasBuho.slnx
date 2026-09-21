@@ -1,0 +1,18 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AtlasBuho.Application/AtlasBuho.Application.csproj" />
+    <Project Path="src/AtlasBuho.Audio/AtlasBuho.Audio.csproj" />
+    <Project Path="src/AtlasBuho.Audit/AtlasBuho.Audit.csproj" />
+    <Project Path="src/AtlasBuho.Content/AtlasBuho.Content.csproj" />
+    <Project Path="src/AtlasBuho.Data/AtlasBuho.Data.csproj" />
+    <Project Path="src/AtlasBuho.Domain/AtlasBuho.Domain.csproj" />
+    <Project Path="src/AtlasBuho.Infrastructure/AtlasBuho.Infrastructure.csproj" />
+    <Project Path="src/AtlasBuho.Learning/AtlasBuho.Learning.csproj" />
+    <Project Path="src/AtlasBuho.Search/AtlasBuho.Search.csproj" />
+    <Project Path="src/AtlasBuho.Speech/AtlasBuho.Speech.csproj" />
+    <Project Path="src/AtlasBuho.Translation/AtlasBuho.Translation.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AtlasBuho.Tests/AtlasBuho.Tests.csproj" />
+  </Folder>
+</Solution>

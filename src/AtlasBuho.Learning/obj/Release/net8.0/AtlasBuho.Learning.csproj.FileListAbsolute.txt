@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Learning\bin\Release\net8.0\AtlasBuho.Learning.deps.json
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Learning\bin\Release\net8.0\AtlasBuho.Learning.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Learning\bin\Release\net8.0\AtlasBuho.Learning.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Learning\obj\Release\net8.0\AtlasBuho.Learning.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Learning\obj\Release\net8.0\AtlasBuho.Learning.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Learning\obj\Release\net8.0\AtlasBuho.Learning.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Learning\obj\Release\net8.0\refint\AtlasBuho.Learning.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Learning\obj\Release\net8.0\AtlasBuho.Learning.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Learning\obj\Release\net8.0\ref\AtlasBuho.Learning.dll

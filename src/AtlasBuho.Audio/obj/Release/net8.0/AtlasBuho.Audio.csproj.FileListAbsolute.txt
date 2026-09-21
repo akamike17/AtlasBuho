@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audio\bin\Release\net8.0\AtlasBuho.Audio.deps.json
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audio\bin\Release\net8.0\AtlasBuho.Audio.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audio\bin\Release\net8.0\AtlasBuho.Audio.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audio\obj\Release\net8.0\AtlasBuho.Audio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audio\obj\Release\net8.0\AtlasBuho.Audio.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audio\obj\Release\net8.0\AtlasBuho.Audio.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audio\obj\Release\net8.0\refint\AtlasBuho.Audio.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audio\obj\Release\net8.0\AtlasBuho.Audio.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Audio\obj\Release\net8.0\ref\AtlasBuho.Audio.dll

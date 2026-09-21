@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Domain\bin\Debug\net8.0\AtlasBuho.Domain.deps.json
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Domain\bin\Debug\net8.0\AtlasBuho.Domain.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Domain\bin\Debug\net8.0\AtlasBuho.Domain.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Domain\obj\Debug\net8.0\AtlasBuho.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Domain\obj\Debug\net8.0\AtlasBuho.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Domain\obj\Debug\net8.0\AtlasBuho.Domain.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Domain\obj\Debug\net8.0\refint\AtlasBuho.Domain.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Domain\obj\Debug\net8.0\AtlasBuho.Domain.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Domain\obj\Debug\net8.0\ref\AtlasBuho.Domain.dll

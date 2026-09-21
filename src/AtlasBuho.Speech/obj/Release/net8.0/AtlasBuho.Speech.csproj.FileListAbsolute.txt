@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Speech\bin\Release\net8.0\AtlasBuho.Speech.deps.json
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Speech\bin\Release\net8.0\AtlasBuho.Speech.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Speech\bin\Release\net8.0\AtlasBuho.Speech.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Speech\obj\Release\net8.0\AtlasBuho.Speech.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Speech\obj\Release\net8.0\AtlasBuho.Speech.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Speech\obj\Release\net8.0\AtlasBuho.Speech.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Speech\obj\Release\net8.0\refint\AtlasBuho.Speech.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Speech\obj\Release\net8.0\AtlasBuho.Speech.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Speech\obj\Release\net8.0\ref\AtlasBuho.Speech.dll

@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Content\bin\Release\net8.0\AtlasBuho.Content.deps.json
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Content\bin\Release\net8.0\AtlasBuho.Content.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Content\bin\Release\net8.0\AtlasBuho.Content.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Content\obj\Release\net8.0\AtlasBuho.Content.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Content\obj\Release\net8.0\AtlasBuho.Content.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Content\obj\Release\net8.0\AtlasBuho.Content.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Content\obj\Release\net8.0\refint\AtlasBuho.Content.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Content\obj\Release\net8.0\AtlasBuho.Content.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Content\obj\Release\net8.0\ref\AtlasBuho.Content.dll

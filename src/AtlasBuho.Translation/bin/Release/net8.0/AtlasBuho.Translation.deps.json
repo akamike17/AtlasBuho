@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AtlasBuho.Translation/1.0.0": {
+        "runtime": {
+          "AtlasBuho.Translation.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AtlasBuho.Translation/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

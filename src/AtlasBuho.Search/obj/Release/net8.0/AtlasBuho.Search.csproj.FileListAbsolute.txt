@@ -1,0 +1,9 @@
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Search\bin\Release\net8.0\AtlasBuho.Search.deps.json
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Search\bin\Release\net8.0\AtlasBuho.Search.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Search\bin\Release\net8.0\AtlasBuho.Search.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Search\obj\Release\net8.0\AtlasBuho.Search.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Search\obj\Release\net8.0\AtlasBuho.Search.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Search\obj\Release\net8.0\AtlasBuho.Search.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Search\obj\Release\net8.0\refint\AtlasBuho.Search.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Search\obj\Release\net8.0\AtlasBuho.Search.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Search\obj\Release\net8.0\ref\AtlasBuho.Search.dll

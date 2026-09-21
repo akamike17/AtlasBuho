@@ -1,0 +1,13 @@
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\bin\Debug\net8.0\AtlasBuho.Application.deps.json
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\bin\Debug\net8.0\AtlasBuho.Application.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\bin\Debug\net8.0\AtlasBuho.Application.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\bin\Debug\net8.0\AtlasBuho.Domain.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\bin\Debug\net8.0\AtlasBuho.Domain.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\obj\Debug\net8.0\AtlasBuho.Application.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\obj\Debug\net8.0\AtlasBuho.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\obj\Debug\net8.0\AtlasBuho.Application.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\obj\Debug\net8.0\AtlasBuh.9C78CB77.Up2Date
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\obj\Debug\net8.0\AtlasBuho.Application.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\obj\Debug\net8.0\refint\AtlasBuho.Application.dll
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\obj\Debug\net8.0\AtlasBuho.Application.pdb
+C:\Users\Admin\source\repos\AtlasBuho\src\AtlasBuho.Application\obj\Debug\net8.0\ref\AtlasBuho.Application.dll

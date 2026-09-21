@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AtlasBuho.Application/1.0.0": {
+        "dependencies": {
+          "AtlasBuho.Domain": "1.0.0"
+        },
+        "runtime": {
+          "AtlasBuho.Application.dll": {}
+        }
+      },
+      "AtlasBuho.Domain/1.0.0": {
+        "runtime": {
+          "AtlasBuho.Domain.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AtlasBuho.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AtlasBuho.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

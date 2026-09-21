@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "AtlasBuho.Audio/1.0.0": {
+        "runtime": {
+          "AtlasBuho.Audio.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "AtlasBuho.Audio/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

@@ -1,0 +1,7 @@
+C:\Users\Admin\source\repos\AtlasBuho\obj\Release\net8.0\AtlasBuho.csproj.AssemblyReference.cache
+C:\Users\Admin\source\repos\AtlasBuho\obj\Release\net8.0\rpswa.dswa.cache.json
+C:\Users\Admin\source\repos\AtlasBuho\obj\Release\net8.0\AtlasBuho.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Admin\source\repos\AtlasBuho\obj\Release\net8.0\AtlasBuho.csproj.CoreCompileInputs.cache
+C:\Users\Admin\source\repos\AtlasBuho\obj\Release\net8.0\AtlasBuho.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\source\repos\AtlasBuho\obj\Release\net8.0\AtlasBuho.RazorAssemblyInfo.cache
+C:\Users\Admin\source\repos\AtlasBuho\obj\Release\net8.0\AtlasBuho.RazorAssemblyInfo.cs
