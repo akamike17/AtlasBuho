@@ -1,0 +1,152 @@
+{
+  "operation": "OPERACIÓN 69",
+  "timestamp": "2025-09-22T00:00:00-06:00",
+  "source": {
+    "path": "catalogs/raw/inali/CLIN_completo.pdf",
+    "sha256": "21cef44abf0d896555f26954bf319340ad4814fa8a3f0719b0d068311ff1be7c",
+    "size_bytes": 3082863,
+    "pages": 256,
+    "catalog_range": "30-212",
+    "url": "https://www.inali.gob.mx/pdf/CLIN_completo.pdf"
+  },
+  "qanjobal_evidence_chain": {
+    "index_nominal": {
+      "page": 11,
+      "section": "Nomenclatura de agrupaciones",
+      "entry_number": 47,
+      "exact_text": "Q'anjob'al VI Familia maya",
+      "status": "PRESENT"
+    },
+    "catalog_main": {
+      "page": 189,
+      "section": "8.6 Variantes lingüísticas de las agrupaciones de la familia maya",
+      "group_header": "Q'anjob'al",
+      "line_number": 11,
+      "followed_by": "AUTODENOMINACIÓN DE LA VARIANTE LINGÜÍSTICA Y REFERENCIA GEOESTADÍSTICA",
+      "variants_under_group": ["<Q'anjob'al>", "<Akateko>"],
+      "status": "PRESENT"
+    },
+    "appendix2": {
+      "page": 229,
+      "section": "Apéndice 2. Otra nomenclatura de las agrupaciones lingüísticas",
+      "table_row": "Q'anjob'al | Kanjobal - Kanjobal | K'anjobal | Kanjobal | Kanjobal",
+      "columns": ["INALI 2007", "INALI 2005", "DGEI", "CGEIB", "DGCPI", "CDI", "INEGI"],
+      "status": "PRESENT"
+    },
+    "appendix3": {
+      "page": 240,
+      "section": "Apéndice 3. Otra nomenclatura de las agrupaciones lingüísticas catalogadas",
+      "entry": "Q'anjob'al (familia maya)",
+      "forms": ["Canjubal", "conob", "kangobal", "kanhobal", "kanjobal (INALI 2005; CGEIB; INEGI 2005)", "kanjubal", "k'anjobal (CGEIB)", "qanjobal", "Q'anjob'al (ALMG)", "q'anjob'al (INALI 2005)", "solomero", "sulumeco"],
+      "marginal_forms": ["Camjobal", "Canjobal Guatemala"],
+      "european_forms": ["Kanjobal (inglés)"],
+      "status": "PRESENT"
+    },
+    "appendix4": {
+      "page": 252,
+      "section": "Apéndice 4. Autodenominaciones de las variantes lingüísticas",
+      "parsed_entry": {
+        "autodenom": "K'anjob'al",
+        "spanish_name": "Q'anjob'al",
+        "agrupacion": "Q'anjob'al",
+        "familia": "Maya"
+      },
+      "extraction_method": "extract_words() with X/Y coordinates",
+      "status": "PRESENT"
+    },
+    "genealogical_trees": {
+      "present": false,
+      "note": "Q'anjob'al does not appear as a node in the Mayan family tree. The tree has 70 nodes including 3 extinct (†): tepecano, ópata, tubar."
+    }
+  },
+  "cross_sectional_counts": {
+    "index_nominal_pp11_12": 68,
+    "catalog_main_pp30_212": 68,
+    "appendix2_p229": 68,
+    "appendix3_pp233_240": 68,
+    "appendix4_pp244_256": 68,
+    "genealogical_trees_total": 70,
+    "genealogical_trees_live": 67,
+    "genealogical_trees_extinct": 3
+  },
+  "parser_correction": {
+    "previous_parser_catalog_count": 67,
+    "previous_parser_appendix4_count": 67,
+    "error_catalog": "Failed to detect 'Q'anjob'al' as group header on page 189",
+    "error_appendix4": "Tabular parsing logic missed 'Q'anjob'al' row",
+    "corrected_parser_catalog_count": 68,
+    "corrected_parser_appendix4_count": 68,
+    "artifact_removed": "(Viene de la Segunda Sección) on page 145"
+  },
+  "extinct_candidates": [
+    {
+      "name": "tepecano",
+      "marker": "†",
+      "family": "yuto-nahua",
+      "in_index": false,
+      "in_catalog": false,
+      "in_appendices": false,
+      "in_trees": true,
+      "conclusion": "NOT PART OF OFFICIAL 68"
+    },
+    {
+      "name": "ópata",
+      "marker": "†",
+      "family": "yuto-nahua",
+      "in_index": false,
+      "in_catalog": false,
+      "in_appendices": false,
+      "in_trees": true,
+      "conclusion": "NOT PART OF OFFICIAL 68"
+    },
+    {
+      "name": "tubar",
+      "marker": "†",
+      "family": "yuto-nahua",
+      "in_index": false,
+      "in_catalog": false,
+      "in_appendices": false,
+      "in_trees": true,
+      "conclusion": "NOT PART OF OFFICIAL 68"
+    }
+  ],
+  "hypothesis_evaluation": {
+    "H1_qanjobal_missing_from_catalog_appendix": "REJECTED - present in all 5 canonical sections",
+    "H2_qanjobal_under_alternative_name": "PARTIAL - historical synonyms exist (Kanjobal) but canonical name is Q'anjob'al in all operational sections",
+    "H3_68_includes_extinct_tree_nodes": "REJECTED - extinct nodes absent from index, catalog, appendices",
+    "H4_parser_extraction_error": "CONFIRMED - corrected parser yields 68 in both catalog and appendix 4",
+    "H5_internal_inconsistency": "REJECTED - all canonical sections agree on 68"
+  },
+  "final_determination": {
+    "status": "RESOLVED_68",
+    "grouping_count_status": "VERIFIED",
+    "phase_1_status": "UNBLOCKED",
+    "canonical_count": 68,
+    "explanation": "The CLIN officially defines 68 linguistic groupings in 5 independent canonical locations. All 68 appear in the index (pp.11-12), catalog main body (pp.30-212), Appendix 2 (p.229), Appendix 3 (pp.233-240), and Appendix 4 (pp.244-256). Q'anjob'al is entry #47 in the index and has full entries in all sections. The previous count of 67 was due to parser extraction errors."
+  },
+  "validation_results": {
+    "sha256_verification": "PASS",
+    "index_68_entries": "PASS",
+    "catalog_68_headers": "PASS",
+    "appendix4_68_groups": "PASS",
+    "qanjobal_5_sections": "PASS",
+    "concordance_5_sections": "PASS",
+    "unicode_integrity": "PASS",
+    "no_source_modification": "PASS"
+  },
+  "files_generated": [
+    "docs/audits/operation-69-qanjobal-resolution.md",
+    "docs/audits/operation-69-evidence.json",
+    "docs/audits/operation-69.md"
+  ],
+  "next_steps": [
+    "Configure MySQL connection (user-secrets)",
+    "Apply migrations (dotnet ef database update)",
+    "Extend provenance model (SourceDocument, SourceHash, SourcePage, SourceSection, LanguageVariantAutodenomination)",
+    "Implement transactional importer with 11/68/364/475 validation",
+    "Execute import with identity-based reconciliation",
+    "Implement sync service (ETag/Last-Modified/SHA256 + backoff + quarantine)",
+    "Implement versioning (CatalogSource/Version/Record)",
+    "Run integration tests with real INALI data"
+  ]
+}

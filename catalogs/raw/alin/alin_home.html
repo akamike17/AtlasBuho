@@ -1,0 +1,614 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" class="no-js">
+<head>
+<meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0" name="viewport" />
+<link rel="shortcut icon" href="/xmlui/themes/Mirage/images/favicon.ico" />
+<link rel="apple-touch-icon" href="/xmlui/themes/Mirage/images/apple-touch-icon.png" />
+<meta name="Generator" content="DSpace 5.4" />
+<link type="text/css" rel="stylesheet" media="screen" href="/xmlui/themes/Mirage/lib/css/reset.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/xmlui/themes/Mirage/lib/css/base.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/xmlui/themes/Mirage/lib/css/helper.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/xmlui/themes/Mirage/lib/css/jquery-ui-1.8.15.custom.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/xmlui/themes/Mirage/lib/css/style.css" />
+<link type="text/css" rel="stylesheet" media="screen" href="/xmlui/themes/Mirage/lib/css/authority-control.css" />
+<link type="text/css" rel="stylesheet" media="handheld" href="/xmlui/themes/Mirage/lib/css/handheld.css" />
+<link type="text/css" rel="stylesheet" media="print" href="/xmlui/themes/Mirage/lib/css/print.css" />
+<link type="text/css" rel="stylesheet" media="all" href="/xmlui/themes/Mirage/lib/css/media.css" />
+<link type="application/rss+xml" rel="alternate" href="/xmlui/feed/rss_1.0/site" />
+<link type="application/rss+xml" rel="alternate" href="/xmlui/feed/rss_2.0/site" />
+<link type="application/atom+xml" rel="alternate" href="/xmlui/feed/atom_1.0/site" />
+<link type="application/opensearchdescription+xml" rel="search" href="http://alin.inali.gob.mx:80/xmlui/open-search/description.xml" title="DSpace" />
+<script type="text/javascript">
+                                //Clear default text of empty text areas on focus
+                                function tFocus(element)
+                                {
+                                        if (element.value == ' '){element.value='';}
+                                }
+                                //Clear default text of empty text areas on submit
+                                function tSubmit(form)
+                                {
+                                        var defaultedElements = document.getElementsByTagName("textarea");
+                                        for (var i=0; i != defaultedElements.length; i++){
+                                                if (defaultedElements[i].value == ' '){
+                                                        defaultedElements[i].value='';}}
+                                }
+                                //Disable pressing 'enter' key to submit a form (otherwise pressing 'enter' causes a submission to start over)
+                                function disableEnterKey(e)
+                                {
+                                     var key;
+
+                                     if(window.event)
+                                          key = window.event.keyCode;     //Internet Explorer
+                                     else
+                                          key = e.which;     //Firefox and Netscape
+
+                                     if(key == 13)  //if "Enter" pressed, then disable!
+                                          return false;
+                                     else
+                                          return true;
+                                }
+
+                                function FnArray()
+                                {
+                                    this.funcs = new Array;
+                                }
+
+                                FnArray.prototype.add = function(f)
+                                {
+                                    if( typeof f!= "function" )
+                                    {
+                                        f = new Function(f);
+                                    }
+                                    this.funcs[this.funcs.length] = f;
+                                };
+
+                                FnArray.prototype.execute = function()
+                                {
+                                    for( var i=0; i < this.funcs.length; i++ )
+                                    {
+                                        this.funcs[i]();
+                                    }
+                                };
+
+                                var runAfterJSImports = new FnArray();
+            </script>
+<script xmlns:i18n="http://apache.org/cocoon/i18n/2.1" type="text/javascript" src="/xmlui/themes/Mirage/lib/js/modernizr-1.7.min.js"> </script>
+<title>ALIN Principal</title>
+</head><!--[if lt IE 7 ]> <body class="ie6"> <![endif]-->
+                <!--[if IE 7 ]>    <body class="ie7"> <![endif]-->
+                <!--[if IE 8 ]>    <body class="ie8"> <![endif]-->
+                <!--[if IE 9 ]>    <body class="ie9"> <![endif]-->
+                <!--[if (gt IE 9)|!(IE)]><!--><body><!--<![endif]-->
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="ds-main">
+<div id="ds-header-wrapper">
+<div class="clearfix" id="ds-header">
+<a id="ds-header-logo-link" href="/xmlui/">
+<span id="ds-header-logo"> </span>
+<span id="ds-header-logo-text">Archivo de Lenguas Indígenas Nacionales</span>
+</a>
+<h1 xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="pagetitle visuallyhidden">ALIN Principal</h1>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="ds-user-box">
+<p>
+<a href="/xmlui/login">Login</a>
+</p>
+</div>
+</div>
+</div>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" id="ds-trail-wrapper">
+<ul id="ds-trail">
+<li class="ds-trail-link first-link last-link">ALIN Principal</li>
+</ul>
+</div>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="hidden" id="no-js-warning-wrapper">
+<div id="no-js-warning">
+<div class="notice failure">JavaScript is disabled for your browser. Some features of this site may not work without it.</div>
+</div>
+</div>
+<div id="ds-content-wrapper">
+<div class="clearfix" id="ds-content">
+
+    <div id="ds-body">
+<h1 class="ds-div-head">Acervo de Lenguas Indígenas Nacionales</h1>
+<div id="file_news_div_news" class="ds-static-div primary">
+<p class="ds-paragraph">El Acervo de Lenguas Indígenas Nacionales (ALIN) es un acervo
+      documental abierto, físico y digital que contiene datos de lenguas
+      indígenas nacionales como vocabularios, frases y narraciones en
+      formato de audio y video. Su finalidad es preservar datos de lenguas
+      que están en alto riesgo de desaparición, y tener a disposición
+      material lingüístico para proyectos de investigación y conservación de
+      lenguas. 
+      </p>
+</div>
+  <h1 class="ds-div-head">Familias Lingüísticas en ALIN</h1>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_artifactbrowser_CommunityBrowser_div_comunity-browser" class="ds-static-div primary">
+<p class="ds-paragraph">Elija una familia para listar sus lenguas</p>
+<ul xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom">
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/1/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community odd">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/1">
+<span class="Z3988">Álgica</span>
+</a>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/785/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community even">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/785">
+<span class="Z3988">Chontal de Oaxaca</span>
+</a>
+</div>
+<div class="artifact-info">
+<span class="short-description">La familia lingüística chontal de Oaxaca se encuentra integrada en la actualidad por un conjunto de  variantes lingüísticas, respecto de las cuales no ha sido posible establecer: a) si se trata de un solo  idioma, en cuyo caso se hablaría del chontal de Oaxaca como una lengua aislada y, a su vez, como el  único miembro de dicha familia; o b) si se trata de más de un idioma, lo que correspondería a hablar  de una familia lingüística poco diversificada. En la actualidad, la relación genealógica del o los idiomas  de la familia lingüística chontal de Oaxaca sigue en discusión. Al respecto, la hipótesis que ha tenido  más fuerza es la que vincula a esta familia con los idiomas hokanos.</span>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/3/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community odd">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/3">
+<span class="Z3988">Cochimí-yumana</span>
+</a>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/794/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community even">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/794">
+<span class="Z3988">Eyak-Atabascana</span>
+</a>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/11/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community odd">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/11">
+<span class="Z3988">Huave</span>
+</a>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/703/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community even">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/703">
+<span class="Z3988">Materiales en Lenguas Indígenas Nacionales</span>
+</a>
+</div>
+<div class="artifact-info">
+<span class="short-description">En esta sección podemos encontrar diversos materiales que dan muestra de la enorme diversidad cultural y lingüística del país. Desde cuentos a materiales de aprendizaje de lenguas indígenas.</span>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/6/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community odd">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/6">
+<span class="Z3988">Maya</span>
+</a>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/9/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community even">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/9">
+<span class="Z3988">Mixe-zoque</span>
+</a>
+</div>
+<div class="artifact-info">
+<span class="short-description">Agrupación lingüística ubicada en los estados de Chiapas y Oaxaca.</span>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/5/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community odd">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/5">
+<span class="Z3988">Oto-mangue</span>
+</a>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/8/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community even">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/8">
+<span class="Z3988">Purépecha</span>
+</a>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/4/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community odd">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/4">
+<span class="Z3988">Seri</span>
+</a>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/7/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community even">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/7">
+<span class="Z3988">Totonaco-tepehua</span>
+</a>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/2/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item community odd">
+<div class="artifact-description">
+<div class="artifact-title">
+<a href="/xmlui/handle/123456789/2">
+<span class="Z3988">Yuto-nahua</span>
+</a>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div id="aspect_discovery_SiteRecentSubmissions_div_site-home" class="ds-static-div primary repository">
+<h1 class="ds-div-head">Añadido Recientemente</h1>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_SiteRecentSubmissions_div_site-recent-submission" class="ds-static-div secondary recent-submission">
+<ul xmlns:oreatom="http://www.openarchives.org/ore/atom/" xmlns:ore="http://www.openarchives.org/ore/terms/" xmlns:atom="http://www.w3.org/2005/Atom" class="ds-artifact-list">
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/877/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item odd">
+<div class="item-wrapper clearfix">
+<div style="width: 80px;" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/xmlui/handle/123456789/877" class="image-link">
+<img style="height: 80px;" src="/xmlui/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div style="width: 565px;" class="item-metadata">
+<span class="bold">Título:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">
+<a href="/xmlui/handle/123456789/877">Cuestionario Lingüístico para la Investigación de las Variaciones Dialectales en las lenguas de Guatemala y Lista de Swadesh</a>
+</span>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=Cuestionario+Ling%C3%BC%C3%ADstico+para+la+Investigaci%C3%B3n+de+las+Variaciones+Dialectales+en+las+lenguas+de+Guatemala+y+Lista+de+Swadesh&amp;rft_id=http%3A%2F%2Falin.inali.gob.mx%3A80%2Fxmlui%2Fhandle%2F123456789%2F877&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                ﻿ 
+            </span>
+<span class="bold">Autor:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">
+<span>Montes Castañeda, Faustino</span>; <span>Tino Antonio, Jorge</span>; <span>Roman Lobato, Gabriela</span>
+</span>
+<span class="bold">Fecha:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">2026-08-19</span>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/875/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item even">
+<div class="item-wrapper clearfix">
+<div style="width: 80px;" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/xmlui/handle/123456789/875" class="image-link">
+<img style="height: 80px;" src="/xmlui/themes/Mirage/images/mime.png" alt="Icon" />
+</a>
+</div>
+</div>
+<div style="width: 565px;" class="item-metadata">
+<span class="bold">Título:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">
+<a href="/xmlui/handle/123456789/875">Transcripciones de la lista de Haspelmath y Tadmor en lengua Naayeri (cora)</a>
+</span>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=Transcripciones+de+la+lista+de+Haspelmath+y+Tadmor+en+lengua+Naayeri+%28cora%29&amp;rft_id=http%3A%2F%2Falin.inali.gob.mx%3A80%2Fxmlui%2Fhandle%2F123456789%2F875&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                ﻿ 
+            </span>
+<span class="bold">Autor:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">
+<span>Hayes Andersen, Rasmus</span>
+</span>
+<span class="bold">Fecha:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">2026-06-01</span>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/873/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item odd">
+<div class="item-wrapper clearfix">
+<div style="width: 80px;" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/xmlui/handle/123456789/873" class="image-link">
+<img alt="Thumbnail" src="/xmlui/bitstream/handle/123456789/873/YN0306_26_468_M_EZR_Fiesta%20de%20Mochibampo_1.jpeg.jpg?sequence=8&amp;isAllowed=y" />
+</a>
+</div>
+</div>
+<div style="width: 565px;" class="item-metadata">
+<span class="bold">Título:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">
+<a href="/xmlui/handle/123456789/873">Material Audiovisual y Fotográfico de Festividades en Mochibampo, Álamos, Sonora</a>
+</span>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=Material+Audiovisual+y+Fotogr%C3%A1fico+de+Festividades+en+Mochibampo%2C+%C3%81lamos%2C+Sonora&amp;rft_id=http%3A%2F%2Falin.inali.gob.mx%3A80%2Fxmlui%2Fhandle%2F123456789%2F873&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                ﻿ 
+            </span>
+<span class="bold">Autor:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">
+<span>Zaila Rodríguez, Elisa</span>
+</span>
+<span class="bold">Fecha:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">2025-12-01</span>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/870/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item even">
+<div class="item-wrapper clearfix">
+<div style="width: 80px;" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/xmlui/handle/123456789/870" class="image-link">
+<img alt="Thumbnail" src="/xmlui/bitstream/handle/123456789/870/YN310_18_El%20Buruato%2c%20Santa%20Mar%c3%ada%20del%20Oro_M_IEAD_fotograf%c3%ada_Fiesta%20de%20la%20Gallina_1.jpeg.jpg?sequence=6&amp;isAllowed=y" />
+</a>
+</div>
+</div>
+<div style="width: 565px;" class="item-metadata">
+<span class="bold">Título:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">
+<a href="/xmlui/handle/123456789/870">Fiesta de la Gallina</a>
+</span>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=Fiesta+de+la+Gallina&amp;rft_id=http%3A%2F%2Falin.inali.gob.mx%3A80%2Fxmlui%2Fhandle%2F123456789%2F870&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                ﻿ 
+            </span>
+<span class="bold">Autor:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">
+<span>Altamirano Domínguez, Ida Edisa</span>
+</span>
+<span class="bold">Fecha:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">2025-09-30</span>
+</div>
+</div>
+</li>
+<!-- External Metadata URL: cocoon://metadata/handle/123456789/869/mets.xml?sections=dmdSec,fileSec&fileGrpTypes=THUMBNAIL-->
+<li class="ds-artifact-item odd">
+<div class="item-wrapper clearfix">
+<div style="width: 80px;" class="thumbnail-wrapper">
+<div class="artifact-preview">
+<a href="/xmlui/handle/123456789/869" class="image-link">
+<img alt="Thumbnail" src="/xmlui/bitstream/handle/123456789/869/YN310_18_Cerro%20del%20Tigre%2c%20Tepic_HyM_IEAD_fotograf%c3%ada_Fiesta%20del%20Tambor_1.jpeg.jpg?sequence=5&amp;isAllowed=y" />
+</a>
+</div>
+</div>
+<div style="width: 565px;" class="item-metadata">
+<span class="bold">Título:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">
+<a href="/xmlui/handle/123456789/869">Fiesta del Tambor</a>
+</span>
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Adc&amp;rft_id=Fiesta+del+Tambor&amp;rft_id=http%3A%2F%2Falin.inali.gob.mx%3A80%2Fxmlui%2Fhandle%2F123456789%2F869&amp;rfr_id=info%3Asid%2Fdspace.org%3Arepository&amp;">
+                ﻿ 
+            </span>
+<span class="bold">Autor:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">
+<span>Altamirano Domínguez, Ida Edisa</span>
+</span>
+<span class="bold">Fecha:</span>
+<span xmlns:i18n="http://apache.org/cocoon/i18n/2.1" style="width: 455px;" class="content">2025-09-30</span>
+</div>
+</div>
+</li>
+</ul>
+<p id="aspect_discovery_SiteRecentSubmissions_p_recent-submission-view-more" class="ds-paragraph recentSubmissionViewMore">
+<a href="/xmlui/recent-submissions">Más</a>
+</p>
+</div>
+</div>
+</div>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="ds-options-wrapper">
+<div id="ds-options">
+<h1 class="ds-option-set-head" id="ds-search-option-head">Buscar en ALIN</h1>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="ds-option-set" id="ds-search-option">
+<form method="post" id="ds-search-form" action="/xmlui/discover">
+<fieldset>
+<input type="text" class="ds-text-field " name="query" />
+<input xmlns:i18n="http://apache.org/cocoon/i18n/2.1" value="Ir" type="submit" name="submit" class="ds-button-field " onclick="&#10;                                        var radio = document.getElementById(&quot;ds-search-form-scope-container&quot;);&#10;                                        if (radio != undefined &amp;&amp; radio.checked)&#10;                                        {&#10;                                        var form = document.getElementById(&quot;ds-search-form&quot;);&#10;                                        form.action=&#10;                                    &quot;/xmlui/handle/&quot; + radio.value + &quot;/discover&quot; ; &#10;                                        }&#10;                                    " />
+</fieldset>
+</form>
+<a href="/xmlui/discover">Búsqueda avanzada</a>
+</div>
+<h1 xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="ds-option-set-head">Listar</h1>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_viewArtifacts_Navigation_list_browse" class="ds-option-set">
+<ul class="ds-options-list">
+<li>
+<h2 class="ds-sublist-head">Todo ALIN</h2>
+<ul xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-simple-list sublist">
+<li class="ds-simple-list-item">
+<a href="/xmlui/community-list">Agrupaciones Lingüísticas &amp; Lenguas</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-simple-list-item">
+<a href="/xmlui/browse?type=dateissued">Por fecha de publicación</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-simple-list-item">
+<a href="/xmlui/browse?type=author">Autores</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-simple-list-item">
+<a href="/xmlui/browse?type=title">Títulos</a>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-simple-list-item">
+<a href="/xmlui/browse?type=subject">Materias</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-option-set-head">Mi cuenta</h1>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_viewArtifacts_Navigation_list_account" class="ds-option-set">
+<ul class="ds-simple-list">
+<li class="ds-simple-list-item">
+<a href="/xmlui/login">Acceder</a>
+</li>
+</ul>
+</div>
+<h1 xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-option-set-head">Descubre</h1>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" id="aspect_discovery_Navigation_list_discovery" class="ds-option-set">
+<ul class="ds-options-list">
+<li>
+<h2 class="ds-sublist-head">Autor</h2>
+<ul xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-simple-list sublist">
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=author&amp;filter_relational_operator=equals&amp;filter=%C3%81lvarez+Ju%C3%A1rez%2C+Erika+Alejandra">Álvarez Juárez, Erika Alejandra (32)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=author&amp;filter_relational_operator=equals&amp;filter=An%C3%B3nimo">Anónimo (17)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=author&amp;filter_relational_operator=equals&amp;filter=Hern%C3%A1ndez+Andrade%2C+Ernesto">Hernández Andrade, Ernesto (16)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=author&amp;filter_relational_operator=equals&amp;filter=Pisson+Alcar%C3%A1z%2C+Perla+Mar%C3%ADa+Tiffany">Pisson Alcaráz, Perla María Tiffany (14)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=author&amp;filter_relational_operator=equals&amp;filter=Wagner+Oviedo%2C+Carlos+de+Jes%C3%BAs">Wagner Oviedo, Carlos de Jesús (14)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=author&amp;filter_relational_operator=equals&amp;filter=Almor%C3%ADn+Peralta%2C+Juan+Pablo">Almorín Peralta, Juan Pablo (13)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=author&amp;filter_relational_operator=equals&amp;filter=Embriz+Osorio%2C+Arnulfo">Embriz Osorio, Arnulfo (10)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=author&amp;filter_relational_operator=equals&amp;filter=Fuentes+Soriano%2C+Edith">Fuentes Soriano, Edith (10)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=author&amp;filter_relational_operator=equals&amp;filter=Barrera+Vega%2C+Jos%C3%A9+Israel">Barrera Vega, José Israel (7)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=author&amp;filter_relational_operator=equals&amp;filter=L%C3%B3pez+Ch%C3%A1vez%2C+Elodia">López Chávez, Elodia (7)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/search-filter?field=author">... más</a>
+</li>
+</ul>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/">
+<h2 class="ds-sublist-head">Materia</h2>
+<ul xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-simple-list sublist">
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=subject&amp;filter_relational_operator=equals&amp;filter=L%C3%A9xico">Léxico (180)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=subject&amp;filter_relational_operator=equals&amp;filter=Fonolog%C3%ADa">Fonología (170)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=subject&amp;filter_relational_operator=equals&amp;filter=Fon%C3%A9tica">Fonética (168)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=subject&amp;filter_relational_operator=equals&amp;filter=Lista+de+palabras">Lista de palabras (147)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=subject&amp;filter_relational_operator=equals&amp;filter=Dialectolog%C3%ADa">Dialectología (113)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=subject&amp;filter_relational_operator=equals&amp;filter=Sintaxis">Sintaxis (82)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=subject&amp;filter_relational_operator=equals&amp;filter=CLASIFICACI%C3%93N+DE+DATOS+CULTURALES">CLASIFICACIÓN DE DATOS CULTURALES (76)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=subject&amp;filter_relational_operator=equals&amp;filter=Transcripci%C3%B3n">Transcripción (69)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=subject&amp;filter_relational_operator=equals&amp;filter=Morfolog%C3%ADa">Morfología (62)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=subject&amp;filter_relational_operator=equals&amp;filter=Gr%C3%A1matica">Grámatica (43)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/search-filter?field=subject">... más</a>
+</li>
+</ul>
+</li>
+<li xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/">
+<h2 class="ds-sublist-head">Fecha</h2>
+<ul xmlns:i18n="http://apache.org/cocoon/i18n/2.1" xmlns="http://di.tamu.edu/DRI/1.0/" class="ds-simple-list sublist">
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=dateIssued&amp;filter_relational_operator=equals&amp;filter=%5B2020+TO+2026%5D">2020 - 2026 (88)</a>
+</li>
+<li class="ds-simple-list-item">
+<a href="/xmlui/discover?filtertype=dateIssued&amp;filter_relational_operator=equals&amp;filter=%5B2012+TO+2019%5D">2012 - 2019 (389)</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h1 class="ds-option-set-head" id="ds-feed-option-head">RSS Feeds</h1>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" class="ds-option-set" id="ds-feed-option">
+<ul>
+<li>
+<a href="/xmlui/feed/rss_1.0/site" style="background: url(/xmlui/static/icons/feed.png) no-repeat">RSS 1.0</a>
+</li>
+<li>
+<a href="/xmlui/feed/rss_2.0/site" style="background: url(/xmlui/static/icons/feed.png) no-repeat">RSS 2.0</a>
+</li>
+<li>
+<a href="/xmlui/feed/atom_1.0/site" style="background: url(/xmlui/static/icons/feed.png) no-repeat">Atom</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+
+
+
+  
+  
+  
+</div>
+</div>
+<div id="ds-footer-wrapper">
+<div id="ds-footer">
+<div id="ds-footer-left"> </div>
+<span id="ds-footer-logo"> </span>
+<div id="ds-footer-right"> </div>
+<div id="ds-footer-links">
+<p>
+		  Privada de Relox No. 16 piso  5, Col. Chimalistac, Del. Alvaro Obregón, MÉXICO
+		  D.F., C.P. 01070 - Tel. +52 (55)5004 2100
+		  </p>
+<a href="/xmlui/contact">Contacto</a> | <a xmlns:i18n="http://apache.org/cocoon/i18n/2.1" href="/xmlui/feedback">Sugerencias</a>
+</div>
+<div xmlns:i18n="http://apache.org/cocoon/i18n/2.1" id="ds-footer-sep"> </div>
+<div id="ds-footer-rights">
+		  INSTITUTO NACIONAL DE LENGUAS INDÍGENAS - ALGUNOS DERECHOS RESERVADOS © 2015 - POLÍTICAS DE PRIVACIDAD
+		  <a href="http://www.inali.gob.mx/component/content/article/48-politica-de-privacidad-y-manejo-de-datos-personales" target="_self">
+<span id="ds-footer-privacy"> </span>
+</a>
+</div>
+<a class="hidden" href="/xmlui/htmlmap"> </a>
+</div>
+</div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript"> </script>
+<script type="text/javascript">!window.jQuery && document.write('<script type="text/javascript" src="/xmlui/static/js/jquery-1.6.2.min.js"> <\/script>')</script>
+<script type="text/javascript" src="/xmlui/themes/Mirage/lib/js/jquery-ui-1.8.15.custom.min.js"> </script><!--[if lt IE 7 ]>
+<script type="text/javascript" src="/xmlui/themes/Mirage/lib/js/DD_belatedPNG_0.0.8a.js?v=1"> </script>
+<script type="text/javascript">DD_belatedPNG.fix('#ds-header-logo');DD_belatedPNG.fix('#ds-footer-logo');$.each($('img[src$=png]'), function() {DD_belatedPNG.fixPng(this);});</script><![endif]-->
+<script type="text/javascript">
+            runAfterJSImports.execute();
+        </script>
+<script type="text/javascript">
+                         if(typeof window.orcid === 'undefined'){
+                            window.orcid={};
+                          };
+                        window.orcid.contextPath= '/xmlui';window.orcid.themePath= '/xmlui/themes/Mirage';</script></body></html>

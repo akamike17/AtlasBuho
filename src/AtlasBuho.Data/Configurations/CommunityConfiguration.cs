@@ -10,8 +10,8 @@ public class CommunityConfiguration : IEntityTypeConfiguration<Domain.Entities.C
     {
         builder.ToTable("Communities");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").IsRequired();
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.RegionId).HasColumnName("RegionId");
         builder.Property(e => e.Name).HasColumnName("Name").HasMaxLength(200).IsRequired();
         builder.Property(e => e.Autodenomination).HasColumnName("Autodenomination").HasMaxLength(200);

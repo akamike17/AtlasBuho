@@ -14,30 +14,34 @@ public class W1HContextConfiguration : IEntityTypeConfiguration<W1HContext>
 
         builder.Property(e => e.Id)
             .HasColumnName("Id")
+            .HasColumnType("CHAR(36)")
             .IsRequired();
 
         builder.Property(e => e.CreatedAt)
             .HasColumnName("CreatedAt")
             .IsRequired()
-            .HasDefaultValueSql("UTC_TIMESTAMP()");
+            .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
         builder.Property(e => e.UpdatedAt)
             .HasColumnName("UpdatedAt")
             .IsRequired()
-            .HasDefaultValueSql("UTC_TIMESTAMP()")
+            .HasDefaultValueSql("CURRENT_TIMESTAMP(6)")
             .ValueGeneratedOnAddOrUpdate();
 
         // WHO
         builder.Property(e => e.SpeakerId)
             .HasColumnName("SpeakerId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.CommunityId)
             .HasColumnName("CommunityId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.ResearcherId)
             .HasColumnName("ResearcherId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.Role)
@@ -48,18 +52,22 @@ public class W1HContextConfiguration : IEntityTypeConfiguration<W1HContext>
         // WHAT
         builder.Property(e => e.LexemeId)
             .HasColumnName("LexemeId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.PhraseId)
             .HasColumnName("PhraseId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.GrammarRuleId)
             .HasColumnName("GrammarRuleId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.CulturalNoteId)
             .HasColumnName("CulturalNoteId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.EntityType)
@@ -70,10 +78,12 @@ public class W1HContextConfiguration : IEntityTypeConfiguration<W1HContext>
         // WHERE
         builder.Property(e => e.RegionId)
             .HasColumnName("RegionId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.CommunityLocationId)
             .HasColumnName("CommunityLocationId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.Latitude)
@@ -96,7 +106,7 @@ public class W1HContextConfiguration : IEntityTypeConfiguration<W1HContext>
             .HasMaxLength(100)
             .IsRequired(false);
 
-        // WHEN
+        // WHEN - DocumentedAt is now non-nullable
         builder.Property(e => e.DocumentedAt)
             .HasColumnName("DocumentedAt")
             .IsRequired(true);
@@ -132,17 +142,17 @@ public class W1HContextConfiguration : IEntityTypeConfiguration<W1HContext>
 
         builder.Property(e => e.ResearchGoal)
             .HasColumnName("ResearchGoal")
-            .HasMaxLength(2000)
+            .HasColumnType("TEXT")
             .IsRequired(false);
 
         builder.Property(e => e.PreservationAction)
             .HasColumnName("PreservationAction")
-            .HasMaxLength(2000)
+            .HasColumnType("TEXT")
             .IsRequired(false);
 
         builder.Property(e => e.CommunityRequest)
             .HasColumnName("CommunityRequest")
-            .HasMaxLength(2000)
+            .HasColumnType("TEXT")
             .IsRequired(false);
 
         // HOW
@@ -173,20 +183,23 @@ public class W1HContextConfiguration : IEntityTypeConfiguration<W1HContext>
 
         builder.Property(e => e.AudioRecordingId)
             .HasColumnName("AudioRecordingId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.VideoRecordingId)
             .HasColumnName("VideoRecordingId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         builder.Property(e => e.SourceId)
             .HasColumnName("SourceId")
+            .HasColumnType("CHAR(36)")
             .IsRequired(false);
 
         // Metadata
         builder.Property(e => e.Notes)
             .HasColumnName("Notes")
-            .HasMaxLength(5000)
+            .HasColumnType("TEXT")
             .IsRequired(false);
 
         builder.Property(e => e.IsComplete)

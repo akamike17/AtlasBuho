@@ -10,12 +10,12 @@ public class CulturalNoteConfiguration : IEntityTypeConfiguration<Domain.Entitie
     {
         builder.ToTable("CulturalNotes");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").IsRequired();
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.CommunityId).HasColumnName("CommunityId");
         builder.Property(e => e.Type).HasColumnName("Type").HasConversion<int>().IsRequired();
         builder.Property(e => e.Title).HasColumnName("Title").HasMaxLength(500).IsRequired();
-        builder.Property(e => e.Content).HasColumnName("Content").HasMaxLength(10000).IsRequired();
+        builder.Property(e => e.Content).HasColumnName("Content").HasColumnType("TEXT").IsRequired();
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(500);
         builder.Property(e => e.Author).HasColumnName("Author").HasMaxLength(200);
         builder.Property(e => e.DateRecorded).HasColumnName("DateRecorded");

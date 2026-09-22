@@ -30,6 +30,9 @@ public class LanguageVariant
     private readonly List<DialectRelationship> _dialectRelationships = new();
     public IReadOnlyCollection<DialectRelationship> DialectRelationships => _dialectRelationships.AsReadOnly();
 
+    private readonly List<LanguageVariantAutodenomination> _autodenominations = new();
+    public IReadOnlyCollection<LanguageVariantAutodenomination> Autodenominations => _autodenominations.AsReadOnly();
+
     private LanguageVariant() { }
 
     public LanguageVariant(
@@ -114,6 +117,15 @@ public class LanguageVariant
         if (!_dialectRelationships.Any(d => d.Id == relationship.Id))
         {
             _dialectRelationships.Add(relationship);
+        }
+    }
+
+    public void AddAutodenomination(LanguageVariantAutodenomination autodenomination)
+    {
+        if (autodenomination == null) throw new ArgumentNullException(nameof(autodenomination));
+        if (!_autodenominations.Any(a => a.Id == autodenomination.Id))
+        {
+            _autodenominations.Add(autodenomination);
         }
     }
 }

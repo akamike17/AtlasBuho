@@ -10,10 +10,10 @@ public class AudioRecordingConfiguration : IEntityTypeConfiguration<Domain.Entit
     {
         builder.ToTable("AudioRecordings");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.SpeakerId).HasColumnName("SpeakerId");
-        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").IsRequired();
-        builder.Property(e => e.CommunityId).HasColumnName("CommunityId");
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.SpeakerId).HasColumnName("SpeakerId").HasColumnType("CHAR(36)");
+        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.CommunityId).HasColumnName("CommunityId").HasColumnType("CHAR(36)");
         builder.Property(e => e.FilePath).HasColumnName("FilePath").HasMaxLength(1000).IsRequired();
         builder.Property(e => e.FileName).HasColumnName("FileName").HasMaxLength(500);
         builder.Property(e => e.FileHash).HasColumnName("FileHash").HasMaxLength(100);
@@ -23,17 +23,17 @@ public class AudioRecordingConfiguration : IEntityTypeConfiguration<Domain.Entit
         builder.Property(e => e.SampleRate).HasColumnName("SampleRate");
         builder.Property(e => e.Channels).HasColumnName("Channels");
         builder.Property(e => e.RecordedAt).HasColumnName("RecordedAt");
-        builder.Property(e => e.Context).HasColumnName("Context").HasMaxLength(2000);
-        builder.Property(e => e.Transcription).HasColumnName("Transcription").HasMaxLength(5000);
-        builder.Property(e => e.Translation).HasColumnName("Translation").HasMaxLength(5000);
-        builder.Property(e => e.Annotation).HasColumnName("Annotation").HasMaxLength(2000);
+        builder.Property(e => e.Context).HasColumnName("Context").HasColumnType("TEXT");
+        builder.Property(e => e.Transcription).HasColumnName("Transcription").HasColumnType("TEXT");
+        builder.Property(e => e.Translation).HasColumnName("Translation").HasColumnType("TEXT");
+        builder.Property(e => e.Annotation).HasColumnName("Annotation").HasColumnType("TEXT");
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(500);
         builder.Property(e => e.ConsentStatus).HasColumnName("ConsentStatus").HasConversion<int>().IsRequired();
         builder.Property(e => e.ConsentSource).HasColumnName("ConsentSource").HasMaxLength(500);
-        builder.Property(e => e.UsagePermission).HasColumnName("UsagePermission").HasMaxLength(2000);
-        builder.Property(e => e.AttributionRequirement).HasColumnName("AttributionRequirement").HasMaxLength(2000);
+        builder.Property(e => e.UsagePermission).HasColumnName("UsagePermission").HasColumnType("TEXT");
+        builder.Property(e => e.AttributionRequirement).HasColumnName("AttributionRequirement").HasColumnType("TEXT");
         builder.Property(e => e.RemovalRequested).HasColumnName("RemovalRequested").IsRequired();
-        builder.Property(e => e.CommunityRestriction).HasColumnName("CommunityRestriction").HasMaxLength(2000);
+        builder.Property(e => e.CommunityRestriction).HasColumnName("CommunityRestriction").HasColumnType("TEXT");
         builder.Property(e => e.CreatedAt).HasColumnName("CreatedAt").IsRequired();
         builder.Property(e => e.UpdatedAt).HasColumnName("UpdatedAt").IsRequired();
         builder.HasIndex(e => e.LanguageVariantId).HasDatabaseName("IX_AudioRecordings_VariantId");
@@ -41,6 +41,7 @@ public class AudioRecordingConfiguration : IEntityTypeConfiguration<Domain.Entit
         builder.HasIndex(e => e.CommunityId).HasDatabaseName("IX_AudioRecordings_CommunityId");
         builder.HasIndex(e => e.ConsentStatus).HasDatabaseName("IX_AudioRecordings_ConsentStatus");
         builder.HasIndex(e => e.RemovalRequested).HasDatabaseName("IX_AudioRecordings_RemovalRequested");
+        builder.HasIndex(e => e.FilePath).HasDatabaseName("IX_AudioRecordings_FilePath").HasAnnotation("MySql:IndexPrefixLength", new[] { 700 });
         
         builder.HasOne<Domain.Entities.LanguageVariant>()
             .WithMany()

@@ -10,11 +10,11 @@ public class LanguageGroupConfiguration : IEntityTypeConfiguration<Domain.Entiti
     {
         builder.ToTable("LanguageGroups");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.LanguageFamilyId).HasColumnName("LanguageFamilyId").IsRequired();
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LanguageFamilyId).HasColumnName("LanguageFamilyId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.Name).HasColumnName("Name").HasMaxLength(200).IsRequired();
         builder.Property(e => e.NameEnglish).HasColumnName("NameEnglish").HasMaxLength(200);
-        builder.Property(e => e.Description).HasColumnName("Description").HasMaxLength(2000);
+        builder.Property(e => e.Description).HasColumnName("Description").HasColumnType("TEXT");
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(500);
         builder.Property(e => e.CreatedAt).HasColumnName("CreatedAt").IsRequired();
         builder.Property(e => e.UpdatedAt).HasColumnName("UpdatedAt").IsRequired();
@@ -25,7 +25,7 @@ public class LanguageGroupConfiguration : IEntityTypeConfiguration<Domain.Entiti
             .WithMany(e => e.LanguageGroups)
             .HasForeignKey(e => e.LanguageFamilyId)
             .OnDelete(DeleteBehavior.Cascade);
-            
+           
         builder.HasMany(e => e.LanguageVariants)
             .WithOne()
             .HasForeignKey("LanguageGroupId")

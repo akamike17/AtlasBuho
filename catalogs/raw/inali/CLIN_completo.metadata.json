@@ -1,0 +1,14 @@
+{
+  "source": "INALI",
+  "resource_name": "Catálogo de las Lenguas Indígenas Nacionales: Variantes Lingüísticas de México con sus autodenominaciones y referencias geoestadísticas",
+  "resource_url": "https://www.inali.gob.mx/pdf/CLIN_completo.pdf",
+  "format": "PDF",
+  "publication_date": "2008-01-14",
+  "retrieved_at": "2025-09-21T22:30:00Z",
+  "sha256": "21cef44abf0d896555f26954bf319340ad4814fa8a3f0719b0d068311ff1be7c",
+  "size_bytes": 3082863,
+  "content_type": "application/pdf",
+  "pages": 256,
+  "catalog_data_pages": "86-256",
+  "description": "Publicado en el Diario Oficial de la Federación, Segunda y Tercera Sección. Contiene 11 familias lingüísticas, 68 agrupaciones lingüísticas y 364 variantes lingüísticas con autodenominaciones y referencias geoestadísticas."
+}

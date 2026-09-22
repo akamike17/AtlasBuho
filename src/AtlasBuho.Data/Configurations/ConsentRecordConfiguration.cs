@@ -10,8 +10,8 @@ public class ConsentRecordConfiguration : IEntityTypeConfiguration<Domain.Entiti
     {
         builder.ToTable("ConsentRecords");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.SpeakerId).HasColumnName("SpeakerId").IsRequired();
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.SpeakerId).HasColumnName("SpeakerId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.AudioRecordingId).HasColumnName("AudioRecordingId");
         builder.Property(e => e.VideoRecordingId).HasColumnName("VideoRecordingId");
         builder.Property(e => e.LexemeId).HasColumnName("LexemeId");
@@ -20,9 +20,9 @@ public class ConsentRecordConfiguration : IEntityTypeConfiguration<Domain.Entiti
         builder.Property(e => e.GrantedBy).HasColumnName("GrantedBy").HasMaxLength(200);
         builder.Property(e => e.GrantedAt).HasColumnName("GrantedAt");
         builder.Property(e => e.ExpiresAt).HasColumnName("ExpiresAt");
-        builder.Property(e => e.Scope).HasColumnName("Scope").HasMaxLength(2000);
-        builder.Property(e => e.Restrictions).HasColumnName("Restrictions").HasMaxLength(2000);
-        builder.Property(e => e.Notes).HasColumnName("Notes").HasMaxLength(2000);
+        builder.Property(e => e.Scope).HasColumnName("Scope").HasColumnType("TEXT");
+        builder.Property(e => e.Restrictions).HasColumnName("Restrictions").HasColumnType("TEXT");
+        builder.Property(e => e.Notes).HasColumnName("Notes").HasColumnType("TEXT");
         builder.Property(e => e.IsRevoked).HasColumnName("IsRevoked").IsRequired();
         builder.Property(e => e.RevokedAt).HasColumnName("RevokedAt");
         builder.Property(e => e.RevokedBy).HasColumnName("RevokedBy").HasMaxLength(200);

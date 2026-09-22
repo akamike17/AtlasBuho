@@ -1,0 +1,3348 @@
+[
+  {
+    "page": 244,
+    "autodenom": "Autodenominación",
+    "spanish_name": "Nombre en español",
+    "agrupacion": "Agrupación",
+    "familia": "Familia"
+  },
+  {
+    "page": 244,
+    "autodenom": "an ndexu",
+    "spanish_name": "mazateco de Huehuetlán",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 244,
+    "autodenom": "an xo’boo",
+    "spanish_name": "mazateco de Puebla",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 244,
+    "autodenom": "angpø’n",
+    "spanish_name": "zoque del oeste",
+    "agrupacion": "zoque",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 244,
+    "autodenom": "angpø’n tsaame",
+    "spanish_name": "zoque del oeste",
+    "agrupacion": "zoque",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 244,
+    "autodenom": "au’dam",
+    "spanish_name": "tepehuano del sur alto",
+    "agrupacion": "tepehuano del sur",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 244,
+    "autodenom": "ayöök",
+    "spanish_name": "mixe alto del norte",
+    "agrupacion": "mixe",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 244,
+    "autodenom": "ayuk",
+    "spanish_name": "mixe bajo",
+    "agrupacion": "mixe",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 244,
+    "autodenom": "ayuujk",
+    "spanish_name": "mixe alto del sur",
+    "agrupacion": "mixe",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 244,
+    "autodenom": "ayuujk (alto del centro)",
+    "spanish_name": "mixe alto del centro",
+    "agrupacion": "mixe",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 244,
+    "autodenom": "ayuuk (medio del este)",
+    "spanish_name": "mixe medio del este",
+    "agrupacion": "mixe",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 244,
+    "autodenom": "B’a’aj",
+    "spanish_name": "Teko",
+    "agrupacion": "Teko",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "B’anax Mam",
+    "spanish_name": "Mam del Soconusco",
+    "agrupacion": "Mam",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’i k’op (de los Altos)",
+    "spanish_name": "tsotsil de los Altos",
+    "agrupacion": "tsotsil",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’i k’op (del centro)",
+    "spanish_name": "tsotsil del centro",
+    "agrupacion": "tsotsil",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’i k’op (del este alto)",
+    "spanish_name": "tsotsil del este alto",
+    "agrupacion": "tsotsil",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’i k’op (del este bajo)",
+    "spanish_name": "tsotsil del este bajo",
+    "agrupacion": "tsotsil",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’i k’op (del noroeste)",
+    "spanish_name": "tsotsil del noroeste",
+    "agrupacion": "tsotsil",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’i k’op (del norte alto)",
+    "spanish_name": "tsotsil del norte alto",
+    "agrupacion": "tsotsil",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’i k’op (del norte bajo)",
+    "spanish_name": "tsotsil del norte bajo",
+    "agrupacion": "tsotsil",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’il k’op (del norte)",
+    "spanish_name": "tseltal del norte",
+    "agrupacion": "tseltal",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’il k’op (del occidente)",
+    "spanish_name": "tseltal del occidente",
+    "agrupacion": "tseltal",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’il k’op (del oriente)",
+    "spanish_name": "tseltal del oriente",
+    "agrupacion": "tseltal",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bats’il k’op (del sur)",
+    "spanish_name": "tseltal del sur",
+    "agrupacion": "tseltal",
+    "familia": "Maya"
+  },
+  {
+    "page": 244,
+    "autodenom": "bot’una",
+    "spanish_name": "matlatzinca",
+    "agrupacion": "matlatzinca",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 244,
+    "autodenom": "cha’ jna’a (central)",
+    "spanish_name": "chatino central",
+    "agrupacion": "chatino",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 244,
+    "autodenom": "cha’ jna’a (de Zacatepec)",
+    "spanish_name": "chatino de Zacatepec",
+    "agrupacion": "chatino",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 244,
+    "autodenom": "cha’ jna’a (occidental alto)",
+    "spanish_name": "chatino occidental alto",
+    "agrupacion": "chatino",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 244,
+    "autodenom": "cha’ jna’a (occidental bajo)",
+    "spanish_name": "chatino occidental bajo",
+    "agrupacion": "chatino",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 244,
+    "autodenom": "cha’ jna’a (oriental alto)",
+    "spanish_name": "chatino oriental alto",
+    "agrupacion": "chatino",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 244,
+    "autodenom": "cha’ jna’a (oriental bajo)",
+    "spanish_name": "chatino oriental bajo",
+    "agrupacion": "chatino",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 244,
+    "autodenom": "chwisita’na",
+    "spanish_name": "cora de Jesús María",
+    "agrupacion": "cora",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 244,
+    "autodenom": "cmiique iitom",
+    "spanish_name": "seri",
+    "agrupacion": "seri",
+    "familia": "Seri"
+  },
+  {
+    "page": 244,
+    "autodenom": "da’an davi (del noreste)",
+    "spanish_name": "mixteco del noreste",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "da’an davi",
+    "spanish_name": "mixteco de la frontera",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "da’an davi (de Tlaltempan)",
+    "spanish_name": "mixteco de Tlaltempan",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "da’an davi (de Zapotitlán)",
+    "spanish_name": "mixteco de Zapotitlán",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "da’an davi (del suroeste de Puebla)",
+    "spanish_name": "mixteco del suroeste de Puebla",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "dañudavi",
+    "spanish_name": "mixteco de San Juan Teita",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "dbaku (del centro)",
+    "spanish_name": "cuicateco del centro",
+    "agrupacion": "cuicateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "dbaku (del oriente)",
+    "spanish_name": "cuicateco del oriente",
+    "agrupacion": "cuicateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "de’e dau (del suroeste de Puebla)",
+    "spanish_name": "mixteco del suroeste de Puebla",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "de’e dau (de Tlaltempan)",
+    "spanish_name": "mixteco de Tlaltempan",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "dedavi",
+    "spanish_name": "mixteco del noroeste medio",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "desté",
+    "spanish_name": "zapoteco de la costa noreste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "di’ shitsa’",
+    "spanish_name": "zapoteco de Santiago Yaveo",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "di’izhdë",
+    "spanish_name": "zapoteco de San Bartolo Yautepec",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "di’tse’e (de la Sierra sur, oeste bajo)",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "di’tse’e (de San Antonio el Alto)",
+    "spanish_name": "zapoteco de San Antonio el Alto",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "di’tsiri’e",
+    "spanish_name": "zapoteco de la montaña",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "dialó",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "dibaku",
+    "spanish_name": "cuicateco del centro",
+    "agrupacion": "cuicateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "dichsà",
+    "spanish_name": "zapoteco de Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "dichsah",
+    "spanish_name": "zapoteco de Valles, del noreste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didsé",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didxa shiza’",
+    "spanish_name": "zapoteco serrano, del sureste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didxazá",
+    "spanish_name": "zapoteco de Valles, del noreste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didxazé",
+    "spanish_name": "zapoteco de Petapa",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didxke’",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didxnde",
+    "spanish_name": "zapoteco de San Vicente Coatlán",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didxsá",
+    "spanish_name": "zapoteco de la montaña del Istmo,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didzá (serrano, bajo)",
+    "spanish_name": "zapoteco serrano, bajo",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didzá (de Sierra sur,",
+    "spanish_name": "zapoteco de Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "(serrano del sureste medio)",
+    "spanish_name": "del sureste medio",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didza shon (serrano del sureste)",
+    "spanish_name": "zapoteco serrano, del sureste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 245,
+    "autodenom": "didzé",
+    "spanish_name": "zapoteco de Valles del sur",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "diidxazá",
+    "spanish_name": "zapoteco de la planicie costera",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "diiste",
+    "spanish_name": "zapoteco de la Sierra sur, central",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "diixazá",
+    "spanish_name": "zapoteco de la planicie costera",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "dilla rhune’",
+    "spanish_name": "zapoteco de Santiago Laxopa",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "dilla xhon (serrano del sureste alto)",
+    "spanish_name": "zapoteco serrano, del sureste alto",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "dilla xhon (serrano del sureste medio)",
+    "spanish_name": "zapoteco serrano,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "dilla xidza",
+    "spanish_name": "zapoteco serrano, del sureste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "dille xhon",
+    "spanish_name": "zapoteco serrano,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "disá",
+    "spanish_name": "zapoteco de Valles, del centro",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "disà",
+    "spanish_name": "zapoteco de Santa María",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "disàa",
+    "spanish_name": "zapoteco de Valles, del este central",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "dishe xun",
+    "spanish_name": "zapoteco de Santiago Laxopa",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "dishuràsh",
+    "spanish_name": "zapoteco serrano, del sureste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "diste’ (de la costa central)",
+    "spanish_name": "zapoteco de la costa central",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "diste’ (de la costa oeste)",
+    "spanish_name": "zapoteco de la costa oeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "(de la Sierra sur, del sureste bajo)",
+    "spanish_name": "del sureste bajo",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "distèe (de la costa central)",
+    "spanish_name": "zapoteco de la costa central",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "distèe (de la costa noreste)",
+    "spanish_name": "zapoteco de la costa noreste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "distse’",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "distse’e",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "ditsa",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "ditsá",
+    "spanish_name": "zapoteco de la montaña del Istmo,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "ditsa’",
+    "spanish_name": "zapoteco de la costa este",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "ditsáh",
+    "spanish_name": "zapoteco de Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "ditsè (de la Sierra sur,",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "ditsè (de la Sierra sur,",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "ditsë",
+    "spanish_name": "zapoteco de la Sierra sur, noroeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "ditse’",
+    "spanish_name": "zapoteco serrano, del sureste bajo",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "ditse’ hualats",
+    "spanish_name": "zapoteco serrano, del sureste bajo",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 246,
+    "autodenom": "ditsëë",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "ditsere’",
+    "spanish_name": "zapoteco de Quiavicuzas",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "ditsire",
+    "spanish_name": "zapoteco de la montaña del Istmo,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dixasà (de Valles, oeste)",
+    "spanish_name": "zapoteco de Valles, oeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dixasà (de Zimatlán de Alvarez)",
+    "spanish_name": "zapoteco de Zimatlán de Álvarez",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dixazà",
+    "spanish_name": "zapoteco de la planicie costera",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dixdà",
+    "spanish_name": "zapoteco de Valles, del este medio",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dixhque’",
+    "spanish_name": "zapoteco de la costa oeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dixhtiò",
+    "spanish_name": "zapoteco de Quiavicuzas",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dixsà",
+    "spanish_name": "zapoteco de Valles,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dixzhá",
+    "spanish_name": "zapoteco de Valles, del norte central",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "diya dxon",
+    "spanish_name": "zapoteco serrano, del sureste alto",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "diya xhon",
+    "spanish_name": "zapoteco serrano, del sureste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "diza",
+    "spanish_name": "zapoteco de Valles, del este medio",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizá (de Valles, del este central)",
+    "spanish_name": "zapoteco de Valles, del este central",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizá (de Valles, del noroeste bajo)",
+    "spanish_name": "zapoteco de Valles,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizá (de Valles, del suroeste central)",
+    "spanish_name": "zapoteco de Valles,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "diza shisa’",
+    "spanish_name": "zapoteco del oeste de Tuxtepec",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "diza shitsa (del oeste de Tuxtepec)",
+    "spanish_name": "zapoteco del oeste de Tuxtepec",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "diza shitsa (de Santiago Yaveo)",
+    "spanish_name": "zapoteco de Santiago Yaveo",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "diza shitsá",
+    "spanish_name": "zapoteco del oeste de Tuxtepec",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizazi",
+    "spanish_name": "zapoteco de Petapa",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizdà",
+    "spanish_name": "zapoteco de Valles, norte",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizde (de la Sierra sur del norte)",
+    "spanish_name": "zapoteco de la Sierra sur, del norte",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizde (de la Sierra sur, noroeste)",
+    "spanish_name": "zapoteco de la Sierra sur, noroeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizde (de Mixtepec)",
+    "spanish_name": "zapoteco de Mixtepec",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizé",
+    "spanish_name": "zapoteco de Valles,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizë",
+    "spanish_name": "zapoteco de Valles, oeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizè (de la Sierra sur, del norte)",
+    "spanish_name": "zapoteco de la Sierra sur, del norte",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizè (de Valles, del suroeste medio)",
+    "spanish_name": "zapoteco de Valles,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizhá (de Valles, del centro bajo)",
+    "spanish_name": "zapoteco de Valles,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dizhá (de Valles, del oeste central)",
+    "spanish_name": "zapoteco de Valles,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "duaku",
+    "spanish_name": "cuicateco del norte",
+    "agrupacion": "cuicateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dubaku (del norte)",
+    "spanish_name": "cuicateco del norte",
+    "agrupacion": "cuicateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 247,
+    "autodenom": "dubaku (del oriente)",
+    "spanish_name": "cuicateco del oriente",
+    "agrupacion": "cuicateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "dzhi’iza",
+    "spanish_name": "zapoteco de San Baltazar",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "en naxi llanazo",
+    "spanish_name": "mazateco de Acatepec",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "en naxijen",
+    "spanish_name": "mazateco del noreste",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "en naxo tota",
+    "spanish_name": "mazateco del norte",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "en nda xo",
+    "spanish_name": "mazateco del norte",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "en ndaja",
+    "spanish_name": "mazateco de Ocopetatillo",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "en ngixo",
+    "spanish_name": "mazateco de Eloxochitlán",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "en ningotsie",
+    "spanish_name": "mazateco de la presa bajo",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "enna (de la presa alto)",
+    "spanish_name": "mazateco de la presa alto",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "enna (de Tecóatl)",
+    "spanish_name": "mazateco de Tecóatl",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "enna (del centro)",
+    "spanish_name": "mazateco del centro",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "enna (del oeste)",
+    "spanish_name": "mazateco del oeste",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "enre naxinanda nguifi",
+    "spanish_name": "mazateco del sureste",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "eyuk",
+    "spanish_name": "mixe medio del oeste",
+    "agrupacion": "mixe",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 248,
+    "autodenom": "gui a’mi nánj nï’ïn",
+    "spanish_name": "triqui de la alta",
+    "agrupacion": "triqui",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "hiak-nooki",
+    "spanish_name": "yaqui",
+    "agrupacion": "yaqui",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 248,
+    "autodenom": "hñähñú",
+    "spanish_name": "otomí del Valle del Mezquital",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "hñähñu (del centro)",
+    "spanish_name": "otomí del centro",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "hñäñho",
+    "spanish_name": "otomí bajo del noroeste",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "hñöñho",
+    "spanish_name": "otomí del noroeste",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "hñothó",
+    "spanish_name": "otomí del centro",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "Ienra naxinandana nnandia",
+    "spanish_name": "mazateco del suroeste",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "Ixil (chajuleño)",
+    "spanish_name": "Ixil chajuleño",
+    "agrupacion": "Ixil",
+    "familia": "Maya"
+  },
+  {
+    "page": 248,
+    "autodenom": "Ixil (nebajeño)",
+    "spanish_name": "Ixil nebajeño",
+    "agrupacion": "Ixil",
+    "familia": "Maya"
+  },
+  {
+    "page": 248,
+    "autodenom": "j+g dsa k+",
+    "spanish_name": "chinanteco central bajo",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "j+g ki tsomän",
+    "spanish_name": "chinanteco central bajo",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jach-t’aan",
+    "spanish_name": "lacandón",
+    "agrupacion": "lacandón",
+    "familia": "Maya"
+  },
+  {
+    "page": 248,
+    "autodenom": "jajme dzä mii",
+    "spanish_name": "chinanteco central",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jajmi dzä kï ï ’",
+    "spanish_name": "chianateco del oeste central bajo",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "Jakalteko-Popti’",
+    "spanish_name": "Jakalteko",
+    "agrupacion": "Jakalteko",
+    "familia": "Maya"
+  },
+  {
+    "page": 248,
+    "autodenom": "jaspuy pai",
+    "spanish_name": "paipai",
+    "agrupacion": "paipai",
+    "familia": "Cochimí-yumana"
+  },
+  {
+    "page": 248,
+    "autodenom": "jaú jm",
+    "spanish_name": "chinanteco del oeste central alto",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jau jmai",
+    "spanish_name": "chinanteco del noroeste",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jejmei",
+    "spanish_name": "chianateco del oeste central bajo",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jejmi",
+    "spanish_name": "chianateco del oeste central bajo",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jmiih dzä mo’",
+    "spanish_name": "chinanteco de la Sierra",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jmiih kia’ dzä ‘vï ï",
+    "spanish_name": "chinanteco del norte",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jmiih kia’ dzä jii’",
+    "spanish_name": "chinanteco del oeste central alto",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jmiih kia’ dzä mii",
+    "spanish_name": "chinanteco central",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jnatjo",
+    "spanish_name": "mazahua de occidente",
+    "agrupacion": "mazahua",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 248,
+    "autodenom": "jnatrjo",
+    "spanish_name": "mazahua de oriente",
+    "agrupacion": "mazahua",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jnò ’ ndá Tsjóo Nuà",
+    "spanish_name": "amuzgo alto del este",
+    "agrupacion": "amuzgo",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jnu’un sábi",
+    "spanish_name": "mixteco de Guerrero",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jñon’ndaa",
+    "spanish_name": "amuzgo alto del este",
+    "agrupacion": "amuzgo",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jñunnda",
+    "spanish_name": "amuzgo bajo del este",
+    "agrupacion": "amuzgo",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jujma",
+    "spanish_name": "chinanteco del oeste",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jujmi (del norte)",
+    "spanish_name": "chinanteco del norte",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jujmi (del sureste medio)",
+    "spanish_name": "chinanteco del sureste medio",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jujmi dsa m+ta’o",
+    "spanish_name": "chinanteco del sureste bajo",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jujmi dsa maji’i",
+    "spanish_name": "chinanteco del sureste bajo",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jujmi tsa kö ‘w++",
+    "spanish_name": "chinanteco del norte",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jumi dsa iin+n",
+    "spanish_name": "chinanteco central bajo",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "jumi dsa mojai",
+    "spanish_name": "chinanteco del sureste alto",
+    "agrupacion": "chinanteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 249,
+    "autodenom": "K’anjob’al",
+    "spanish_name": "Q’anjob’al",
+    "agrupacion": "Q’anjob’al",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "K’iche’ (central)",
+    "spanish_name": "K’iche’ (central)",
+    "agrupacion": "K’iche’",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "K’iche’ (occidental)",
+    "spanish_name": "K’iche’ (occidental",
+    "agrupacion": "K’iche’",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "K’iche’ (oriental)",
+    "spanish_name": "K’iche’ (oriental)",
+    "agrupacion": "K’iche’",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "Kaqchikel",
+    "spanish_name": "Kaqchikel",
+    "agrupacion": "Kaqchikel",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "Kickapoo",
+    "spanish_name": "Kickapoo",
+    "agrupacion": "Kickapoo",
+    "familia": "Álgica"
+  },
+  {
+    "page": 249,
+    "autodenom": "kintachiuinkan",
+    "spanish_name": "totonaco del cerro Xinolatépetl",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 249,
+    "autodenom": "ko’lew",
+    "spanish_name": "kiliwa",
+    "agrupacion": "kiliwa",
+    "familia": "Cochimí-yumana"
+  },
+  {
+    "page": 249,
+    "autodenom": "Koti’",
+    "spanish_name": "Chuj",
+    "agrupacion": "Chuj",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "ku’ahl",
+    "spanish_name": "ku'ahl",
+    "agrupacion": "ku'ahl",
+    "familia": "Cochimí-yumana"
+  },
+  {
+    "page": 249,
+    "autodenom": "kuapá",
+    "spanish_name": "cucapá",
+    "agrupacion": "cucapá",
+    "familia": "Cochimí-yumana"
+  },
+  {
+    "page": 249,
+    "autodenom": "kuraapa",
+    "spanish_name": "cora corapeño",
+    "agrupacion": "cora",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 249,
+    "autodenom": "Kuti’",
+    "spanish_name": "Akateko",
+    "agrupacion": "Akateko",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "kwáaxa’ata",
+    "spanish_name": "cora francisqueño",
+    "agrupacion": "cora",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 249,
+    "autodenom": "kweimarusa’na",
+    "spanish_name": "cora tereseño",
+    "agrupacion": "cora",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 249,
+    "autodenom": "laakanaachiwíin",
+    "spanish_name": "totonaco del sureste",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 249,
+    "autodenom": "lajltyaygi",
+    "spanish_name": "chontal de Oaxaca de la costa",
+    "agrupacion": "chontal de Oaxaca",
+    "familia": "Chontal de Oaxaca"
+  },
+  {
+    "page": 249,
+    "autodenom": "lakty’añ (del noroeste)",
+    "spanish_name": "ch’ol del noroeste",
+    "agrupacion": "ch'ol",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "lakty’añ (del sureste)",
+    "spanish_name": "ch’ol del sureste",
+    "agrupacion": "ch'ol",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "lhichiwíin",
+    "spanish_name": "tepehua del norte",
+    "agrupacion": "tepehua",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 249,
+    "autodenom": "lhiima’alh’ama’",
+    "spanish_name": "tepehua del sur",
+    "agrupacion": "tepehua",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 249,
+    "autodenom": "lhiimaasipijni",
+    "spanish_name": "tepehua del oeste",
+    "agrupacion": "tepehua",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 249,
+    "autodenom": "lhiimaqalhqama’",
+    "spanish_name": "tepehua del sur",
+    "agrupacion": "tepehua",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 249,
+    "autodenom": "lichiwin tutunaku",
+    "spanish_name": "totonaco de la costa",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 249,
+    "autodenom": "liimaasipijni",
+    "spanish_name": "tepehua del oeste",
+    "agrupacion": "tepehua",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 249,
+    "autodenom": "maaya",
+    "spanish_name": "maya",
+    "agrupacion": "maya",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "maaya t’aan",
+    "spanish_name": "maya",
+    "agrupacion": "maya",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "maayáa",
+    "spanish_name": "maya",
+    "agrupacion": "maya",
+    "familia": "Maya"
+  },
+  {
+    "page": 249,
+    "autodenom": "makurawe",
+    "spanish_name": "guarijío del sur",
+    "agrupacion": "guarijío",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "masehual tla’tol",
+    "spanish_name": "náhuatl de la Sierra oeste",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "maseual tajtol",
+    "spanish_name": "náhuatl alto del norte de Puebla",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "maseual tla’tol",
+    "spanish_name": "náhuatl del noreste central",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "me'pa a wí'i in",
+    "spanish_name": "tlapaneco del suroeste",
+    "agrupacion": "tlapaneco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 250,
+    "autodenom": "me'pha a bátháá",
+    "spanish_name": "tlapaneco del este",
+    "agrupacion": "tlapaneco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 250,
+    "autodenom": "me'pha a tsíndíí",
+    "spanish_name": "tlapaneco del sur",
+    "agrupacion": "tlapaneco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 250,
+    "autodenom": "me'pha a xkua ixi ridií",
+    "spanish_name": "tlapaneco central bajo",
+    "agrupacion": "tlapaneco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 250,
+    "autodenom": "me'pha a agua a",
+    "spanish_name": "tlapaneco del noroeste alto",
+    "agrupacion": "tlapaneco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 250,
+    "autodenom": "me'pha a xirágáá",
+    "spanish_name": "tlapaneco del norte",
+    "agrupacion": "tlapaneco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 250,
+    "autodenom": "me'phaa xma'íín",
+    "spanish_name": "tlapaneco del noroeste bajo",
+    "agrupacion": "tlapaneco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexcatl",
+    "spanish_name": "náhuatl de la Huasteca veracruzana",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexi’catl",
+    "spanish_name": "náhuatl del noreste central",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (alto de occidente)",
+    "spanish_name": "mexicano alto de occidente",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (bajo de occidente)",
+    "spanish_name": "mexicano bajo de occidente",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (central de occidente)",
+    "spanish_name": "mexicano central de occidente",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (central de Veracruz)",
+    "spanish_name": "náhuatl central de Veracruz",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (de Guerrero)",
+    "spanish_name": "mexicano de Guerrero",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano",
+    "spanish_name": "mexicano de la Huasteca",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (de la Huasteca potosina)",
+    "spanish_name": "náhuatl de la Huasteca potosina",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano",
+    "spanish_name": "náhuatl de la Huasteca",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (de la Sierra negra, norte)",
+    "spanish_name": "náhuatl de la Sierra negra, norte",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (de la Sierra negra, sur)",
+    "spanish_name": "náhuatl de la Sierra negra, sur",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (de Oaxaca)",
+    "spanish_name": "náhuatl de Oaxaca",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (de occidente)",
+    "spanish_name": "mexicano de occidente",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (de Puente de Ixtla)",
+    "spanish_name": "mexicano de Puente de Ixtla",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (de Temixco)",
+    "spanish_name": "mexicano de Temixco",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (de Tetela del Volcán)",
+    "spanish_name": "mexicano de Tetela del Volcán",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (del centro alto)",
+    "spanish_name": "mexicano del centro alto",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (del centro bajo)",
+    "spanish_name": "mexicano del centro bajo",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (del centro de Puebla)",
+    "spanish_name": "náhuatl del centro de Puebla",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (del centro)",
+    "spanish_name": "mexicano del centro",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (del Istmo bajo)",
+    "spanish_name": "náhuatl del Istmo bajo",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (del noroeste central)",
+    "spanish_name": "náhuatl del noreste central",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (del noroeste)",
+    "spanish_name": "mexicano del noroeste",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (del oriente central)",
+    "spanish_name": "mexicano del oriente central",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (del oriente de Puebla)",
+    "spanish_name": "mexicano del oriente de Puebla",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (del oriente)",
+    "spanish_name": "mexicano del oriente",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano (central bajo)",
+    "spanish_name": "mexicano central bajo",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicano tlajtol",
+    "spanish_name": "náhuatl de la Sierra,",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 250,
+    "autodenom": "mexicatl (de la Huasteca potosina)",
+    "spanish_name": "náhuatl de la Huasteca potosina",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "mexicatl (de la Sierra negra, norte)",
+    "spanish_name": "náhuatl de la Sierra negra, norte",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "mi'pha a míŋuíí",
+    "spanish_name": "tlapaneco del centro",
+    "agrupacion": "tlapaneco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "mocho’",
+    "spanish_name": "mocho",
+    "agrupacion": "qato'k",
+    "familia": "Maya"
+  },
+  {
+    "page": 251,
+    "autodenom": "muchu’",
+    "spanish_name": "tuzanteco",
+    "agrupacion": "qato'k",
+    "familia": "Maya"
+  },
+  {
+    "page": 251,
+    "autodenom": "muxata’ana",
+    "spanish_name": "cora presideño",
+    "agrupacion": "cora",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "nahuat",
+    "spanish_name": "náhuatl alto del norte de Puebla",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "náhuatl (central de Veracruz)",
+    "spanish_name": "náhuatl central de Veracruz",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "náhuatl (de la Huasteca potosina)",
+    "spanish_name": "náhuatl de la Huasteca potosina",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "náhuatl (de la Huasteca veracruzana)",
+    "spanish_name": "náhuatl de la Huasteca veracruzana",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "náhuatl (de la Sierra negra, norte)",
+    "spanish_name": "náhuatl de la Sierra negra, norte",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "náhuatl (de la Sierra negra, sur)",
+    "spanish_name": "náhuatl de la Sierra negra, sur",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "náhuatl (del Istmo bajo)",
+    "spanish_name": "náhuatl del Istmo bajo",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "náhuatl (del Istmo)",
+    "spanish_name": "náhuatl del Istmo",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "nathó",
+    "spanish_name": "otomí del oeste",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "nauta",
+    "spanish_name": "náhuatl de la Sierra,",
+    "agrupacion": "náhuatl",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 251,
+    "autodenom": "ngiba (de oriente)",
+    "spanish_name": "popoloca de oriente",
+    "agrupacion": "popoloca",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ngiba (del centro)",
+    "spanish_name": "popoloca del centro",
+    "agrupacion": "popoloca",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ngiba (del este)",
+    "spanish_name": "chocholteco del este",
+    "agrupacion": "chocholteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ngiba (del oeste)",
+    "spanish_name": "chocholteco del oeste",
+    "agrupacion": "chocholteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ngiba (del poniente)",
+    "spanish_name": "popoloca del poniente",
+    "agrupacion": "popoloca",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ngigua (de oriente)",
+    "spanish_name": "popoloca de oriente",
+    "agrupacion": "popoloca",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ngigua (del norte)",
+    "spanish_name": "popoloca del norte",
+    "agrupacion": "popoloca",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ngigua (del sur)",
+    "spanish_name": "chocholteco del sur",
+    "agrupacion": "chocholteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ngiwa (de oriente)",
+    "spanish_name": "popoloca de oriente",
+    "agrupacion": "popoloca",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ngiwa (del norte)",
+    "spanish_name": "popoloca del norte",
+    "agrupacion": "popoloca",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "nne nangui ngaxni",
+    "spanish_name": "mazateco del sur",
+    "agrupacion": "mazateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "nomndaa",
+    "spanish_name": "amuzgo del norte",
+    "agrupacion": "amuzgo",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "nta",
+    "spanish_name": "amuzgo del norte",
+    "agrupacion": "amuzgo",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "mazateco del este bajo",
+    "spanish_name": "mazateco",
+    "agrupacion": "Oto-mangue",
+    "familia": ""
+  },
+  {
+    "page": 251,
+    "autodenom": "nü’hü",
+    "spanish_name": "otomí de Tilapa o del sur",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "numte oote",
+    "spanish_name": "ayapaneco",
+    "agrupacion": "ayapaneco",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 251,
+    "autodenom": "nundá’",
+    "spanish_name": "amuzgo del sur",
+    "agrupacion": "amuzgo",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "nunta anh+maatyi",
+    "spanish_name": "popoluca de la Sierra",
+    "agrupacion": "popoluca de la sierra",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 251,
+    "autodenom": "nuntaj+yi’",
+    "spanish_name": "popoluca de la Sierra",
+    "agrupacion": "popoluca de la sierra",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 251,
+    "autodenom": "ñähñá",
+    "spanish_name": "otomí del oeste del Valle",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ñandú",
+    "spanish_name": "otomí del Valle del Mezquital",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ñanhmu",
+    "spanish_name": "otomí del Valle del Mezquital",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ñanhú",
+    "spanish_name": "otomí del noroeste",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 251,
+    "autodenom": "ñänhú (del Valle del Mezquital)",
+    "spanish_name": "otomí del Valle del Mezquital",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "ñható",
+    "spanish_name": "otomí del centro",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "ñóhnño (del centro)",
+    "spanish_name": "otomí del centro",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "ñóhnño (del valle del Mezquital)",
+    "spanish_name": "otomí del Valle del Mezquital",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "ñöhñö",
+    "spanish_name": "otomí del oeste del Valle",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "ñoju",
+    "spanish_name": "otomí de la Sierra",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "ñondá",
+    "spanish_name": "amuzgo del norte",
+    "agrupacion": "amuzgo",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "ñonndaa",
+    "spanish_name": "amuzgo alto del este",
+    "agrupacion": "amuzgo",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "ñöthó",
+    "spanish_name": "otomí del centro",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "ñühú",
+    "spanish_name": "otomí del noroeste",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "ñuju",
+    "spanish_name": "otomí de la Sierra",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "o’dam (del sur bajo)",
+    "spanish_name": "tepehuano del sur bajo",
+    "agrupacion": "tepehuano del sur",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "o’dam (del sur central)",
+    "spanish_name": "tepehuano del sur central",
+    "agrupacion": "tepehuano del sur",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "obnók (del este)",
+    "spanish_name": "pima del este",
+    "agrupacion": "pima",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "odami",
+    "spanish_name": "tepehuano del norte",
+    "agrupacion": "tepehuano del norte",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "ode (del este)",
+    "spanish_name": "zoque del este",
+    "agrupacion": "zoque",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 252,
+    "autodenom": "ode (del norte bajo)",
+    "spanish_name": "zoque del norte bajo",
+    "agrupacion": "zoque",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 252,
+    "autodenom": "ombeayiüts",
+    "spanish_name": "huave del oeste",
+    "agrupacion": "huave",
+    "familia": "Huave"
+  },
+  {
+    "page": 252,
+    "autodenom": "ombeyajts",
+    "spanish_name": "huave del este",
+    "agrupacion": "huave",
+    "familia": "Huave"
+  },
+  {
+    "page": 252,
+    "autodenom": "oob no’ok (del norte)",
+    "spanish_name": "pima del norte",
+    "agrupacion": "pima",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "oob no’ok (del sur)",
+    "spanish_name": "pima del sur",
+    "agrupacion": "pima",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "ore (del norte alto)",
+    "spanish_name": "zoque del norte alto",
+    "agrupacion": "zoque",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 252,
+    "autodenom": "ore (del sureste)",
+    "spanish_name": "zoque del sureste",
+    "agrupacion": "zoque",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 252,
+    "autodenom": "ote",
+    "spanish_name": "zoque del noroeste",
+    "agrupacion": "zoque",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 252,
+    "autodenom": "p’orhepecha",
+    "spanish_name": "purépecha",
+    "agrupacion": "tarasco",
+    "familia": "Tarasca"
+  },
+  {
+    "page": 252,
+    "autodenom": "p’urhepecha",
+    "spanish_name": "purépecha",
+    "agrupacion": "tarasco",
+    "familia": "Tarasca"
+  },
+  {
+    "page": 252,
+    "autodenom": "pjiekakjoo",
+    "spanish_name": "tlahuica",
+    "agrupacion": "tlahuica",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 252,
+    "autodenom": "Q’eqchi’",
+    "spanish_name": "Q’eqchi",
+    "agrupacion": "Q’eqchi’",
+    "familia": "Maya"
+  },
+  {
+    "page": 252,
+    "autodenom": "Qyool (de Aguacatán)",
+    "spanish_name": "Awakateko",
+    "agrupacion": "Awakateko",
+    "familia": "Maya"
+  },
+  {
+    "page": 252,
+    "autodenom": "Qyool (de la frontera)",
+    "spanish_name": "Mam de la frontera",
+    "agrupacion": "Mam",
+    "familia": "Maya"
+  },
+  {
+    "page": 252,
+    "autodenom": "Qyool (de la Sierra)",
+    "spanish_name": "Mam de la Sierra",
+    "agrupacion": "Mam",
+    "familia": "Maya"
+  },
+  {
+    "page": 252,
+    "autodenom": "Qyool (de Tectitán)",
+    "spanish_name": "Teko",
+    "agrupacion": "Teko",
+    "familia": "Maya"
+  },
+  {
+    "page": 252,
+    "autodenom": "Qyool (del norte)",
+    "spanish_name": "Mam del norte",
+    "agrupacion": "Mam",
+    "familia": "Maya"
+  },
+  {
+    "page": 252,
+    "autodenom": "Qyool (del sur)",
+    "spanish_name": "Mam del sur",
+    "agrupacion": "Mam",
+    "familia": "Maya"
+  },
+  {
+    "page": 252,
+    "autodenom": "Qyool Mam",
+    "spanish_name": "Mam del Soconusco",
+    "agrupacion": "Mam",
+    "familia": "Maya"
+  },
+  {
+    "page": 252,
+    "autodenom": "ralámuli raicha (de Cumbres)",
+    "spanish_name": "tarahumara de Cumbres",
+    "agrupacion": "tarahumara",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "ralámuli raicha (del centro)",
+    "spanish_name": "tarahumara del centro",
+    "agrupacion": "tarahumara",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "ralámuli raicha (del norte)",
+    "spanish_name": "tarahumara del norte",
+    "agrupacion": "tarahumara",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "rarámari raicha",
+    "spanish_name": "tarahumara del sur",
+    "agrupacion": "tarahumara",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "rarómari raicha",
+    "spanish_name": "tarahumara del oeste",
+    "agrupacion": "tarahumara",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 252,
+    "autodenom": "risna",
+    "spanish_name": "zapoteco de la Sierra sur, noroeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "ristee’",
+    "spanish_name": "zapoteco de la costa oeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "rixhna",
+    "spanish_name": "zapoteco de la Sierra sur, noroeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "rixhquei",
+    "spanish_name": "zapoteco de Texmelucan",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "rizi",
+    "spanish_name": "zapoteco de la Sierra sur,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "rosaríìtu",
+    "spanish_name": "cora de Rosarito",
+    "agrupacion": "cora",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 253,
+    "autodenom": "sa’an sau (de Yosondúa)",
+    "spanish_name": "mixteco de Yosondúa",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "sa'an ntavi",
+    "spanish_name": "mixteco de oeste central",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "sa'an sau (de Ñumi)",
+    "spanish_name": "mixteco de Ñumi",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "sa'an savi",
+    "spanish_name": "mixteco de Ñumi",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "sahin sau",
+    "spanish_name": "mixteco del sur bajo",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "sasau",
+    "spanish_name": "mixteco de Santa Lucía Monteverde",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "stnáj ni’",
+    "spanish_name": "triqui de la media",
+    "agrupacion": "triqui",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "t+kmaya’",
+    "spanish_name": "sayulteco",
+    "agrupacion": "sayulteco",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 253,
+    "autodenom": "tachaqawaxti",
+    "spanish_name": "totonaco central del norte",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 253,
+    "autodenom": "tachiwiin",
+    "spanish_name": "totonaco central del norte",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 253,
+    "autodenom": "teenek (de oriente)",
+    "spanish_name": "huasteco de oriente",
+    "agrupacion": "huasteco",
+    "familia": "Maya"
+  },
+  {
+    "page": 253,
+    "autodenom": "teenek (del centro)",
+    "spanish_name": "huasteco del centro",
+    "agrupacion": "huasteco",
+    "familia": "Maya"
+  },
+  {
+    "page": 253,
+    "autodenom": "teenek (del occidente)",
+    "spanish_name": "huasteco del occidente",
+    "agrupacion": "huasteco",
+    "familia": "Maya"
+  },
+  {
+    "page": 253,
+    "autodenom": "tenek (de oriente)",
+    "spanish_name": "huasteco de oriente",
+    "agrupacion": "huasteco",
+    "familia": "Maya"
+  },
+  {
+    "page": 253,
+    "autodenom": "tenek (del centro)",
+    "spanish_name": "huasteco del centro",
+    "agrupacion": "huasteco",
+    "familia": "Maya"
+  },
+  {
+    "page": 253,
+    "autodenom": "tenek (del occidente)",
+    "spanish_name": "huasteco del occidente",
+    "agrupacion": "huasteco",
+    "familia": "Maya"
+  },
+  {
+    "page": 253,
+    "autodenom": "tidza’",
+    "spanish_name": "zapoteco serrano, del noroeste bajo",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tipai",
+    "spanish_name": "kumiai",
+    "agrupacion": "kumiai",
+    "familia": "Cochimí-yumana"
+  },
+  {
+    "page": 253,
+    "autodenom": "tixh nguizë",
+    "spanish_name": "zapoteco de Asunción Tlacolulita",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tizá (de San Felipe Tejalápam)",
+    "spanish_name": "zapoteco de San Felipe Tejalápam",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tizá (de Valles, noroeste)",
+    "spanish_name": "zapoteco de Valles, noroeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tizáriù",
+    "spanish_name": "zapoteco serrano, del oeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tizha",
+    "spanish_name": "zapoteco serrano, del oeste medio",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tizhà",
+    "spanish_name": "zapoteco serrano, del noroeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tizha’",
+    "spanish_name": "zapoteco de San Miguel Aloápam",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tlapaneco",
+    "spanish_name": "tlapaneco del oeste",
+    "agrupacion": "tlapaneco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tnanj ni’inj",
+    "spanish_name": "triqui de la baja",
+    "agrupacion": "triqui",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tno’on sávi",
+    "spanish_name": "mixteco de Guerrero central alto",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tno’on savi (central de Guerrero)",
+    "spanish_name": "mixteco central de Guerrero",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tno’on sawi",
+    "spanish_name": "mixteco de Coapanatoyac",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tnu’u savi (del sureste central)",
+    "spanish_name": "mixteco del sureste central",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tnu’un dau",
+    "spanish_name": "mixteco del este central",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tnu’un davi (de Santa Inés de Zaragoza)",
+    "spanish_name": "mixteco de Santa Inés de Zaragoza",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tnu’un davi (de San Juan Tamazola)",
+    "spanish_name": "mixteco de San Juan Tamazola",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tnu’un dawi",
+    "spanish_name": "mixteco de San Pedro Tidaá",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 253,
+    "autodenom": "tnu'u ñuu savi",
+    "spanish_name": "mixteco de Santiago Amoltepec",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "to’on nda’vi",
+    "spanish_name": "mixteco de Santo Domingo Tonalá",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "to’on savi",
+    "spanish_name": "mixteco de Santa María",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "to’on savi (del oeste)",
+    "spanish_name": "mixteco del oeste",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tohono o’odham",
+    "spanish_name": "pápago",
+    "agrupacion": "pápago",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 254,
+    "autodenom": "tohono o’otham",
+    "spanish_name": "pápago",
+    "agrupacion": "pápago",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 254,
+    "autodenom": "tojol-ab’al",
+    "spanish_name": "tojolabal",
+    "agrupacion": "tojolabal",
+    "familia": "Maya"
+  },
+  {
+    "page": 254,
+    "autodenom": "totonaco (del río Necaxa)",
+    "spanish_name": "totonaco del río Necaxa",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 254,
+    "autodenom": "totonaco (central del sur)",
+    "spanish_name": "totonaco central del sur",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 254,
+    "autodenom": "ts’unuma",
+    "spanish_name": "amuzgo bajo del este",
+    "agrupacion": "amuzgo",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tsame",
+    "spanish_name": "chontal de Oaxaca alto",
+    "agrupacion": "chontal de Oaxaca",
+    "familia": "Chontal de Oaxaca"
+  },
+  {
+    "page": 254,
+    "autodenom": "tsome",
+    "spanish_name": "chontal de Oaxaca bajo",
+    "agrupacion": "chontal de Oaxaca",
+    "familia": "Chontal de Oaxaca"
+  },
+  {
+    "page": 254,
+    "autodenom": "tsuni (del centro)",
+    "spanish_name": "zoque del centro",
+    "agrupacion": "zoque",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 254,
+    "autodenom": "tsuni (del sur)",
+    "spanish_name": "zoque del sur",
+    "agrupacion": "zoque",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un da’vi",
+    "spanish_name": "mixteco del oeste alto",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un dau",
+    "spanish_name": "mixteco bajo de Valles",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un davi (del este)",
+    "spanish_name": "mixteco del este",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un davi (de Coatzóspam)",
+    "spanish_name": "mixteco de Coatzóspam",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un djavi",
+    "spanish_name": "mixteco del noroeste central alto",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un Isasi",
+    "spanish_name": "mixteco de Guerrero del este medio",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un Isasi (de Igualapa)",
+    "spanish_name": "mixteco de Igualapa",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un isavi",
+    "spanish_name": "mixteco de Guerrero del este medio",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un javi",
+    "spanish_name": "Mixteco del noroeste central bajo",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un lavi",
+    "spanish_name": "mixteco de Mitlatongo",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un ñudavi",
+    "spanish_name": "mixteco alto de Valles",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi (central de Guerrero)",
+    "spanish_name": "mixteco central de Guerrero",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi (central)",
+    "spanish_name": "mixteco central",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi (de Atlamajalcingo)",
+    "spanish_name": "mixteco de Atlamajalcingo",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi (de Ayutla)",
+    "spanish_name": "mixteco de Ayutla",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi (de Cañada bajo)",
+    "spanish_name": "mixteco de Cañada bajo",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi (de Cañada central)",
+    "spanish_name": "mixteco de Cañada central",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi (de Chochoapa)",
+    "spanish_name": "mixteco de Chochoapa",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi (de Coapanatoyac)",
+    "spanish_name": "mixteco de Coapanatoyac",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi",
+    "spanish_name": "mixteco de Guerrero de",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi",
+    "spanish_name": "mixteco de Guerrero",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi",
+    "spanish_name": "mixteco de Guerrero",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 254,
+    "autodenom": "tu’un savi",
+    "spanish_name": "mixteco de Guerrero",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi",
+    "spanish_name": "mixteco de Guerrero",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "(de Guerrero del noreste central)",
+    "spanish_name": "del noreste central",
+    "agrupacion": "u",
+    "familia": ""
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Guerrero del norte)",
+    "spanish_name": "mixteco de Guerrero del norte",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Igualapa)",
+    "spanish_name": "mixteco de Igualapa",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Ixtayutla)",
+    "spanish_name": "mixteco de Ixtayutla",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi",
+    "spanish_name": "mixteco de Oaxaca",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi",
+    "spanish_name": "mixteco de Oaxaca",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi",
+    "spanish_name": "mixteco de Oaxaca",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi",
+    "spanish_name": "mixteco de Oaxaca",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de San Agustín Tlacotepec)",
+    "spanish_name": "mixteco de San Agustín Tlacotepec",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de San Antonio Huitepec)",
+    "spanish_name": "mixteco de San Antonio Huitepec",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de San Antonio Sinicahua)",
+    "spanish_name": "mixteco de San Antonio Sinicahua",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de San Luis Acatlán)",
+    "spanish_name": "mixteco de San Luis Acatlán",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de San Mateo Peñasco)",
+    "spanish_name": "mixteco de San Mateo Peñasco",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de San Miguel Piedras)",
+    "spanish_name": "mixteco de San Miguel Piedras",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de San Pablo Tijaltepec)",
+    "spanish_name": "mixteco de San Pablo Tijaltepec",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de San Pedro Molinos)",
+    "spanish_name": "mixteco de San Pedro Molinos",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Santa Cruz Itundujia)",
+    "spanish_name": "mixteco de Santa Cruz Itundujia",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Santa María Peñoles)",
+    "spanish_name": "mixteco de Santa María Peñoles",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Santa María Yosoyúa)",
+    "spanish_name": "mixteco de Santa María Yosoyúa",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Sierra sur noroeste)",
+    "spanish_name": "mixteco de Sierra sur noroeste",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Tlacoachistlahuaca)",
+    "spanish_name": "mixteco de Tlacoachistlahuaca",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Tlahuapa)",
+    "spanish_name": "mixteco de Tlahuapa",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Villa de Tututepec)",
+    "spanish_name": "mixteco de Villa de Tututepec",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Xochapa)",
+    "spanish_name": "mixteco de Xochapa",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Xochistlahuaca)",
+    "spanish_name": "mixteco de Xochistlahuaca",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Xonacatlán)",
+    "spanish_name": "mixteco de Xonacatlán",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Yosonotú)",
+    "spanish_name": "mixteco de Yosonotú",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Yutanduchi de Guerrero)",
+    "spanish_name": "mixteco de Yutanduchi de Guerrero",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (de Zoyatlán de Juárez)",
+    "spanish_name": "mixteco de Zoyatlán de Juárez",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (del noreste bajo)",
+    "spanish_name": "mixteco del noreste bajo",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (del noroeste medio)",
+    "spanish_name": "mixteco del noroeste medio",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (del noroeste)",
+    "spanish_name": "mixteco del noroeste",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (del norte bajo)",
+    "spanish_name": "mixteco del norte bajo",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (del oeste de la costa)",
+    "spanish_name": "mixteco del oeste de la costa",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (del sur medio)",
+    "spanish_name": "mixteco del sur medio",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 255,
+    "autodenom": "tu’un savi (del suroeste central)",
+    "spanish_name": "mixteco del suroeste central",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "tu’un savi (del suroeste)",
+    "spanish_name": "mixteco del suroeste",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "tu’un savi de",
+    "spanish_name": "mixteco de Tlalixtaquilla",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "tu’un va’a",
+    "spanish_name": "mixteco de Sierra sur oeste",
+    "agrupacion": "mixteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "tutunakú",
+    "spanish_name": "totonaco central del sur",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 256,
+    "autodenom": "tutunáku (central alto)",
+    "spanish_name": "totonaco central alto",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 256,
+    "autodenom": "tutunáku (central del sur)",
+    "spanish_name": "totonaco central del sur",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 256,
+    "autodenom": "tutunakuj",
+    "spanish_name": "totonaco central del norte",
+    "agrupacion": "totonaco",
+    "familia": "Totonaco-tepehua"
+  },
+  {
+    "page": 256,
+    "autodenom": "uzá’",
+    "spanish_name": "chichimeco jonaz",
+    "agrupacion": "chichimeco jonaz",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "wää ‘oot",
+    "spanish_name": "texistepequeño",
+    "agrupacion": "texistepequeño",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 256,
+    "autodenom": "wachí hapwa",
+    "spanish_name": "cora de Dolores",
+    "agrupacion": "cora",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 256,
+    "autodenom": "warihó",
+    "spanish_name": "guarijío del norte",
+    "agrupacion": "guarijío",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 256,
+    "autodenom": "wixárika (del este)",
+    "spanish_name": "huichol del este",
+    "agrupacion": "huichol",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 256,
+    "autodenom": "wixárika (del norte)",
+    "spanish_name": "huichol del norte",
+    "agrupacion": "huichol",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 256,
+    "autodenom": "wixárika (del oeste)",
+    "spanish_name": "huichol del oeste",
+    "agrupacion": "huichol",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 256,
+    "autodenom": "wixárika (del sur)",
+    "spanish_name": "huichol del sur",
+    "agrupacion": "huichol",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 256,
+    "autodenom": "xhtisariú",
+    "spanish_name": "zapoteco serrano, del oeste",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "xi’iuy",
+    "spanish_name": "pame del norte",
+    "agrupacion": "pame",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "xi’oi",
+    "spanish_name": "pame del centro",
+    "agrupacion": "pame",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "xitsúa",
+    "spanish_name": "zapoteco serrano, del este",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "Temaxcalapa",
+    "spanish_name": "zapoteco",
+    "agrupacion": "Oto-mangue",
+    "familia": ""
+  },
+  {
+    "page": 256,
+    "autodenom": "xnánj nu’ a",
+    "spanish_name": "triqui de San Juan Copala",
+    "agrupacion": "triqui",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "xtizhna",
+    "spanish_name": "zapoteco de Valles,",
+    "agrupacion": "zapoteco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "xwja",
+    "spanish_name": "ixcateco",
+    "agrupacion": "ixcateco",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "yaakaw+",
+    "spanish_name": "oluteco",
+    "agrupacion": "oluteco",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 256,
+    "autodenom": "yámay",
+    "spanish_name": "sayulteco",
+    "agrupacion": "sayulteco",
+    "familia": "Mixe-zoque"
+  },
+  {
+    "page": 256,
+    "autodenom": "yaúhke’ena",
+    "spanish_name": "cora meseño",
+    "agrupacion": "cora",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 256,
+    "autodenom": "yoko t’an (central)",
+    "spanish_name": "chontal de Tabasco central",
+    "agrupacion": "chontal de Tabasco",
+    "familia": "Maya"
+  },
+  {
+    "page": 256,
+    "autodenom": "yoko t’an (del este)",
+    "spanish_name": "chontal de Tabasco del este",
+    "agrupacion": "chontal de Tabasco",
+    "familia": "Maya"
+  },
+  {
+    "page": 256,
+    "autodenom": "yoko t’an (del norte)",
+    "spanish_name": "chontal de Tabasco del norte",
+    "agrupacion": "chontal de Tabasco",
+    "familia": "Maya"
+  },
+  {
+    "page": 256,
+    "autodenom": "yoko t’an (del sureste)",
+    "spanish_name": "chontal de Tabasco del sureste",
+    "agrupacion": "chontal de Tabasco",
+    "familia": "Maya"
+  },
+  {
+    "page": 256,
+    "autodenom": "yorem-nokki",
+    "spanish_name": "mayo",
+    "agrupacion": "mayo",
+    "familia": "Yuto-nahua"
+  },
+  {
+    "page": 256,
+    "autodenom": "yühmu",
+    "spanish_name": "otomí de Ixtenco",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  },
+  {
+    "page": 256,
+    "autodenom": "yühu",
+    "spanish_name": "otomí de la Sierra",
+    "agrupacion": "otomí",
+    "familia": "Oto-mangue"
+  }
+]

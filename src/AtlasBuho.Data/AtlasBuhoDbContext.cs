@@ -33,6 +33,14 @@ public class AtlasBuhoDbContext : DbContext, Domain.Interfaces.IUnitOfWork
     public DbSet<Domain.Entities.CulturalNote> CulturalNotes => Set<Domain.Entities.CulturalNote>();
     public DbSet<Domain.Entities.DialectRelationship> DialectRelationships => Set<Domain.Entities.DialectRelationship>();
     public DbSet<Domain.Entities.W1HContext> W1HContexts => Set<Domain.Entities.W1HContext>();
+    
+    // Provenance & Versioning
+    public DbSet<Domain.Entities.SourceDocument> SourceDocuments => Set<Domain.Entities.SourceDocument>();
+    public DbSet<Domain.Entities.SourcePage> SourcePages => Set<Domain.Entities.SourcePage>();
+    public DbSet<Domain.Entities.CatalogSource> CatalogSources => Set<Domain.Entities.CatalogSource>();
+    public DbSet<Domain.Entities.CatalogVersion> CatalogVersions => Set<Domain.Entities.CatalogVersion>();
+    public DbSet<Domain.Entities.CatalogRecord> CatalogRecords => Set<Domain.Entities.CatalogRecord>();
+    public DbSet<Domain.Entities.LanguageVariantAutodenomination> LanguageVariantAutodenominations => Set<Domain.Entities.LanguageVariantAutodenomination>();
 
     // IUnitOfWork implementation - Repository properties (explicit interface implementation)
     Domain.Interfaces.ILanguageFamilyRepository Domain.Interfaces.IUnitOfWork.LanguageFamilies => new Repositories.LanguageFamilyRepository(this);

@@ -10,8 +10,8 @@ public class SpeakerProfileConfiguration : IEntityTypeConfiguration<Domain.Entit
     {
         builder.ToTable("SpeakerProfiles");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").IsRequired();
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.CommunityId).HasColumnName("CommunityId");
         builder.Property(e => e.Name).HasColumnName("Name").HasMaxLength(200).IsRequired();
         builder.Property(e => e.Pseudonym).HasColumnName("Pseudonym").HasMaxLength(200);

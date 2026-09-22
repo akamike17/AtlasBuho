@@ -30,6 +30,10 @@ public class Source
     public bool IsActive { get; private set; } = true;
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; private set; } = DateTime.UtcNow;
+    
+    // Navigation property for Evidence
+    private readonly List<Evidence> _evidence = new();
+    public IReadOnlyCollection<Evidence> Evidence => _evidence.AsReadOnly();
 
     private Source() { }
 

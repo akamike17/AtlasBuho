@@ -10,15 +10,15 @@ public class RiskAssessmentConfiguration : IEntityTypeConfiguration<Domain.Entit
     {
         builder.ToTable("RiskAssessments");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").IsRequired();
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.RiskLevel).HasColumnName("RiskLevel").HasConversion<int>().IsRequired();
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(200);
         builder.Property(e => e.Year).HasColumnName("Year");
-        builder.Property(e => e.Methodology).HasColumnName("Methodology").HasMaxLength(2000);
+        builder.Property(e => e.Methodology).HasColumnName("Methodology").HasColumnType("TEXT");
         builder.Property(e => e.Population).HasColumnName("Population");
-        builder.Property(e => e.Criterion).HasColumnName("Criterion").HasMaxLength(2000);
-        builder.Property(e => e.Notes).HasColumnName("Notes").HasMaxLength(2000);
+        builder.Property(e => e.Criterion).HasColumnName("Criterion").HasColumnType("TEXT");
+        builder.Property(e => e.Notes).HasColumnName("Notes").HasColumnType("TEXT");
         builder.Property(e => e.IsCurrent).HasColumnName("IsCurrent").IsRequired();
         builder.Property(e => e.CreatedAt).HasColumnName("CreatedAt").IsRequired();
         builder.Property(e => e.UpdatedAt).HasColumnName("UpdatedAt").IsRequired();

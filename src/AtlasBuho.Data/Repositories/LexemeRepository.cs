@@ -21,7 +21,7 @@ public class LexemeRepository : Domain.Interfaces.ILexemeRepository
             .Include(l => l.Examples)
                 .ThenInclude(e => e.AudioRecordings)
             .Include(l => l.Meanings)
-            .Include(l => l.Phrases)
+            .Include(l => l.PhraseLexemes)
             .Include(l => l.Evidence)
                 .ThenInclude(e => e.Source)
             .Include(l => l.AudioRecordings)

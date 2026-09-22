@@ -10,19 +10,19 @@ public class LexemeConfiguration : IEntityTypeConfiguration<Domain.Entities.Lexe
     {
         builder.ToTable("Lexemes");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").IsRequired();
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.CanonicalForm).HasColumnName("CanonicalForm").HasMaxLength(500).IsRequired();
-        builder.Property(e => e.AlternativeForms).HasColumnName("AlternativeForms").HasMaxLength(2000);
+        builder.Property(e => e.AlternativeForms).HasColumnName("AlternativeForms").HasColumnType("TEXT");
         builder.Property(e => e.Autodenomination).HasColumnName("Autodenomination").HasMaxLength(500);
-        builder.Property(e => e.SpanishMeaning).HasColumnName("SpanishMeaning").HasMaxLength(2000);
+        builder.Property(e => e.SpanishMeaning).HasColumnName("SpanishMeaning").HasColumnType("TEXT");
         builder.Property(e => e.PartOfSpeech).HasColumnName("PartOfSpeech").HasMaxLength(100);
         builder.Property(e => e.PronunciationIpa).HasColumnName("PronunciationIpa").HasMaxLength(500);
         builder.Property(e => e.PronunciationReadable).HasColumnName("PronunciationReadable").HasMaxLength(500);
         builder.Property(e => e.SemanticDomain).HasColumnName("SemanticDomain").HasMaxLength(200);
         builder.Property(e => e.Register).HasColumnName("Register").HasMaxLength(100);
-        builder.Property(e => e.RegionalNotes).HasColumnName("RegionalNotes").HasMaxLength(2000);
-        builder.Property(e => e.Etymology).HasColumnName("Etymology").HasMaxLength(2000);
+        builder.Property(e => e.RegionalNotes).HasColumnName("RegionalNotes").HasColumnType("TEXT");
+        builder.Property(e => e.Etymology).HasColumnName("Etymology").HasColumnType("TEXT");
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(500);
         builder.Property(e => e.VerificationStatus).HasColumnName("VerificationStatus").HasConversion<int>().IsRequired();
         builder.Property(e => e.Confidence).HasColumnName("Confidence").HasColumnType("decimal(3,2)").IsRequired();
@@ -49,11 +49,6 @@ public class LexemeConfiguration : IEntityTypeConfiguration<Domain.Entities.Lexe
             .OnDelete(DeleteBehavior.Cascade);
             
         builder.HasMany(e => e.Meanings)
-            .WithOne()
-            .HasForeignKey("LexemeId")
-            .OnDelete(DeleteBehavior.Cascade);
-            
-        builder.HasMany(e => e.Phrases)
             .WithOne()
             .HasForeignKey("LexemeId")
             .OnDelete(DeleteBehavior.Cascade);

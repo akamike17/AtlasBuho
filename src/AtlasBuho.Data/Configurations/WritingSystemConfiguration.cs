@@ -10,12 +10,12 @@ public class WritingSystemConfiguration : IEntityTypeConfiguration<Domain.Entiti
     {
         builder.ToTable("WritingSystems");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").IsRequired();
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.Name).HasColumnName("Name").HasMaxLength(200).IsRequired();
         builder.Property(e => e.Script).HasColumnName("Script").HasMaxLength(100);
-        builder.Property(e => e.Description).HasColumnName("Description").HasMaxLength(2000);
-        builder.Property(e => e.OrthographyRules).HasColumnName("OrthographyRules").HasMaxLength(5000);
+        builder.Property(e => e.Description).HasColumnName("Description").HasColumnType("TEXT");
+        builder.Property(e => e.OrthographyRules).HasColumnName("OrthographyRules").HasColumnType("TEXT");
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(500);
         builder.Property(e => e.IsOfficial).HasColumnName("IsOfficial").IsRequired();
         builder.Property(e => e.IsActive).HasColumnName("IsActive").IsRequired();

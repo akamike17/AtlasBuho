@@ -10,12 +10,12 @@ public class DialectRelationshipConfiguration : IEntityTypeConfiguration<Domain.
     {
         builder.ToTable("DialectRelationships");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.SourceLanguageVariantId).HasColumnName("SourceLanguageVariantId").IsRequired();
-        builder.Property(e => e.TargetLanguageVariantId).HasColumnName("TargetLanguageVariantId").IsRequired();
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.SourceLanguageVariantId).HasColumnName("SourceLanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.TargetLanguageVariantId).HasColumnName("TargetLanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.RelationshipType).HasColumnName("RelationshipType").HasConversion<int>().IsRequired();
         builder.Property(e => e.IntelligibilityScore).HasColumnName("IntelligibilityScore").HasColumnType("decimal(3,2)");
-        builder.Property(e => e.Description).HasColumnName("Description").HasMaxLength(2000);
+        builder.Property(e => e.Description).HasColumnName("Description").HasColumnType("TEXT");
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(500);
         builder.Property(e => e.VerificationStatus).HasColumnName("VerificationStatus").HasConversion<int>().IsRequired();
         builder.Property(e => e.Confidence).HasColumnName("Confidence").HasColumnType("decimal(3,2)").IsRequired();

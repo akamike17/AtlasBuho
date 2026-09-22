@@ -10,15 +10,15 @@ public class PhraseLexemeConfiguration : IEntityTypeConfiguration<Domain.Entitie
     {
         builder.ToTable("PhraseLexemes");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.PhraseId).HasColumnName("PhraseId").IsRequired();
-        builder.Property(e => e.LexemeId).HasColumnName("LexemeId").IsRequired();
+        builder.HasKey(e => new { e.PhraseId, e.LexemeId, e.Position });
+        
+        builder.Property(e => e.PhraseId).HasColumnName("PhraseId").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LexemeId).HasColumnName("LexemeId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.Position).HasColumnName("Position").IsRequired();
         builder.Property(e => e.GrammarRole).HasColumnName("GrammarRole").HasMaxLength(100);
         builder.Property(e => e.CreatedAt).HasColumnName("CreatedAt").IsRequired();
         builder.HasIndex(e => e.PhraseId).HasDatabaseName("IX_PhraseLexemes_PhraseId");
         builder.HasIndex(e => e.LexemeId).HasDatabaseName("IX_PhraseLexemes_LexemeId");
-        builder.HasIndex(e => new { e.PhraseId, e.Position }).IsUnique().HasDatabaseName("IX_PhraseLexemes_Phrase_Position");
         
         builder.HasOne<Domain.Entities.Phrase>()
             .WithMany(e => e.PhraseLexemes)
@@ -26,7 +26,7 @@ public class PhraseLexemeConfiguration : IEntityTypeConfiguration<Domain.Entitie
             .OnDelete(DeleteBehavior.Cascade);
             
         builder.HasOne<Domain.Entities.Lexeme>()
-            .WithMany()
+            .WithMany(e => e.PhraseLexemes)
             .HasForeignKey(e => e.LexemeId)
             .OnDelete(DeleteBehavior.Cascade);
     }

@@ -10,14 +10,14 @@ public class MeaningConfiguration : IEntityTypeConfiguration<Domain.Entities.Mea
     {
         builder.ToTable("Meanings");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.LexemeId).HasColumnName("LexemeId").IsRequired();
-        builder.Property(e => e.SpanishMeaning).HasColumnName("SpanishMeaning").HasMaxLength(2000).IsRequired();
-        builder.Property(e => e.EnglishMeaning).HasColumnName("EnglishMeaning").HasMaxLength(2000);
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LexemeId).HasColumnName("LexemeId").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.SpanishMeaning).HasColumnName("SpanishMeaning").HasColumnType("TEXT").IsRequired();
+        builder.Property(e => e.EnglishMeaning).HasColumnName("EnglishMeaning").HasColumnType("TEXT");
         builder.Property(e => e.PartOfSpeech).HasColumnName("PartOfSpeech").HasMaxLength(100);
         builder.Property(e => e.SemanticDomain).HasColumnName("SemanticDomain").HasMaxLength(200);
         builder.Property(e => e.Register).HasColumnName("Register").HasMaxLength(100);
-        builder.Property(e => e.RegionalNotes).HasColumnName("RegionalNotes").HasMaxLength(2000);
+        builder.Property(e => e.RegionalNotes).HasColumnName("RegionalNotes").HasColumnType("TEXT");
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(500);
         builder.Property(e => e.VerificationStatus).HasColumnName("VerificationStatus").HasConversion<int>().IsRequired();
         builder.Property(e => e.Confidence).HasColumnName("Confidence").HasColumnType("decimal(3,2)").IsRequired();

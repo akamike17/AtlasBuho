@@ -8,7 +8,7 @@ public class Pronunciation
     public string? Readable { get; private set; }
     public string? AudioUrl { get; private set; }
     public Guid? AudioRecordingId { get; private set; }
-    public string? SpeakerId { get; private set; }
+    public Guid? SpeakerId { get; private set; }
     public string? Source { get; private set; }
     public VerificationStatus VerificationStatus { get; private set; } = VerificationStatus.Unknown;
     public double Confidence { get; private set; } = 0.0;
@@ -23,7 +23,7 @@ public class Pronunciation
         string? readable,
         string? audioUrl,
         Guid? audioRecordingId,
-        string? speakerId,
+        Guid? speakerId,
         string? source,
         VerificationStatus verificationStatus = VerificationStatus.Unknown,
         double confidence = 0.0)
@@ -44,7 +44,7 @@ public class Pronunciation
         string? readable,
         string? audioUrl,
         Guid? audioRecordingId,
-        string? speakerId,
+        Guid? speakerId,
         string? source,
         VerificationStatus verificationStatus,
         double confidence)

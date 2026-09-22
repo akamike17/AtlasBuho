@@ -10,12 +10,12 @@ public class ExampleConfiguration : IEntityTypeConfiguration<Domain.Entities.Exa
     {
         builder.ToTable("Examples");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.LexemeId).HasColumnName("LexemeId").IsRequired();
-        builder.Property(e => e.Text).HasColumnName("Text").HasMaxLength(5000).IsRequired();
-        builder.Property(e => e.SpanishTranslation).HasColumnName("SpanishTranslation").HasMaxLength(5000);
-        builder.Property(e => e.EnglishTranslation).HasColumnName("EnglishTranslation").HasMaxLength(5000);
-        builder.Property(e => e.Context).HasColumnName("Context").HasMaxLength(2000);
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LexemeId).HasColumnName("LexemeId").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.Text).HasColumnName("Text").HasColumnType("TEXT").IsRequired();
+        builder.Property(e => e.SpanishTranslation).HasColumnName("SpanishTranslation").HasColumnType("TEXT");
+        builder.Property(e => e.EnglishTranslation).HasColumnName("EnglishTranslation").HasColumnType("TEXT");
+        builder.Property(e => e.Context).HasColumnName("Context").HasColumnType("TEXT");
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(500);
         builder.Property(e => e.VerificationStatus).HasColumnName("VerificationStatus").HasConversion<int>().IsRequired();
         builder.Property(e => e.Confidence).HasColumnName("Confidence").HasColumnType("decimal(3,2)").IsRequired();

@@ -1,0 +1,1822 @@
+[
+  {
+    "page": 31,
+    "family": "álgica",
+    "variant_name": "Kickapoo"
+  },
+  {
+    "page": 34,
+    "family": "yuto-nahua",
+    "variant_name": "pápago"
+  },
+  {
+    "page": 34,
+    "family": "yuto-nahua",
+    "variant_name": "pima del norte"
+  },
+  {
+    "page": 34,
+    "family": "yuto-nahua",
+    "variant_name": "pima del sur"
+  },
+  {
+    "page": 34,
+    "family": "yuto-nahua",
+    "variant_name": "pima del este"
+  },
+  {
+    "page": 35,
+    "family": "yuto-nahua",
+    "variant_name": "tepehuano del norte"
+  },
+  {
+    "page": 36,
+    "family": "yuto-nahua",
+    "variant_name": "tepehuano del sur alto"
+  },
+  {
+    "page": 37,
+    "family": "yuto-nahua",
+    "variant_name": "tepehuano del sur bajo"
+  },
+  {
+    "page": 38,
+    "family": "yuto-nahua",
+    "variant_name": "tepehuano del sur central"
+  },
+  {
+    "page": 39,
+    "family": "yuto-nahua",
+    "variant_name": "tarahumara del oeste"
+  },
+  {
+    "page": 42,
+    "family": "yuto-nahua",
+    "variant_name": "tarahumara del norte"
+  },
+  {
+    "page": 43,
+    "family": "yuto-nahua",
+    "variant_name": "tarahumara de Cumbres"
+  },
+  {
+    "page": 44,
+    "family": "yuto-nahua",
+    "variant_name": "tarahumara del centro"
+  },
+  {
+    "page": 48,
+    "family": "yuto-nahua",
+    "variant_name": "tarahumara del sur"
+  },
+  {
+    "page": 49,
+    "family": "yuto-nahua",
+    "variant_name": "guarijío del norte"
+  },
+  {
+    "page": 49,
+    "family": "yuto-nahua",
+    "variant_name": "guarijío del sur"
+  },
+  {
+    "page": 49,
+    "family": "yuto-nahua",
+    "variant_name": "yaqui"
+  },
+  {
+    "page": 50,
+    "family": "yuto-nahua",
+    "variant_name": "mayo"
+  },
+  {
+    "page": 53,
+    "family": "yuto-nahua",
+    "variant_name": "cora de Rosarito"
+  },
+  {
+    "page": 53,
+    "family": "yuto-nahua",
+    "variant_name": "cora de Dolores"
+  },
+  {
+    "page": 53,
+    "family": "yuto-nahua",
+    "variant_name": "cora meseño"
+  },
+  {
+    "page": 54,
+    "family": "yuto-nahua",
+    "variant_name": "cora de Jesús María"
+  },
+  {
+    "page": 54,
+    "family": "yuto-nahua",
+    "variant_name": "cora francisqueño"
+  },
+  {
+    "page": 54,
+    "family": "yuto-nahua",
+    "variant_name": "cora tereseño"
+  },
+  {
+    "page": 55,
+    "family": "yuto-nahua",
+    "variant_name": "cora presideño"
+  },
+  {
+    "page": 55,
+    "family": "yuto-nahua",
+    "variant_name": "cora corapeño"
+  },
+  {
+    "page": 55,
+    "family": "yuto-nahua",
+    "variant_name": "huichol del norte"
+  },
+  {
+    "page": 56,
+    "family": "yuto-nahua",
+    "variant_name": "huichol del sur"
+  },
+  {
+    "page": 57,
+    "family": "yuto-nahua",
+    "variant_name": "huichol del este"
+  },
+  {
+    "page": 57,
+    "family": "yuto-nahua",
+    "variant_name": "huichol del oeste"
+  },
+  {
+    "page": 58,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl de la Sierra, noreste de Lagunilla, La Manigua, La Quebradora, La Unión, Las Ceibas, Las Cibeles, Las Cruces, Los Aguacates, Los Mangos,\nPuebla"
+  },
+  {
+    "page": 60,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl del noreste central"
+  },
+  {
+    "page": 62,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl del Istmo"
+  },
+  {
+    "page": 62,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl de la Huasteca\n[Tolico], Tzicatipa, Xiloxochico, Xochioloco, Yupiltitla. Castillo de Teayo: Américas Chicas, Casa Quemada, Casperal,\nveracruzana"
+  },
+  {
+    "page": 67,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl de la Huasteca potosina"
+  },
+  {
+    "page": 71,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl de Oaxaca"
+  },
+  {
+    "page": 71,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl de la Sierra negra, sur"
+  },
+  {
+    "page": 71,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl de la Sierra negra, norte"
+  },
+  {
+    "page": 73,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl central de Veracruz"
+  },
+  {
+    "page": 75,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl de la Sierra oeste de Coaltepec, San Marcos Eloxochitlán, Tecomatepec Tres Cruces, Tepantzingo, Tinixcatl, Tlacomulco, Tlacotepec (San\nPuebla"
+  },
+  {
+    "page": 75,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl alto del norte de Puebla"
+  },
+  {
+    "page": 76,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl del Istmo bajo"
+  },
+  {
+    "page": 76,
+    "family": "yuto-nahua",
+    "variant_name": "náhuatl del centro de Puebla"
+  },
+  {
+    "page": 77,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano bajo de occidente"
+  },
+  {
+    "page": 78,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano del noroeste"
+  },
+  {
+    "page": 78,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano de Guerrero"
+  },
+  {
+    "page": 81,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano de occidente"
+  },
+  {
+    "page": 81,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano central de occidente"
+  },
+  {
+    "page": 81,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano central bajo"
+  },
+  {
+    "page": 81,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano de Temixco"
+  },
+  {
+    "page": 81,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano de Puente de Ixtla"
+  },
+  {
+    "page": 82,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano de Tetela del Volcán"
+  },
+  {
+    "page": 82,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano alto de occidente"
+  },
+  {
+    "page": 82,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano del oriente"
+  },
+  {
+    "page": 82,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano del oriente central"
+  },
+  {
+    "page": 82,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano del centro bajo"
+  },
+  {
+    "page": 82,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano del centro alto"
+  },
+  {
+    "page": 83,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano del centro"
+  },
+  {
+    "page": 83,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano del oriente de Puebla"
+  },
+  {
+    "page": 83,
+    "family": "yuto-nahua",
+    "variant_name": "mexicano de la Huasteca Reforma, Los Naranjos, Oxpantla, Pahactla, Palo Gordo, Plan Huasteca, Pochoica, Poxtla Atlajco, Rancho las Flores,\nHidalguense"
+  },
+  {
+    "page": 87,
+    "family": "cochimí-yumana",
+    "variant_name": "paipai"
+  },
+  {
+    "page": 87,
+    "family": "cochimí-yumana",
+    "variant_name": "ku’ahl"
+  },
+  {
+    "page": 87,
+    "family": "cochimí-yumana",
+    "variant_name": "cucapá"
+  },
+  {
+    "page": 87,
+    "family": "cochimí-yumana",
+    "variant_name": "kumiai"
+  },
+  {
+    "page": 88,
+    "family": "cochimí-yumana",
+    "variant_name": "kiliwa"
+  },
+  {
+    "page": 88,
+    "family": "seri",
+    "variant_name": "seri"
+  },
+  {
+    "page": 89,
+    "family": "oto-mangue",
+    "variant_name": "otomí de la Sierra"
+  },
+  {
+    "page": 92,
+    "family": "oto-mangue",
+    "variant_name": "otomí bajo del noroeste "
+  },
+  {
+    "page": 92,
+    "family": "oto-mangue",
+    "variant_name": "otomí del oeste"
+  },
+  {
+    "page": 92,
+    "family": "oto-mangue",
+    "variant_name": "otomí del oeste del Valle del Sabina Grande, San José Atlán, Santa Bárbara, Tlaxcalilla, Vitejhe, Yonthe, Zamorano, Zequeteje, Zothe. Tecozautla:\nMezquital"
+  },
+  {
+    "page": 93,
+    "family": "oto-mangue",
+    "variant_name": "otomí del Valle del Mezquital"
+  },
+  {
+    "page": 96,
+    "family": "oto-mangue",
+    "variant_name": "otomí de Ixtenco"
+  },
+  {
+    "page": 96,
+    "family": "oto-mangue",
+    "variant_name": "otomí de Tilapa o del sur"
+  },
+  {
+    "page": 96,
+    "family": "oto-mangue",
+    "variant_name": "otomí del noroeste"
+  },
+  {
+    "page": 98,
+    "family": "oto-mangue",
+    "variant_name": "otomí del centro"
+  },
+  {
+    "page": 102,
+    "family": "oto-mangue",
+    "variant_name": "mazahua de oriente"
+  },
+  {
+    "page": 104,
+    "family": "oto-mangue",
+    "variant_name": "mazahua de occidente"
+  },
+  {
+    "page": 105,
+    "family": "oto-mangue",
+    "variant_name": "matlatzinca"
+  },
+  {
+    "page": 105,
+    "family": "oto-mangue",
+    "variant_name": "tlahuica"
+  },
+  {
+    "page": 105,
+    "family": "oto-mangue",
+    "variant_name": "pame del norte"
+  },
+  {
+    "page": 106,
+    "family": "oto-mangue",
+    "variant_name": "pame del centro"
+  },
+  {
+    "page": 106,
+    "family": "oto-mangue",
+    "variant_name": "chichimeco jonaz"
+  },
+  {
+    "page": 107,
+    "family": "oto-mangue",
+    "variant_name": "chinanteco del norte"
+  },
+  {
+    "page": 108,
+    "family": "oto-mangue",
+    "variant_name": "chinanteco central bajo"
+  },
+  {
+    "page": 108,
+    "family": "oto-mangue",
+    "variant_name": "chinanteco del sureste alto"
+  },
+  {
+    "page": 108,
+    "family": "oto-mangue",
+    "variant_name": "chinanteco del sureste bajo"
+  },
+  {
+    "page": 108,
+    "family": "oto-mangue",
+    "variant_name": "chinanteco del oeste central alto"
+  },
+  {
+    "page": 108,
+    "family": "oto-mangue",
+    "variant_name": "chinanteco de la Sierra"
+  },
+  {
+    "page": 108,
+    "family": "oto-mangue",
+    "variant_name": "chinanteco del noroeste"
+  },
+  {
+    "page": 108,
+    "family": "oto-mangue",
+    "variant_name": "chinanteco del oeste"
+  },
+  {
+    "page": 109,
+    "family": "oto-mangue",
+    "variant_name": "chianateco del oeste central bajo"
+  },
+  {
+    "page": 109,
+    "family": "oto-mangue",
+    "variant_name": "chinanteco del sureste medio"
+  },
+  {
+    "page": 109,
+    "family": "oto-mangue",
+    "variant_name": "chinanteco central"
+  },
+  {
+    "page": 110,
+    "family": "oto-mangue",
+    "variant_name": "tlapaneco del sur"
+  },
+  {
+    "page": 110,
+    "family": "oto-mangue",
+    "variant_name": "tlapaneco del oeste"
+  },
+  {
+    "page": 110,
+    "family": "oto-mangue",
+    "variant_name": "tlapaneco central bajo"
+  },
+  {
+    "page": 111,
+    "family": "oto-mangue",
+    "variant_name": "tlapaneco del suroeste"
+  },
+  {
+    "page": 111,
+    "family": "oto-mangue",
+    "variant_name": "tlapaneco del este"
+  },
+  {
+    "page": 111,
+    "family": "oto-mangue",
+    "variant_name": "tlapaneco del centro"
+  },
+  {
+    "page": 111,
+    "family": "oto-mangue",
+    "variant_name": "tlapaneco del norte"
+  },
+  {
+    "page": 111,
+    "family": "oto-mangue",
+    "variant_name": "tlapaneco del noroeste alto"
+  },
+  {
+    "page": 111,
+    "family": "oto-mangue",
+    "variant_name": "tlapaneco del noroeste bajo"
+  },
+  {
+    "page": 112,
+    "family": "oto-mangue",
+    "variant_name": "mazateco del noreste"
+  },
+  {
+    "page": 112,
+    "family": "oto-mangue",
+    "variant_name": "mazateco de la presa bajo"
+  },
+  {
+    "page": 112,
+    "family": "oto-mangue",
+    "variant_name": "mazateco del este bajo"
+  },
+  {
+    "page": 112,
+    "family": "oto-mangue",
+    "variant_name": "mazateco del sur"
+  },
+  {
+    "page": 113,
+    "family": "oto-mangue",
+    "variant_name": "mazateco del sureste"
+  },
+  {
+    "page": 113,
+    "family": "oto-mangue",
+    "variant_name": "mazateco de Eloxochitlán"
+  },
+  {
+    "page": 113,
+    "family": "oto-mangue",
+    "variant_name": "mazateco del centro"
+  },
+  {
+    "page": 113,
+    "family": "oto-mangue",
+    "variant_name": "mazateco del suroeste"
+  },
+  {
+    "page": 114,
+    "family": "oto-mangue",
+    "variant_name": "mazateco de Huehuetlán"
+  },
+  {
+    "page": 114,
+    "family": "oto-mangue",
+    "variant_name": "mazateco de Tecóatl"
+  },
+  {
+    "page": 114,
+    "family": "oto-mangue",
+    "variant_name": "mazateco de la presa alto"
+  },
+  {
+    "page": 114,
+    "family": "oto-mangue",
+    "variant_name": "mazateco del oeste"
+  },
+  {
+    "page": 114,
+    "family": "oto-mangue",
+    "variant_name": "mazateco del norte"
+  },
+  {
+    "page": 115,
+    "family": "oto-mangue",
+    "variant_name": "mazateco de Ocopetatillo"
+  },
+  {
+    "page": 115,
+    "family": "oto-mangue",
+    "variant_name": "mazateco de Acatepec"
+  },
+  {
+    "page": 115,
+    "family": "oto-mangue",
+    "variant_name": "mazateco de Puebla"
+  },
+  {
+    "page": 115,
+    "family": "oto-mangue",
+    "variant_name": "ixcateco"
+  },
+  {
+    "page": 116,
+    "family": "oto-mangue",
+    "variant_name": "chocholteco del oeste"
+  },
+  {
+    "page": 116,
+    "family": "oto-mangue",
+    "variant_name": "chocholteco del sur"
+  },
+  {
+    "page": 116,
+    "family": "oto-mangue",
+    "variant_name": "chocholteco del este"
+  },
+  {
+    "page": 116,
+    "family": "oto-mangue",
+    "variant_name": "popoloca del norte"
+  },
+  {
+    "page": 116,
+    "family": "oto-mangue",
+    "variant_name": "popoloca del centro"
+  },
+  {
+    "page": 116,
+    "family": "oto-mangue",
+    "variant_name": "popoloca de oriente"
+  },
+  {
+    "page": 116,
+    "family": "oto-mangue",
+    "variant_name": "popoloca del poniente"
+  },
+  {
+    "page": 117,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Texmelucan"
+  },
+  {
+    "page": 117,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, noroeste Palma, La Labor, La Nopalera, La Siempre Viva, La Singuera, Las Juntas (El Puente), Las Trancas, Llano Mazorca,\nbajo"
+  },
+  {
+    "page": 117,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, Elotepec.\nnoroeste"
+  },
+  {
+    "page": 117,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de San Antonino el Alto"
+  },
+  {
+    "page": 117,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, oeste Frutal (El Frutal), San Isidro, San Miguel Mixtepec, Tierra Colorada. Santa Cruz Mixtepec: Emiliano Zapata, Río Culebra\nbajo"
+  },
+  {
+    "page": 117,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, noreste Metal, Llano de Chalaa, Piedra Yavichi, San Vicente Lachixío.\nalto"
+  },
+  {
+    "page": 117,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de San Miguel Aloápam"
+  },
+  {
+    "page": 117,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco serrano, del noroeste"
+  },
+  {
+    "page": 117,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco serrano, del oeste"
+  },
+  {
+    "page": 118,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco serrano, bajo"
+  },
+  {
+    "page": 118,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco serrano, del noroeste Yahuiche, Santa María Zoogochi, Santiago Teotlasco, Santo Domingo Cacalotepec. San Ildelfonso Villa Alta: San\nbajo"
+  },
+  {
+    "page": 118,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Santa María\nTemaxcalapa"
+  },
+  {
+    "page": 118,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco del oeste de Tuxtepec"
+  },
+  {
+    "page": 118,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Santiago Yaveo"
+  },
+  {
+    "page": 118,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco serrano, del este"
+  },
+  {
+    "page": 119,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco serrano, del sureste"
+  },
+  {
+    "page": 119,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco serrano, del sureste\nmedio"
+  },
+  {
+    "page": 119,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco serrano, del sureste alto"
+  },
+  {
+    "page": 119,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Santiago Laxopa"
+  },
+  {
+    "page": 119,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco serrano, del sureste bajo"
+  },
+  {
+    "page": 119,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco serrano, del oeste medio"
+  },
+  {
+    "page": 119,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles del sur"
+  },
+  {
+    "page": 120,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de San Vicente Coatlán"
+  },
+  {
+    "page": 120,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, del este Tierra Blanca. San Miguel Coatlán: Altamira, Alto Florida del Sur, Arroyo Bejuco, Arroyo Checalmate, Arroyo Yoska,\nbajo"
+  },
+  {
+    "page": 120,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la costa oeste"
+  },
+  {
+    "page": 120,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la costa central"
+  },
+  {
+    "page": 121,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, central"
+  },
+  {
+    "page": 122,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, Pedro Mixtepec Distrito 26. San Pedro Mártir Quiéchapa: San Pedro Mártir Quiéchapa.\nnoroeste"
+  },
+  {
+    "page": 122,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, noroeste\nmedio"
+  },
+  {
+    "page": 122,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Quiavicuzas"
+  },
+  {
+    "page": 122,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, del\nnorte"
+  },
+  {
+    "page": 122,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la costa noreste"
+  },
+  {
+    "page": 123,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Mixtepec"
+  },
+  {
+    "page": 123,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, del\nsureste bajo"
+  },
+  {
+    "page": 123,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la Sierra sur, del\nsureste alto"
+  },
+  {
+    "page": 123,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Santa María\nQuiegolani"
+  },
+  {
+    "page": 123,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de San Bartolo\nYautepec"
+  },
+  {
+    "page": 123,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Asunción Tlacolulita"
+  },
+  {
+    "page": 123,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la costa este"
+  },
+  {
+    "page": 124,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, oeste"
+  },
+  {
+    "page": 124,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de San Felipe Tejalapám.\nTejalápam"
+  },
+  {
+    "page": 124,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, noroeste"
+  },
+  {
+    "page": 124,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, norte"
+  },
+  {
+    "page": 124,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del noroeste Ángeles Uno, Oaxaca de Juárez, Pueblo Nuevo Parte Alta, Solidaridad, Trinidad de Viguera. San Antonio de la Cal:\nmedio"
+  },
+  {
+    "page": 124,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del noroeste María Coyotepec), El Pipe, La Magueyera, Santa María Coyotepec. Villa de Zaachila: Colonia Guadalupana, Emiliano\nbajo"
+  },
+  {
+    "page": 125,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del suroeste\nmedio"
+  },
+  {
+    "page": 125,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Zimatlán de Álvarez"
+  },
+  {
+    "page": 125,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del oeste\ncentral"
+  },
+  {
+    "page": 125,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del centro"
+  },
+  {
+    "page": 125,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, de suroeste\nalto"
+  },
+  {
+    "page": 125,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del suroeste Chilateca, San Pedro Guegorexe, Santa Cruz, Santa María la Chilaita, Santa Rosa (Santa Rosa de Lima). San Antonino\ncentral"
+  },
+  {
+    "page": 125,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del centro\nbajo"
+  },
+  {
+    "page": 125,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del norte Guajal, El Huizache, El Pocito, El Vergel, La Tunalera, San Francisco Lachigoló. San Jerónimo Tlacochahuaya: Arroyo\ncentral"
+  },
+  {
+    "page": 126,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del este Blanco, Rancho Colorado (Rancho Colorado Güilá), Rancho San Felipe (San Felipe Güilá), Río Blanco (Rancho de\ncentral"
+  },
+  {
+    "page": 126,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de San Baltazar\nChichicapam"
+  },
+  {
+    "page": 126,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del este (Correcaminos), El Pedregal, El Potrero, Guiureyla, La Colorada, Río del Nopal (Barrio del Piru), Santiago Matatlán.\nmedio"
+  },
+  {
+    "page": 126,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Sierra sur, del noreste Danigaree, Duraznal, El Ciruelo, El Cordoncillo, El Guayabo, El Huajal, El Porvenir, El Romadito, El Tablón II, Hierba\nalto"
+  },
+  {
+    "page": 126,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Valles, del noreste"
+  },
+  {
+    "page": 126,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la montaña del Istmo, Llano Lumbre, Loma Esperanza, Maíz Quemado, Medio Cerro, Ocotal (Villa Esperanza), Ocotal Buena Vista, Peña\nalto"
+  },
+  {
+    "page": 126,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la montaña del Istmo, Peña Blanca, Pie de Cerro, Puente Nizavighana, Rancho Nuevo, Río Grande, Santa María Guienagati, Xicalpestle.\nbajo"
+  },
+  {
+    "page": 127,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de Petapa"
+  },
+  {
+    "page": 127,
+    "family": "oto-mangue",
+    "variant_name": "zapoteco de la planicie costera"
+  },
+  {
+    "page": 128,
+    "family": "oto-mangue",
+    "variant_name": "chatino occidental alto"
+  },
+  {
+    "page": 129,
+    "family": "oto-mangue",
+    "variant_name": "chatino occidental bajo"
+  },
+  {
+    "page": 129,
+    "family": "oto-mangue",
+    "variant_name": "chatino central"
+  },
+  {
+    "page": 129,
+    "family": "oto-mangue",
+    "variant_name": "chatino oriental bajo"
+  },
+  {
+    "page": 130,
+    "family": "oto-mangue",
+    "variant_name": "chatino oriental alto"
+  },
+  {
+    "page": 130,
+    "family": "oto-mangue",
+    "variant_name": "chatino de Zacatepec"
+  },
+  {
+    "page": 130,
+    "family": "oto-mangue",
+    "variant_name": "amuzgo del norte"
+  },
+  {
+    "page": 130,
+    "family": "oto-mangue",
+    "variant_name": "amuzgo del sur"
+  },
+  {
+    "page": 131,
+    "family": "oto-mangue",
+    "variant_name": "amuzgo bajo del este"
+  },
+  {
+    "page": 131,
+    "family": "oto-mangue",
+    "variant_name": "amuzgo alto del este"
+  },
+  {
+    "page": 132,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Guerrero del noreste Lagunas (Capulín), San Martín, San Miguel El Grande, San Miguelito, Santa Cruz Fandango, Zaragoza.\ncentral"
+  },
+  {
+    "page": 132,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Atlamajalcingo"
+  },
+  {
+    "page": 132,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Chochoapa"
+  },
+  {
+    "page": 132,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Coapanatoyac"
+  },
+  {
+    "page": 132,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Igualapa"
+  },
+  {
+    "page": 132,
+    "family": "oto-mangue",
+    "variant_name": "mixteco central de Guerrero"
+  },
+  {
+    "page": 133,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Guerrero del este medio"
+  },
+  {
+    "page": 133,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Tlacoachistlahuaca"
+  },
+  {
+    "page": 133,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Tlalixtaquilla de\nMaldonado"
+  },
+  {
+    "page": 134,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Guerrero del norte"
+  },
+  {
+    "page": 134,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Guerrero del norte\ncentral"
+  },
+  {
+    "page": 134,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Xochistlahuaca"
+  },
+  {
+    "page": 134,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Tlahuapa"
+  },
+  {
+    "page": 134,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Guerrero central alto"
+  },
+  {
+    "page": 134,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Xochapa"
+  },
+  {
+    "page": 134,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Zoyatlán de Juárez"
+  },
+  {
+    "page": 134,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Xonacatlán"
+  },
+  {
+    "page": 134,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Ayutla"
+  },
+  {
+    "page": 135,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Luis Acatlán"
+  },
+  {
+    "page": 135,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Guerrero de la costa Llanos del Coco (El Coco), Lomas del Vidal (El Vidal), Los Chegues, Los Metates, Los Pelillos, Los Quiterios, Marquelia,\nMaxmadi, Quetzalapa, Rancho Dos Laureles, Rancho Estrada, Rancho Lempira, Rancho los Mendoza, Rancho Maestro\neste"
+  },
+  {
+    "page": 136,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Guerrero de la costa Grande, Monte Alto, Nuevo Tecomulapa, Palomar de las Flores, Plan Grande, Rancho Viejo, San Marcos, Tierra y\noccidental"
+  },
+  {
+    "page": 136,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Guerrero de la costa (Cuilutla). Florencio Villareal: Colonia Lázaro Cárdenas, Cruz Grande, Cuatro Bancos, El Porvenir, Las Garzas, Las\ncentral"
+  },
+  {
+    "page": 136,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Villa de Tututepec"
+  },
+  {
+    "page": 136,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Santa María\nHuazolotitlán"
+  },
+  {
+    "page": 136,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Ixtayutla"
+  },
+  {
+    "page": 136,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Oaxaca de la costa Andrés Huaxpaltepec, Santa Zenaida. San Lorenzo: Guadalupe Yosocani, Piedra Blanca, San Antonio Yosocani, San\ncentral"
+  },
+  {
+    "page": 137,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Oaxaca de la costa\nnoroeste"
+  },
+  {
+    "page": 137,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Oaxaca de costa central (Charquito Nduayoo), El Guayabo, El Santo, El Zarzal, Emiliano Zapata, Finca la Natividad (Flores Magón), La Pastora, La\nbaja"
+  },
+  {
+    "page": 137,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Sierra sur oeste"
+  },
+  {
+    "page": 137,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Santiago Amoltepec"
+  },
+  {
+    "page": 137,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Santa Cruz Itundujia"
+  },
+  {
+    "page": 138,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Yosondúa"
+  },
+  {
+    "page": 138,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Santa Lucía Monteverde"
+  },
+  {
+    "page": 138,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del sur bajo"
+  },
+  {
+    "page": 138,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Yosonotú"
+  },
+  {
+    "page": 138,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del sur medio"
+  },
+  {
+    "page": 138,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Pedro Molinos"
+  },
+  {
+    "page": 138,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Santa María Yosoyúa"
+  },
+  {
+    "page": 138,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Mateo Peñasco"
+  },
+  {
+    "page": 139,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Agustín Tlacotepec"
+  },
+  {
+    "page": 139,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Antonio Sinicahua"
+  },
+  {
+    "page": 139,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del sureste central"
+  },
+  {
+    "page": 139,
+    "family": "oto-mangue",
+    "variant_name": "mixteco central"
+  },
+  {
+    "page": 139,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del suroeste central"
+  },
+  {
+    "page": 139,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del suroeste"
+  },
+  {
+    "page": 139,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Ñumi"
+  },
+  {
+    "page": 140,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de oeste central"
+  },
+  {
+    "page": 140,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del oeste"
+  },
+  {
+    "page": 140,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del norte bajo"
+  },
+  {
+    "page": 141,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Miguel Piedras"
+  },
+  {
+    "page": 141,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Antonio Huitepec"
+  },
+  {
+    "page": 141,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Santa María Peñoles"
+  },
+  {
+    "page": 141,
+    "family": "oto-mangue",
+    "variant_name": "mixteco bajo de Valles"
+  },
+  {
+    "page": 142,
+    "family": "oto-mangue",
+    "variant_name": "mixteco alto de Valles"
+  },
+  {
+    "page": 142,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del este"
+  },
+  {
+    "page": 142,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Santa Inés de Zaragoza"
+  },
+  {
+    "page": 142,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del este central"
+  },
+  {
+    "page": 142,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del noroeste medio"
+  },
+  {
+    "page": 143,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del oeste alto"
+  },
+  {
+    "page": 143,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Santo Domingo Tonalá"
+  },
+  {
+    "page": 143,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del noroeste central alto"
+  },
+  {
+    "page": 143,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del noroeste central bajo"
+  },
+  {
+    "page": 144,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Juan Tamazola"
+  },
+  {
+    "page": 144,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del noreste"
+  },
+  {
+    "page": 144,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Pedro Tidaá"
+  },
+  {
+    "page": 144,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Mitlatongo"
+  },
+  {
+    "page": 144,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Coatzóspam"
+  },
+  {
+    "page": 145,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Sierra sur noroeste"
+  },
+  {
+    "page": 145,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Pablo Tijaltepec"
+  },
+  {
+    "page": 145,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del oeste de la costa"
+  },
+  {
+    "page": 145,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Oaxaca de la costa oeste Santiago Pinotepa Nacional: Santa María Jicaltepec.\ncentral"
+  },
+  {
+    "page": 146,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del noroeste"
+  },
+  {
+    "page": 146,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Cañada bajo"
+  },
+  {
+    "page": 146,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Cañada central"
+  },
+  {
+    "page": 146,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Yutanduchi de Guerrero"
+  },
+  {
+    "page": 146,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del noreste bajo"
+  },
+  {
+    "page": 146,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de San Juan Teita"
+  },
+  {
+    "page": 147,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de la frontera Puebla- San Pedro y San Pablo Tequixtepec, Santa Catalina Chinango. Santiago Chazumba: Acaquizapam (Santa María\nOaxaca"
+  },
+  {
+    "page": 147,
+    "family": "oto-mangue",
+    "variant_name": "mixteco del suroeste de Puebla"
+  },
+  {
+    "page": 147,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Tlaltempan"
+  },
+  {
+    "page": 147,
+    "family": "oto-mangue",
+    "variant_name": "mixteco de Zapotitlán"
+  },
+  {
+    "page": 148,
+    "family": "oto-mangue",
+    "variant_name": "cuicateco del centro"
+  },
+  {
+    "page": 148,
+    "family": "oto-mangue",
+    "variant_name": "cuicateco del norte"
+  },
+  {
+    "page": 148,
+    "family": "oto-mangue",
+    "variant_name": "cuicateco del oriente"
+  },
+  {
+    "page": 149,
+    "family": "oto-mangue",
+    "variant_name": "triqui de San Juan Copala"
+  },
+  {
+    "page": 149,
+    "family": "oto-mangue",
+    "variant_name": "triqui de la media"
+  },
+  {
+    "page": 149,
+    "family": "oto-mangue",
+    "variant_name": "triqui de la alta"
+  },
+  {
+    "page": 149,
+    "family": "oto-mangue",
+    "variant_name": "triqui de la baja"
+  },
+  {
+    "page": 151,
+    "family": "maya",
+    "variant_name": "huasteco del occidente"
+  },
+  {
+    "page": 154,
+    "family": "maya",
+    "variant_name": "huasteco del centro"
+  },
+  {
+    "page": 155,
+    "family": "maya",
+    "variant_name": "huasteco de oriente"
+  },
+  {
+    "page": 156,
+    "family": "maya",
+    "variant_name": "maya"
+  },
+  {
+    "page": 168,
+    "family": "maya",
+    "variant_name": "lacandón"
+  },
+  {
+    "page": 168,
+    "family": "maya",
+    "variant_name": "ch’ol del noroeste"
+  },
+  {
+    "page": 172,
+    "family": "maya",
+    "variant_name": "ch’ol del sureste"
+  },
+  {
+    "page": 173,
+    "family": "maya",
+    "variant_name": "chontal de Tabasco central"
+  },
+  {
+    "page": 174,
+    "family": "maya",
+    "variant_name": "chontal de Tabasco del este"
+  },
+  {
+    "page": 174,
+    "family": "maya",
+    "variant_name": "chontal de Tabasco del sureste"
+  },
+  {
+    "page": 174,
+    "family": "maya",
+    "variant_name": "chontal de Tabasco del norte"
+  },
+  {
+    "page": 175,
+    "family": "maya",
+    "variant_name": "tseltal del occidente"
+  },
+  {
+    "page": 177,
+    "family": "maya",
+    "variant_name": "tseltal del norte"
+  },
+  {
+    "page": 181,
+    "family": "maya",
+    "variant_name": "tseltal del oriente"
+  },
+  {
+    "page": 183,
+    "family": "maya",
+    "variant_name": "tseltal del sur"
+  },
+  {
+    "page": 184,
+    "family": "maya",
+    "variant_name": "tsotsil del este alto"
+  },
+  {
+    "page": 185,
+    "family": "maya",
+    "variant_name": "tsotsil del noroeste"
+  },
+  {
+    "page": 185,
+    "family": "maya",
+    "variant_name": "tsotsil del norte bajo"
+  },
+  {
+    "page": 185,
+    "family": "maya",
+    "variant_name": "tsotsil del centro"
+  },
+  {
+    "page": 186,
+    "family": "maya",
+    "variant_name": "tsotsil del este bajo"
+  },
+  {
+    "page": 186,
+    "family": "maya",
+    "variant_name": "tsotsil del norte alto"
+  },
+  {
+    "page": 188,
+    "family": "maya",
+    "variant_name": "tsotsil de los Altos"
+  },
+  {
+    "page": 189,
+    "family": "maya",
+    "variant_name": "Q’anjob’al"
+  },
+  {
+    "page": 189,
+    "family": "maya",
+    "variant_name": "Akateko"
+  },
+  {
+    "page": 190,
+    "family": "maya",
+    "variant_name": "Jakalteko"
+  },
+  {
+    "page": 190,
+    "family": "maya",
+    "variant_name": "mocho’"
+  },
+  {
+    "page": 190,
+    "family": "maya",
+    "variant_name": "tuzanteco"
+  },
+  {
+    "page": 190,
+    "family": "maya",
+    "variant_name": "Chuj"
+  },
+  {
+    "page": 191,
+    "family": "maya",
+    "variant_name": "tojolabal"
+  },
+  {
+    "page": 192,
+    "family": "maya",
+    "variant_name": "Q’eqchi’"
+  },
+  {
+    "page": 193,
+    "family": "maya",
+    "variant_name": "K’iche’ (oriental)"
+  },
+  {
+    "page": 193,
+    "family": "maya",
+    "variant_name": "K’iche’ (occidental)"
+  },
+  {
+    "page": 193,
+    "family": "maya",
+    "variant_name": "K’iche’ (central)"
+  },
+  {
+    "page": 193,
+    "family": "maya",
+    "variant_name": "Kaqchikel"
+  },
+  {
+    "page": 193,
+    "family": "maya",
+    "variant_name": "Teko"
+  },
+  {
+    "page": 194,
+    "family": "maya",
+    "variant_name": "Mam de la frontera"
+  },
+  {
+    "page": 194,
+    "family": "maya",
+    "variant_name": "Mam del norte"
+  },
+  {
+    "page": 194,
+    "family": "maya",
+    "variant_name": "Mam del sur"
+  },
+  {
+    "page": 194,
+    "family": "maya",
+    "variant_name": "Mam de la Sierra"
+  },
+  {
+    "page": 195,
+    "family": "maya",
+    "variant_name": "Mam del Soconusco"
+  },
+  {
+    "page": 196,
+    "family": "maya",
+    "variant_name": "Awakateko"
+  },
+  {
+    "page": 196,
+    "family": "maya",
+    "variant_name": "Ixil chajuleño"
+  },
+  {
+    "page": 196,
+    "family": "maya",
+    "variant_name": "Ixil nebajeño"
+  },
+  {
+    "page": 197,
+    "family": "totonaco-tepehua",
+    "variant_name": "totonaco del sureste"
+  },
+  {
+    "page": 197,
+    "family": "totonaco-tepehua",
+    "variant_name": "totonaco central del norte"
+  },
+  {
+    "page": 198,
+    "family": "totonaco-tepehua",
+    "variant_name": "totonaco del cerro Xinolatépetl"
+  },
+  {
+    "page": 198,
+    "family": "totonaco-tepehua",
+    "variant_name": "totonaco central alto"
+  },
+  {
+    "page": 198,
+    "family": "totonaco-tepehua",
+    "variant_name": "totonaco de la costa"
+  },
+  {
+    "page": 201,
+    "family": "totonaco-tepehua",
+    "variant_name": "totonaco del río Necaxa"
+  },
+  {
+    "page": 201,
+    "family": "totonaco-tepehua",
+    "variant_name": "totonaco central del sur"
+  },
+  {
+    "page": 202,
+    "family": "totonaco-tepehua",
+    "variant_name": "tepehua del sur"
+  },
+  {
+    "page": 203,
+    "family": "totonaco-tepehua",
+    "variant_name": "tepehua del norte"
+  },
+  {
+    "page": 203,
+    "family": "totonaco-tepehua",
+    "variant_name": "tepehua del oeste"
+  },
+  {
+    "page": 203,
+    "family": "tarasca",
+    "variant_name": "purépecha"
+  },
+  {
+    "page": 205,
+    "family": "mixe-zoque",
+    "variant_name": "mixe alto del norte"
+  },
+  {
+    "page": 205,
+    "family": "mixe-zoque",
+    "variant_name": "mixe alto del centro"
+  },
+  {
+    "page": 206,
+    "family": "mixe-zoque",
+    "variant_name": "mixe alto del sur"
+  },
+  {
+    "page": 206,
+    "family": "mixe-zoque",
+    "variant_name": "mixe medio del este"
+  },
+  {
+    "page": 206,
+    "family": "mixe-zoque",
+    "variant_name": "mixe medio del oeste"
+  },
+  {
+    "page": 206,
+    "family": "mixe-zoque",
+    "variant_name": "mixe bajo"
+  },
+  {
+    "page": 207,
+    "family": "mixe-zoque",
+    "variant_name": "sayulteco"
+  },
+  {
+    "page": 207,
+    "family": "mixe-zoque",
+    "variant_name": "oluteco"
+  },
+  {
+    "page": 208,
+    "family": "mixe-zoque",
+    "variant_name": "texistepequeño"
+  },
+  {
+    "page": 208,
+    "family": "mixe-zoque",
+    "variant_name": "ayapaneco"
+  },
+  {
+    "page": 208,
+    "family": "mixe-zoque",
+    "variant_name": "popoluca de la Sierra"
+  },
+  {
+    "page": 209,
+    "family": "mixe-zoque",
+    "variant_name": "zoque del centro"
+  },
+  {
+    "page": 210,
+    "family": "mixe-zoque",
+    "variant_name": "zoque del sur"
+  },
+  {
+    "page": 210,
+    "family": "mixe-zoque",
+    "variant_name": "zoque del este"
+  },
+  {
+    "page": 210,
+    "family": "mixe-zoque",
+    "variant_name": "zoque del norte alto"
+  },
+  {
+    "page": 211,
+    "family": "mixe-zoque",
+    "variant_name": "zoque del norte bajo"
+  },
+  {
+    "page": 211,
+    "family": "mixe-zoque",
+    "variant_name": "zoque del noroeste"
+  },
+  {
+    "page": 211,
+    "family": "mixe-zoque",
+    "variant_name": "zoque del sureste"
+  },
+  {
+    "page": 211,
+    "family": "mixe-zoque",
+    "variant_name": "zoque del oeste"
+  },
+  {
+    "page": 212,
+    "family": "chontal de Oaxaca",
+    "variant_name": "chontal de Oaxaca alto"
+  },
+  {
+    "page": 212,
+    "family": "chontal de Oaxaca",
+    "variant_name": "chontal de Oaxaca bajo"
+  },
+  {
+    "page": 212,
+    "family": "chontal de Oaxaca",
+    "variant_name": "chontal de Oaxaca de la costa"
+  },
+  {
+    "page": 212,
+    "family": "huave",
+    "variant_name": "huave del oeste"
+  },
+  {
+    "page": 212,
+    "family": "huave",
+    "variant_name": "huave del este"
+  }
+]

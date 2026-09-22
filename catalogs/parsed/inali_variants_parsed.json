@@ -1,0 +1,394 @@
+[
+  {
+    "index": 0,
+    "group_name": "paipai",
+    "autodenomination": "jaspuy pai BAJA CALIFORNIA: Ensenada: Arroyo de León (Ejido Kiliwas), Camalu, Cañón de la Parra, Comunidad Indígena de",
+    "variant_id": "",
+    "geo_reference_preview": "jaspuy pai BAJA CALIFORNIA: Ensenada: Arroyo de León (Ejido Kiliwas), Camalu, Cañón de la Parra, Comunidad Indígena de [xaspuj pai] Santa Catarina, Ejido 18 de Marzo (El Álamo), El Aguajito (El Mat Ch"
+  },
+  {
+    "index": 1,
+    "group_name": "ku’ahl",
+    "autodenomination": "kuapá BAJA CALIFORNIA: Mexicali: Campo Camerina (Colonia Terrenos Indios), Campo del Prado (Colonia el Mayor),",
+    "variant_id": "ku’ahl",
+    "geo_reference_preview": "ku’ahl BAJA CALIFORNIA: Ensenada: Comunidad Indígena de Santa Catarina, El Aguajito (Mat Chip) [Rancho Matchip], [kwʔahl] Rancho Escondido, Rancho Wikualpuk (El Ranchito). kuapá BAJA CALIFORNIA: Mexic"
+  },
+  {
+    "index": 2,
+    "group_name": "cucapá",
+    "autodenomination": "tipai BAJA CALIFORNIA: Ensenada: El Porvenir (Guadalupe), Ensenada, Francisco Zarco (Guadalupe), La Huerta, La",
+    "variant_id": "",
+    "geo_reference_preview": "kuapá BAJA CALIFORNIA: Mexicali: Campo Camerina (Colonia Terrenos Indios), Campo del Prado (Colonia el Mayor), [kuaˈpa] Campo Flores, Campo Sonora (Colonia Terrenos Indios), Colonia la Puerta, Comunid"
+  },
+  {
+    "index": 3,
+    "group_name": "kumiai",
+    "autodenomination": "tipai BAJA CALIFORNIA: Ensenada: El Porvenir (Guadalupe), Ensenada, Francisco Zarco (Guadalupe), La Huerta, La",
+    "variant_id": "",
+    "geo_reference_preview": "tipai BAJA CALIFORNIA: Ensenada: El Porvenir (Guadalupe), Ensenada, Francisco Zarco (Guadalupe), La Huerta, La [tipai] Misión, Rancho Dinuwa, Rancho Plazola, Real del Castillo Nuevo (Ojos Negros), San"
+  },
+  {
+    "index": 4,
+    "group_name": "kiliwa",
+    "autodenomination": "ko’lew BAJA CALIFORNIA: Ensenada: Arroyo de León (Ejido Kiliwas), Ejido San Francisco R. Serrano (Valle San Matías),",
+    "variant_id": "kiliwa",
+    "geo_reference_preview": "ko’lew BAJA CALIFORNIA: Ensenada: Arroyo de León (Ejido Kiliwas), Ejido San Francisco R. Serrano (Valle San Matías), Ensenada, Francisco Zarco (Guadalupe), Juntas Neji, La Zorra, Lázaro Cárdenas (Vall"
+  },
+  {
+    "index": 5,
+    "group_name": "seri",
+    "autodenomination": "cmiique iitom SONORA: Hermosillo: Punta Chueca. Pitiquito: El Desemboque de los Seris (El Desemboque).",
+    "variant_id": "seri",
+    "geo_reference_preview": "cmiique iitom SONORA: Hermosillo: Punta Chueca. Pitiquito: El Desemboque de los Seris (El Desemboque). [kwĩkʼ iːtom]"
+  },
+  {
+    "index": 6,
+    "group_name": "otomí",
+    "autodenomination": "ñuju HIDALGO: Acaxochitlán:Acaxochitlán, Barrio Tlatzintla, Canales, Chimalapa, Ejido Techachalco, La Mesa, Los Reyes,",
+    "variant_id": "",
+    "geo_reference_preview": "ñuju HIDALGO: Acaxochitlán:Acaxochitlán, Barrio Tlatzintla, Canales, Chimalapa, Ejido Techachalco, La Mesa, Los Reyes, [ɲuxu] San Mateo, San Pedro Tlachichilco, Santa Ana Tzacuala, Tepepa (Santiago Te"
+  },
+  {
+    "index": 7,
+    "group_name": "mazahua",
+    "autodenomination": "jnatrjo ESTADO DE MÉXICO: Almoloya de Juárez: Arroyo Zarco Centro (Dilatada Centro), Barrio del Ocote, Barrio la",
+    "variant_id": "",
+    "geo_reference_preview": "jnatrjo ESTADO DE MÉXICO: Almoloya de Juárez: Arroyo Zarco Centro (Dilatada Centro), Barrio del Ocote, Barrio la [hɲatɾho] Cabecera Primera Sección, Barrio la Cabecera Tercera Sección, Barrio Santa Ju"
+  },
+  {
+    "index": 8,
+    "group_name": "matlatzinca",
+    "autodenomination": "xi’iuy SAN LUIS POTOSÍ: Aquismón: Aquismón, Barrio de Jolja, Daniel Ortega, El Aguacate, El Alitze, El Jabalí, El Sabinal, El",
+    "variant_id": "matlatzinca",
+    "geo_reference_preview": "bot’una ESTADO DE MÉXICO: Temascaltepec: San Francisco Oxtotilpan. [βotʔuna] pjiekakjoo ESTADO DE MÉXICO: Ocuilán: Cinco Caminos, Colonia Doctor Gustavo Baz, El Capulín, El Totoc (San José Totoc), [pʰ"
+  },
+  {
+    "index": 9,
+    "group_name": "tlahuica",
+    "autodenomination": "xi’iuy SAN LUIS POTOSÍ: Aquismón: Aquismón, Barrio de Jolja, Daniel Ortega, El Aguacate, El Alitze, El Jabalí, El Sabinal, El",
+    "variant_id": "",
+    "geo_reference_preview": "pjiekakjoo ESTADO DE MÉXICO: Ocuilán: Cinco Caminos, Colonia Doctor Gustavo Baz, El Capulín, El Totoc (San José Totoc), [pʰiekakhoː] Lomas de Teocaltzingo (Loma de Tecalzingo), Ocuilán de Artéaga, San"
+  },
+  {
+    "index": 10,
+    "group_name": "pame",
+    "autodenomination": "xi’iuy SAN LUIS POTOSÍ: Aquismón: Aquismón, Barrio de Jolja, Daniel Ortega, El Aguacate, El Alitze, El Jabalí, El Sabinal, El",
+    "variant_id": "",
+    "geo_reference_preview": "xi’iuy SAN LUIS POTOSÍ: Aquismón: Aquismón, Barrio de Jolja, Daniel Ortega, El Aguacate, El Alitze, El Jabalí, El Sabinal, El [ʃiʔiwi] Sabino, El Sauz (El Saucito), La Cruz de Guadalupe, La Mesa, La R"
+  },
+  {
+    "index": 11,
+    "group_name": "chichimeco jonaz",
+    "autodenomination": "uzá’ GUANAJUATO: San Luis de la Paz: Berlín, Buenavista (El Cuernito), Cerro Blanco, Colonia Benito Juárez [Plan Benito",
+    "variant_id": "",
+    "geo_reference_preview": "uzá’ GUANAJUATO: San Luis de la Paz: Berlín, Buenavista (El Cuernito), Cerro Blanco, Colonia Benito Juárez [Plan Benito [ʔu˦zãʔ] Juárez], Ejido Santa Ana y Lobos (Fracción de Lourdes), El Desmonte, El"
+  },
+  {
+    "index": 12,
+    "group_name": "chinanteco",
+    "autodenomination": "jujmi (del norte) OAXACA: San Felipe Jalapa de Díaz: Agua de Tierra (Sección la Montaña), La Concha, La Gloria, La Sorpresa (El",
+    "variant_id": "",
+    "geo_reference_preview": "jujmi (del norte) OAXACA: San Felipe Jalapa de Díaz: Agua de Tierra (Sección la Montaña), La Concha, La Gloria, La Sorpresa (El [huhmi] Crucero), Los Lavida, Los Palacios. San Felipe Usila: Cerro Verd"
+  },
+  {
+    "index": 13,
+    "group_name": "tlapaneco",
+    "autodenomination": "me'phaa tsíndíí GUERRERO: Azoyú: Azoyú, El Carrizo, El Macahuite, La Pelota, Lomas del Vidal (El Vidal), Los Pelillos, Maxmadí, San",
+    "variant_id": "tlapaneco del oeste",
+    "geo_reference_preview": "me'phaa tsíndíí GUERRERO: Azoyú: Azoyú, El Carrizo, El Macahuite, La Pelota, Lomas del Vidal (El Vidal), Los Pelillos, Maxmadí, San [mephaa t͡sindii] Isidro el Puente (El Puente), Talapilla, Za"
+  },
+  {
+    "index": 14,
+    "group_name": "mazateco",
+    "autodenomination": "en naxijen OAXACA: Acatlán de Pérez Figueroa: Acatlán de Pérez Figueroa , Arroyo de Enmedio, Arroyo de Pita, Aserradero",
+    "variant_id": "",
+    "geo_reference_preview": "en naxijen OAXACA: Acatlán de Pérez Figueroa: Acatlán de Pérez Figueroa , Arroyo de Enmedio, Arroyo de Pita, Aserradero [ẽ˦ nãʃihẽ] (Aserradero Primero), Aserradero Segundo, Buenos Aires, Cañada San A"
+  },
+  {
+    "index": 15,
+    "group_name": "ixcateco",
+    "autodenomination": "ngiba (del oeste) OAXACA: Ocotlán: Boquerón, San Antonio Nduayaco, Tierra Colorada, Unión Palo Solo. San Francisco Teopan:",
+    "variant_id": "chocholteco del oeste",
+    "geo_reference_preview": "xwja OAXACA de JUÁREZ: Santa María Ixcatlán: Santa María Ixcatlán. [ʃhwa] ngiba (del oeste) OAXACA: Ocotlán: Boquerón, San Antonio Nduayaco, Tierra Colorada, Unión Palo Solo. San Francisco Teopan: Con"
+  },
+  {
+    "index": 16,
+    "group_name": "chocholteco",
+    "autodenomination": "ngiba (del oeste) OAXACA: Ocotlán: Boquerón, San Antonio Nduayaco, Tierra Colorada, Unión Palo Solo. San Francisco Teopan:",
+    "variant_id": "chocholteco del oeste",
+    "geo_reference_preview": "ngiba (del oeste) OAXACA: Ocotlán: Boquerón, San Antonio Nduayaco, Tierra Colorada, Unión Palo Solo. San Francisco Teopan: Concepción Buenavista, Santiago Ihuitlán Plumas, Tepelmeme Villa de Morelos, "
+  },
+  {
+    "index": 17,
+    "group_name": "popoloca",
+    "autodenomination": "ngiwa (del norte) PUEBLA: Tlacotepec de Benito Juárez: Colonia Cuauhtémoc, El Gavilán, El Mirador, Guadalupe, La Vírgen, Los",
+    "variant_id": "popoloca del centro",
+    "geo_reference_preview": "ngiwa (del norte) PUEBLA: Tlacotepec de Benito Juárez: Colonia Cuauhtémoc, El Gavilán, El Mirador, Guadalupe, La Vírgen, Los Cerritos [La Chinua], Monte de Oro, Palo Verde, Piedra Hincada de la Soleda"
+  },
+  {
+    "index": 18,
+    "group_name": "zapoteco",
+    "autodenomination": "rixhquei OAXACA: San Lorenzo Texmelucan: Benito Juárez, Ciénega del Río, El Arador, El Carrizal, El Ojo de Agua, El Palo de",
+    "variant_id": "",
+    "geo_reference_preview": "rixhquei OAXACA: San Lorenzo Texmelucan: Benito Juárez, Ciénega del Río, El Arador, El Carrizal, El Ojo de Agua, El Palo de [ɾiʃkei] Lima, El Papayo (Río Papayo), El Ratón, El Suchil, Feliciano Martín"
+  },
+  {
+    "index": 19,
+    "group_name": "chatino",
+    "autodenomination": "cha’ jna’a (occidental alto) OAXACA: San Jacinto Tlacotepec: Cuajinicuil, El Trapiche (Río Trapiche), El Venado, La Unión, Los Pinos (Barrio los",
+    "variant_id": "chatino occidental alto",
+    "geo_reference_preview": "cha’ jna’a (occidental alto) OAXACA: San Jacinto Tlacotepec: Cuajinicuil, El Trapiche (Río Trapiche), El Venado, La Unión, Los Pinos (Barrio los Pinos), San Jacinto Tlacotepec. Santa Cruz Zenzontepec:"
+  },
+  {
+    "index": 20,
+    "group_name": "amuzgo",
+    "autodenomination": "nomndaa GUERRERO: Tlacoachistlahuaca: Arroyo Comejen, Arroyo Escondido, Arroyo Lana, Arroyo Mina, Arroyo Pájaro",
+    "variant_id": "",
+    "geo_reference_preview": "nomndaa GUERRERO: Tlacoachistlahuaca: Arroyo Comejen, Arroyo Escondido, Arroyo Lana, Arroyo Mina, Arroyo Pájaro [nomndaː] Colorado, Arroyo Tortolita, Casa Real, Colonia la Bilingüe, Cruz Alta, Cuananc"
+  },
+  {
+    "index": 21,
+    "group_name": "mixteco",
+    "autodenomination": "",
+    "variant_id": "mixteco de Atlamajalcingo",
+    "geo_reference_preview": ""
+  },
+  {
+    "index": 22,
+    "group_name": "cuicateco",
+    "autodenomination": "dbaku (del centro) OAXACA: Concepción Pápalo: Aserradero Pápalo (Tierra Colorada), Barrio Calvario, Barrio Cinco de Mayo, Barrio",
+    "variant_id": "",
+    "geo_reference_preview": "dbaku (del centro) OAXACA: Concepción Pápalo: Aserradero Pápalo (Tierra Colorada), Barrio Calvario, Barrio Cinco de Mayo, Barrio [dbaku] Zaragoza, Buena Vista, Coapam de Guerrero, Concepción Pápalo, E"
+  },
+  {
+    "index": 23,
+    "group_name": "triqui",
+    "autodenomination": "xnánj nu’ a OAXACA: Santiago Juxtlahuaca: Agua Fría, Agua Fría Copala, Cerro Barrancadero, Cerro Cabeza, Cerro del Pájaro",
+    "variant_id": "",
+    "geo_reference_preview": "xnánj nu’ a OAXACA: Santiago Juxtlahuaca: Agua Fría, Agua Fría Copala, Cerro Barrancadero, Cerro Cabeza, Cerro del Pájaro [ʃna˦nh nuː˨ʔa] (Cerro Pájaro), Cerro Plato, Cerro Viejo (Pino Suárez), Cieneg"
+  },
+  {
+    "index": 24,
+    "group_name": "huasteco",
+    "autodenomination": "teenek (del occidente) SAN LUIS POTOSÍ: Aquismón:Agua Amarga, Agua Bendita, Agua Nueva, Alborada Primera, Altenam (La Banqueta),",
+    "variant_id": "",
+    "geo_reference_preview": "teenek (del occidente) SAN LUIS POTOSÍ: Aquismón:Agua Amarga, Agua Bendita, Agua Nueva, Alborada Primera, Altenam (La Banqueta), [teːnek] Altzabacté, Aquismón, Arroyo Grande (El Puente), Barrio de Jol"
+  },
+  {
+    "index": 25,
+    "group_name": "maya",
+    "autodenomination": "maaya CAMPECHE: Calakmul: Araucarias, Becan, Bella Unión de Veracruz (Los Chinos), Caña Brava, Central Chiclera",
+    "variant_id": "",
+    "geo_reference_preview": "maaya CAMPECHE: Calakmul: Araucarias, Becan, Bella Unión de Veracruz (Los Chinos), Caña Brava, Central Chiclera Altamira, Cinco de Mayo (Plan de Ayala), Constitución (Kilómetro Setenta), Dos Lagunas, "
+  },
+  {
+    "index": 26,
+    "group_name": "lacandón",
+    "autodenomination": "lakty’añ (del noroeste) CHIAPAS: Amatán: Amatán, Buenavista, Carmen Jucuma, Cerro Blanco, El Belén, El Limón, El Naranjo (El Naranjo",
+    "variant_id": "lacandón",
+    "geo_reference_preview": "jach-t’aan CHIAPAS: Ocosingo: Bethel, Bonampak, Lacanjá Chansayab, Maeva, Nahá, Ojo de Agua [Ojo de Agua Chankín], [xat͡ʃ tʔaːn] Puerto Bello Metzabok [Metzabok], San Javier, San Quintín. lakty’añ (de"
+  },
+  {
+    "index": 27,
+    "group_name": "ch’ol",
+    "autodenomination": "lakty’añ (del noroeste) CHIAPAS: Amatán: Amatán, Buenavista, Carmen Jucuma, Cerro Blanco, El Belén, El Limón, El Naranjo (El Naranjo",
+    "variant_id": "",
+    "geo_reference_preview": "lakty’añ (del noroeste) CHIAPAS: Amatán: Amatán, Buenavista, Carmen Jucuma, Cerro Blanco, El Belén, El Limón, El Naranjo (El Naranjo [laktʲʔaɲ] Segunda Sección), El Porvenir Tres Picos Segunda Sección"
+  },
+  {
+    "index": 28,
+    "group_name": "chontal de Tabasco",
+    "autodenomination": "yoko t’an (central) TABASCO: Jalpa de Méndez: Amatitán, Ayapa, Chacalapa 1ra. Sección, El Carmen (La Ensenada), El Novillero, El",
+    "variant_id": "",
+    "geo_reference_preview": "yoko t’an (central) TABASCO: Jalpa de Méndez: Amatitán, Ayapa, Chacalapa 1ra. Sección, El Carmen (La Ensenada), El Novillero, El [joko tʔan] Púlpito, El Río, El Río (Santana), Iquinuapa, Iquinuapa (El"
+  },
+  {
+    "index": 29,
+    "group_name": "tseltal",
+    "autodenomination": "bats’il k’op (del occidente) CHIAPAS: Acala: Acala, Carlos Salinas de Gortari, Javier López Moreno (Las Palomas), José María Morelos y Pavón,",
+    "variant_id": "tseltal del occidente",
+    "geo_reference_preview": "bats’il k’op (del occidente) CHIAPAS: Acala: Acala, Carlos Salinas de Gortari, Javier López Moreno (Las Palomas), José María Morelos y Pavón, La Esperanza, Los Manguitos, Luis Echeverría Álvarez, Mont"
+  },
+  {
+    "index": 30,
+    "group_name": "tsotsil",
+    "autodenomination": "bats’i k’op (del este alto) CHIAPAS: Huixtán: Adolfo López Mateos, Alaj Cham, Bazom, Buenavista, Calvario, Carmen Yalchuch, Chaquiloc,",
+    "variant_id": "",
+    "geo_reference_preview": "bats’i k’op (del este alto) CHIAPAS: Huixtán: Adolfo López Mateos, Alaj Cham, Bazom, Buenavista, Calvario, Carmen Yalchuch, Chaquiloc, [bat͡sʔi kʔop] Chempil, Chigton, Dolores Chempil, Huixtán, Ispuhi"
+  },
+  {
+    "index": 31,
+    "group_name": "Q’anjob’al",
+    "autodenomination": "K’anjob’al CAMPECHE: Campeche: La Libertad, Los Laureles, Quetzal-Edzná Módulo Dos, Quetzal-Edzná Módulo Uno.",
+    "variant_id": "",
+    "geo_reference_preview": "K’anjob’al CAMPECHE: Campeche: La Libertad, Los Laureles, Quetzal-Edzná Módulo Dos, Quetzal-Edzná Módulo Uno. [kʔanxoɓal] Champotón: Maya Tecún I, Maya Tecún II (Gumarcaaj), Santo Domingo Kesté."
+  },
+  {
+    "index": 32,
+    "group_name": "Akateko",
+    "autodenomination": "Jakalteko-Popti’ CAMPECHE: Campeche: Los Laureles, Quetzal-Edzná Modulo I. Champotón: Maya Tecún I, Maya Tecún II",
+    "variant_id": "Akateko",
+    "geo_reference_preview": "Kuti’ CAMPECHE: Champotón: Maya Tecún I, Santo Domingo Kesté. CHIAPAS: Frontera Comalapa: Nuevo Tres Lagunas. La Trinitaria: Ejido la Gloria 2, Nueva Libertad el Colorado, San [kutiʔ] Francisco de Así"
+  },
+  {
+    "index": 33,
+    "group_name": "Jakalteko",
+    "autodenomination": "mocho’ CHIAPAS: Motozintla: Motozi",
+    "variant_id": "",
+    "geo_reference_preview": "Jakalteko-Popti’ CAMPECHE: Campeche: Los Laureles, Quetzal-Edzná Modulo I. Champotón: Maya Tecún I, Maya Tecún II [xakalteko poptiʔ] (Gumarcaaj), Santo Domingo Kesté. mocho’ CHIAPAS: Motozintla: Motoz"
+  },
+  {
+    "index": 34,
+    "group_name": "qato’k",
+    "autodenomination": "Koti’ CAMPECHE: Campeche: Los Laureles, Quetzal-Edzná Dos, Quetzal-Edzná Uno. Champotón: Maya Tecún I, Maya",
+    "variant_id": "tuzanteco",
+    "geo_reference_preview": "mocho’ CHIAPAS: Motozintla: Motozintla de Mendoza. [mot͡ʃoʔ] Koti’ CAMPECHE: Campeche: Los Laureles, Quetzal-Edzná Dos, Quetzal-Edzná Uno. Champotón: Maya Tecún I, Maya [kotiʔ] Tecún II (Gumarcaaj), S"
+  },
+  {
+    "index": 35,
+    "group_name": "Chuj",
+    "autodenomination": "Koti’ CAMPECHE: Campeche: Los Laureles, Quetzal-Edzná Dos, Quetzal-Edzná Uno. Champotón: Maya Tecún I, Maya",
+    "variant_id": "",
+    "geo_reference_preview": "Koti’ CAMPECHE: Campeche: Los Laureles, Quetzal-Edzná Dos, Quetzal-Edzná Uno. Champotón: Maya Tecún I, Maya [kotiʔ] Tecún II (Gumarcaaj), Santo Domingo Kesté."
+  },
+  {
+    "index": 36,
+    "group_name": "tojolabal",
+    "autodenomination": "tojol-ab’al CHIAPAS: Altamirano: 1 de Enero, 1 de Mayo, 10 de Abril, Agua Escondida, Altamirano, Anexo Santa Rita, Barrio",
+    "variant_id": "",
+    "geo_reference_preview": "tojol-ab’al CHIAPAS: Altamirano: 1 de Enero, 1 de Mayo, 10 de Abril, Agua Escondida, Altamirano, Anexo Santa Rita, Barrio [toxol aɓal] Campo, Barrio Candelaria, Barrio Casitas, Barrio Guadalupe, Belis"
+  },
+  {
+    "index": 37,
+    "group_name": "Q’eqchi’",
+    "autodenomination": "K’iche’ (oriental) CAMPECHE: Campeche: La Libertad. Champotón: Maya Tecún II, Santo Domingo Kesté.",
+    "variant_id": "K’iche’ (central)",
+    "geo_reference_preview": "Q’eqchi’ CAMPECHE: Campeche: La Libertad, Los Laureles, Quetzal-Edzná. Champotón: Maya Tecún II, Santo Domingo [qʔɛqt͡ʃiʔ] Kesté. K’iche’ (oriental) CAMPECHE: Campeche: La Libertad. Champotón: Maya Te"
+  },
+  {
+    "index": 38,
+    "group_name": "K’iche’",
+    "autodenomination": "Kaqchikel CAMPECHE: Campeche: Quetzal-Edzná I, Quetzal-Edzná II, Los Laureles. Champotón: Maya Tecún II, Santo",
+    "variant_id": "Kaqchikel",
+    "geo_reference_preview": "K’iche’ (oriental) CAMPECHE: Campeche: La Libertad. Champotón: Maya Tecún II, Santo Domingo Kesté. [kʔit͡ʃeʔ] CHIAPAS: Las Margaritas: San Mateo Zapotal. Marqués de Comillas: Boca de Chapul, Pico de O"
+  },
+  {
+    "index": 39,
+    "group_name": "Kaqchikel",
+    "autodenomination": "Qyool (de la frontera) CHIAPAS: Amatenan",
+    "variant_id": "Teko",
+    "geo_reference_preview": "Kaqchikel CAMPECHE: Campeche: Quetzal-Edzná I, Quetzal-Edzná II, Los Laureles. Champotón: Maya Tecún II, Santo [kaqt͡ʃikel] Domingo Kesté. Qyool (de Tectitán) CHIAPAS: Amatenango de la Frontera: Amate"
+  },
+  {
+    "index": 40,
+    "group_name": "Teko",
+    "autodenomination": "Qyool (de la frontera) CHIAPAS: Amatenango de la Frontera: Amatenango de la Frontera, Bienestar Social, Buenavista, Cinco de Mayo,",
+    "variant_id": "Teko",
+    "geo_reference_preview": "Qyool (de Tectitán) CHIAPAS: Amatenango de la Frontera: Amatenango de la Frontera, Barrio Nuevo, Chiquisbil, El Porvenir, Granadillal, [qjoːl] Las Marías, Nuevo Amatenango, Sabinalito. Frontera Comala"
+  },
+  {
+    "index": 41,
+    "group_name": "Mam",
+    "autodenomination": "Qyool (de la frontera) CHIAPAS: Amatenango de la Frontera: Amatenango de la Frontera, Bienestar Social, Buenavista, Cinco de Mayo,",
+    "variant_id": "",
+    "geo_reference_preview": "Qyool (de la frontera) CHIAPAS: Amatenango de la Frontera: Amatenango de la Frontera, Bienestar Social, Buenavista, Cinco de Mayo, [qjoːl] Chiquisbil, El Chorro, El Pacayal, El Pino, El Relicario, Esc"
+  },
+  {
+    "index": 42,
+    "group_name": "Awakateko",
+    "autodenomination": "Ixil (chajuleño) CAMPECHE: Campeche: Los Laureles, Quetzal-Edzná.",
+    "variant_id": "Ixil nebajeño",
+    "geo_reference_preview": "Qyool (de Aguacatán) CAMPECHE: Champotón: Maya Tecún I, Maya Tecún II, Santo Domingo Kesté. [qjoːl] Ixil (chajuleño) CAMPECHE: Campeche: Los Laureles, Quetzal-Edzná. QUINTANA ROO: Othón P. Blanco: Kuc"
+  },
+  {
+    "index": 43,
+    "group_name": "Ixil",
+    "autodenomination": "Ixil (chajuleño) CAMPECHE: Campeche: Los Laureles, Quetzal-Edzná.",
+    "variant_id": "Ixil nebajeño",
+    "geo_reference_preview": "Ixil (chajuleño) CAMPECHE: Campeche: Los Laureles, Quetzal-Edzná. QUINTANA ROO: Othón P. Blanco: Kuchumatán. [iʃil]"
+  },
+  {
+    "index": 44,
+    "group_name": "totonaco",
+    "autodenomination": "laakanaachiwíin VERACRUZ DE IGNACIO DE LA LLAVE: Chiconquiaco: Cruz Verde, Chiconquiaco, El Barreal, El Capulín, El",
+    "variant_id": "totonaco del sureste",
+    "geo_reference_preview": "laakanaachiwíin VERACRUZ DE IGNACIO DE LA LLAVE: Chiconquiaco: Cruz Verde, Chiconquiaco, El Barreal, El Capulín, El [laːkanaːt͡ʃiwiːn] Cofresillo, El Huérfano, Gallo de Oro, La Parra, La Sombra, La V"
+  },
+  {
+    "index": 45,
+    "group_name": "tepehua",
+    "autodenomination": "lhiimaqalhqama’ HIDALGO: Huehuetla: Barrio Aztlán, Cerro de la Luna, Cerro del Caballo, Dos Caminos, El Ocotal, El Palote, El",
+    "variant_id": "tepehua del sur",
+    "geo_reference_preview": "lhiimaqalhqama’ HIDALGO: Huehuetla: Barrio Aztlán, Cerro de la Luna, Cerro del Caballo, Dos Caminos, El Ocotal, El Palote, El [ɬiːmaqɑɬqɑmaʔ] Paraíso, El Plan del Recreo, Hermanos Galeana, Huehuetla, "
+  },
+  {
+    "index": 46,
+    "group_name": "tarasco",
+    "autodenomination": "p’urhepecha MICHOACÁN DE OCAMPO: Coeneo: Bellas Fuentes, Coeneo de la Libertad, Colonia Emiliano Zapata, Colonia Félix",
+    "variant_id": "",
+    "geo_reference_preview": "p’urhepecha MICHOACÁN DE OCAMPO: Coeneo: Bellas Fuentes, Coeneo de la Libertad, Colonia Emiliano Zapata, Colonia Félix [pʰuɽepet͡ʃa] Ireta, Colonia Primo Tapia (Chirimoyo), Comanja, Cortijo Nuevo, Cor"
+  },
+  {
+    "index": 47,
+    "group_name": "mixe",
+    "autodenomination": "ayöök OAXACA: Santa María Tlahuitoltepec: Santa María Yacochi. Santo Domingo Roayaga: Santo Domingo Roayaga,",
+    "variant_id": "mixe alto del norte",
+    "geo_reference_preview": "ayöök OAXACA: Santa María Tlahuitoltepec: Santa María Yacochi. Santo Domingo Roayaga: Santo Domingo Roayaga, Tonaguía (Santa María Tonaguia). Totontepec Villa de Morelos: Chinantequilla (San José Chin"
+  },
+  {
+    "index": 48,
+    "group_name": "sayulteco",
+    "autodenomination": "t+kmaya’ VERACRUZ DE IGNACIO DE LA LLAVE: Sayula de Alemán: Abelardo Castillo (El Tornillo), Adolfo López Mateos,",
+    "variant_id": "sayulteco",
+    "geo_reference_preview": "t+kmaya’ VERACRUZ DE IGNACIO DE LA LLAVE: Sayula de Alemán: Abelardo Castillo (El Tornillo), Adolfo López Mateos, [tɨkmajaʔ] Aguilera, Almagres, Alto Lucero, Azufre, Bernardo Reyes Celdo (Vargas), Cel"
+  },
+  {
+    "index": 49,
+    "group_name": "oluteco",
+    "autodenomination": "numte oote TABASCO: Jalpa de Méndez: Ayapa, El Carmen (La Ensenada), Vicente Guerrero Primera Sección.",
+    "variant_id": "ayapaneco",
+    "geo_reference_preview": "yaakaw+ VERACRUZ DE IGNACIO DE LA LLAVE: Oluta: Correa de Abajo, El Chorro, El Mirador, El Ángel Gabriel, Los Laureles, [jaːkawɨ] Oluta, Tenejapa. wää ‘oot VERACRUZ DE IGNACIO DE LA LLAVE: Texistepec:"
+  },
+  {
+    "index": 50,
+    "group_name": "texistepequeño",
+    "autodenomination": "nuntaj+yi’ VERACRUZ DE IGNACIO DE LA LLAVE: Hueyapan de Ocampo: Alto Lucero, Barrosa, Cerro de Castro, Cinco de",
+    "variant_id": "ayapaneco",
+    "geo_reference_preview": "wää ‘oot VERACRUZ DE IGNACIO DE LA LLAVE: Texistepec: Chinameca, El Tesoro, Finca San Ramón, Francisco I. Madero, [wɨː ʔoːt] Los Cerritos, Poblado Remembranza a Emiliano Zapata, Rancho Nuevo, San Lore"
+  },
+  {
+    "index": 51,
+    "group_name": "ayapaneco",
+    "autodenomination": "nuntaj+yi’ VERACRUZ DE IGNACIO DE LA LLAVE: Hueyapan de Ocampo: Alto Lucero, Barrosa, Cerro de Castro, Cinco de",
+    "variant_id": "popoluca de la Sierra",
+    "geo_reference_preview": "numte oote TABASCO: Jalpa de Méndez: Ayapa, El Carmen (La Ensenada), Vicente Guerrero Primera Sección. [nnumde ote] nuntaj+yi’ VERACRUZ DE IGNACIO DE LA LLAVE: Hueyapan de Ocampo: Alto Lucero, Barros"
+  },
+  {
+    "index": 52,
+    "group_name": "popoluca de la Sierra",
+    "autodenomination": "nuntaj+yi’ VERACRUZ DE IGNACIO DE LA LLAVE: Hueyapan de Ocampo: Alto Lucero, Barrosa, Cerro de Castro, Cinco de",
+    "variant_id": "popoluca de la Sierra",
+    "geo_reference_preview": "nuntaj+yi’ VERACRUZ DE IGNACIO DE LA LLAVE: Hueyapan de Ocampo: Alto Lucero, Barrosa, Cerro de Castro, Cinco de [nundahɨjiʔ] Febrero, Cinco de Mayo, Colonia Hermosa, Coyol de González, Ejido Horno de "
+  },
+  {
+    "index": 53,
+    "group_name": "zoque",
+    "autodenomination": "tsuni (del centro) CHIAPAS: Copainalá: Adolfo López Mateos, Agua Escondida (Agua Zarca), Agustín de Iturbide, Ametzipac, Ángel",
+    "variant_id": "",
+    "geo_reference_preview": "tsuni (del centro) CHIAPAS: Copainalá: Adolfo López Mateos, Agua Escondida (Agua Zarca), Agustín de Iturbide, Ametzipac, Ángel [t͡suni] Albino Corzo (Guadalupe), Bellavista, Benito Juárez, Campeche, C"
+  },
+  {
+    "index": 54,
+    "group_name": "chontal de Oaxaca",
+    "autodenomination": "",
+    "variant_id": "chontal de Oaxaca alto",
+    "geo_reference_preview": ""
+  },
+  {
+    "index": 55,
+    "group_name": "huave",
+    "autodenomination": "ombeayiüts OAXACA: Juchitán de Zaragoza: Álvaro Obregón, Colonia David López Nelio, Chicapa de Castro, Emiliano Zapata,",
+    "variant_id": "huave del este",
+    "geo_reference_preview": "ombeayiüts OAXACA: Juchitán de Zaragoza: Álvaro Obregón, Colonia David López Nelio, Chicapa de Castro, Emiliano Zapata, Juchitán de Zaragoza, La Venta, Playa San Vicente, Rancho Gorgonio Antonio, Sant"
+  }
+]

@@ -10,14 +10,14 @@ public class OrthographyConfiguration : IEntityTypeConfiguration<Domain.Entities
     {
         builder.ToTable("Orthographies");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").IsRequired();
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.WritingSystemId).HasColumnName("WritingSystemId");
         builder.Property(e => e.Grapheme).HasColumnName("Grapheme").HasMaxLength(50).IsRequired();
         builder.Property(e => e.IpaEquivalent).HasColumnName("IpaEquivalent").HasMaxLength(100);
-        builder.Property(e => e.Description).HasColumnName("Description").HasMaxLength(2000);
-        builder.Property(e => e.PositionalRules).HasColumnName("PositionalRules").HasMaxLength(2000);
-        builder.Property(e => e.Allophones).HasColumnName("Allophones").HasMaxLength(2000);
+        builder.Property(e => e.Description).HasColumnName("Description").HasColumnType("TEXT");
+        builder.Property(e => e.PositionalRules).HasColumnName("PositionalRules").HasColumnType("TEXT");
+        builder.Property(e => e.Allophones).HasColumnName("Allophones").HasColumnType("TEXT");
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(500);
         builder.Property(e => e.VerificationStatus).HasColumnName("VerificationStatus").HasConversion<int>().IsRequired();
         builder.Property(e => e.Confidence).HasColumnName("Confidence").HasColumnType("decimal(3,2)").IsRequired();

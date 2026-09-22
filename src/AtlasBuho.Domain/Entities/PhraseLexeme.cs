@@ -9,6 +9,7 @@ public class PhraseLexeme
     public string? GrammarRole { get; private set; }
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     
+    public Phrase? Phrase { get; private set; }
     public Lexeme? Lexeme { get; private set; }
 
     private PhraseLexeme() { }

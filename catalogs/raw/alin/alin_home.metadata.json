@@ -1,0 +1,11 @@
+{
+  "source": "ALIN",
+  "resource_name": "Acervo de Lenguas Indígenas Nacionales - Página principal",
+  "resource_url": "https://alin.inali.gob.mx/xmlui/",
+  "format": "HTML (DSpace 5.4)",
+  "retrieved_at": "2025-09-21T22:35:00Z",
+  "sha256": "d262f64026bec1329a28deea01c8a70762d5d7e5a1562a2e75164cf4e20dc048",
+  "size_bytes": 32382,
+  "content_type": "text/html",
+  "description": "Página principal del repositorio DSpace ALIN. Lista familias lingüísticas como comunidades DSpace (handles 1, 3, 6, 11, 703, 785, 794, etc.). Cada familia contiene colecciones de materiales (audio, video, documentos). Requiere navegación recursiva por handles para obtener catálogo completo de materiales."
+}

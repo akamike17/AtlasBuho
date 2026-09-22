@@ -42,8 +42,8 @@ public class Lexeme
     private readonly List<Meaning> _meanings = new();
     public IReadOnlyCollection<Meaning> Meanings => _meanings.AsReadOnly();
 
-    private readonly List<Phrase> _phrases = new();
-    public IReadOnlyCollection<Phrase> Phrases => _phrases.AsReadOnly();
+    private readonly List<PhraseLexeme> _phraseLexemes = new();
+    public IReadOnlyCollection<PhraseLexeme> PhraseLexemes => _phraseLexemes.AsReadOnly();
 
     private readonly List<Evidence> _evidence = new();
     public IReadOnlyCollection<Evidence> Evidence => _evidence.AsReadOnly();
@@ -147,12 +147,12 @@ public class Lexeme
         }
     }
 
-    public void AddPhrase(Phrase phrase)
+    public void AddPhraseLexeme(PhraseLexeme phraseLexeme)
     {
-        if (phrase == null) throw new ArgumentNullException(nameof(phrase));
-        if (!_phrases.Any(p => p.Id == phrase.Id))
+        if (phraseLexeme == null) throw new ArgumentNullException(nameof(phraseLexeme));
+        if (!_phraseLexemes.Any(pl => pl.Id == phraseLexeme.Id))
         {
-            _phrases.Add(phrase);
+            _phraseLexemes.Add(phraseLexeme);
         }
     }
 

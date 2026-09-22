@@ -3,6 +3,7 @@ using System;
 using AtlasBuho.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
@@ -11,145 +12,142 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtlasBuho.Data.Migrations
 {
     [DbContext(typeof(AtlasBuhoDbContext))]
-    [Migration("20260921030337_AddW1HContext")]
-    partial class AddW1HContext
+    [Migration("20260922154903_IncreaseCatalogRecordNameLength")]
+    partial class IncreaseCatalogRecordNameLength
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "8.0.10");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.AudioRecording", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<string>("Annotation")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Annotation");
 
                     b.Property<string>("AttributionRequirement")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("AttributionRequirement");
 
                     b.Property<int?>("Channels")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Channels");
 
                     b.Property<Guid?>("CommunityId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("CommunityId");
 
                     b.Property<string>("CommunityRestriction")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("CommunityRestriction");
 
                     b.Property<string>("ConsentSource")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("ConsentSource");
 
                     b.Property<int>("ConsentStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("ConsentStatus");
 
                     b.Property<string>("Context")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Context");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<Guid?>("CulturalNoteId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("CHAR(36)");
 
-                    b.Property<double?>("DurationSeconds")
+                    b.Property<decimal?>("DurationSeconds")
                         .HasColumnType("decimal(10,2)")
                         .HasColumnName("DurationSeconds");
 
                     b.Property<Guid?>("ExampleId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("CHAR(36)");
 
                     b.Property<string>("FileHash")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("FileHash");
 
                     b.Property<string>("FileName")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("FileName");
 
                     b.Property<string>("FilePath")
                         .IsRequired()
                         .HasMaxLength(1000)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(1000)")
                         .HasColumnName("FilePath");
 
                     b.Property<long?>("FileSizeBytes")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("bigint")
                         .HasColumnName("FileSizeBytes");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
 
                     b.Property<Guid?>("LexemeId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("CHAR(36)");
 
                     b.Property<string>("MimeType")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("MimeType");
 
                     b.Property<Guid?>("PhraseId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("CHAR(36)");
 
                     b.Property<DateTime?>("RecordedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("RecordedAt");
 
                     b.Property<bool>("RemovalRequested")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("tinyint(1)")
                         .HasColumnName("RemovalRequested");
 
                     b.Property<int?>("SampleRate")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("SampleRate");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<Guid?>("SpeakerId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("SpeakerId");
 
                     b.Property<string>("Transcription")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Transcription");
 
                     b.Property<string>("Translation")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Translation");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<string>("UsagePermission")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("UsagePermission");
 
@@ -164,6 +162,10 @@ namespace AtlasBuho.Data.Migrations
                     b.HasIndex("CulturalNoteId");
 
                     b.HasIndex("ExampleId");
+
+                    b.HasIndex("FilePath")
+                        .HasDatabaseName("IX_AudioRecordings_FilePath")
+                        .HasAnnotation("MySql:IndexPrefixLength", new[] { 700 });
 
                     b.HasIndex("LanguageVariantId")
                         .HasDatabaseName("IX_AudioRecordings_VariantId");
@@ -181,74 +183,325 @@ namespace AtlasBuho.Data.Migrations
                     b.ToTable("AudioRecordings", (string)null);
                 });
 
-            modelBuilder.Entity("AtlasBuho.Domain.Entities.Community", b =>
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.CatalogRecord", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<string>("Autodenomination")
                         .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("Autodenomination");
+
+                    b.Property<Guid>("CatalogVersionId")
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("CatalogVersionId");
+
+                    b.Property<string>("Description")
                         .HasColumnType("TEXT")
+                        .HasColumnName("Description");
+
+                    b.Property<string>("EntityType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("EntityType");
+
+                    b.Property<DateTime>("ExtractionDate")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("ExtractionDate");
+
+                    b.Property<string>("GeoReference")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("GeoReference");
+
+                    b.Property<string>("IdentityKey")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("IdentityKey");
+
+                    b.Property<string>("InaliCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("InaliCode");
+
+                    b.Property<string>("Iso639_3Code")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)")
+                        .HasColumnName("Iso639_3Code");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("Name");
+
+                    b.Property<Guid?>("ParentRecordId")
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("ParentRecordId");
+
+                    b.Property<string>("ParserVersion")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("ParserVersion");
+
+                    b.Property<Guid>("SourceDocumentId")
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("SourceDocumentId");
+
+                    b.Property<string>("SourceHash")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .HasColumnName("SourceHash");
+
+                    b.Property<int>("SourcePage")
+                        .HasColumnType("int")
+                        .HasColumnName("SourcePage");
+
+                    b.Property<string>("SourceSection")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("SourceSection");
+
+                    b.Property<string>("SourceUrl")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)")
+                        .HasColumnName("SourceUrl");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int")
+                        .HasColumnName("Status");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityKey")
+                        .HasDatabaseName("IX_CatalogRecords_IdentityKey");
+
+                    b.HasIndex("ParentRecordId");
+
+                    b.HasIndex("SourceDocumentId")
+                        .HasDatabaseName("IX_CatalogRecords_SourceDocument");
+
+                    b.HasIndex("SourcePage")
+                        .HasDatabaseName("IX_CatalogRecords_SourcePage");
+
+                    b.HasIndex("SourceUrl")
+                        .HasDatabaseName("IX_CatalogRecords_SourceUrl")
+                        .HasAnnotation("MySql:IndexPrefixLength", new[] { 700 });
+
+                    b.HasIndex("CatalogVersionId", "EntityType", "IdentityKey")
+                        .IsUnique()
+                        .HasDatabaseName("IX_CatalogRecords_Version_Type_Identity");
+
+                    b.ToTable("CatalogRecords", (string)null);
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.CatalogSource", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("BaseUrl")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)")
+                        .HasColumnName("BaseUrl");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreatedAt");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("Description");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("IsActive");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("Name");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("UpdatedAt");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BaseUrl")
+                        .HasDatabaseName("IX_CatalogSources_BaseUrl")
+                        .HasAnnotation("MySql:IndexPrefixLength", new[] { 700 });
+
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasDatabaseName("IX_CatalogSources_Name");
+
+                    b.ToTable("CatalogSources", (string)null);
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.CatalogVersion", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("Id");
+
+                    b.Property<int>("AutodenominationCount")
+                        .HasColumnType("int")
+                        .HasColumnName("AutodenominationCount");
+
+                    b.Property<Guid>("CatalogSourceId")
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("CatalogSourceId");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreatedAt");
+
+                    b.Property<string>("ErrorMessage")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("ErrorMessage");
+
+                    b.Property<int>("FamilyCount")
+                        .HasColumnType("int")
+                        .HasColumnName("FamilyCount");
+
+                    b.Property<int>("GroupCount")
+                        .HasColumnType("int")
+                        .HasColumnName("GroupCount");
+
+                    b.Property<string>("ImportStatus")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("ImportStatus");
+
+                    b.Property<DateTime>("ImportedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("ImportedAt");
+
+                    b.Property<string>("ParserVersion")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("ParserVersion");
+
+                    b.Property<DateTime>("RetrievedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("RetrievedAt");
+
+                    b.Property<string>("SourceDocumentHash")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .HasColumnName("SourceDocumentHash");
+
+                    b.Property<int>("VariantCount")
+                        .HasColumnType("int")
+                        .HasColumnName("VariantCount");
+
+                    b.Property<string>("VersionNumber")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("VersionNumber");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SourceDocumentHash")
+                        .HasDatabaseName("IX_CatalogVersions_SourceHash");
+
+                    b.HasIndex("CatalogSourceId", "VersionNumber")
+                        .IsUnique()
+                        .HasDatabaseName("IX_CatalogVersions_Source_Version");
+
+                    b.ToTable("CatalogVersions", (string)null);
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.Community", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("Autodenomination")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Autodenomination");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
 
-                    b.Property<double?>("Latitude")
+                    b.Property<decimal?>("Latitude")
                         .HasColumnType("decimal(10,8)")
                         .HasColumnName("Latitude");
 
                     b.Property<string>("Locality")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Locality");
 
-                    b.Property<double?>("Longitude")
+                    b.Property<decimal?>("Longitude")
                         .HasColumnType("decimal(11,8)")
                         .HasColumnName("Longitude");
 
                     b.Property<string>("Municipality")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Municipality");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Name");
 
                     b.Property<int?>("Population")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Population");
 
                     b.Property<Guid?>("RegionId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("RegionId");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<int?>("SpeakerCount")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("SpeakerCount");
 
                     b.Property<string>("State")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("State");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.HasKey("Id");
@@ -269,80 +522,77 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<Guid?>("AudioRecordingId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("AudioRecordingId");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<DateTime?>("ExpiresAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("ExpiresAt");
 
                     b.Property<DateTime?>("GrantedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("GrantedAt");
 
                     b.Property<string>("GrantedBy")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("GrantedBy");
 
                     b.Property<bool>("IsRevoked")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("tinyint(1)")
                         .HasColumnName("IsRevoked");
 
                     b.Property<Guid?>("LexemeId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LexemeId");
 
                     b.Property<string>("Notes")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Notes");
 
                     b.Property<Guid?>("PhraseId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("PhraseId");
 
                     b.Property<string>("Restrictions")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Restrictions");
 
                     b.Property<DateTime?>("RevokedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("RevokedAt");
 
                     b.Property<string>("RevokedBy")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("RevokedBy");
 
                     b.Property<string>("Scope")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Scope");
 
                     b.Property<Guid>("SpeakerId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("SpeakerId");
 
                     b.Property<int>("Status")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Status");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<Guid?>("VideoRecordingId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("VideoRecordingId");
 
                     b.HasKey("Id");
@@ -372,61 +622,60 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<string>("Author")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Author");
 
                     b.Property<Guid?>("CommunityId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("CommunityId");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasMaxLength(10000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Content");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<DateTime?>("DateRecorded")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("DateRecorded");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Title");
 
                     b.Property<int>("Type")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Type");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int>("VerificationStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("VerificationStatus");
 
                     b.HasKey("Id");
@@ -447,49 +696,48 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
-                    b.Property<double?>("IntelligibilityScore")
+                    b.Property<decimal?>("IntelligibilityScore")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("IntelligibilityScore");
 
                     b.Property<int>("RelationshipType")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("RelationshipType");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<Guid>("SourceLanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("SourceLanguageVariantId");
 
                     b.Property<Guid>("TargetLanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("TargetLanguageVariantId");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int>("VerificationStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("VerificationStatus");
 
                     b.HasKey("Id");
@@ -511,60 +759,55 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<Guid?>("EntityId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("EntityId");
 
                     b.Property<string>("EntityType")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("EntityType");
 
                     b.Property<string>("Notes")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Notes");
 
                     b.Property<string>("PageReference")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("PageReference");
 
                     b.Property<string>("Quote")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Quote");
 
                     b.Property<string>("SectionReference")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("SectionReference");
 
                     b.Property<Guid>("SourceId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("SourceId");
 
-                    b.Property<Guid?>("SourceId1")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<string>("Url")
                         .HasMaxLength(1000)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(1000)")
                         .HasColumnName("Url");
 
                     b.HasKey("Id");
@@ -574,7 +817,9 @@ namespace AtlasBuho.Data.Migrations
                     b.HasIndex("SourceId")
                         .HasDatabaseName("IX_Evidence_SourceId");
 
-                    b.HasIndex("SourceId1");
+                    b.HasIndex("Url")
+                        .HasDatabaseName("IX_Evidence_Url")
+                        .HasAnnotation("MySql:IndexPrefixLength", new[] { 700 });
 
                     b.HasIndex("EntityType", "EntityId")
                         .HasDatabaseName("IX_Evidence_Entity");
@@ -586,53 +831,49 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<string>("Context")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Context");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("EnglishTranslation")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("EnglishTranslation");
 
                     b.Property<Guid>("LexemeId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LexemeId");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<string>("SpanishTranslation")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("SpanishTranslation");
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Text");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int>("VerificationStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("VerificationStatus");
 
                     b.HasKey("Id");
@@ -647,71 +888,67 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<string>("Category")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Category");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
                     b.Property<string>("Examples")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Examples");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Name");
 
                     b.Property<string>("Notes")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Notes");
 
                     b.Property<string>("Pattern")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Pattern");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<string>("Subcategory")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Subcategory");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int>("VerificationStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("VerificationStatus");
 
                     b.HasKey("Id");
@@ -729,36 +966,35 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Name");
 
                     b.Property<string>("NameEnglish")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("NameEnglish");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.HasKey("Id");
@@ -774,40 +1010,39 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
                     b.Property<Guid>("LanguageFamilyId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageFamilyId");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Name");
 
                     b.Property<string>("NameEnglish")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("NameEnglish");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.HasKey("Id");
@@ -826,60 +1061,59 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<string>("Autodenomination")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Autodenomination");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
                     b.Property<string>("InaliCode")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("InaliCode");
 
                     b.Property<string>("Iso639_3Code")
                         .HasMaxLength(10)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(10)")
                         .HasColumnName("Iso639_3Code");
 
                     b.Property<Guid>("LanguageGroupId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageGroupId");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Name");
 
                     b.Property<string>("Orthography")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Orthography");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<string>("WritingSystem")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("WritingSystem");
 
                     b.HasKey("Id");
@@ -900,92 +1134,173 @@ namespace AtlasBuho.Data.Migrations
                     b.ToTable("LanguageVariants", (string)null);
                 });
 
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.LanguageVariantAutodenomination", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("Agrupacion")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("Agrupacion");
+
+                    b.Property<string>("Autodenomination")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("Autodenomination");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreatedAt");
+
+                    b.Property<DateTime>("ExtractedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("ExtractedAt");
+
+                    b.Property<string>("Familia")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("Familia");
+
+                    b.Property<Guid>("LanguageVariantId")
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("LanguageVariantId");
+
+                    b.Property<string>("ParserVersion")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("ParserVersion");
+
+                    b.Property<Guid>("SourceDocumentId")
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("SourceDocumentId");
+
+                    b.Property<string>("SourceHash")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .HasColumnName("SourceHash");
+
+                    b.Property<int>("SourcePage")
+                        .HasColumnType("int")
+                        .HasColumnName("SourcePage");
+
+                    b.Property<string>("SourceSection")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("SourceSection");
+
+                    b.Property<string>("SpanishName")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
+                        .HasColumnName("SpanishName");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("UpdatedAt");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SourceDocumentId")
+                        .HasDatabaseName("IX_LanguageVariantAutodenominations_SourceDocument");
+
+                    b.HasIndex("SourcePage")
+                        .HasDatabaseName("IX_LanguageVariantAutodenominations_SourcePage");
+
+                    b.HasIndex("LanguageVariantId", "Autodenomination")
+                        .IsUnique()
+                        .HasDatabaseName("IX_LanguageVariantAutodenominations_Variant_Autodenom");
+
+                    b.ToTable("LanguageVariantAutodenominations", (string)null);
+                });
+
             modelBuilder.Entity("AtlasBuho.Domain.Entities.Lexeme", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<string>("AlternativeForms")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("AlternativeForms");
 
                     b.Property<string>("Autodenomination")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Autodenomination");
 
                     b.Property<string>("CanonicalForm")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("CanonicalForm");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Etymology")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Etymology");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
 
                     b.Property<string>("PartOfSpeech")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("PartOfSpeech");
 
                     b.Property<string>("PronunciationIpa")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("PronunciationIpa");
 
                     b.Property<string>("PronunciationReadable")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("PronunciationReadable");
 
                     b.Property<string>("RegionalNotes")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("RegionalNotes");
 
                     b.Property<string>("Register")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Register");
 
                     b.Property<string>("SemanticDomain")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("SemanticDomain");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<string>("SpanishMeaning")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("SpanishMeaning");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int>("VerificationStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("VerificationStatus");
 
                     b.HasKey("Id");
@@ -1010,67 +1325,64 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("EnglishMeaning")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("EnglishMeaning");
 
                     b.Property<Guid>("LexemeId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LexemeId");
 
                     b.Property<int>("Order")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Order");
 
                     b.Property<string>("PartOfSpeech")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("PartOfSpeech");
 
                     b.Property<string>("RegionalNotes")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("RegionalNotes");
 
                     b.Property<string>("Register")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Register");
 
                     b.Property<string>("SemanticDomain")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("SemanticDomain");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<string>("SpanishMeaning")
                         .IsRequired()
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("SpanishMeaning");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int>("VerificationStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("VerificationStatus");
 
                     b.HasKey("Id");
@@ -1088,62 +1400,59 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<string>("Allophones")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Allophones");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
                     b.Property<string>("Grapheme")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("Grapheme");
 
                     b.Property<string>("IpaEquivalent")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("IpaEquivalent");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
 
                     b.Property<string>("PositionalRules")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("PositionalRules");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int>("VerificationStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("VerificationStatus");
 
                     b.Property<Guid?>("WritingSystemId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("WritingSystemId");
 
                     b.HasKey("Id");
@@ -1165,69 +1474,59 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<string>("Context")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Context");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("EnglishTranslation")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("EnglishTranslation");
 
                     b.Property<string>("GrammarNotes")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("GrammarNotes");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
-
-                    b.Property<Guid?>("LexemeId")
-                        .HasColumnType("TEXT");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<string>("SpanishTranslation")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("SpanishTranslation");
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Text");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int>("VerificationStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("VerificationStatus");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LanguageVariantId")
                         .HasDatabaseName("IX_Phrases_VariantId");
-
-                    b.HasIndex("LexemeId");
 
                     b.HasIndex("VerificationStatus")
                         .HasDatabaseName("IX_Phrases_VerificationStatus");
@@ -1237,36 +1536,37 @@ namespace AtlasBuho.Data.Migrations
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.PhraseLexeme", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasColumnName("Id");
+                    b.Property<Guid>("PhraseId")
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("PhraseId");
+
+                    b.Property<Guid>("LexemeId")
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("LexemeId");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("int")
+                        .HasColumnName("Position");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("GrammarRole")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("GrammarRole");
 
-                    b.Property<Guid>("LexemeId")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("LexemeId");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("char(36)");
 
                     b.Property<Guid?>("LexemeId1")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("CHAR(36)");
 
-                    b.Property<Guid>("PhraseId")
-                        .HasColumnType("TEXT")
-                        .HasColumnName("PhraseId");
+                    b.Property<Guid?>("PhraseId1")
+                        .HasColumnType("CHAR(36)");
 
-                    b.Property<int>("Position")
-                        .HasColumnType("INTEGER")
-                        .HasColumnName("Position");
-
-                    b.HasKey("Id");
+                    b.HasKey("PhraseId", "LexemeId", "Position");
 
                     b.HasIndex("LexemeId")
                         .HasDatabaseName("IX_PhraseLexemes_LexemeId");
@@ -1276,9 +1576,7 @@ namespace AtlasBuho.Data.Migrations
                     b.HasIndex("PhraseId")
                         .HasDatabaseName("IX_PhraseLexemes_PhraseId");
 
-                    b.HasIndex("PhraseId", "Position")
-                        .IsUnique()
-                        .HasDatabaseName("IX_PhraseLexemes_Phrase_Position");
+                    b.HasIndex("PhraseId1");
 
                     b.ToTable("PhraseLexemes", (string)null);
                 });
@@ -1287,56 +1585,55 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<Guid?>("AudioRecordingId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("AudioRecordingId");
 
                     b.Property<string>("AudioUrl")
                         .HasMaxLength(1000)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(1000)")
                         .HasColumnName("AudioUrl");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Ipa")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Ipa");
 
                     b.Property<Guid>("LexemeId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LexemeId");
 
                     b.Property<string>("Readable")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Readable");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
-                    b.Property<string>("SpeakerId")
-                        .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                    b.Property<Guid?>("SpeakerId")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("SpeakerId");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int>("VerificationStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("VerificationStatus");
 
                     b.HasKey("Id");
@@ -1344,8 +1641,14 @@ namespace AtlasBuho.Data.Migrations
                     b.HasIndex("AudioRecordingId")
                         .HasDatabaseName("IX_Pronunciations_AudioRecordingId");
 
+                    b.HasIndex("AudioUrl")
+                        .HasDatabaseName("IX_Pronunciations_AudioUrl")
+                        .HasAnnotation("MySql:IndexPrefixLength", new[] { 700 });
+
                     b.HasIndex("LexemeId")
                         .HasDatabaseName("IX_Pronunciations_LexemeId");
+
+                    b.HasIndex("SpeakerId");
 
                     b.ToTable("Pronunciations", (string)null);
                 });
@@ -1354,36 +1657,35 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<string>("Country")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Country");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Name");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.HasKey("Id");
@@ -1402,55 +1704,52 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Criterion")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Criterion");
 
                     b.Property<bool>("IsCurrent")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("tinyint(1)")
                         .HasColumnName("IsCurrent");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
 
                     b.Property<string>("Methodology")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Methodology");
 
                     b.Property<string>("Notes")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Notes");
 
                     b.Property<int?>("Population")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Population");
 
                     b.Property<int>("RiskLevel")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("RiskLevel");
 
                     b.Property<string>("Source")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int?>("Year")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Year");
 
                     b.HasKey("Id");
@@ -1471,93 +1770,89 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<string>("Authors")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Authors");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
                     b.Property<string>("Doi")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Doi");
 
                     b.Property<string>("Editors")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Editors");
 
                     b.Property<string>("Institution")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Institution");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("tinyint(1)")
                         .HasColumnName("IsActive");
 
                     b.Property<string>("Isbn")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("Isbn");
 
                     b.Property<string>("Issn")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("Issn");
 
                     b.Property<string>("Language")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Language");
 
                     b.Property<int>("Level")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Level");
 
                     b.Property<string>("Location")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Location");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Name");
 
                     b.Property<string>("Notes")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Notes");
 
                     b.Property<DateTime?>("PublicationDate")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("PublicationDate");
 
                     b.Property<string>("Publisher")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Publisher");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<string>("Url")
                         .HasMaxLength(1000)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(1000)")
                         .HasColumnName("Url");
 
                     b.HasKey("Id");
@@ -1572,65 +1867,183 @@ namespace AtlasBuho.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("IX_Sources_Name");
 
+                    b.HasIndex("Url")
+                        .HasDatabaseName("IX_Sources_Url")
+                        .HasAnnotation("MySql:IndexPrefixLength", new[] { 700 });
+
                     b.ToTable("Sources", (string)null);
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.SourceDocument", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("Id");
+
+                    b.Property<string>("CatalogRange")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("CatalogRange");
+
+                    b.Property<string>("ContentType")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("ContentType");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("CreatedAt");
+
+                    b.Property<string>("HashSha256")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .HasColumnName("HashSha256");
+
+                    b.Property<string>("ParserVersion")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)")
+                        .HasColumnName("ParserVersion");
+
+                    b.Property<DateTime>("RetrievedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("RetrievedAt");
+
+                    b.Property<long>("SizeBytes")
+                        .HasColumnType("bigint")
+                        .HasColumnName("SizeBytes");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("Title");
+
+                    b.Property<int>("TotalPages")
+                        .HasColumnType("int")
+                        .HasColumnName("TotalPages");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("UpdatedAt");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("varchar(2000)")
+                        .HasColumnName("Url");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HashSha256")
+                        .IsUnique()
+                        .HasDatabaseName("IX_SourceDocuments_Hash");
+
+                    b.HasIndex("Url")
+                        .HasDatabaseName("IX_SourceDocuments_Url")
+                        .HasAnnotation("MySql:IndexPrefixLength", new[] { 700 });
+
+                    b.ToTable("SourceDocuments", (string)null);
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.SourcePage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("Id");
+
+                    b.Property<DateTime>("ExtractedAt")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("ExtractedAt");
+
+                    b.Property<int>("PageNumber")
+                        .HasColumnType("int")
+                        .HasColumnName("PageNumber");
+
+                    b.Property<string>("RawTextHash")
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)")
+                        .HasColumnName("RawTextHash");
+
+                    b.Property<string>("SectionReference")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)")
+                        .HasColumnName("SectionReference");
+
+                    b.Property<Guid>("SourceDocumentId")
+                        .HasColumnType("CHAR(36)")
+                        .HasColumnName("SourceDocumentId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SourceDocumentId", "PageNumber")
+                        .IsUnique()
+                        .HasDatabaseName("IX_SourcePages_Document_Page");
+
+                    b.ToTable("SourcePages", (string)null);
                 });
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.SpeakerProfile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<DateTime?>("BirthDate")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("BirthDate");
 
                     b.Property<Guid?>("CommunityId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("CommunityId");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("EducationLevel")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("EducationLevel");
 
                     b.Property<string>("Gender")
                         .HasMaxLength(50)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("Gender");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Name");
 
                     b.Property<string>("Occupation")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Occupation");
 
                     b.Property<string>("Pseudonym")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Pseudonym");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.HasKey("Id");
@@ -1648,63 +2061,60 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
-                    b.Property<double>("Confidence")
+                    b.Property<decimal>("Confidence")
                         .HasColumnType("decimal(3,2)")
                         .HasColumnName("Confidence");
 
                     b.Property<string>("Context")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Context");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("ModelUsed")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("ModelUsed");
 
                     b.Property<string>("ModelVersion")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("ModelVersion");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<Guid>("SourceLanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("SourceLanguageVariantId");
 
                     b.Property<string>("SourceText")
                         .IsRequired()
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("SourceText");
 
                     b.Property<Guid>("TargetLanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("TargetLanguageVariantId");
 
                     b.Property<string>("TargetText")
                         .IsRequired()
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("TargetText");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<int>("VerificationStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("VerificationStatus");
 
                     b.HasKey("Id");
@@ -1715,9 +2125,6 @@ namespace AtlasBuho.Data.Migrations
                     b.HasIndex("TargetLanguageVariantId")
                         .HasDatabaseName("IX_Translations_TargetVariantId");
 
-                    b.HasIndex("SourceLanguageVariantId", "TargetLanguageVariantId", "SourceText")
-                        .HasDatabaseName("IX_Translations_Source_Target_Text");
-
                     b.ToTable("Translations", (string)null);
                 });
 
@@ -1725,138 +2132,131 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<string>("Annotation")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Annotation");
 
                     b.Property<string>("AttributionRequirement")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("AttributionRequirement");
 
                     b.Property<Guid?>("CommunityId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("CommunityId");
 
                     b.Property<string>("CommunityRestriction")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("CommunityRestriction");
 
                     b.Property<string>("ConsentSource")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("ConsentSource");
 
                     b.Property<int>("ConsentStatus")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("ConsentStatus");
 
                     b.Property<string>("Context")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Context");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<Guid?>("CulturalNoteId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("CHAR(36)");
 
-                    b.Property<double?>("DurationSeconds")
+                    b.Property<decimal?>("DurationSeconds")
                         .HasColumnType("decimal(10,2)")
                         .HasColumnName("DurationSeconds");
 
                     b.Property<Guid?>("ExampleId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("FileHash")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("FileHash");
 
                     b.Property<string>("FileName")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("FileName");
 
                     b.Property<string>("FilePath")
                         .IsRequired()
                         .HasMaxLength(1000)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(1000)")
                         .HasColumnName("FilePath");
 
                     b.Property<long?>("FileSizeBytes")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("bigint")
                         .HasColumnName("FileSizeBytes");
 
                     b.Property<string>("FrameRate")
                         .HasMaxLength(20)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(20)")
                         .HasColumnName("FrameRate");
 
                     b.Property<int?>("Height")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Height");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
 
                     b.Property<Guid?>("LexemeId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("MimeType")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("MimeType");
 
                     b.Property<Guid?>("PhraseId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("char(36)");
 
                     b.Property<DateTime?>("RecordedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("RecordedAt");
 
                     b.Property<bool>("RemovalRequested")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("tinyint(1)")
                         .HasColumnName("RemovalRequested");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<Guid?>("SpeakerId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("SpeakerId");
 
                     b.Property<string>("Transcription")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Transcription");
 
                     b.Property<string>("Translation")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Translation");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.Property<string>("UsagePermission")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("UsagePermission");
 
                     b.Property<int?>("Width")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Width");
 
                     b.HasKey("Id");
@@ -1868,6 +2268,10 @@ namespace AtlasBuho.Data.Migrations
                         .HasDatabaseName("IX_VideoRecordings_ConsentStatus");
 
                     b.HasIndex("CulturalNoteId");
+
+                    b.HasIndex("FilePath")
+                        .HasDatabaseName("IX_VideoRecordings_FilePath")
+                        .HasAnnotation("MySql:IndexPrefixLength", new[] { 700 });
 
                     b.HasIndex("LanguageVariantId")
                         .HasDatabaseName("IX_VideoRecordings_VariantId");
@@ -1885,177 +2289,174 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<Guid?>("AudioRecordingId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("AudioRecordingId");
 
                     b.Property<Guid?>("CommunityId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("CommunityId");
 
                     b.Property<Guid?>("CommunityLocationId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("CommunityLocationId");
 
                     b.Property<string>("CommunityRequest")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("CommunityRequest");
 
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt")
-                        .HasDefaultValueSql("UTC_TIMESTAMP()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
 
                     b.Property<Guid?>("CulturalNoteId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("CulturalNoteId");
 
-                    b.Property<DateTime?>("DocumentedAt")
-                        .IsRequired()
-                        .HasColumnType("TEXT")
+                    b.Property<DateTime>("DocumentedAt")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("DocumentedAt");
 
                     b.Property<string>("EntityType")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("EntityType");
 
                     b.Property<string>("Equipment")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Equipment");
 
                     b.Property<string>("Era")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Era");
 
                     b.Property<Guid?>("GrammarRuleId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("GrammarRuleId");
 
                     b.Property<bool>("IsComplete")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("tinyint(1)")
                         .HasColumnName("IsComplete");
 
                     b.Property<double?>("Latitude")
                         .HasPrecision(9, 6)
-                        .HasColumnType("REAL")
+                        .HasColumnType("double")
                         .HasColumnName("Latitude");
 
                     b.Property<Guid?>("LexemeId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LexemeId");
 
                     b.Property<string>("LocationDescription")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("LocationDescription");
 
                     b.Property<string>("LocationType")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("LocationType");
 
                     b.Property<double?>("Longitude")
                         .HasPrecision(9, 6)
-                        .HasColumnType("REAL")
+                        .HasColumnType("double")
                         .HasColumnName("Longitude");
 
                     b.Property<int>("Methodology")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Methodology");
 
                     b.Property<string>("Notes")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Notes");
 
                     b.Property<DateTime?>("PeriodEnd")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("PeriodEnd");
 
                     b.Property<DateTime?>("PeriodStart")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("PeriodStart");
 
                     b.Property<Guid?>("PhraseId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("PhraseId");
 
                     b.Property<string>("PreservationAction")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("PreservationAction");
 
                     b.Property<string>("Protocol")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Protocol");
 
                     b.Property<int>("Purpose")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasColumnName("Purpose");
 
                     b.Property<Guid?>("RegionId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("RegionId");
 
                     b.Property<string>("ResearchGoal")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("ResearchGoal");
 
                     b.Property<Guid?>("ResearcherId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("ResearcherId");
 
                     b.Property<string>("Role")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Role");
 
                     b.Property<string>("Season")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Season");
 
                     b.Property<string>("Software")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Software");
 
                     b.Property<Guid?>("SourceId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("SourceId");
 
                     b.Property<Guid?>("SpeakerId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("SpeakerId");
 
                     b.Property<string>("Technique")
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Technique");
 
                     b.Property<string>("TimeOfDay")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("TimeOfDay");
 
                     b.Property<DateTime>("UpdatedAt")
                         .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt")
-                        .HasDefaultValueSql("UTC_TIMESTAMP()");
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP(6)");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlComputedColumn(b.Property<DateTime>("UpdatedAt"));
 
                     b.Property<Guid?>("VideoRecordingId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("VideoRecordingId");
 
                     b.HasKey("Id");
@@ -2112,53 +2513,51 @@ namespace AtlasBuho.Data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("Id");
 
                     b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("CreatedAt");
 
                     b.Property<string>("Description")
-                        .HasMaxLength(2000)
                         .HasColumnType("TEXT")
                         .HasColumnName("Description");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("tinyint(1)")
                         .HasColumnName("IsActive");
 
                     b.Property<bool>("IsOfficial")
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("tinyint(1)")
                         .HasColumnName("IsOfficial");
 
                     b.Property<Guid>("LanguageVariantId")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("CHAR(36)")
                         .HasColumnName("LanguageVariantId");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(200)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Name");
 
                     b.Property<string>("OrthographyRules")
-                        .HasMaxLength(5000)
                         .HasColumnType("TEXT")
                         .HasColumnName("OrthographyRules");
 
                     b.Property<string>("Script")
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Script");
 
                     b.Property<string>("Source")
                         .HasMaxLength(500)
-                        .HasColumnType("TEXT")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Source");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("datetime(6)")
                         .HasColumnName("UpdatedAt");
 
                     b.HasKey("Id");
@@ -2209,6 +2608,35 @@ namespace AtlasBuho.Data.Migrations
                         .WithMany("Recordings")
                         .HasForeignKey("SpeakerId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.CatalogRecord", b =>
+                {
+                    b.HasOne("AtlasBuho.Domain.Entities.CatalogVersion", "CatalogVersion")
+                        .WithMany("Records")
+                        .HasForeignKey("CatalogVersionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AtlasBuho.Domain.Entities.CatalogRecord", "ParentRecord")
+                        .WithMany()
+                        .HasForeignKey("ParentRecordId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("CatalogVersion");
+
+                    b.Navigation("ParentRecord");
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.CatalogVersion", b =>
+                {
+                    b.HasOne("AtlasBuho.Domain.Entities.CatalogSource", "CatalogSource")
+                        .WithMany("Versions")
+                        .HasForeignKey("CatalogSourceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CatalogSource");
                 });
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.Community", b =>
@@ -2325,15 +2753,11 @@ namespace AtlasBuho.Data.Migrations
                         .HasForeignKey("EntityId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("AtlasBuho.Domain.Entities.Source", null)
-                        .WithMany()
+                    b.HasOne("AtlasBuho.Domain.Entities.Source", "Source")
+                        .WithMany("Evidence")
                         .HasForeignKey("SourceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("AtlasBuho.Domain.Entities.Source", "Source")
-                        .WithMany()
-                        .HasForeignKey("SourceId1");
 
                     b.Navigation("Source");
                 });
@@ -2372,6 +2796,17 @@ namespace AtlasBuho.Data.Migrations
                         .HasForeignKey("LanguageGroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.LanguageVariantAutodenomination", b =>
+                {
+                    b.HasOne("AtlasBuho.Domain.Entities.LanguageVariant", "LanguageVariant")
+                        .WithMany("Autodenominations")
+                        .HasForeignKey("LanguageVariantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("LanguageVariant");
                 });
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.Lexeme", b =>
@@ -2413,17 +2848,12 @@ namespace AtlasBuho.Data.Migrations
                         .HasForeignKey("LanguageVariantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("AtlasBuho.Domain.Entities.Lexeme", null)
-                        .WithMany("Phrases")
-                        .HasForeignKey("LexemeId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.PhraseLexeme", b =>
                 {
                     b.HasOne("AtlasBuho.Domain.Entities.Lexeme", null)
-                        .WithMany()
+                        .WithMany("PhraseLexemes")
                         .HasForeignKey("LexemeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2438,7 +2868,13 @@ namespace AtlasBuho.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("AtlasBuho.Domain.Entities.Phrase", "Phrase")
+                        .WithMany()
+                        .HasForeignKey("PhraseId1");
+
                     b.Navigation("Lexeme");
+
+                    b.Navigation("Phrase");
                 });
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.Pronunciation", b =>
@@ -2453,6 +2889,11 @@ namespace AtlasBuho.Data.Migrations
                         .HasForeignKey("LexemeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("AtlasBuho.Domain.Entities.SpeakerProfile", null)
+                        .WithMany()
+                        .HasForeignKey("SpeakerId")
+                        .OnDelete(DeleteBehavior.SetNull);
                 });
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.RiskAssessment", b =>
@@ -2462,6 +2903,17 @@ namespace AtlasBuho.Data.Migrations
                         .HasForeignKey("LanguageVariantId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.SourcePage", b =>
+                {
+                    b.HasOne("AtlasBuho.Domain.Entities.SourceDocument", "SourceDocument")
+                        .WithMany("Pages")
+                        .HasForeignKey("SourceDocumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SourceDocument");
                 });
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.SpeakerProfile", b =>
@@ -2589,6 +3041,16 @@ namespace AtlasBuho.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.CatalogSource", b =>
+                {
+                    b.Navigation("Versions");
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.CatalogVersion", b =>
+                {
+                    b.Navigation("Records");
+                });
+
             modelBuilder.Entity("AtlasBuho.Domain.Entities.CulturalNote", b =>
                 {
                     b.Navigation("AudioRecordings");
@@ -2627,6 +3089,8 @@ namespace AtlasBuho.Data.Migrations
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.LanguageVariant", b =>
                 {
+                    b.Navigation("Autodenominations");
+
                     b.Navigation("Communities");
 
                     b.Navigation("DialectRelationships");
@@ -2648,7 +3112,7 @@ namespace AtlasBuho.Data.Migrations
 
                     b.Navigation("Meanings");
 
-                    b.Navigation("Phrases");
+                    b.Navigation("PhraseLexemes");
 
                     b.Navigation("Pronunciations");
                 });
@@ -2670,6 +3134,16 @@ namespace AtlasBuho.Data.Migrations
             modelBuilder.Entity("AtlasBuho.Domain.Entities.Region", b =>
                 {
                     b.Navigation("Communities");
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.Source", b =>
+                {
+                    b.Navigation("Evidence");
+                });
+
+            modelBuilder.Entity("AtlasBuho.Domain.Entities.SourceDocument", b =>
+                {
+                    b.Navigation("Pages");
                 });
 
             modelBuilder.Entity("AtlasBuho.Domain.Entities.SpeakerProfile", b =>

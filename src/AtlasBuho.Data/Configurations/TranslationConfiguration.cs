@@ -10,12 +10,12 @@ public class TranslationConfiguration : IEntityTypeConfiguration<Domain.Entities
     {
         builder.ToTable("Translations");
         
-        builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
-        builder.Property(e => e.SourceLanguageVariantId).HasColumnName("SourceLanguageVariantId").IsRequired();
-        builder.Property(e => e.TargetLanguageVariantId).HasColumnName("TargetLanguageVariantId").IsRequired();
-        builder.Property(e => e.SourceText).HasColumnName("SourceText").HasMaxLength(5000).IsRequired();
-        builder.Property(e => e.TargetText).HasColumnName("TargetText").HasMaxLength(5000).IsRequired();
-        builder.Property(e => e.Context).HasColumnName("Context").HasMaxLength(2000);
+        builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.SourceLanguageVariantId).HasColumnName("SourceLanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.TargetLanguageVariantId).HasColumnName("TargetLanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
+        builder.Property(e => e.SourceText).HasColumnName("SourceText").HasColumnType("TEXT").IsRequired();
+        builder.Property(e => e.TargetText).HasColumnName("TargetText").HasColumnType("TEXT").IsRequired();
+        builder.Property(e => e.Context).HasColumnName("Context").HasColumnType("TEXT");
         builder.Property(e => e.Source).HasColumnName("Source").HasMaxLength(500);
         builder.Property(e => e.Confidence).HasColumnName("Confidence").HasColumnType("decimal(3,2)").IsRequired();
         builder.Property(e => e.VerificationStatus).HasColumnName("VerificationStatus").HasConversion<int>().IsRequired();
@@ -25,7 +25,8 @@ public class TranslationConfiguration : IEntityTypeConfiguration<Domain.Entities
         builder.Property(e => e.UpdatedAt).HasColumnName("UpdatedAt").IsRequired();
         builder.HasIndex(e => e.SourceLanguageVariantId).HasDatabaseName("IX_Translations_SourceVariantId");
         builder.HasIndex(e => e.TargetLanguageVariantId).HasDatabaseName("IX_Translations_TargetVariantId");
-        builder.HasIndex(e => new { e.SourceLanguageVariantId, e.TargetLanguageVariantId, e.SourceText }).HasDatabaseName("IX_Translations_Source_Target_Text");
+        // Cannot index TEXT column without key length in MySQL
+        // builder.HasIndex(e => new { e.SourceLanguageVariantId, e.TargetLanguageVariantId, e.SourceText }).HasDatabaseName("IX_Translations_Source_Target_Text");
         
         builder.HasOne<Domain.Entities.LanguageVariant>()
             .WithMany()

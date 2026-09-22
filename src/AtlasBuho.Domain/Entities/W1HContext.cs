@@ -1,14 +1,5 @@
 namespace AtlasBuho.Domain.Entities;
 
-/// <summary>
-/// 5W1H Framework for Linguistic Documentation
-/// WHO: Speaker / Community / Researcher
-/// WHAT: Lexeme / Phrase / GrammarRule / CulturalNote
-/// WHERE: Region / Community / Coordinates
-/// WHEN: DateTime / Period / Era
-/// WHY: DocumentationPurpose / ResearchGoal / PreservationAction
-/// HOW: Methodology / Technique / Protocol
-/// </summary>
 public class W1HContext
 {
     public Guid Id { get; private set; } = Guid.NewGuid();
@@ -35,7 +26,7 @@ public class W1HContext
     public string? LocationType { get; private set; } // Home, CommunityCenter, Field, School, CeremonialSite
     
     // WHEN - Temporal context
-    public DateTime? DocumentedAt { get; private set; }
+    public DateTime DocumentedAt { get; private set; } = DateTime.UtcNow;
     public DateTime? PeriodStart { get; private set; }
     public DateTime? PeriodEnd { get; private set; }
     public string? Era { get; private set; } // PreColonial, Colonial, Modern, Contemporary
@@ -62,7 +53,7 @@ public class W1HContext
     public string? Notes { get; private set; }
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; private set; } = DateTime.UtcNow;
-    public bool IsComplete { get; private set; }
+    public bool IsComplete { get; private set; } = false;
     
     private W1HContext() { }
     
@@ -239,7 +230,7 @@ public class W1HContext
     
     public void LinkTemporal(DateTime? documentedAt = null, DateTime? start = null, DateTime? end = null, string? era = null, string? season = null, string? timeOfDay = null)
     {
-        if (documentedAt != null) DocumentedAt = documentedAt;
+        if (documentedAt != null) DocumentedAt = documentedAt.Value;
         if (start != null) PeriodStart = start;
         if (end != null) PeriodEnd = end;
         if (era != null) Era = era;
@@ -320,8 +311,8 @@ public class W1HContext
                 Longitude.HasValue ? $"Lon:{Longitude}" : null
             }.Where(x => x != null).Select(x => x!).ToList(),
             
-            HasWhen = DocumentedAt.HasValue,
-            WhenDetails = DocumentedAt.HasValue ? $"Documented: {DocumentedAt:yyyy-MM-dd}" : "Not specified",
+            HasWhen = true,
+            WhenDetails = $"Documented: {DocumentedAt:yyyy-MM-dd}",
             
             HasWhy = Purpose != DocumentationPurpose.Documentation || !string.IsNullOrEmpty(ResearchGoal) || !string.IsNullOrEmpty(PreservationAction),
             WhyDetails = new List<string> { 
