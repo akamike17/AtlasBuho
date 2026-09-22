@@ -4,6 +4,7 @@ using AtlasBuho.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtlasBuho.Data.Migrations
 {
     [DbContext(typeof(AtlasBuhoDbContext))]
-    partial class AtlasBuhoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260922212009_UpdateCatalogVersionForAudit")]
+    partial class UpdateCatalogVersionForAudit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1145,14 +1148,14 @@ namespace AtlasBuho.Data.Migrations
                         .HasColumnName("Id");
 
                     b.Property<string>("Agrupacion")
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Agrupacion");
 
                     b.Property<string>("Autodenomination")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Autodenomination");
 
                     b.Property<DateTime>("CreatedAt")
@@ -1164,8 +1167,8 @@ namespace AtlasBuho.Data.Migrations
                         .HasColumnName("ExtractedAt");
 
                     b.Property<string>("Familia")
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("Familia");
 
                     b.Property<Guid>("LanguageVariantId")
@@ -1199,8 +1202,8 @@ namespace AtlasBuho.Data.Migrations
                         .HasColumnName("SourceSection");
 
                     b.Property<string>("SpanishName")
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)")
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)")
                         .HasColumnName("SpanishName");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -1215,9 +1218,9 @@ namespace AtlasBuho.Data.Migrations
                     b.HasIndex("SourcePage")
                         .HasDatabaseName("IX_LanguageVariantAutodenominations_SourcePage");
 
-                    b.HasIndex("LanguageVariantId", "Autodenomination", "SourcePage")
+                    b.HasIndex("LanguageVariantId", "Autodenomination")
                         .IsUnique()
-                        .HasDatabaseName("IX_LanguageVariantAutodenominations_Variant_Autodenom_Page");
+                        .HasDatabaseName("IX_LanguageVariantAutodenominations_Variant_Autodenom");
 
                     b.ToTable("LanguageVariantAutodenominations", (string)null);
                 });

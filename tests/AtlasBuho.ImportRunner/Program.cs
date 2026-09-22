@@ -1,13 +1,25 @@
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using AtlasBuho.Data;
 using AtlasBuho.Data.Seeding;
 using Microsoft.EntityFrameworkCore;
 
+var config = new ConfigurationBuilder()
+    .AddUserSecrets<Program>()
+    .Build();
+
 var services = new ServiceCollection();
 services.AddLogging(builder => builder.AddConsole().SetMinimumLevel(LogLevel.Debug));
 
-var connectionString = "Server=localhost;Database=atlasbuho;User=Admin;Password=RenacerGood17;";
+var connectionString = config.GetConnectionString("MySQL");
+if (string.IsNullOrEmpty(connectionString))
+{
+    Console.WriteLine("ERROR: Connection string 'MySQL' not found in User Secrets.");
+    Console.WriteLine("Run: dotnet user-secrets set ConnectionStrings:MySQL \"Server=localhost;Database=atlasbuho;User=Admin;Password=YOUR_PASSWORD\"");
+    Environment.Exit(1);
+}
+
 services.AddDbContext<AtlasBuhoDbContext>(options => 
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 

@@ -12,10 +12,10 @@ public class LanguageVariantAutodenominationConfiguration : IEntityTypeConfigura
         
         builder.Property(e => e.Id).HasColumnName("Id").HasColumnType("CHAR(36)").IsRequired();
         builder.Property(e => e.LanguageVariantId).HasColumnName("LanguageVariantId").HasColumnType("CHAR(36)").IsRequired();
-        builder.Property(e => e.Autodenomination).HasColumnName("Autodenomination").HasMaxLength(200).IsRequired();
-        builder.Property(e => e.SpanishName).HasColumnName("SpanishName").HasMaxLength(200);
-        builder.Property(e => e.Agrupacion).HasColumnName("Agrupacion").HasMaxLength(200);
-        builder.Property(e => e.Familia).HasColumnName("Familia").HasMaxLength(200);
+        builder.Property(e => e.Autodenomination).HasColumnName("Autodenomination").HasMaxLength(500).IsRequired();
+        builder.Property(e => e.SpanishName).HasColumnName("SpanishName").HasMaxLength(500);
+        builder.Property(e => e.Agrupacion).HasColumnName("Agrupacion").HasMaxLength(500);
+        builder.Property(e => e.Familia).HasColumnName("Familia").HasMaxLength(500);
         builder.Property(e => e.SourcePage).HasColumnName("SourcePage").IsRequired();
         builder.Property(e => e.SourceSection).HasColumnName("SourceSection").HasMaxLength(500);
         builder.Property(e => e.SourceDocumentId).HasColumnName("SourceDocumentId").HasColumnType("CHAR(36)").IsRequired();
@@ -24,7 +24,10 @@ public class LanguageVariantAutodenominationConfiguration : IEntityTypeConfigura
         builder.Property(e => e.ParserVersion).HasColumnName("ParserVersion").HasMaxLength(50).IsRequired();
         builder.Property(e => e.CreatedAt).HasColumnName("CreatedAt").IsRequired();
         builder.Property(e => e.UpdatedAt).HasColumnName("UpdatedAt").IsRequired();
-        builder.HasIndex(e => new { e.LanguageVariantId, e.Autodenomination }).IsUnique().HasDatabaseName("IX_LanguageVariantAutodenominations_Variant_Autodenom");
+        
+        // Unique index includes SourcePage to allow same autodenomination for same variant on different pages
+        builder.HasIndex(e => new { e.LanguageVariantId, e.Autodenomination, e.SourcePage }).IsUnique()
+            .HasDatabaseName("IX_LanguageVariantAutodenominations_Variant_Autodenom_Page");
         builder.HasIndex(e => e.SourceDocumentId).HasDatabaseName("IX_LanguageVariantAutodenominations_SourceDocument");
         builder.HasIndex(e => e.SourcePage).HasDatabaseName("IX_LanguageVariantAutodenominations_SourcePage");
         
