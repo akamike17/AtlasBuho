@@ -4,6 +4,8 @@ using AtlasBuho.Data;
 using AtlasBuho.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using UglyToad.PdfPig;
+using UglyToad.PdfPig.Content;
 
 namespace AtlasBuho.Data.Seeding;
 
@@ -22,19 +24,11 @@ public class ImportResult
     public int VariantsQuarantined { get; set; }
     public int AutodenominationsImported { get; set; }
     public int AutodenominationsQuarantined { get; set; }
+    public int AutodenominationsArtifactsQuarantined { get; set; }
+    public int GroupsArtifactsQuarantined { get; set; }
     public List<string> ValidationErrors { get; set; } = new();
     public Dictionary<string, object> Provenance { get; set; } = new();
-    public List<QuarantineRecord> QuarantinedItems { get; set; } = new();
-}
-
-public class QuarantineRecord
-{
-    public string EntityType { get; set; } = "";
-    public string RawData { get; set; } = "";
-    public string Reason { get; set; } = "";
-    public int SourcePage { get; set; }
-    public string SourceSection { get; set; } = "";
-    public string ResolutionMethod { get; set; } = "";
+    // QuarantinedItems now persisted to DB via ImportQuarantine entity
 }
 
 public class InaliCatalogImporter : ICatalogImporter
@@ -46,7 +40,7 @@ public class InaliCatalogImporter : ICatalogImporter
     private const int DOCUMENTARY_FAMILIES = 11;
     private const int DOCUMENTARY_GROUPS = 68;          // Apéndice 4 oficial (excluyendo artefactos)
     private const int DOCUMENTARY_VARIANTS = 364;       // PDF cuerpo principal oficial
-    private const int DOCUMENTARY_AUTODENOMS_VALID = 474; // Apéndice 4: 478 filas totales - 1 header (filtered by LoadSourceDataAsync) - 3 artefactos (filtered by ImportAutodenominationsAsync) = 474 válidos
+    private const int DOCUMENTARY_AUTODENOMS_VALID = 474; // Apéndice 4: 478 filas totales - 1 header - 3 artefactos = 474 válidos
 
     // CLIN Compendium metadata
     private const string CATALOG_TITLE = "Catálogo de las Lenguas Indígenas Nacionales: Variantes Lingüísticas de México con sus autodenominaciones y referencias geoestadísticas";
@@ -88,8 +82,8 @@ public class InaliCatalogImporter : ICatalogImporter
                     var catalogSource = await CreateOrGetCatalogSourceAsync(cancellationToken);
                     result.Provenance["CatalogSourceId"] = catalogSource.Id;
 
-                    // Step 4: Create CatalogVersion with PENDING status
-                    var catalogVersion = await CreateCatalogVersionAsync(catalogSource.Id, sourceDocument.Id, "Pending", cancellationToken);
+                    // Step 4: Create CatalogVersion with PENDING status (or get existing for idempotent update)
+                    var catalogVersion = await GetOrCreateCatalogVersionForUpdateAsync(catalogSource.Id, sourceDocument.Id, "Pending", cancellationToken);
                     result.Provenance["CatalogVersionId"] = catalogVersion.Id;
 
                     // Step 5: Import Families (11 expected)
@@ -98,24 +92,24 @@ public class InaliCatalogImporter : ICatalogImporter
                     _logger.LogInformation("Imported {Count} families", familyMap.Count);
 
                     // Step 6: Import Groups/Agrupaciones (68 expected from Appendix 4)
-                    var (groupMap, groupQuarantine) = await ImportGroupsAsync(catalogData, appendix4Data, familyMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
+                    var (groupMap, groupQuarantineCount, groupArtifactQuarantineCount) = await ImportGroupsAsync(catalogData, appendix4Data, familyMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
                     result.GroupsImported = groupMap.Count;
-                    result.QuarantinedItems.AddRange(groupQuarantine);
-                    _logger.LogInformation("Imported {Count} groups, quarantined {QCount}", groupMap.Count, groupQuarantine.Count);
+                    result.GroupsArtifactsQuarantined = groupArtifactQuarantineCount;
+                    // Quarantine persisted directly to DB via PersistQuarantineAsync
+                    _logger.LogInformation("Imported {Count} groups, quarantined {QCount} (artifacts: {AQCount})", groupMap.Count, groupQuarantineCount, groupArtifactQuarantineCount);
 
                     // Step 7: Import Variants (364 expected) - NO silent continue
-                    var (variantMap, variantQuarantine) = await ImportVariantsAsync(catalogData, appendix4Data, groupMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
+                    var (variantMap, variantQuarantineCount) = await ImportVariantsAsync(catalogData, appendix4Data, groupMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
                     result.VariantsImported = variantMap.Count;
-                    result.VariantsQuarantined = variantQuarantine.Count;
-                    result.QuarantinedItems.AddRange(variantQuarantine);
-                    _logger.LogInformation("Imported {Count} variants, quarantined {QCount}", variantMap.Count, variantQuarantine.Count);
+                    result.VariantsQuarantined = variantQuarantineCount;
+                    _logger.LogInformation("Imported {Count} variants, quarantined {QCount}", variantMap.Count, variantQuarantineCount);
 
                     // Step 8: Import Autodenominaciones (474 valid expected)
-                    var (autodenomCount, autodenomQuarantine) = await ImportAutodenominationsAsync(appendix4Data, groupMap, variantMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
+                    var (autodenomCount, autodenomQuarantineCount, autodenomArtifactQuarantineCount) = await ImportAutodenominationsAsync(appendix4Data, groupMap, variantMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
                     result.AutodenominationsImported = autodenomCount;
-                    result.AutodenominationsQuarantined = autodenomQuarantine.Count;
-                    result.QuarantinedItems.AddRange(autodenomQuarantine);
-                    _logger.LogInformation("Imported {Count} autodenominaciones, quarantined {QCount}", autodenomCount, autodenomQuarantine.Count);
+                    result.AutodenominationsQuarantined = autodenomQuarantineCount;
+                    result.AutodenominationsArtifactsQuarantined = autodenomArtifactQuarantineCount;
+                    _logger.LogInformation("Imported {Count} autodenominaciones, quarantined {QCount} (artifacts: {AQCount})", autodenomCount, autodenomQuarantineCount, autodenomArtifactQuarantineCount);
 
                     // Step 9: Validate documentary baseline counts - FAIL if mismatch
                     ValidateDocumentaryBaselines(result);
@@ -244,33 +238,75 @@ public class InaliCatalogImporter : ICatalogImporter
         var pages = new List<SourcePage>();
         _logger.LogInformation("Creating SourcePages with text extraction...");
 
-        // Use pdfplumber via Python for text extraction (deterministic)
-        // For now, create pages with null RawTextHash - will be populated by separate step
-        // Pages 30-212: Main catalog (per JSON metadata)
-        for (int i = 30; i <= 212; i++)
+        // Extract text and compute SHA256 for each page using PdfPig
+        using (var pdf = PdfDocument.Open(pdfPath))
         {
-            pages.Add(new SourcePage(
-                sourceDocumentId: doc.Id,
-                pageNumber: i,
-                sectionReference: "MainCatalog",
-                rawTextHash: null // Will be computed in separate extraction step
-            ));
-        }
-        // Pages 213-256: Appendices
-        for (int i = 213; i <= 256; i++)
-        {
-            pages.Add(new SourcePage(
-                sourceDocumentId: doc.Id,
-                pageNumber: i,
-                sectionReference: "Appendices",
-                rawTextHash: null
-            ));
+            for (int i = 30; i <= 212; i++)
+            {
+                var pageNumber = i;
+                if (pageNumber <= pdf.NumberOfPages)
+                {
+                    var page = pdf.GetPage(pageNumber);
+                    var text = page.Text ?? string.Empty;
+                    // Normalize: replace multiple whitespace with single space, trim
+                    var normalizedText = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ").Trim();
+                    var rawTextHash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(
+                        System.Text.Encoding.UTF8.GetBytes(normalizedText))).ToLowerInvariant();
+                    
+                    pages.Add(new SourcePage(
+                        sourceDocumentId: doc.Id,
+                        pageNumber: pageNumber,
+                        sectionReference: "MainCatalog",
+                        rawTextHash: rawTextHash
+                    ));
+                }
+                else
+                {
+                    // Page doesn't exist in PDF - quarantine
+                    _logger.LogWarning("Page {PageNumber} exceeds PDF page count ({PageCount}), creating quarantine marker", pageNumber, pdf.NumberOfPages);
+                    pages.Add(new SourcePage(
+                        sourceDocumentId: doc.Id,
+                        pageNumber: pageNumber,
+                        sectionReference: "MainCatalog",
+                        rawTextHash: "PAGE_EXCEEDS_PDF"
+                    ));
+                }
+            }
+            // Pages 213-256: Appendices
+            for (int i = 213; i <= 256; i++)
+            {
+                var pageNumber = i;
+                if (pageNumber <= pdf.NumberOfPages)
+                {
+                    var page = pdf.GetPage(pageNumber);
+                    var text = page.Text ?? string.Empty;
+                    var normalizedText = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ").Trim();
+                    var rawTextHash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(
+                        System.Text.Encoding.UTF8.GetBytes(normalizedText))).ToLowerInvariant();
+                    
+                    pages.Add(new SourcePage(
+                        sourceDocumentId: doc.Id,
+                        pageNumber: pageNumber,
+                        sectionReference: "Appendices",
+                        rawTextHash: rawTextHash
+                    ));
+                }
+                else
+                {
+                    pages.Add(new SourcePage(
+                        sourceDocumentId: doc.Id,
+                        pageNumber: pageNumber,
+                        sectionReference: "Appendices",
+                        rawTextHash: "PAGE_EXCEEDS_PDF"
+                    ));
+                }
+            }
         }
 
         _context.SourcePages.AddRange(pages);
         await _context.SaveChangesAsync(cancellationToken);
 
-        _logger.LogInformation("Created {Count} SourcePages for document {DocId}", pages.Count, doc.Id);
+        _logger.LogInformation("Created {Count} SourcePages with RawTextHash for document {DocId}", pages.Count, doc.Id);
         return doc;
     }
 
@@ -303,6 +339,34 @@ public class InaliCatalogImporter : ICatalogImporter
         var versionIdentity = $"{CATALOG_SHA256.Substring(0, 12)}-{PARSER_VERSION}";
         var versionNumber = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(versionIdentity))).Substring(0, 12);
 
+        // Check if this exact version already exists (idempotency)
+        var existing = await _context.CatalogVersions
+            .FirstOrDefaultAsync(cv => cv.CatalogSourceId == catalogSourceId && cv.VersionNumber == versionNumber, cancellationToken);
+
+        if (existing != null)
+        {
+            // Version already exists - check if it's completed or failed
+            if (existing.ImportStatus == "Completed")
+            {
+                _logger.LogInformation("CatalogVersion {Id} already exists with status Completed - returning existing", existing.Id);
+                return existing;
+            }
+            else if (existing.ImportStatus == "Failed")
+            {
+                _logger.LogInformation("CatalogVersion {Id} exists with status Failed - will retry by updating status to Importing", existing.Id);
+                existing.UpdateStatus("Importing");
+                await _context.SaveChangesAsync(cancellationToken);
+                return existing;
+            }
+            else
+            {
+                _logger.LogInformation("CatalogVersion {Id} exists with status {Status} - resuming", existing.Id, existing.ImportStatus);
+                existing.UpdateStatus("Importing");
+                await _context.SaveChangesAsync(cancellationToken);
+                return existing;
+            }
+        }
+
         var version = new CatalogVersion(
             catalogSourceId: catalogSourceId,
             versionNumber: versionNumber,
@@ -323,22 +387,66 @@ public class InaliCatalogImporter : ICatalogImporter
         return version;
     }
 
+    private async Task<CatalogVersion> GetOrCreateCatalogVersionForUpdateAsync(Guid catalogSourceId, Guid sourceDocumentId, string initialStatus, CancellationToken cancellationToken)
+    {
+        // Version number derived from: source document hash + parser version
+        var versionIdentity = $"{CATALOG_SHA256.Substring(0, 12)}-{PARSER_VERSION}";
+        var versionNumber = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(versionIdentity))).Substring(0, 12);
+
+        var existing = await _context.CatalogVersions
+            .FirstOrDefaultAsync(cv => cv.CatalogSourceId == catalogSourceId && cv.VersionNumber == versionNumber, cancellationToken);
+
+        if (existing != null)
+        {
+            // Always reset status to Importing for update - this allows full idempotent re-run
+            _logger.LogInformation("CatalogVersion {Id} exists with status {Status} - resetting to Importing for idempotent re-run", existing.Id, existing.ImportStatus);
+            existing.UpdateStatus("Importing");
+            await _context.SaveChangesAsync(cancellationToken);
+            return existing;
+        }
+
+        var version = new CatalogVersion(
+            catalogSourceId: catalogSourceId,
+            versionNumber: versionNumber,
+            sourceDocumentHash: CATALOG_SHA256,
+            retrievedAt: DateTime.UtcNow,
+            familyCount: 0,
+            groupCount: 0,
+            variantCount: 0,
+            autodenominationCount: 0,
+            parserVersion: PARSER_VERSION,
+            importStatus: initialStatus
+        );
+
+        _context.CatalogVersions.Add(version);
+        await _context.SaveChangesAsync(cancellationToken);
+
+        _logger.LogInformation("Created CatalogVersion {Id} with versionNumber={Version}, status={Status}", version.Id, versionNumber, initialStatus);
+        return version;
+    }
+
     private async Task FinalizeCatalogVersionAsync(Guid catalogVersionId, ImportResult result, CancellationToken cancellationToken)
     {
         var version = await _context.CatalogVersions.FindAsync(new object[] { catalogVersionId }, cancellationToken);
         if (version != null)
         {
+            // Use ACTUAL database counts for finalization (handles idempotent runs correctly)
+            var actualFamilyCount = await _context.LanguageFamilies.CountAsync(cancellationToken);
+            var actualGroupCount = await _context.LanguageGroups.CountAsync(cancellationToken);
+            var actualVariantCount = await _context.LanguageVariants.CountAsync(cancellationToken);
+            var actualAutodenominationCount = await _context.LanguageVariantAutodenominations.CountAsync(cancellationToken);
+
             version.UpdateCounts(
-                result.FamiliesImported,
-                result.GroupsImported,
-                result.VariantsImported,
-                result.AutodenominationsImported);
+                actualFamilyCount,
+                actualGroupCount,
+                actualVariantCount,
+                actualAutodenominationCount);
             version.UpdateStatus("Completed");
             version.SetValidationErrors(result.ValidationErrors.Count > 0 ? string.Join("; ", result.ValidationErrors) : null);
 
             await _context.SaveChangesAsync(cancellationToken);
             _logger.LogInformation("Finalized CatalogVersion {Id} with actual counts: F={F} G={G} V={V} A={A}, status=Completed",
-                catalogVersionId, result.FamiliesImported, result.GroupsImported, result.VariantsImported, result.AutodenominationsImported);
+                catalogVersionId, actualFamilyCount, actualGroupCount, actualVariantCount, actualAutodenominationCount);
         }
     }
 
@@ -388,7 +496,13 @@ public class InaliCatalogImporter : ICatalogImporter
         return familyMap;
     }
 
-    private async Task<(Dictionary<string, LanguageGroup> groupMap, List<QuarantineRecord> quarantine)> ImportGroupsAsync(
+    private async Task PersistQuarantineAsync(ImportQuarantine quarantine, CancellationToken cancellationToken)
+    {
+        _context.ImportQuarantines.Add(quarantine);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    private async Task<(Dictionary<string, LanguageGroup> groupMap, int quarantineCount, int artifactQuarantineCount)> ImportGroupsAsync(
         List<CatalogVariantDto> catalogData,
         List<Appendix4Dto> appendix4Data,
         Dictionary<string, LanguageFamily> familyMap,
@@ -397,7 +511,8 @@ public class InaliCatalogImporter : ICatalogImporter
         CancellationToken cancellationToken)
     {
         var groupMap = new Dictionary<string, LanguageGroup>(StringComparer.OrdinalIgnoreCase);
-        var quarantine = new List<QuarantineRecord>();
+        int quarantineCount = 0;
+        int artifactQuarantineCount = 0;
 
         // Use appendix 4 as the canonical source for agrupación names
         var agrupacionToFamilia = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -413,15 +528,19 @@ public class InaliCatalogImporter : ICatalogImporter
                 // Skip artifact agrupaciones
                 if (agrupacion == "Oto-mangue" || agrupacion == "u")
                 {
-                    quarantine.Add(new QuarantineRecord
-                    {
-                        EntityType = "LanguageGroup",
-                        RawData = JsonSerializer.Serialize(item),
-                        Reason = $"Artifact agrupación '{agrupacion}' with empty familia - extraction artifact",
-                        SourcePage = item.Page,
-                        SourceSection = "Appendix4",
-                        ResolutionMethod = "classified_as_artifact"
-                    });
+                    await PersistQuarantineAsync(new ImportQuarantine(
+                        catalogVersionId,
+                        sourceDocumentId,
+                        "LanguageGroup",
+                        JsonSerializer.Serialize(item),
+                        null,
+                        item.Page,
+                        "Appendix4",
+                        $"Artifact agrupación '{agrupacion}' with empty familia - extraction artifact",
+                        "classified_as_artifact"
+                    ), cancellationToken);
+                    quarantineCount++;
+                    artifactQuarantineCount++;
                     continue;
                 }
 
@@ -464,15 +583,18 @@ public class InaliCatalogImporter : ICatalogImporter
             if (!familyMap.TryGetValue(familyName, out var family))
             {
                 _logger.LogWarning("Family not found for group {Group}: {Family}", groupName, familyName);
-                quarantine.Add(new QuarantineRecord
-                {
-                    EntityType = "LanguageGroup",
-                    RawData = $"Family={familyName}, Group={groupName}",
-                    Reason = $"Family '{familyName}' not found in familyMap",
-                    SourcePage = page,
-                    SourceSection = "Appendix4",
-                    ResolutionMethod = "family_missing"
-                });
+                await PersistQuarantineAsync(new ImportQuarantine(
+                    catalogVersionId,
+                    sourceDocumentId,
+                    "LanguageGroup",
+                    $"Family={familyName}, Group={groupName}",
+                    null,
+                    page,
+                    "Appendix4",
+                    $"Family '{familyName}' not found in familyMap",
+                    "family_missing"
+                ), cancellationToken);
+                quarantineCount++;
                 continue;
             }
 
@@ -506,10 +628,10 @@ public class InaliCatalogImporter : ICatalogImporter
             _logger.LogWarning("Group count mismatch: expected {Expected}, got {Actual}", DOCUMENTARY_GROUPS, groupMap.Count);
         }
 
-        return (groupMap, quarantine);
+        return (groupMap, quarantineCount, artifactQuarantineCount);
     }
 
-    private async Task<(Dictionary<string, LanguageVariant> variantMap, List<QuarantineRecord> quarantine)> ImportVariantsAsync(
+    private async Task<(Dictionary<string, LanguageVariant> variantMap, int quarantineCount)> ImportVariantsAsync(
         List<CatalogVariantDto> catalogData,
         List<Appendix4Dto> appendix4Data,
         Dictionary<string, LanguageGroup> groupMap,
@@ -518,7 +640,7 @@ public class InaliCatalogImporter : ICatalogImporter
         CancellationToken cancellationToken)
     {
         var variantMap = new Dictionary<string, LanguageVariant>(StringComparer.OrdinalIgnoreCase);
-        var quarantine = new List<QuarantineRecord>();
+        int quarantineCount = 0;
 
         // Build mapping from Spanish variant name -> appendix 4 agrupación
         var spanishNameToAgrupacion = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -591,15 +713,18 @@ public class InaliCatalogImporter : ICatalogImporter
                 _logger.LogWarning("Group not found for variant: {Key} (Variant={Variant}, Family={Family}, DerivedGroup={Group}, Method={Method})",
                     groupKey, item.VariantName, item.Family, groupName, resolutionMethod);
 
-                quarantine.Add(new QuarantineRecord
-                {
-                    EntityType = "LanguageVariant",
-                    RawData = JsonSerializer.Serialize(item),
-                    Reason = $"Group '{groupKey}' not found in groupMap (method: {resolutionMethod})",
-                    SourcePage = item.Page,
-                    SourceSection = "MainCatalog",
-                    ResolutionMethod = resolutionMethod
-                });
+                await PersistQuarantineAsync(new ImportQuarantine(
+                    catalogVersionId,
+                    sourceDocumentId,
+                    "LanguageVariant",
+                    JsonSerializer.Serialize(item),
+                    null,
+                    item.Page,
+                    "MainCatalog",
+                    $"Group '{groupKey}' not found in groupMap (method: {resolutionMethod})",
+                    resolutionMethod
+                ), cancellationToken);
+                quarantineCount++;
                 continue; // This variant is quarantined, not silently dropped
             }
 
@@ -635,12 +760,12 @@ public class InaliCatalogImporter : ICatalogImporter
         }
 
         await _context.SaveChangesAsync(cancellationToken);
-        _logger.LogInformation("Imported {Count} variants, quarantined {QCount}", variantMap.Count, quarantine.Count);
+        _logger.LogInformation("Imported {Count} variants, quarantined {QCount}", variantMap.Count, quarantineCount);
 
-        return (variantMap, quarantine);
+        return (variantMap, quarantineCount);
     }
 
-    private async Task<(int imported, List<QuarantineRecord> quarantine)> ImportAutodenominationsAsync(
+    private async Task<(int imported, int quarantineCount, int artifactQuarantineCount)> ImportAutodenominationsAsync(
         List<Appendix4Dto> appendix4Data,
         Dictionary<string, LanguageGroup> groupMap,
         Dictionary<string, LanguageVariant> variantMap,
@@ -649,7 +774,8 @@ public class InaliCatalogImporter : ICatalogImporter
         CancellationToken cancellationToken)
     {
         int count = 0;
-        var quarantine = new List<QuarantineRecord>();
+        int quarantineCount = 0;
+        int artifactQuarantineCount = 0;
         var sourceDoc = await _context.SourceDocuments.FirstAsync(d => d.HashSha256 == CATALOG_SHA256, cancellationToken);
 
         // Track which (variantId, autodenomination, sourcePage) triplets we've already added
@@ -666,15 +792,19 @@ public class InaliCatalogImporter : ICatalogImporter
             // Skip artifact rows
             if (item.Agrupacion.Trim() == "Oto-mangue" || item.Agrupacion.Trim() == "u" || string.IsNullOrWhiteSpace(item.Familia))
             {
-                quarantine.Add(new QuarantineRecord
-                {
-                    EntityType = "LanguageVariantAutodenomination",
-                    RawData = JsonSerializer.Serialize(item),
-                    Reason = "Artifact row (empty familia or artifact agrupación)",
-                    SourcePage = item.Page,
-                    SourceSection = "Appendix4",
-                    ResolutionMethod = "classified_as_artifact"
-                });
+                await PersistQuarantineAsync(new ImportQuarantine(
+                    catalogVersionId,
+                    sourceDocumentId,
+                    "LanguageVariantAutodenomination",
+                    JsonSerializer.Serialize(item),
+                    null,
+                    item.Page,
+                    "Appendix4",
+                    "Artifact row (empty familia or artifact agrupación)",
+                    "classified_as_artifact"
+                ), cancellationToken);
+                quarantineCount++;
+                artifactQuarantineCount++;
                 continue;
             }
 
@@ -685,15 +815,18 @@ public class InaliCatalogImporter : ICatalogImporter
             if (groupKey == null)
             {
                 _logger.LogDebug("Group not found for autodenomination: {Group}, AgrupacionRaw={Raw}", item.Agrupacion, item.Agrupacion);
-                quarantine.Add(new QuarantineRecord
-                {
-                    EntityType = "LanguageVariantAutodenomination",
-                    RawData = JsonSerializer.Serialize(item),
-                    Reason = $"Group '{item.Agrupacion}' not found in groupMap",
-                    SourcePage = item.Page,
-                    SourceSection = "Appendix4",
-                    ResolutionMethod = "group_not_found"
-                });
+                await PersistQuarantineAsync(new ImportQuarantine(
+                    catalogVersionId,
+                    sourceDocumentId,
+                    "LanguageVariantAutodenomination",
+                    JsonSerializer.Serialize(item),
+                    null,
+                    item.Page,
+                    "Appendix4",
+                    $"Group '{item.Agrupacion}' not found in groupMap",
+                    "group_not_found"
+                ), cancellationToken);
+                quarantineCount++;
                 continue;
             }
             
@@ -753,16 +886,19 @@ public class InaliCatalogImporter : ICatalogImporter
                                 {
                                     _logger.LogWarning("Generic SpanishName cannot be disambiguated: Autodenom={Autodenom}, SpanishName={SpanishName}, FamilyVariants={Count}. Quarantining.",
                                         item.Autodenom, spanishName, allVariantsInFamily.Count);
-                                    quarantine.Add(new QuarantineRecord
-                                    {
-                                        EntityType = "LanguageVariantAutodenomination",
-                                        RawData = JsonSerializer.Serialize(item),
-                                        Reason = $"Generic group name '{spanishName}' cannot be mapped to specific variant (autodenom lacks location qualifier)",
-                                        SourcePage = item.Page,
-                                        SourceSection = "Appendix4",
-                                        ResolutionMethod = "generic_group_name_no_location"
-                                    });
-                                    continue;
+                                    await PersistQuarantineAsync(new ImportQuarantine(
+                    catalogVersionId,
+                    sourceDocumentId,
+                    "LanguageVariantAutodenomination",
+                    JsonSerializer.Serialize(item),
+                    null,
+                    item.Page,
+                    "Appendix4",
+                    $"Generic group name '{spanishName}' cannot be mapped to specific variant (autodenom lacks location qualifier)",
+                    "generic_group_name_no_location"
+                ), cancellationToken);
+                quarantineCount++;
+                continue;
                                 }
                                 else
                                 {
@@ -777,38 +913,49 @@ public class InaliCatalogImporter : ICatalogImporter
                                                                     .ToList();
 
                                                                 if (prefixMatches.Count == 1)
-                                                                {
-                                                                    variantId = prefixMatches[0].Id;
-                                                                    matchMethod = "spanish_name_prefix_unique";
-                                                                }
-                                                                else if (prefixMatches.Count > 1)
-                                                                {
-                                                                    // Try best match: variant continues with space or comma+space after prefix
-                                                                    var bestMatch = prefixMatches.FirstOrDefault(v =>
-                                                                        v.Name.Length > spanishName.Length &&
-                                                                        (v.Name[spanishName.Length] == ' ' || v.Name[spanishName.Length] == ','));
+                                                                                                                                    {
+                                                                                                                                        variantId = prefixMatches[0].Id;
+                                                                                                                                        matchMethod = "spanish_name_prefix_unique";
+                                                                                                                                    }
+                                                                                                                                    else if (prefixMatches.Count > 1)
+                                                                                                                                    {
+                                                                                                                                        // Try best match: variant continues with space or comma+space after prefix
+                                                                                                                                        var bestMatch = prefixMatches.FirstOrDefault(v =>
+                                                                                                                                            v.Name.Length > spanishName.Length &&
+                                                                                                                                            (v.Name[spanishName.Length] == ' ' || v.Name[spanishName.Length] == ','));
 
-                                                                    if (bestMatch != null)
-                                                                    {
-                                                                        variantId = bestMatch.Id;
-                                                                        matchMethod = "spanish_name_prefix_best";
-                                                                    }
+                                                                                                                                        if (bestMatch != null)
+                                                                                                                                        {
+                                                                                                                                            variantId = bestMatch.Id;
+                                                                                                                                            matchMethod = "spanish_name_prefix_best";
+                                                                                                                                        }
 
-                                                                    // Try disambiguation by autodenomination location qualifier
-                                                                    if (variantId == null)
-                                                                    {
-                                                                        variantId = TryDisambiguateByAutodenomLocation(item.Autodenom, prefixMatches, out matchMethod);
-                                                                    }
+                                                                                                                                        // Try disambiguation by autodenomination location qualifier
+                                                                                                                                        if (variantId == null)
+                                                                                                                                        {
+                                                                                                                                            variantId = TryDisambiguateByAutodenomLocation(item.Autodenom, prefixMatches, out matchMethod);
+                                                                                                                                        }
 
-                                                                    // If still no match, pick first with warning
-                                                                    if (variantId == null)
-                                                                    {
-                                                                        variantId = prefixMatches[0].Id;
-                                                                        matchMethod = "spanish_name_prefix_ambiguous_first";
-                                                                        _logger.LogWarning("Ambiguous prefix match - using first variant: Autodenom={Autodenom}, SpanishName={SpanishName}, Matches={Count}, Chosen={Chosen}",
-                                                                            item.Autodenom, spanishName, prefixMatches.Count, prefixMatches[0].Name);
-                                                                    }
-                                                                }
+                                                                                                                                        // If still no match, QUARANTINE - never pick first arbitrarily (H-103)
+                                                                                                                                        if (variantId == null)
+                                                                                                                                        {
+                                                                                                                                            _logger.LogWarning("Ambiguous prefix match cannot be resolved: Autodenom={Autodenom}, SpanishName={SpanishName}, Matches={Count}. Quarantining.",
+                                                                                                                                                item.Autodenom, spanishName, prefixMatches.Count);
+                                                                                                                                            await PersistQuarantineAsync(new ImportQuarantine(
+                                                                                                                catalogVersionId,
+                                                                                                                sourceDocumentId,
+                                                                                                                "LanguageVariantAutodenomination",
+                                                                                                                JsonSerializer.Serialize(item),
+                                                                                                                null,
+                                                                                                                item.Page,
+                                                                                                                "Appendix4",
+                                                                                                                $"Ambiguous prefix match for SpanishName '{spanishName}' - {prefixMatches.Count} candidates, no disambiguation",
+                                                                                                                "spanish_name_prefix_ambiguous"
+                                                                                                            ), cancellationToken);
+                                                                                                            quarantineCount++;
+                                                                                                            continue;
+                                                                                                                                        }
+                                                                                                                                    }
                                                                 else
                                                                 {
                                                                     // No exact prefix match - try progressive prefix matching
@@ -876,16 +1023,19 @@ public class InaliCatalogImporter : ICatalogImporter
                                                                             {
                                                                                 _logger.LogWarning("No variant match for autodenomination: Autodenom={Autodenom}, SpanishName={SpanishName}, FamilyVariants={Count}. Quarantining.",
                                                                                     item.Autodenom, spanishName, allVariantsInFamily.Count);
-                                                                                quarantine.Add(new QuarantineRecord
-                                                                                {
-                                                                                    EntityType = "LanguageVariantAutodenomination",
-                                                                                    RawData = JsonSerializer.Serialize(item),
-                                                                                    Reason = $"No variant matches SpanishName '{spanishName}' in family {item.Familia}",
-                                                                                    SourcePage = item.Page,
-                                                                                    SourceSection = "Appendix4",
-                                                                                    ResolutionMethod = "no_match"
-                                                                                });
-                                                                                continue;
+                                                                                await PersistQuarantineAsync(new ImportQuarantine(
+                    catalogVersionId,
+                    sourceDocumentId,
+                    "LanguageVariantAutodenomination",
+                    JsonSerializer.Serialize(item),
+                    null,
+                    item.Page,
+                    "Appendix4",
+                    $"No variant matches SpanishName '{spanishName}' in family {item.Familia}",
+                    "no_match"
+                ), cancellationToken);
+                quarantineCount++;
+                continue;
                                                                             }
                                                                         }
                                                                     }
@@ -903,49 +1053,58 @@ public class InaliCatalogImporter : ICatalogImporter
             {
                 _logger.LogWarning("Cannot uniquely match autodenomination to variant: Autodenom={Autodenom}, SpanishName={SpanishName}, Agrupacion={Agrupacion}, FamilyVariants={Count}. Quarantining.",
                     item.Autodenom, item.SpanishName, item.Agrupacion, allVariantsInFamily.Count);
-                quarantine.Add(new QuarantineRecord
-                {
-                    EntityType = "LanguageVariantAutodenomination",
-                    RawData = JsonSerializer.Serialize(item),
-                    Reason = $"Multiple variants in family but no clear match (method attempted: {matchMethod})",
-                    SourcePage = item.Page,
-                    SourceSection = "Appendix4",
-                    ResolutionMethod = matchMethod
-                });
+                await PersistQuarantineAsync(new ImportQuarantine(
+                    catalogVersionId,
+                    sourceDocumentId,
+                    "LanguageVariantAutodenomination",
+                    JsonSerializer.Serialize(item),
+                    null,
+                    item.Page,
+                    "Appendix4",
+                    $"Multiple variants in family but no clear match (method attempted: {matchMethod})",
+                    matchMethod
+                ), cancellationToken);
+                quarantineCount++;
                 continue;
             }
 
             if (variantId == Guid.Empty)
             {
-                quarantine.Add(new QuarantineRecord
-                {
-                    EntityType = "LanguageVariantAutodenomination",
-                    RawData = JsonSerializer.Serialize(item),
-                    Reason = "No variant available",
-                    SourcePage = item.Page,
-                    SourceSection = "Appendix4",
-                    ResolutionMethod = "no_variant"
-                });
+                await PersistQuarantineAsync(new ImportQuarantine(
+                    catalogVersionId,
+                    sourceDocumentId,
+                    "LanguageVariantAutodenomination",
+                    JsonSerializer.Serialize(item),
+                    null,
+                    item.Page,
+                    "Appendix4",
+                    "No variant available",
+                    "no_variant"
+                ), cancellationToken);
+                quarantineCount++;
                 continue;
             }
 
             // Identity key includes SourcePage for proper uniqueness (H-015)
             var autodenomTriplet = $"{variantId}|{item.Autodenom.Trim()}|{item.Page}";
 
-            if (addedTriplets.Contains(autodenomTriplet))
-            {
-                _logger.LogDebug("Skipping duplicate autodenomination triplet in batch for variant {VariantId}: '{Autodenom}' page {Page}", variantId, item.Autodenom, item.Page);
-                quarantine.Add(new QuarantineRecord
-                {
-                    EntityType = "LanguageVariantAutodenomination",
-                    RawData = JsonSerializer.Serialize(item),
-                    Reason = "Duplicate autodenomination triplet in batch (same variant, autodenom, page)",
-                    SourcePage = item.Page,
-                    SourceSection = "Appendix4",
-                    ResolutionMethod = "duplicate_triplet_in_batch"
-                });
-                continue;
-            }
+                        if (addedTriplets.Contains(autodenomTriplet))
+                        {
+                            _logger.LogDebug("Skipping duplicate autodenomination triplet in batch for variant {VariantId}: '{Autodenom}' page {Page}", variantId, item.Autodenom, item.Page);
+                            await PersistQuarantineAsync(new ImportQuarantine(
+                                catalogVersionId,
+                                sourceDocumentId,
+                                "LanguageVariantAutodenomination",
+                                JsonSerializer.Serialize(item),
+                                null,
+                                item.Page,
+                                "Appendix4",
+                                "Duplicate autodenomination triplet in batch (same variant, autodenom, page)",
+                                "duplicate_triplet_in_batch"
+                            ), cancellationToken);
+                            quarantineCount++;
+                            continue;
+                        }
 
             // Check DB for existing entry (idempotency)
             var existsInDb = await _context.LanguageVariantAutodenominations
@@ -959,15 +1118,18 @@ public class InaliCatalogImporter : ICatalogImporter
             {
                 _logger.LogDebug("Skipping existing autodenomination (DB or tracker) for variant {VariantId}: '{Autodenom}' page {Page}", variantId, item.Autodenom, item.Page);
                 addedTriplets.Add(autodenomTriplet);
-                quarantine.Add(new QuarantineRecord
-                {
-                    EntityType = "LanguageVariantAutodenomination",
-                    RawData = JsonSerializer.Serialize(item),
-                    Reason = "Duplicate autodenomination already exists in database or change tracker",
-                    SourcePage = item.Page,
-                    SourceSection = "Appendix4",
-                    ResolutionMethod = "duplicate_exists_in_db_or_tracker"
-                });
+                await PersistQuarantineAsync(new ImportQuarantine(
+                    catalogVersionId,
+                    sourceDocumentId,
+                    "LanguageVariantAutodenomination",
+                    JsonSerializer.Serialize(item),
+                    null,
+                    item.Page,
+                    "Appendix4",
+                    "Duplicate autodenomination already exists in database or change tracker",
+                    "duplicate_exists_in_db_or_tracker"
+                ), cancellationToken);
+                quarantineCount++;
                 continue;
             }
 
@@ -995,7 +1157,7 @@ public class InaliCatalogImporter : ICatalogImporter
         // End of foreach loop - all cases handled above with continue or processing
 
     await _context.SaveChangesAsync(cancellationToken);
-    return (count, quarantine);
+    return (count, quarantineCount, artifactQuarantineCount);
     }
 
     private void ValidateDocumentaryBaselines(ImportResult result)
@@ -1016,13 +1178,10 @@ public class InaliCatalogImporter : ICatalogImporter
         // Autodenominations: all 474 valid appendix rows must be accounted for
         // (imported + quarantined). Artifact-classified rows are tracked separately in quarantine
         // but are NOT part of the 474 valid rows.
-        var artifactQuarantined = result.QuarantinedItems.Count(q => 
-            q.Reason.Contains("artifact", StringComparison.OrdinalIgnoreCase) || 
-            q.Reason.Contains("Artifact", StringComparison.OrdinalIgnoreCase));
-        
+        var artifactQuarantined = result.AutodenominationsArtifactsQuarantined + result.GroupsArtifactsQuarantined;
         var validRowsQuarantined = result.AutodenominationsQuarantined - artifactQuarantined;
         var autodenomsAccounted = result.AutodenominationsImported + validRowsQuarantined;
-        
+
         if (autodenomsAccounted != DOCUMENTARY_AUTODENOMS_VALID)
             errors.Add($"Autodenominations: expected {DOCUMENTARY_AUTODENOMS_VALID} valid rows accounted (imported + quarantined excl. artifacts), got imported={result.AutodenominationsImported} + quarantined_valid={validRowsQuarantined} (total quarantined={result.AutodenominationsQuarantined} incl. {artifactQuarantined} artifacts) = {autodenomsAccounted}");
 
@@ -1075,6 +1234,7 @@ public class InaliCatalogImporter : ICatalogImporter
         // Family records - use first page where family appears in main catalog (page 30 is index)
         foreach (var kvp in familyMap)
         {
+            // Family entries appear in index page 30 - use that as explicit evidence
             records.Add(new CatalogRecord(
                 catalogVersionId: catalogVersionId,
                 entityType: "LanguageFamily",
@@ -1088,19 +1248,26 @@ public class InaliCatalogImporter : ICatalogImporter
                 sourceDocumentId: sourceDocumentId,
                 sourceHash: CATALOG_SHA256,
                 sourceUrl: CATALOG_URL,
-                sourcePage: 30, // Index page
+                sourcePage: 30,
                 sourceSection: "Index",
                 extractionDate: DateTime.UtcNow,
                 parserVersion: PARSER_VERSION
             ));
         }
 
-        // Group records - use real page from Appendix 4
+        // Group records - MUST have explicit page from Appendix 4, NO fallback
         foreach (var kvp in groupMap)
         {
             var parts = kvp.Key.Split('|');
             var groupName = parts.Length > 1 ? parts[1] : kvp.Key;
-            var page = agrupacionToPage.GetValueOrDefault(groupName, 244); // Default to first appendix page
+            
+            if (!agrupacionToPage.TryGetValue(groupName.Trim(), out var page))
+            {
+                // This should not happen if groups were imported from Appendix 4 correctly
+                _logger.LogWarning("Group '{GroupName}' has no resolved source page in Appendix 4 - quarantining CatalogRecord", groupName);
+                // We'll create a record with explicit UNRESOLVED provenance rather than defaulting
+                page = -1; // Mark as unresolved
+            }
 
             records.Add(new CatalogRecord(
                 catalogVersionId: catalogVersionId,
@@ -1116,17 +1283,22 @@ public class InaliCatalogImporter : ICatalogImporter
                 sourceHash: CATALOG_SHA256,
                 sourceUrl: CATALOG_URL,
                 sourcePage: page,
-                sourceSection: "Appendix4",
+                sourceSection: page > 0 ? "Appendix4" : "UNRESOLVED",
                 extractionDate: DateTime.UtcNow,
                 parserVersion: PARSER_VERSION
             ));
         }
 
-        // Variant records - use REAL page from catalog data
+        // Variant records - MUST have REAL page from catalog data, NO fallback
         foreach (var kvp in variantMap)
         {
             var variant = kvp.Value;
-            var page = variantToPage.GetValueOrDefault(variant.Name, 30); // Default to catalog start if not found
+            
+            if (!variantToPage.TryGetValue(variant.Name, out var page))
+            {
+                _logger.LogWarning("Variant '{VariantName}' has no resolved source page in catalog data - quarantining CatalogRecord", variant.Name);
+                page = -1; // Mark as unresolved
+            }
 
             records.Add(new CatalogRecord(
                 catalogVersionId: catalogVersionId,
@@ -1137,12 +1309,12 @@ public class InaliCatalogImporter : ICatalogImporter
                 name: variant.Name,
                 autodenomination: variant.Autodenomination,
                 description: null,
-                geoReference: null, // Could be populated from catalogData if needed
+                geoReference: null,
                 sourceDocumentId: sourceDocumentId,
                 sourceHash: CATALOG_SHA256,
                 sourceUrl: CATALOG_URL,
                 sourcePage: page,
-                sourceSection: "MainCatalog",
+                sourceSection: page > 0 ? "MainCatalog" : "UNRESOLVED",
                 extractionDate: DateTime.UtcNow,
                 parserVersion: PARSER_VERSION
             ));
@@ -1180,9 +1352,25 @@ public class InaliCatalogImporter : ICatalogImporter
             }
         }
 
-        _context.CatalogRecords.AddRange(records);
-        await _context.SaveChangesAsync(cancellationToken);
-        _logger.LogInformation("Created {Count} CatalogRecords with real provenance", records.Count);
+        // Idempotency: Only add records that don't already exist for this CatalogVersion
+        var existingRecords = await _context.CatalogRecords
+            .Where(cr => cr.CatalogVersionId == catalogVersionId)
+            .Select(cr => cr.IdentityKey)
+            .ToListAsync(cancellationToken);
+        
+        var existingKeys = new HashSet<string>(existingRecords);
+        var newRecords = records.Where(r => !existingKeys.Contains(r.IdentityKey)).ToList();
+        
+        if (newRecords.Count > 0)
+        {
+            _context.CatalogRecords.AddRange(newRecords);
+            await _context.SaveChangesAsync(cancellationToken);
+            _logger.LogInformation("Created {Count} new CatalogRecords with real provenance (skipped {Skipped} existing)", newRecords.Count, existingKeys.Count);
+        }
+        else
+        {
+            _logger.LogInformation("All {Count} CatalogRecords already exist for this version - idempotent run", existingKeys.Count);
+        }
     }
 
     private async Task<List<CatalogVariantDto>> LoadCatalogDataForPageLookupAsync(CancellationToken cancellationToken)

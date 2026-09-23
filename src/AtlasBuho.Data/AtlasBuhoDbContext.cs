@@ -41,6 +41,7 @@ public class AtlasBuhoDbContext : DbContext, Domain.Interfaces.IUnitOfWork
     public DbSet<Domain.Entities.CatalogVersion> CatalogVersions => Set<Domain.Entities.CatalogVersion>();
     public DbSet<Domain.Entities.CatalogRecord> CatalogRecords => Set<Domain.Entities.CatalogRecord>();
     public DbSet<Domain.Entities.LanguageVariantAutodenomination> LanguageVariantAutodenominations => Set<Domain.Entities.LanguageVariantAutodenomination>();
+    public DbSet<Domain.Entities.ImportQuarantine> ImportQuarantines => Set<Domain.Entities.ImportQuarantine>();
 
     // IUnitOfWork implementation - Repository properties (explicit interface implementation)
     Domain.Interfaces.ILanguageFamilyRepository Domain.Interfaces.IUnitOfWork.LanguageFamilies => new Repositories.LanguageFamilyRepository(this);

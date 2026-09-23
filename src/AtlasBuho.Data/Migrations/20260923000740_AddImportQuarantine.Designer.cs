@@ -4,6 +4,7 @@ using AtlasBuho.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtlasBuho.Data.Migrations
 {
     [DbContext(typeof(AtlasBuhoDbContext))]
-    partial class AtlasBuhoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260923000740_AddImportQuarantine")]
+    partial class AddImportQuarantine
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
