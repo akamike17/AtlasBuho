@@ -136,6 +136,17 @@ MY STATE tras fallo: F=11 G=68 V=350 A=414 Q=74, CatalogVersion.ImportStatus = "
 (estado idéntico al post-run-1 → 0 filas parciales ✅)
 ```
 
+**Precisión sobre el alcance de esta evidencia:**
+
+- **A) Abort pre-persistencia (VERIFICADO por este test):** el importador valida el presupuesto
+  documental de 474 filas ANTES de persistir nada; si la fuente está incompleta/corrupta, la
+  importación aborta sin crear estado persistido parcial.
+- **B) Rollback transaccional real tras persistencia parcial (implementado, NO probado por este
+  test):** `ImportInaliCatalogAsync` envuelve el trabajo en `BeginTransactionAsync` y deshace con
+  `RollbackAsync` ante excepciones, pero el test usa el provider EF Core **InMemory** — que no
+  implementa transacciones reales (el propio test suprime `TransactionIgnoredWarning`) — por lo que
+  este test NO prueba un rollback transaccional contra MySQL. No se reivindica dicha prueba.
+
 ---
 
 ## 8. TESTS + BUILD (FASE 14)
@@ -185,7 +196,12 @@ push:       origin/review/phase-1-inventario-linguistico
 Conditions 1–10 de la PHASE CLOSURE RULE verificadas con evidencia real arriba:
 1 ✅ 474 = 414 + 60 · 2 ✅ un resultado terminal por fila (ledger estructural) · 3 ✅ 0 duplicados
 contables (DupQHashes=0) · 4 ✅ duplicados documentales reconciliados explícitamente (§1 tabla) ·
-5 ✅ runs 1/2/3 deterministas · 6 ✅ rollback verificado · 7 ✅ este doc generado post-verificación ·
+5 ✅ runs 1/2/3 deterministas · 6 ✅ abort pre-persistencia verificado (§7; rollback transaccional
+real implementado, no probado por test InMemory) · 7 ✅ este doc generado post-verificación ·
 8 ✅ 54 tests · 9 ✅ build Release 0/0 · 10 ✅ git real abajo.
 
-**PHASE 1 — CLOSED / VERIFIED (pendiente de commit+push).**
+**PHASE 1 — CLOSED / VERIFIED.**
+
+El commit `be76b67` ("feat: 5B surgical pass - 474-row reconciliation ledger y one-row-one-outcome")
+contiene la implementación verificada y esta auditoría, y está pusheado a
+`origin/review/phase-1-inventario-linguistico`. No queda ningún commit/push pendiente de este pase.
