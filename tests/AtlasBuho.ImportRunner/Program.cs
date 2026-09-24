@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 var config = new ConfigurationBuilder()
     .AddUserSecrets<Program>()
+    .AddEnvironmentVariables()
     .Build();
 
 var services = new ServiceCollection();
@@ -20,7 +21,7 @@ if (string.IsNullOrEmpty(connectionString))
     Environment.Exit(1);
 }
 
-services.AddDbContext<AtlasBuhoDbContext>(options => 
+services.AddDbContext<AtlasBuhoDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 services.AddScoped<ICatalogImporter, InaliCatalogImporter>();

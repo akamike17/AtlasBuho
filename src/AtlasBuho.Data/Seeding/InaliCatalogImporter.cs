@@ -24,7 +24,7 @@ public class ImportResult
     public int VariantsQuarantined { get; set; }
     public int AutodenominationsImported { get; set; }
     public int AutodenominationsQuarantined { get; set; }
-    public int AutodenominationsArtifactsQuarantined { get; set; }
+    // Artifacts are now pre-filtered in LoadSourceDataAsync, not tracked in result
     public int GroupsArtifactsQuarantined { get; set; }
     public List<string> ValidationErrors { get; set; } = new();
     public Dictionary<string, object> Provenance { get; set; } = new();
@@ -47,7 +47,7 @@ public class InaliCatalogImporter : ICatalogImporter
     private const string CATALOG_URL = "https://www.inali.gob.mx/pdf/CLIN_completo.pdf";
     private const string CATALOG_SHA256 = "21cef44abf0d896555f26954bf319340ad4814fa8a3f0719b0d068311ff1be7c";
     private static readonly DateTime PUBLICATION_DATE = new(2008, 1, 14);
-    private const string PARSER_VERSION = "2025.09.22-pass2-reconciliation"; // Parser version reflects this audit pass
+    private const string PARSER_VERSION = "2026.09.23-pass5-ledger-reconciliation"; // Parser version reflects this audit pass
 
     public InaliCatalogImporter(AtlasBuhoDbContext context, ILogger<InaliCatalogImporter> logger)
     {
@@ -74,6 +74,17 @@ public class InaliCatalogImporter : ICatalogImporter
                     var (catalogData, appendix4Data) = await LoadSourceDataAsync();
                     _logger.LogInformation("After LoadSourceDataAsync: catalogData.Count={Count}", catalogData.Count);
 
+                    // 5B.md FASE 12: validate the documentary row budget BEFORE any persistence.
+                    // If the source data is incomplete/corrupt there is nothing to roll back,
+                    // so a failed import leaves the previous state provably untouched (FASE 14 G).
+                    if (appendix4Data.Count != DOCUMENTARY_AUTODENOMS_VALID)
+                    {
+                        throw new InvalidOperationException(
+                            $"DOCUMENTARY BASELINE VALIDATION FAILED:\nAutodenominations: expected {DOCUMENTARY_AUTODENOMS_VALID} " +
+                            $"valid appendix rows in the source, got {appendix4Data.Count}. " +
+                            $"Import aborted before persisting anything.");
+                    }
+
                     // Step 2: Create or get SourceDocument for CLIN (REVALIDATE hash from file)
                     var sourceDocument = await CreateOrGetSourceDocumentAsync(cancellationToken);
                     result.Provenance["SourceDocumentId"] = sourceDocument.Id;
@@ -92,11 +103,10 @@ public class InaliCatalogImporter : ICatalogImporter
                     _logger.LogInformation("Imported {Count} families", familyMap.Count);
 
                     // Step 6: Import Groups/Agrupaciones (68 expected from Appendix 4)
-                    var (groupMap, groupQuarantineCount, groupArtifactQuarantineCount) = await ImportGroupsAsync(catalogData, appendix4Data, familyMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
+                    var (groupMap, groupQuarantineCount) = await ImportGroupsAsync(catalogData, appendix4Data, familyMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
                     result.GroupsImported = groupMap.Count;
-                    result.GroupsArtifactsQuarantined = groupArtifactQuarantineCount;
-                    // Quarantine persisted directly to DB via PersistQuarantineAsync
-                    _logger.LogInformation("Imported {Count} groups, quarantined {QCount} (artifacts: {AQCount})", groupMap.Count, groupQuarantineCount, groupArtifactQuarantineCount);
+                    // Artifacts are pre-filtered, no artifact quarantine count
+                    _logger.LogInformation("Imported {Count} groups, quarantined {QCount}", groupMap.Count, groupQuarantineCount);
 
                     // Step 7: Import Variants (364 expected) - NO silent continue
                     var (variantMap, variantQuarantineCount) = await ImportVariantsAsync(catalogData, appendix4Data, groupMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
@@ -105,11 +115,11 @@ public class InaliCatalogImporter : ICatalogImporter
                     _logger.LogInformation("Imported {Count} variants, quarantined {QCount}", variantMap.Count, variantQuarantineCount);
 
                     // Step 8: Import Autodenominaciones (474 valid expected)
-                    var (autodenomCount, autodenomQuarantineCount, autodenomArtifactQuarantineCount) = await ImportAutodenominationsAsync(appendix4Data, groupMap, variantMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
+                    var (autodenomCount, autodenomQuarantineCount) = await ImportAutodenominationsAsync(appendix4Data, groupMap, variantMap, catalogVersion.Id, sourceDocument.Id, cancellationToken);
                     result.AutodenominationsImported = autodenomCount;
                     result.AutodenominationsQuarantined = autodenomQuarantineCount;
-                    result.AutodenominationsArtifactsQuarantined = autodenomArtifactQuarantineCount;
-                    _logger.LogInformation("Imported {Count} autodenominaciones, quarantined {QCount} (artifacts: {AQCount})", autodenomCount, autodenomQuarantineCount, autodenomArtifactQuarantineCount);
+                    // Artifacts are now pre-filtered in LoadSourceDataAsync, tracked separately
+                    _logger.LogInformation("Imported {Count} autodenominaciones, quarantined {QCount}", autodenomCount, autodenomQuarantineCount);
 
                     // Step 9: Validate documentary baseline counts - FAIL if mismatch
                     ValidateDocumentaryBaselines(result);
@@ -175,14 +185,35 @@ public class InaliCatalogImporter : ICatalogImporter
         var appendix4Data = JsonSerializer.Deserialize<List<Appendix4Dto>>(appendix4Json, options) ?? new();
         _logger.LogInformation("Appendix4 raw count: {Count}", appendix4Data.Count);
 
+        // 5B.md FASE 2: assign deterministic source-row identity (ordinal in raw JSON)
+        // BEFORE any filtering so every documentary row keeps a unique, reproducible identity.
+        for (int i = 0; i < appendix4Data.Count; i++)
+        {
+            appendix4Data[i].SourceOrdinal = i;
+        }
+
         // Filter out header rows from appendix4
         appendix4Data = appendix4Data.Where(a => !string.IsNullOrEmpty(a.Autodenom) &&
             a.Autodenom != "Autodenominación" &&
             a.Agrupacion != "Agrupación").ToList();
 
-        _logger.LogInformation("Appendix4 filtered count: {Count}", appendix4Data.Count);
+        // Separate artifacts from valid rows BEFORE passing to importers
+        var artifactRows = appendix4Data.Where(a =>
+            a.Agrupacion.Trim() == "Oto-mangue" ||
+            a.Agrupacion.Trim() == "u" ||
+            string.IsNullOrWhiteSpace(a.Familia)).ToList();
 
-        return (catalogData, appendix4Data);
+        // Use value-based filtering instead of Except (which uses reference equality for DTOs)
+        var artifactKeys = new HashSet<string>(artifactRows.Select(a =>
+            $"{a.Agrupacion}|{a.Familia}|{a.Autodenom}|{a.SpanishName}|{a.Page}"));
+
+        var validAppendix4Rows = appendix4Data.Where(a =>
+            !artifactKeys.Contains($"{a.Agrupacion}|{a.Familia}|{a.Autodenom}|{a.SpanishName}|{a.Page}")).ToList();
+
+        _logger.LogInformation("Appendix4: {Total} total, {Artifacts} artifacts, {Valid} valid rows",
+            appendix4Data.Count, artifactRows.Count, validAppendix4Rows.Count);
+
+        return (catalogData, validAppendix4Rows);
     }
 
     private async Task<SourceDocument> CreateOrGetSourceDocumentAsync(CancellationToken cancellationToken)
@@ -252,7 +283,7 @@ public class InaliCatalogImporter : ICatalogImporter
                     var normalizedText = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ").Trim();
                     var rawTextHash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(
                         System.Text.Encoding.UTF8.GetBytes(normalizedText))).ToLowerInvariant();
-                    
+
                     pages.Add(new SourcePage(
                         sourceDocumentId: doc.Id,
                         pageNumber: pageNumber,
@@ -283,7 +314,7 @@ public class InaliCatalogImporter : ICatalogImporter
                     var normalizedText = System.Text.RegularExpressions.Regex.Replace(text, @"\s+", " ").Trim();
                     var rawTextHash = Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(
                         System.Text.Encoding.UTF8.GetBytes(normalizedText))).ToLowerInvariant();
-                    
+
                     pages.Add(new SourcePage(
                         sourceDocumentId: doc.Id,
                         pageNumber: pageNumber,
@@ -442,7 +473,7 @@ public class InaliCatalogImporter : ICatalogImporter
                 actualVariantCount,
                 actualAutodenominationCount);
             version.UpdateStatus("Completed");
-            version.SetValidationErrors(result.ValidationErrors.Count > 0 ? string.Join("; ", result.ValidationErrors) : null);
+            version.SetValidationErrors(result.ValidationErrors.Count > 0 ? string.Join("; ", result.ValidationErrors) : string.Empty);
 
             await _context.SaveChangesAsync(cancellationToken);
             _logger.LogInformation("Finalized CatalogVersion {Id} with actual counts: F={F} G={G} V={V} A={A}, status=Completed",
@@ -498,11 +529,39 @@ public class InaliCatalogImporter : ICatalogImporter
 
     private async Task PersistQuarantineAsync(ImportQuarantine quarantine, CancellationToken cancellationToken)
     {
-        _context.ImportQuarantines.Add(quarantine);
-        await _context.SaveChangesAsync(cancellationToken);
+        // Idempotency: Check if quarantine already exists with same identity
+        // Identity = CatalogVersionId + SourceDocumentId + EntityType + SourcePage + ResolutionMethod + RawDataHash
+        var existing = await _context.ImportQuarantines
+            .FirstOrDefaultAsync(q =>
+                q.CatalogVersionId == quarantine.CatalogVersionId &&
+                q.SourceDocumentId == quarantine.SourceDocumentId &&
+                q.EntityType == quarantine.EntityType &&
+                q.SourcePage == quarantine.SourcePage &&
+                q.ResolutionMethod == quarantine.ResolutionMethod &&
+                q.RawDataHash == quarantine.RawDataHash, cancellationToken);
+
+        if (existing == null)
+        {
+            _context.ImportQuarantines.Add(quarantine);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+        else
+        {
+            _logger.LogDebug("Quarantine already exists, skipping duplicate: {EntityType} Page={Page} Method={Method}",
+                quarantine.EntityType, quarantine.SourcePage, quarantine.ResolutionMethod);
+        }
     }
 
-    private async Task<(Dictionary<string, LanguageGroup> groupMap, int quarantineCount, int artifactQuarantineCount)> ImportGroupsAsync(
+    // 5B.md FASE 2/3: Compute deterministic hash for a source appendix row (for reconciliation identity)
+    private static string ComputeRawDataHash(Appendix4Dto item)
+    {
+        var normalized = $"{item.Agrupacion.Trim()}|{item.Familia.Trim()}|{item.Autodenom.Trim()}|{item.SpanishName.Trim()}|{item.Page}";
+        using var sha256 = System.Security.Cryptography.SHA256.Create();
+        var hash = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(normalized));
+        return Convert.ToHexString(hash).ToLowerInvariant();
+    }
+
+    private async Task<(Dictionary<string, LanguageGroup> groupMap, int quarantineCount)> ImportGroupsAsync(
         List<CatalogVariantDto> catalogData,
         List<Appendix4Dto> appendix4Data,
         Dictionary<string, LanguageFamily> familyMap,
@@ -512,7 +571,6 @@ public class InaliCatalogImporter : ICatalogImporter
     {
         var groupMap = new Dictionary<string, LanguageGroup>(StringComparer.OrdinalIgnoreCase);
         int quarantineCount = 0;
-        int artifactQuarantineCount = 0;
 
         // Use appendix 4 as the canonical source for agrupación names
         var agrupacionToFamilia = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
@@ -524,25 +582,6 @@ public class InaliCatalogImporter : ICatalogImporter
             {
                 var agrupacion = item.Agrupacion.Trim();
                 var familia = item.Familia.Trim();
-
-                // Skip artifact agrupaciones
-                if (agrupacion == "Oto-mangue" || agrupacion == "u")
-                {
-                    await PersistQuarantineAsync(new ImportQuarantine(
-                        catalogVersionId,
-                        sourceDocumentId,
-                        "LanguageGroup",
-                        JsonSerializer.Serialize(item),
-                        null,
-                        item.Page,
-                        "Appendix4",
-                        $"Artifact agrupación '{agrupacion}' with empty familia - extraction artifact",
-                        "classified_as_artifact"
-                    ), cancellationToken);
-                    quarantineCount++;
-                    artifactQuarantineCount++;
-                    continue;
-                }
 
                 if (!agrupacionToFamilia.ContainsKey(agrupacion))
                 {
@@ -561,7 +600,7 @@ public class InaliCatalogImporter : ICatalogImporter
         {
             var agrupacion = kvp.Key;
             var familia = kvp.Value;
-            var page = agrupacionToPage.GetValueOrDefault(agrupacion, 244);
+            var page = agrupacionToPage[agrupacion]; // Direct lookup - no fallback
 
             var key = $"{familia}|{agrupacion}";
 
@@ -628,7 +667,7 @@ public class InaliCatalogImporter : ICatalogImporter
             _logger.LogWarning("Group count mismatch: expected {Expected}, got {Actual}", DOCUMENTARY_GROUPS, groupMap.Count);
         }
 
-        return (groupMap, quarantineCount, artifactQuarantineCount);
+        return (groupMap, quarantineCount);
     }
 
     private async Task<(Dictionary<string, LanguageVariant> variantMap, int quarantineCount)> ImportVariantsAsync(
@@ -650,8 +689,6 @@ public class InaliCatalogImporter : ICatalogImporter
             {
                 var spanishName = item.SpanishName.Trim();
                 var agrupacion = item.Agrupacion.Trim();
-                // Skip artifacts
-                if (agrupacion == "Oto-mangue" || agrupacion == "u") continue;
 
                 if (!spanishNameToAgrupacion.ContainsKey(spanishName))
                 {
@@ -693,10 +730,22 @@ public class InaliCatalogImporter : ICatalogImporter
                 }
                 else if (prefixMatches.Count > 1)
                 {
-                    // Use the longest match
-                    var bestMatch = prefixMatches.OrderByDescending(kvp => kvp.Key.Length).First();
-                    groupName = bestMatch.Value;
-                    resolutionMethod = "appendix4_prefix_longest";
+                    // Multiple prefix matches - ambiguity must be quarantined (H-103)
+                    _logger.LogWarning("Ambiguous prefix match for variant '{VariantName}': {Count} candidates. Quarantining.",
+                        normalizedVariantName, prefixMatches.Count);
+                    await PersistQuarantineAsync(new ImportQuarantine(
+                        catalogVersionId,
+                        sourceDocumentId,
+                        "LanguageVariant",
+                        JsonSerializer.Serialize(item),
+                        null,
+                        item.Page,
+                        "MainCatalog",
+                        $"Ambiguous prefix match for SpanishName '{normalizedVariantName}' - {prefixMatches.Count} candidates: {string.Join(", ", prefixMatches.Select(p => p.Key))}",
+                        "appendix4_prefix_ambiguous"
+                    ), cancellationToken);
+                    quarantineCount++;
+                    continue;
                 }
                 else
                 {
@@ -765,7 +814,7 @@ public class InaliCatalogImporter : ICatalogImporter
         return (variantMap, quarantineCount);
     }
 
-    private async Task<(int imported, int quarantineCount, int artifactQuarantineCount)> ImportAutodenominationsAsync(
+    private async Task<(int imported, int quarantineCount)> ImportAutodenominationsAsync(
         List<Appendix4Dto> appendix4Data,
         Dictionary<string, LanguageGroup> groupMap,
         Dictionary<string, LanguageVariant> variantMap,
@@ -773,363 +822,162 @@ public class InaliCatalogImporter : ICatalogImporter
         Guid sourceDocumentId,
         CancellationToken cancellationToken)
     {
-        int count = 0;
-        int quarantineCount = 0;
-        int artifactQuarantineCount = 0;
+        _logger.LogInformation("ImportAutodenominationsAsync received {Count} appendix4 rows", appendix4Data.Count);
+
         var sourceDoc = await _context.SourceDocuments.FirstAsync(d => d.HashSha256 == CATALOG_SHA256, cancellationToken);
 
-        // Track which (variantId, autodenomination, sourcePage) triplets we've already added
+        // 5B.md FASE 3 + FASE 7: the per-row reconciliation ledger is the SINGLE accounting
+        // source of truth. The imported/quarantined counters are DERIVED from it at the end;
+        // they are never mutated independently inside a branch.
+        var reconciliationLedger = new List<AutodenominationReconciliationEntry>();
+        var accountedOrdinals = new HashSet<int>();
+
         // Identity = Variant + Autodenom + SourcePage (H-015)
         var addedTriplets = new HashSet<string>();
 
+        // 5B.md FASE 3: one source row -> exactly ONE terminal outcome.
+        // Enforced at insertion so a second accounting event for the same source row is
+        // impossible by construction (not hidden afterwards with Distinct()/GroupBy()).
+        AutodenominationReconciliationEntry RecordOutcome(
+            Appendix4Dto item,
+            string outcome,
+            string resolutionMethod,
+            string reason,
+            Guid? catalogRecordId)
+        {
+            if (!accountedOrdinals.Add(item.SourceOrdinal))
+            {
+                throw new InvalidOperationException(
+                    $"ACCOUNTING DUPLICATE: source ordinal {item.SourceOrdinal} (source page {item.Page}, " +
+                    $"autodenominación '{item.Autodenom}') produced more than one terminal outcome.");
+            }
+
+            var entry = new AutodenominationReconciliationEntry
+            {
+                SourceOrdinal = item.SourceOrdinal,
+                SourcePage = item.Page,
+                SourceDocumentId = sourceDoc.Id,
+                RawDataHash = ComputeRawDataHash(item),
+                SpanishName = item.SpanishName?.Trim() ?? "",
+                IndigenousName = item.Autodenom?.Trim() ?? "",
+                Grouping = item.Agrupacion?.Trim() ?? "",
+                Familia = item.Familia?.Trim() ?? "",
+                TerminalOutcome = outcome,
+                CatalogRecordId = catalogRecordId,
+                ResolutionMethod = resolutionMethod,
+                Reason = reason
+            };
+
+            reconciliationLedger.Add(entry);
+            return entry;
+        }
+
+        async Task QuarantineRowAsync(Appendix4Dto item, string resolutionMethod, string reason)
+        {
+            await PersistQuarantineAsync(new ImportQuarantine(
+                catalogVersionId,
+                sourceDocumentId,
+                "LanguageVariantAutodenomination",
+                JsonSerializer.Serialize(item),
+                null,
+                item.Page,
+                "Appendix4",
+                reason,
+                resolutionMethod
+            ), cancellationToken);
+
+            RecordOutcome(item, "QUARANTINED", resolutionMethod, reason, null);
+        }
+
         foreach (var item in appendix4Data)
         {
-            _logger.LogDebug("Processing appendix row: Autodenom={Autodenom}, Agrupacion={Agrupacion}, Familia={Familia}, SpanishName={SpanishName}, Page={Page}", 
-                item.Autodenom, item.Agrupacion, item.Familia, item.SpanishName, item.Page);
-            
-            if (string.IsNullOrWhiteSpace(item.Autodenom) || string.IsNullOrWhiteSpace(item.Agrupacion)) continue;
+            _logger.LogDebug("Processing appendix row Ordinal={Ordinal}: Autodenom={Autodenom}, Agrupacion={Agrupacion}, Familia={Familia}, SpanishName={SpanishName}, Page={Page}",
+                item.SourceOrdinal, item.Autodenom, item.Agrupacion, item.Familia, item.SpanishName, item.Page);
 
-            // Skip artifact rows
-            if (item.Agrupacion.Trim() == "Oto-mangue" || item.Agrupacion.Trim() == "u" || string.IsNullOrWhiteSpace(item.Familia))
+            // A row without usable source identity cannot be imported, but it is never silently
+            // discarded: it becomes an explicit, persisted quarantine outcome.
+            if (string.IsNullOrWhiteSpace(item.Autodenom) || string.IsNullOrWhiteSpace(item.Agrupacion))
             {
-                await PersistQuarantineAsync(new ImportQuarantine(
-                    catalogVersionId,
-                    sourceDocumentId,
-                    "LanguageVariantAutodenomination",
-                    JsonSerializer.Serialize(item),
-                    null,
-                    item.Page,
-                    "Appendix4",
-                    "Artifact row (empty familia or artifact agrupación)",
-                    "classified_as_artifact"
-                ), cancellationToken);
-                quarantineCount++;
-                artifactQuarantineCount++;
+                await QuarantineRowAsync(item, "empty_source_fields",
+                    "Source row has an empty autodenominación or agrupación");
                 continue;
             }
 
-            // Find matching group
+            // Artifacts are pre-filtered in LoadSourceDataAsync; this is the explicit safety net.
+            if (item.Agrupacion.Trim() == "Oto-mangue" || item.Agrupacion.Trim() == "u" || string.IsNullOrWhiteSpace(item.Familia))
+            {
+                await QuarantineRowAsync(item, "classified_as_artifact",
+                    "Artifact row (empty familia or artifact agrupación) - should have been pre-filtered");
+                continue;
+            }
+
             var groupKey = groupMap.Keys.FirstOrDefault(k =>
                 k.EndsWith($"|{item.Agrupacion.Trim()}", StringComparison.OrdinalIgnoreCase));
 
             if (groupKey == null)
             {
-                _logger.LogDebug("Group not found for autodenomination: {Group}, AgrupacionRaw={Raw}", item.Agrupacion, item.Agrupacion);
-                await PersistQuarantineAsync(new ImportQuarantine(
-                    catalogVersionId,
-                    sourceDocumentId,
-                    "LanguageVariantAutodenomination",
-                    JsonSerializer.Serialize(item),
-                    null,
-                    item.Page,
-                    "Appendix4",
-                    $"Group '{item.Agrupacion}' not found in groupMap",
-                    "group_not_found"
-                ), cancellationToken);
-                quarantineCount++;
+                await QuarantineRowAsync(item, "group_not_found",
+                    $"Group '{item.Agrupacion}' not found in groupMap");
                 continue;
             }
-            
-            _logger.LogDebug("Found group for autodenom: GroupKey={GroupKey}, Agrupacion={Agrupacion}", groupKey, item.Agrupacion);
 
-            var group = groupMap[groupKey];
-
-            // Find matching variant - search ALL variants in this family, not just this group
-            // Because Appendix 4 agrupación may not align perfectly with catalog groups
-            Guid? variantId = null;
-            // Get all group IDs in this family
+            // Find matching variant by searching ALL variants in this family, because the
+            // Appendix 4 agrupación does not always align one-to-one with the catalog groups.
             var family = await _context.LanguageFamilies
                 .FirstOrDefaultAsync(f => f.Name.ToLower() == item.Familia.Trim().ToLower(), cancellationToken);
-            var groupIdsInFamily = new List<Guid>();
-            if (family != null)
-            {
-                groupIdsInFamily = await _context.LanguageGroups
+
+            var groupIdsInFamily = family == null
+                ? new List<Guid>()
+                : await _context.LanguageGroups
                     .Where(g => g.LanguageFamilyId == family.Id)
                     .Select(g => g.Id)
                     .ToListAsync(cancellationToken);
-            }
-            
+
             var allVariantsInFamily = await _context.LanguageVariants
                 .Where(v => groupIdsInFamily.Contains(v.LanguageGroupId))
                 .ToListAsync(cancellationToken);
-            
-            _logger.LogDebug("Autodenom matching: Agrupacion={Agrupacion}, Familia={Familia}, GroupVariants={GV}, FamilyVariants={FV}", 
-                item.Agrupacion, item.Familia, group.LanguageVariants.Count, allVariantsInFamily.Count);
 
-            string matchMethod = "none";
+            _logger.LogDebug("Autodenom matching: Ordinal={Ordinal}, Agrupacion={Agrupacion}, Familia={Familia}, FamilyVariants={FV}",
+                item.SourceOrdinal, item.Agrupacion, item.Familia, allVariantsInFamily.Count);
 
-            // Try exact match first (use all variants in family)
-                        if (!string.IsNullOrWhiteSpace(item.SpanishName) && item.SpanishName.Trim() != "Nombre en español")
-                        {
-                            var spanishName = item.SpanishName.Trim();
-                            bool isGenericGroupName = spanishName.EndsWith(",");
+            // H-103: pure resolution - an ambiguous candidate set is NEVER resolved by picking one.
+            var resolution = ResolveVariantForAutodenomination(item, allVariantsInFamily);
 
-                            // Exact match
-                            var exactMatch = allVariantsInFamily.FirstOrDefault(v =>
-                                v.Name.Equals(spanishName, StringComparison.OrdinalIgnoreCase));
-
-                            if (exactMatch != null)
-                            {
-                                variantId = exactMatch.Id;
-                                matchMethod = "spanish_name_exact";
-                            }
-                            else if (isGenericGroupName)
-                            {
-                                // Generic group name (ends with comma) - cannot match to specific variant
-                                // unless autodenom has location qualifier for disambiguation
-                                _logger.LogDebug("Generic SpanishName (ends with comma): {SpanishName} - attempting disambiguation via autodenom location", spanishName);
-                    
-                                // Try disambiguation by autodenomination location qualifier
-                                variantId = TryDisambiguateByAutodenomLocation(item.Autodenom, allVariantsInFamily, out matchMethod);
-                    
-                                if (variantId == null)
-                                {
-                                    _logger.LogWarning("Generic SpanishName cannot be disambiguated: Autodenom={Autodenom}, SpanishName={SpanishName}, FamilyVariants={Count}. Quarantining.",
-                                        item.Autodenom, spanishName, allVariantsInFamily.Count);
-                                    await PersistQuarantineAsync(new ImportQuarantine(
-                    catalogVersionId,
-                    sourceDocumentId,
-                    "LanguageVariantAutodenomination",
-                    JsonSerializer.Serialize(item),
-                    null,
-                    item.Page,
-                    "Appendix4",
-                    $"Generic group name '{spanishName}' cannot be mapped to specific variant (autodenom lacks location qualifier)",
-                    "generic_group_name_no_location"
-                ), cancellationToken);
-                quarantineCount++;
-                continue;
-                                }
-                                else
-                                {
-                                    matchMethod = "generic_group_name_disambiguated";
-                                }
-                            }
-                            else
-                                                            {
-                                                                // Specific SpanishName (not ending with comma) - use prefix matching
-                                                                var prefixMatches = allVariantsInFamily
-                                                                    .Where(v => v.Name.StartsWith(spanishName, StringComparison.OrdinalIgnoreCase))
-                                                                    .ToList();
-
-                                                                if (prefixMatches.Count == 1)
-                                                                                                                                    {
-                                                                                                                                        variantId = prefixMatches[0].Id;
-                                                                                                                                        matchMethod = "spanish_name_prefix_unique";
-                                                                                                                                    }
-                                                                                                                                    else if (prefixMatches.Count > 1)
-                                                                                                                                    {
-                                                                                                                                        // Try best match: variant continues with space or comma+space after prefix
-                                                                                                                                        var bestMatch = prefixMatches.FirstOrDefault(v =>
-                                                                                                                                            v.Name.Length > spanishName.Length &&
-                                                                                                                                            (v.Name[spanishName.Length] == ' ' || v.Name[spanishName.Length] == ','));
-
-                                                                                                                                        if (bestMatch != null)
-                                                                                                                                        {
-                                                                                                                                            variantId = bestMatch.Id;
-                                                                                                                                            matchMethod = "spanish_name_prefix_best";
-                                                                                                                                        }
-
-                                                                                                                                        // Try disambiguation by autodenomination location qualifier
-                                                                                                                                        if (variantId == null)
-                                                                                                                                        {
-                                                                                                                                            variantId = TryDisambiguateByAutodenomLocation(item.Autodenom, prefixMatches, out matchMethod);
-                                                                                                                                        }
-
-                                                                                                                                        // If still no match, QUARANTINE - never pick first arbitrarily (H-103)
-                                                                                                                                        if (variantId == null)
-                                                                                                                                        {
-                                                                                                                                            _logger.LogWarning("Ambiguous prefix match cannot be resolved: Autodenom={Autodenom}, SpanishName={SpanishName}, Matches={Count}. Quarantining.",
-                                                                                                                                                item.Autodenom, spanishName, prefixMatches.Count);
-                                                                                                                                            await PersistQuarantineAsync(new ImportQuarantine(
-                                                                                                                catalogVersionId,
-                                                                                                                sourceDocumentId,
-                                                                                                                "LanguageVariantAutodenomination",
-                                                                                                                JsonSerializer.Serialize(item),
-                                                                                                                null,
-                                                                                                                item.Page,
-                                                                                                                "Appendix4",
-                                                                                                                $"Ambiguous prefix match for SpanishName '{spanishName}' - {prefixMatches.Count} candidates, no disambiguation",
-                                                                                                                "spanish_name_prefix_ambiguous"
-                                                                                                            ), cancellationToken);
-                                                                                                            quarantineCount++;
-                                                                                                            continue;
-                                                                                                                                        }
-                                                                                                                                    }
-                                                                else
-                                                                {
-                                                                    // No exact prefix match - try progressive prefix matching
-                                                                    // Split SpanishName by comma and try progressively shorter prefixes
-                                                                    var snParts = spanishName.Split(',').Select(p => p.Trim()).ToArray();
-                                                                    for (int i = snParts.Length - 1; i >= 1; i--)
-                                                                    {
-                                                                        var shorterPrefix = string.Join(", ", snParts.Take(i));
-                                                                        var shorterMatches = allVariantsInFamily
-                                                                            .Where(v => v.Name.StartsWith(shorterPrefix, StringComparison.OrdinalIgnoreCase))
-                                                                            .ToList();
-                                            
-                                                                        if (shorterMatches.Count == 1)
-                                                                        {
-                                                                            variantId = shorterMatches[0].Id;
-                                                                            matchMethod = "spanish_name_progressive_prefix_unique";
-                                                                            _logger.LogDebug("Progressive prefix match: SpanishName={SN}, Prefix={Prefix}, Match={Match}", 
-                                                                                spanishName, shorterPrefix, shorterMatches[0].Name);
-                                                                            break;
-                                                                        }
-                                                                        else if (shorterMatches.Count > 1)
-                                                                        {
-                                                                            // Try best match among these
-                                                                            var bestMatch = shorterMatches.FirstOrDefault(v =>
-                                                                                v.Name.Length > shorterPrefix.Length &&
-                                                                                (v.Name[shorterPrefix.Length] == ' ' || v.Name[shorterPrefix.Length] == ','));
-                                                
-                                                                            if (bestMatch != null)
-                                                                            {
-                                                                                variantId = bestMatch.Id;
-                                                                                matchMethod = "spanish_name_progressive_prefix_best";
-                                                                                _logger.LogDebug("Progressive prefix best match: SpanishName={SN}, Prefix={Prefix}, Match={Match}", 
-                                                                                    spanishName, shorterPrefix, bestMatch.Name);
-                                                                                break;
-                                                                            }
-                                                
-                                                                            // Try disambiguation
-                                                                            variantId = TryDisambiguateByAutodenomLocation(item.Autodenom, shorterMatches, out matchMethod);
-                                                                            if (variantId != null)
-                                                                            {
-                                                                                matchMethod = "spanish_name_progressive_prefix_disambiguated";
-                                                                                break;
-                                                                            }
-                                                                        }
-                                                                    }
-
-                                                                    // If still no match, try suffix matching (variant name is prefix of appendix name)
-                                                                    if (variantId == null)
-                                                                    {
-                                                                        var suffixMatch = allVariantsInFamily.FirstOrDefault(v =>
-                                                                            spanishName.StartsWith(v.Name, StringComparison.OrdinalIgnoreCase) &&
-                                                                            (spanishName.Length == v.Name.Length || spanishName[v.Name.Length] == ',' || spanishName[v.Name.Length] == ' '));
-
-                                                                        if (suffixMatch != null)
-                                                                        {
-                                                                            variantId = suffixMatch.Id;
-                                                                            matchMethod = "spanish_name_suffix";
-                                                                        }
-                                                                        else
-                                                                        {
-                                                                            // Try disambiguation by autodenom location
-                                                                            variantId = TryDisambiguateByAutodenomLocation(item.Autodenom, allVariantsInFamily, out matchMethod);
-
-                                                                            if (variantId == null)
-                                                                            {
-                                                                                _logger.LogWarning("No variant match for autodenomination: Autodenom={Autodenom}, SpanishName={SpanishName}, FamilyVariants={Count}. Quarantining.",
-                                                                                    item.Autodenom, spanishName, allVariantsInFamily.Count);
-                                                                                await PersistQuarantineAsync(new ImportQuarantine(
-                    catalogVersionId,
-                    sourceDocumentId,
-                    "LanguageVariantAutodenomination",
-                    JsonSerializer.Serialize(item),
-                    null,
-                    item.Page,
-                    "Appendix4",
-                    $"No variant matches SpanishName '{spanishName}' in family {item.Familia}",
-                    "no_match"
-                ), cancellationToken);
-                quarantineCount++;
-                continue;
-                                                                            }
-                                                                        }
-                                                                    }
-                                                                }
-                                                            }
-                        }
-
-            // Single variant in family fallback
-            if (variantId == null && allVariantsInFamily.Count == 1)
+            if (resolution.VariantId == null || resolution.VariantId == Guid.Empty)
             {
-                variantId = allVariantsInFamily[0].Id;
-                matchMethod = "single_variant_fallback";
-            }
-            else if (variantId == null)
-            {
-                _logger.LogWarning("Cannot uniquely match autodenomination to variant: Autodenom={Autodenom}, SpanishName={SpanishName}, Agrupacion={Agrupacion}, FamilyVariants={Count}. Quarantining.",
-                    item.Autodenom, item.SpanishName, item.Agrupacion, allVariantsInFamily.Count);
-                await PersistQuarantineAsync(new ImportQuarantine(
-                    catalogVersionId,
-                    sourceDocumentId,
-                    "LanguageVariantAutodenomination",
-                    JsonSerializer.Serialize(item),
-                    null,
-                    item.Page,
-                    "Appendix4",
-                    $"Multiple variants in family but no clear match (method attempted: {matchMethod})",
-                    matchMethod
-                ), cancellationToken);
-                quarantineCount++;
+                await QuarantineRowAsync(item, resolution.FailureMethod, resolution.FailureReason);
                 continue;
             }
 
-            if (variantId == Guid.Empty)
-            {
-                await PersistQuarantineAsync(new ImportQuarantine(
-                    catalogVersionId,
-                    sourceDocumentId,
-                    "LanguageVariantAutodenomination",
-                    JsonSerializer.Serialize(item),
-                    null,
-                    item.Page,
-                    "Appendix4",
-                    "No variant available",
-                    "no_variant"
-                ), cancellationToken);
-                quarantineCount++;
-                continue;
-            }
+            var variantId = resolution.VariantId;
+            var matchMethod = resolution.Method;
 
             // Identity key includes SourcePage for proper uniqueness (H-015)
             var autodenomTriplet = $"{variantId}|{item.Autodenom.Trim()}|{item.Page}";
 
-                        if (addedTriplets.Contains(autodenomTriplet))
-                        {
-                            _logger.LogDebug("Skipping duplicate autodenomination triplet in batch for variant {VariantId}: '{Autodenom}' page {Page}", variantId, item.Autodenom, item.Page);
-                            await PersistQuarantineAsync(new ImportQuarantine(
-                                catalogVersionId,
-                                sourceDocumentId,
-                                "LanguageVariantAutodenomination",
-                                JsonSerializer.Serialize(item),
-                                null,
-                                item.Page,
-                                "Appendix4",
-                                "Duplicate autodenomination triplet in batch (same variant, autodenom, page)",
-                                "duplicate_triplet_in_batch"
-                            ), cancellationToken);
-                            quarantineCount++;
-                            continue;
-                        }
+            if (addedTriplets.Contains(autodenomTriplet))
+            {
+                await QuarantineRowAsync(item, "duplicate_triplet_in_batch",
+                    "Duplicate autodenomination triplet in batch (same variant, autodenom, page)");
+                continue;
+            }
 
-            // Check DB for existing entry (idempotency)
+            // Idempotency: existing row in the database or still-uncommitted in the change tracker.
             var existsInDb = await _context.LanguageVariantAutodenominations
                 .AnyAsync(a => a.LanguageVariantId == variantId && a.Autodenomination == item.Autodenom.Trim() && a.SourcePage == item.Page, cancellationToken);
 
-            // Check change tracker for uncommitted entities
             var existsInTracker = _context.ChangeTracker.Entries<LanguageVariantAutodenomination>()
                 .Any(e => e.Entity.LanguageVariantId == variantId && e.Entity.Autodenomination == item.Autodenom.Trim() && e.Entity.SourcePage == item.Page && e.State != EntityState.Detached);
 
             if (existsInDb || existsInTracker)
             {
-                _logger.LogDebug("Skipping existing autodenomination (DB or tracker) for variant {VariantId}: '{Autodenom}' page {Page}", variantId, item.Autodenom, item.Page);
+                // Idempotency (H-111): the exact (variant, autodenominación, source page) identity is
+                // already persisted for this source document + parser version. The source row IS
+                // imported - it is NOT quarantined - and neither a new record nor a new quarantine
+                // row is created, so a re-import leaves the semantic dataset untouched.
                 addedTriplets.Add(autodenomTriplet);
-                await PersistQuarantineAsync(new ImportQuarantine(
-                    catalogVersionId,
-                    sourceDocumentId,
-                    "LanguageVariantAutodenomination",
-                    JsonSerializer.Serialize(item),
-                    null,
-                    item.Page,
-                    "Appendix4",
-                    "Duplicate autodenomination already exists in database or change tracker",
-                    "duplicate_exists_in_db_or_tracker"
-                ), cancellationToken);
-                quarantineCount++;
+                RecordOutcome(item, "IMPORTED", "idempotent_existing_record",
+                    "Already persisted for this source document and parser version", null);
                 continue;
             }
 
@@ -1152,12 +1000,169 @@ public class InaliCatalogImporter : ICatalogImporter
             );
 
             _context.LanguageVariantAutodenominations.Add(autodenom);
-            count++;
+            RecordOutcome(item, "IMPORTED", matchMethod, "", autodenom.Id);
         }
-        // End of foreach loop - all cases handled above with continue or processing
 
-    await _context.SaveChangesAsync(cancellationToken);
-    return (count, quarantineCount, artifactQuarantineCount);
+        await _context.SaveChangesAsync(cancellationToken);
+
+        // 5B.md FASE 7: counters are derived from the ledger, never mutated in branches.
+        var importedCount = reconciliationLedger.Count(e => e.TerminalOutcome == "IMPORTED");
+        var quarantinedCount = reconciliationLedger.Count(e => e.TerminalOutcome == "QUARANTINED");
+        var nonTerminalCount = reconciliationLedger.Count - importedCount - quarantinedCount;
+
+        _logger.LogInformation("=== RECONCILIATION LEDGER ===");
+        _logger.LogInformation("Source rows received: {Received} | Ledger entries: {Ledger} | Imported: {Imp} | Quarantined: {Q} | Non-terminal: {Other}",
+            appendix4Data.Count, reconciliationLedger.Count, importedCount, quarantinedCount, nonTerminalCount);
+
+        foreach (var e in reconciliationLedger.OrderBy(x => x.SourceOrdinal))
+        {
+            _logger.LogInformation("  Ordinal={Ordinal} Page={Page} Hash={Hash} Outcome={Outcome} Method={Method} Reason={Reason}",
+                e.SourceOrdinal, e.SourcePage, e.RawDataHash.Length >= 12 ? e.RawDataHash.Substring(0, 12) : e.RawDataHash,
+                e.TerminalOutcome, e.ResolutionMethod, e.Reason);
+        }
+
+        // 5B.md FASE 10: documentary source rows == ledger entries == imported + quarantined.
+        if (reconciliationLedger.Count != appendix4Data.Count || nonTerminalCount != 0)
+        {
+            throw new InvalidOperationException(
+                $"ACCOUNTING INVARIANT VIOLATED: received {appendix4Data.Count} source rows but produced " +
+                $"{reconciliationLedger.Count} ledger entries (imported={importedCount}, quarantined={quarantinedCount}, " +
+                $"non-terminal={nonTerminalCount}). Every source row must have exactly one terminal outcome.");
+        }
+
+        return (importedCount, quarantinedCount);
+    }
+
+    // 5B.md FASE 7: pure, side-effect-free variant resolution.
+    // It never persists and never silently selects among materially different candidates:
+    // on ambiguity it returns a null VariantId together with the resolution method and the
+    // reason the caller must quarantine with (H-103).
+    internal static VariantResolution ResolveVariantForAutodenomination(Appendix4Dto item, List<LanguageVariant> allVariantsInFamily)
+    {
+        if (string.IsNullOrWhiteSpace(item.SpanishName) || item.SpanishName.Trim() == "Nombre en español")
+        {
+            var rawSpanishName = item.SpanishName ?? "";
+            return VariantResolution.Unresolved("no_spanish_name",
+                $"Source row has no usable SpanishName (raw value '{rawSpanishName}')");
+        }
+
+        var spanishName = item.SpanishName.Trim();
+
+        // 1. Exact match.
+        var exactMatches = allVariantsInFamily
+            .Where(v => v.Name.Equals(spanishName, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        if (exactMatches.Count == 1)
+            return VariantResolution.Resolved(exactMatches[0].Id, "spanish_name_exact");
+        if (exactMatches.Count > 1)
+            return VariantResolution.Unresolved("spanish_name_exact_ambiguous",
+                $"Exact SpanishName '{spanishName}' matches {exactMatches.Count} variants in the family");
+
+        // 2. Generic group name (ends with comma): only an autodenomination location qualifier may resolve it.
+        if (spanishName.EndsWith(","))
+        {
+            var disambiguated = TryDisambiguateByAutodenomLocation(item.Autodenom, allVariantsInFamily, out var genericMethod);
+            if (disambiguated != null)
+                return VariantResolution.Resolved(disambiguated.Value, genericMethod);
+            return VariantResolution.Unresolved("generic_group_name_no_location",
+                $"Generic group name '{spanishName}' cannot be mapped to a specific variant (autodenom lacks a usable location qualifier)");
+        }
+
+        // 3. Unique prefix match.
+        var prefixMatches = allVariantsInFamily
+            .Where(v => v.Name.StartsWith(spanishName, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        if (prefixMatches.Count == 1)
+            return VariantResolution.Resolved(prefixMatches[0].Id, "spanish_name_prefix_unique");
+
+        if (prefixMatches.Count > 1)
+        {
+            // The prefix may continue with a space or a comma in exactly one candidate.
+            var continuationMatches = prefixMatches
+                .Where(v => v.Name.Length > spanishName.Length &&
+                            (v.Name[spanishName.Length] == ' ' || v.Name[spanishName.Length] == ','))
+                .ToList();
+            if (continuationMatches.Count == 1)
+                return VariantResolution.Resolved(continuationMatches[0].Id, "spanish_name_prefix_best");
+
+            var disambiguated = TryDisambiguateByAutodenomLocation(item.Autodenom, prefixMatches, out var prefixMethod);
+            if (disambiguated != null)
+                return VariantResolution.Resolved(disambiguated.Value, prefixMethod);
+
+            return VariantResolution.Unresolved("spanish_name_prefix_ambiguous",
+                $"Ambiguous prefix match for SpanishName '{spanishName}' - {prefixMatches.Count} candidates, no disambiguation");
+        }
+
+        // 4. Progressive prefix matching over the comma-separated components.
+        var snParts = spanishName.Split(',').Select(p => p.Trim()).ToArray();
+        Guid? progressiveMatch = null;
+        var progressiveMethod = "";
+        var progressiveFailureMethod = "";
+        var progressiveFailureReason = "";
+        for (int i = snParts.Length - 1; i >= 1; i--)
+        {
+            var shorterPrefix = string.Join(", ", snParts.Take(i));
+            var shorterMatches = allVariantsInFamily
+                .Where(v => v.Name.StartsWith(shorterPrefix, StringComparison.OrdinalIgnoreCase))
+                .ToList();
+
+            if (shorterMatches.Count == 1)
+            {
+                progressiveMatch = shorterMatches[0].Id;
+                progressiveMethod = "spanish_name_progressive_prefix_unique";
+                break;
+            }
+
+            if (shorterMatches.Count > 1)
+            {
+                var disambiguated = TryDisambiguateByAutodenomLocation(item.Autodenom, shorterMatches, out var progressiveDisambiguationMethod);
+                if (disambiguated != null)
+                {
+                    progressiveMatch = disambiguated.Value;
+                    progressiveMethod = progressiveDisambiguationMethod;
+                    break;
+                }
+
+                // Ambiguity at this level is terminal for the row: stop shortening. The original
+                // implementation kept iterating, which produced a second terminal accounting
+                // event for the same source row (the 474 -> 484 defect).
+                progressiveFailureMethod = "spanish_name_progressive_prefix_ambiguous";
+                progressiveFailureReason = $"Ambiguous progressive prefix match for SpanishName '{spanishName}' at prefix '{shorterPrefix}' - {shorterMatches.Count} candidates, no disambiguation";
+                break;
+            }
+        }
+
+        if (progressiveMatch != null)
+            return VariantResolution.Resolved(progressiveMatch.Value, progressiveMethod);
+        if (progressiveFailureMethod.Length > 0)
+            return VariantResolution.Unresolved(progressiveFailureMethod, progressiveFailureReason);
+
+        // 5. Suffix matching: the variant name is a prefix of the appendix name.
+        var suffixMatches = allVariantsInFamily
+            .Where(v => spanishName.StartsWith(v.Name, StringComparison.OrdinalIgnoreCase) &&
+                        (spanishName.Length == v.Name.Length || spanishName[v.Name.Length] == ',' || spanishName[v.Name.Length] == ' '))
+            .ToList();
+
+        if (suffixMatches.Count == 1)
+            return VariantResolution.Resolved(suffixMatches[0].Id, "spanish_name_suffix_unique");
+
+        if (suffixMatches.Count > 1)
+        {
+            var disambiguated = TryDisambiguateByAutodenomLocation(item.Autodenom, suffixMatches, out _);
+            if (disambiguated != null)
+                return VariantResolution.Resolved(disambiguated.Value, "spanish_name_suffix_disambiguated");
+            return VariantResolution.Unresolved("spanish_name_suffix_ambiguous",
+                $"Ambiguous suffix match for SpanishName '{spanishName}' - {suffixMatches.Count} candidates, no disambiguation");
+        }
+
+        // 6. Last resort: autodenomination-based disambiguation across the whole family.
+        var byAutodenom = TryDisambiguateByAutodenomLocation(item.Autodenom, allVariantsInFamily, out var autodenomMethod);
+        if (byAutodenom != null)
+            return VariantResolution.Resolved(byAutodenom.Value, autodenomMethod);
+
+        return VariantResolution.Unresolved("no_match",
+            $"No variant matches SpanishName '{spanishName}' in family '{item.Familia}' ({allVariantsInFamily.Count} family variants)");
     }
 
     private void ValidateDocumentaryBaselines(ImportResult result)
@@ -1176,14 +1181,15 @@ public class InaliCatalogImporter : ICatalogImporter
             errors.Add($"Variants: expected {DOCUMENTARY_VARIANTS} accounted (imported + quarantined), got imported={result.VariantsImported} + quarantined={result.VariantsQuarantined} = {variantsAccounted}");
 
         // Autodenominations: all 474 valid appendix rows must be accounted for
-        // (imported + quarantined). Artifact-classified rows are tracked separately in quarantine
-        // but are NOT part of the 474 valid rows.
-        var artifactQuarantined = result.AutodenominationsArtifactsQuarantined + result.GroupsArtifactsQuarantined;
-        var validRowsQuarantined = result.AutodenominationsQuarantined - artifactQuarantined;
+        // (imported + quarantined). Artifacts are now pre-filtered, so all quarantine is valid rows.
+        var validRowsQuarantined = result.AutodenominationsQuarantined;
         var autodenomsAccounted = result.AutodenominationsImported + validRowsQuarantined;
 
+        _logger.LogInformation("VALIDATION DEBUG: AutodenominationsImported={Imported}, AutodenominationsQuarantined={Quarantined}, Total={Total}, Expected={Expected}",
+            result.AutodenominationsImported, result.AutodenominationsQuarantined, autodenomsAccounted, DOCUMENTARY_AUTODENOMS_VALID);
+
         if (autodenomsAccounted != DOCUMENTARY_AUTODENOMS_VALID)
-            errors.Add($"Autodenominations: expected {DOCUMENTARY_AUTODENOMS_VALID} valid rows accounted (imported + quarantined excl. artifacts), got imported={result.AutodenominationsImported} + quarantined_valid={validRowsQuarantined} (total quarantined={result.AutodenominationsQuarantined} incl. {artifactQuarantined} artifacts) = {autodenomsAccounted}");
+            errors.Add($"Autodenominations: expected {DOCUMENTARY_AUTODENOMS_VALID} valid rows accounted (imported + quarantined), got imported={result.AutodenominationsImported} + quarantined_valid={validRowsQuarantined} = {autodenomsAccounted}");
 
         if (errors.Any())
         {
@@ -1191,9 +1197,9 @@ public class InaliCatalogImporter : ICatalogImporter
             throw new InvalidOperationException($"DOCUMENTARY BASELINE VALIDATION FAILED:\n{string.Join("\n", errors)}");
         }
 
-        _logger.LogInformation("Documentary baseline validation PASSED: {Families}/{Groups}/{Variants}/{Autodenoms} (quarantined V={VQ} A={AQ}, artifacts={Art})",
+        _logger.LogInformation("Documentary baseline validation PASSED: {Families}/{Groups}/{Variants}/{Autodenoms} (quarantined V={VQ} A={AQ})",
             result.FamiliesImported, result.GroupsImported, result.VariantsImported, result.AutodenominationsImported,
-            result.VariantsQuarantined, result.AutodenominationsQuarantined, artifactQuarantined);
+            result.VariantsQuarantined, result.AutodenominationsQuarantined);
     }
 
     private async Task CreateCatalogRecordsAsync(
@@ -1260,7 +1266,7 @@ public class InaliCatalogImporter : ICatalogImporter
         {
             var parts = kvp.Key.Split('|');
             var groupName = parts.Length > 1 ? parts[1] : kvp.Key;
-            
+
             if (!agrupacionToPage.TryGetValue(groupName.Trim(), out var page))
             {
                 // This should not happen if groups were imported from Appendix 4 correctly
@@ -1293,7 +1299,7 @@ public class InaliCatalogImporter : ICatalogImporter
         foreach (var kvp in variantMap)
         {
             var variant = kvp.Value;
-            
+
             if (!variantToPage.TryGetValue(variant.Name, out var page))
             {
                 _logger.LogWarning("Variant '{VariantName}' has no resolved source page in catalog data - quarantining CatalogRecord", variant.Name);
@@ -1357,10 +1363,10 @@ public class InaliCatalogImporter : ICatalogImporter
             .Where(cr => cr.CatalogVersionId == catalogVersionId)
             .Select(cr => cr.IdentityKey)
             .ToListAsync(cancellationToken);
-        
+
         var existingKeys = new HashSet<string>(existingRecords);
         var newRecords = records.Where(r => !existingKeys.Contains(r.IdentityKey)).ToList();
-        
+
         if (newRecords.Count > 0)
         {
             _context.CatalogRecords.AddRange(newRecords);
@@ -1380,7 +1386,7 @@ public class InaliCatalogImporter : ICatalogImporter
         var catalogJson = await File.ReadAllTextAsync(catalogPath);
         var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
         var catalogRoot = JsonSerializer.Deserialize<CatalogRootDto>(catalogJson, options);
-        
+
         // Normalize variant names (remove newlines from PDF extraction)
         var variants = catalogRoot?.VariantsDetail ?? new();
         foreach (var v in variants)
@@ -1390,7 +1396,7 @@ public class InaliCatalogImporter : ICatalogImporter
                 v.VariantName = v.VariantName.Replace("\n", " ").Replace("\r", " ").Trim();
             }
         }
-        
+
         return variants;
     }
 
@@ -1414,7 +1420,7 @@ public class InaliCatalogImporter : ICatalogImporter
         };
     }
 
-    private Guid? TryDisambiguateByAutodenomLocation(string autodenom, List<LanguageVariant> candidates, out string matchMethod)
+    private static Guid? TryDisambiguateByAutodenomLocation(string autodenom, List<LanguageVariant> candidates, out string matchMethod)
     {
         // Look for location qualifiers in autodenomination that match variant names
         // e.g., autodenom "tu'un savi (de Atlamajalcingo)" -> variant "mixteco de Atlamajalcingo"
@@ -1553,7 +1559,7 @@ public class InaliCatalogImporter : ICatalogImporter
         public string GeoReference { get; set; } = "";
     }
 
-    private class Appendix4Dto
+    internal class Appendix4Dto
     {
         public int Page { get; set; }
         [System.Text.Json.Serialization.JsonPropertyName("autodenom")]
@@ -1564,5 +1570,35 @@ public class InaliCatalogImporter : ICatalogImporter
         public string Agrupacion { get; set; } = "";
         [System.Text.Json.Serialization.JsonPropertyName("familia")]
         public string Familia { get; set; } = "";
+        // 5B.md FASE 2: deterministic source-row identity = ordinal position in the raw
+        // appendix4_parsed.json array (assigned in LoadSourceDataAsync before any filtering).
+        public int SourceOrdinal { get; set; }
+    }
+
+    // 5B.md FASE 3: Reconciliation ledger entry for row-by-row forensic accounting
+    private class AutodenominationReconciliationEntry
+    {
+        public int SourceOrdinal { get; set; }
+        public int SourcePage { get; set; }
+        public Guid SourceDocumentId { get; set; }
+        public string RawDataHash { get; set; } = "";
+        public string SpanishName { get; set; } = "";
+        public string IndigenousName { get; set; } = "";
+        public string Grouping { get; set; } = "";
+        public string Familia { get; set; } = "";
+        public string TerminalOutcome { get; set; } = ""; // IMPORTED | QUARANTINED (exactly one per source row)
+        public Guid? CatalogRecordId { get; set; }
+        public Guid? QuarantineId { get; set; }
+        public string ResolutionMethod { get; set; } = "";
+        public string Reason { get; set; } = "";
+    }
+
+    // 5B.md FASE 7: outcome of the pure variant-resolution step. A null VariantId always carries
+    // the resolution method and reason the caller must persist as an explicit quarantine.
+    internal readonly record struct VariantResolution(Guid? VariantId, string Method, string FailureMethod, string FailureReason)
+    {
+        public static VariantResolution Resolved(Guid variantId, string method) => new(variantId, method, "", "");
+
+        public static VariantResolution Unresolved(string failureMethod, string reason) => new(null, failureMethod, failureMethod, reason);
     }
 }

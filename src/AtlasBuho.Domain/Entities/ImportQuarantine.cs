@@ -7,6 +7,7 @@ public class ImportQuarantine
     public Guid SourceDocumentId { get; private set; }
     public string EntityType { get; private set; } = string.Empty; // "LanguageFamily", "LanguageGroup", "LanguageVariant", "LanguageVariantAutodenomination"
     public string RawDataJson { get; private set; } = string.Empty; // Original source row as JSON
+    public string RawDataHash { get; private set; } = string.Empty; // SHA256 of canonicalized RawDataJson for idempotency
     public string? ComparisonKey { get; private set; } // Normalized key used for matching
     public int SourcePage { get; private set; }
     public string SourceSection { get; private set; } = string.Empty;
@@ -39,6 +40,11 @@ public class ImportQuarantine
         SourceDocumentId = sourceDocumentId;
         EntityType = entityType ?? throw new ArgumentNullException(nameof(entityType));
         RawDataJson = rawDataJson ?? throw new ArgumentNullException(nameof(rawDataJson));
+        // Deterministic identity hash over the canonicalized source row (4B.md §9, 5B.md FASE 9).
+        // Canonicalization is JSON-aware: insignificant whitespace between tokens is removed while
+        // string contents (including spacing and non-ASCII characters) are preserved verbatim, so
+        // two serializations of the same source row always produce the same identity hash.
+        RawDataHash = ComputeRawDataHash(rawDataJson);
         ComparisonKey = comparisonKey;
         SourcePage = sourcePage;
         SourceSection = sourceSection ?? string.Empty;
@@ -46,6 +52,38 @@ public class ImportQuarantine
         ResolutionMethod = resolutionMethod ?? string.Empty;
         Status = QuarantineStatus.Open;
         CreatedAt = DateTime.UtcNow;
+    }
+
+    private static string ComputeRawDataHash(string rawDataJson)
+    {
+        var canonical = CanonicalizeJson(rawDataJson);
+        return Convert.ToHexString(System.Security.Cryptography.SHA256.HashData(
+            System.Text.Encoding.UTF8.GetBytes(canonical))).ToLowerInvariant();
+    }
+
+    private static string CanonicalizeJson(string json)
+    {
+        try
+        {
+            using var document = System.Text.Json.JsonDocument.Parse(json);
+            using var stream = new MemoryStream();
+            using (var writer = new System.Text.Json.Utf8JsonWriter(stream, new System.Text.Json.JsonWriterOptions
+            {
+                Indented = false,
+                Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping
+            }))
+            {
+                document.WriteTo(writer);
+            }
+
+            return System.Text.Encoding.UTF8.GetString(stream.ToArray());
+        }
+        catch (System.Text.Json.JsonException)
+        {
+            // Defensive fallback for a non-JSON payload: fold whitespace runs so the hash is
+            // still stable across calls, rather than silently returning an empty hash.
+            return System.Text.RegularExpressions.Regex.Replace(json, @"\s+", " ").Trim();
+        }
     }
 
     public void MarkResolved(string resolvedBy, string resolutionNotes)
