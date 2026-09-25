@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="../../src/AtlasBuho.Application/AtlasBuho.Application.csproj" />
     <ProjectReference Include="../../src/AtlasBuho.Data/AtlasBuho.Data.csproj" />
     <ProjectReference Include="../../src/AtlasBuho.Domain/AtlasBuho.Domain.csproj" />
   </ItemGroup>
