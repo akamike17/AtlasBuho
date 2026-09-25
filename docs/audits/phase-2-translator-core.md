@@ -146,3 +146,46 @@ CanonicalForm=… AND VerificationStatus IN (1,2,3,4)`. Reproducible.
 
 Queda fuera (trabajo posterior): ingesta de Lexemes → traducciones reales; capa UI;
 casos Golden (§46).
+
+---
+
+# FOLLOW-UP 2: P0 VARIANT ISOLATION + P1 API ERROR SEMANTICS
+
+**Fecha:** 2026-09-24 · base: ce7ad83
+
+## P0 — aislamiento por variante (engine 1.1)
+
+`DictionaryTranslationEngine` consultaba lexemas SOLO por `CanonicalForm == term`, sin
+`LanguageVariantId`. La misma forma en dos variantes es un hecho lingüístico distinto (6B.md
+§9) y la consulta sin aislamiento mezclaba significados. Corregido: el motor resuelve el
+nombre de idioma/variante a UN LanguageVariantId estable (0/2+ nombres ⇒ UnsupportedLanguage,
+jamás pick arbitrario), y toda consulta léxica queda restringida a esa identidad.
+EngineVersion bumped a `dictionary-1.1`.
+
+## P1 — semántica del error de engine no configurado
+
+Antes: `request==null || _engine==null` → 400 InvalidInput, confundiendo input malformado
+con infraestructura no lista. Ahora:
+- `request == null` → 400 InvalidInput
+- `_engine == null` (sin connection string / sin DI) → 503 ServiceUnavailable
+
+## Evidencia
+
+Build slnx + csproj raíz: 0/0 · tests 64 totales, 63 OK, 1 skip preexistente
+(DictionaryTranslationEngineTests 10/10 con el nuevo caso same-form-two-variants y
+ambiguous-name-UnsupportedLanguage).
+
+MySQL real (AtlasBuho Phase-1, dataset CA44013F9399): seed de `Lexemes` con la MISMA forma
+`ra-p0` en `zapoteco de Asunción Tlacolulita` (significado A) y `zapoteco de la costa este`
+(significado B), ambos VerificationStatus=Verified:
+
+```
+A ra-p0  → 200 Translated "significado A" (engine dictionary-1.1)
+B ra-p0  → 200 Translated "significado B"
+reverse español → A, sin evidencia direccional → 200 NotFound
+
+SQL observado (EF Core): SELECT ... WHERE LanguageVariantId=@variantId AND
+CanonicalForm=@term AND VerificationStatus IN (1,2,3,4)
+```
+
+Tras la prueba los lexemas de test fueron eliminados (`Lexemes` queda de nuevo 0).

@@ -28,21 +28,25 @@ public class DictionaryTranslationEngineTests
                partOfSpeech: null, pronunciationIpa: null, pronunciationReadable: null, semanticDomain: null,
                register: null, regionalNotes: null, etymology: null, source: null, verificationStatus: status);
 
-    private static async Task<(AtlasBuhoDbContext Ctx, LanguageVariant Variant)> SeededContextAsync(
-        Action<AtlasBuhoDbContext, LanguageVariant>? seed = null)
+    private static async Task<(AtlasBuhoDbContext Ctx, LanguageVariant VariantA, LanguageVariant VariantB)> SeededContextAsync(
+        Action<AtlasBuhoDbContext, LanguageVariant, LanguageVariant>? seed = null)
     {
         var ctx = NewContext(Guid.NewGuid().ToString());
         var family = new LanguageFamily("oto-mangue", null, null, "test");
-        var group = new LanguageGroup(family.Id, "zapoteco", null, null, "test");
-        var variant = new LanguageVariant(group.Id, "zapoteco serrano", null, null, null, null, null, null, null);
+        var groupA = new LanguageGroup(family.Id, "zapoteco", null, null, "test");
+        var groupB = new LanguageGroup(family.Id, "mixteco", null, null, "test");
+        var variantA = new LanguageVariant(groupA.Id, "zapoteco serrano", null, null, null, null, null, null, null);
+        var variantB = new LanguageVariant(groupB.Id, "mixteco de Guerrero", null, null, null, null, null, null, null);
         ctx.LanguageFamilies.Add(family);
-        ctx.LanguageGroups.Add(group);
-        ctx.LanguageVariants.Add(variant);
+        ctx.LanguageGroups.Add(groupA);
+        ctx.LanguageGroups.Add(groupB);
+        ctx.LanguageVariants.Add(variantA);
+        ctx.LanguageVariants.Add(variantB);
         ctx.CatalogVersions.Add(new CatalogVersion(
             Guid.NewGuid(), Dataset, "hash", DateTime.UtcNow, 11, 68, 364, 474, "test", "Completed"));
-        seed?.Invoke(ctx, variant);
+        seed?.Invoke(ctx, variantA, variantB);
         await ctx.SaveChangesAsync();
-        return (ctx, variant);
+        return (ctx, variantA, variantB);
     }
 
     // ------------------------------------------------------------- §19 unknown state
@@ -50,7 +54,7 @@ public class DictionaryTranslationEngineTests
     [Fact]
     public async Task Translate_UnknownWord_ReturnsNotFound_NotInvented()
     {
-        var (ctx, _) = await SeededContextAsync();
+        var (ctx, _, _) = await SeededContextAsync();
         await using (ctx)
         {
             var result = await new DictionaryTranslationEngine(ctx)
@@ -60,7 +64,7 @@ public class DictionaryTranslationEngineTests
                 "a missing translation remains missing (6B.md §19, Invariant 6)");
             result.Translation.Should().BeNull();
             result.DatasetVersion.Should().Be(Dataset);
-            result.EngineVersion.Should().Be("dictionary-1.0");
+            result.EngineVersion.Should().Be("dictionary-1.1");
         }
     }
 
@@ -69,7 +73,7 @@ public class DictionaryTranslationEngineTests
     [Fact]
     public async Task Translate_IndigenousToSpanish_UniqueVerifiedMatch_Resolves()
     {
-        var (ctx, _) = await SeededContextAsync((c, v) =>
+        var (ctx, _, _) = await SeededContextAsync((c, v, _) =>
         {
             c.Lexemes.Add(Lex(v.Id, "bene xono", "fox", VerificationStatus.Verified));
             c.Lexemes.Add(Lex(v.Id, "unverificado", "zorro", VerificationStatus.Unknown));
@@ -89,7 +93,7 @@ public class DictionaryTranslationEngineTests
     [Fact]
     public async Task Translate_UnverifiedLexeme_IsNeverTranslated()
     {
-        var (ctx, _) = await SeededContextAsync((c, v) =>
+        var (ctx, _, _) = await SeededContextAsync((c, v, _) =>
             c.Lexemes.Add(Lex(v.Id, "dichsah", "nombre", VerificationStatus.Unknown)));
         await using (ctx)
         {
@@ -107,7 +111,7 @@ public class DictionaryTranslationEngineTests
     [Fact]
     public async Task Translate_MultipleVerifiedMatches_ReturnsDeterministicAlternatives()
     {
-        var (ctx, _) = await SeededContextAsync((c, v) =>
+        var (ctx, _, _) = await SeededContextAsync((c, v, _) =>
         {
             c.Lexemes.Add(Lex(v.Id, "ra", "zzz", VerificationStatus.Verified));
             c.Lexemes.Add(Lex(v.Id, "ra", "aaa", VerificationStatus.Verified));
@@ -136,7 +140,7 @@ public class DictionaryTranslationEngineTests
     [Fact]
     public async Task Translate_SpanishToIndigenous_UsesOnlySpanishEvidence_NotReverseGuess()
     {
-        var (ctx, _) = await SeededContextAsync((c, v) =>
+        var (ctx, _, _) = await SeededContextAsync((c, v, _) =>
             c.Lexemes.Add(Lex(v.Id, "bene xono", "fox", VerificationStatus.Verified)));
         await using (ctx)
         {
@@ -153,7 +157,7 @@ public class DictionaryTranslationEngineTests
     [Fact]
     public async Task Translate_SpanishToIndigenous_WithSpanishEvidence_Resolves()
     {
-        var (ctx, _) = await SeededContextAsync((c, v) =>
+        var (ctx, _, _) = await SeededContextAsync((c, v, _) =>
             c.Lexemes.Add(Lex(v.Id, "bene xono", "zorro", VerificationStatus.Verified)));
         await using (ctx)
         {
@@ -165,12 +169,63 @@ public class DictionaryTranslationEngineTests
         }
     }
 
+    // ------------------------------------------------------------- P0 variant isolation
+
+    [Fact]
+    public async Task Translate_SameFormInTwoVariants_DoesNotCrossVariants()
+    {
+        // 6B.md §9 / P0: the same canonical form in variant A and variant B is a DIFFERENT
+        // linguistic fact; the engine must never query "all variants with this form".
+        var (ctx, variantA, variantB) = await SeededContextAsync((c, vA, vB) =>
+        {
+            c.Lexemes.Add(Lex(vA.Id, "ra", "significado A", VerificationStatus.Verified));
+            c.Lexemes.Add(Lex(vB.Id, "ra", "significado B", VerificationStatus.Verified));
+        });
+        await using (ctx)
+        {
+            var engine = new DictionaryTranslationEngine(ctx);
+
+            var fromA = await engine.TranslateAsync(
+                new TranslationRequest(variantA.Name, "español", "ra"));
+            fromA.Status.Should().Be(TranslationStatus.Translated);
+            fromA.Translation.Should().Be("significado A",
+                "the query must be scoped to the source variant, never to every 'ra' in the catalog");
+            fromA.Alternatives.Should().ContainSingle("cross-variant leakage would have added 'significado B'");
+
+            var fromB = await engine.TranslateAsync(
+                new TranslationRequest(variantB.Name, "español", "ra"));
+            fromB.Status.Should().Be(TranslationStatus.Translated);
+            fromB.Translation.Should().Be("significado B");
+            fromB.Alternatives.Should().ContainSingle();
+        }
+    }
+
+    [Fact]
+    public async Task Translate_AmbiguousVariantName_IsUnsupportedLanguage_NotArbitraryPick()
+    {
+        // 6B.md §7/§9: an ambiguous language NAME (two documentary variants with the same
+        // name) is never silently resolved to the first candidate — it is UnsupportedLanguage.
+        var (ctx, _, _) = await SeededContextAsync((c, vA, vB) =>
+        {
+            // Two real variants with the SAME display name (different Ids).
+            c.LanguageVariants.Add(new LanguageVariant(vA.LanguageGroupId, vA.Name, null, null, null, null, null, null, null));
+        });
+        await using (ctx)
+        {
+            var result = await new DictionaryTranslationEngine(ctx)
+                .TranslateAsync(new TranslationRequest("zapoteco serrano", "español", "ra"));
+
+            result.Status.Should().Be(TranslationStatus.UnsupportedLanguage,
+                "an ambiguous variant identity must not resolve to an arbitrary variant");
+        }
+    }
+
     // ------------------------------------------------------------- result contract
 
     [Fact]
     public async Task Translate_EmptyInput_IsInvalidInput()
     {
-        var (ctx, _) = await SeededContextAsync();
+        var (ctx, _, _) = await SeededContextAsync();
         await using (ctx)
         {
             var result = await new DictionaryTranslationEngine(ctx)
@@ -183,7 +238,7 @@ public class DictionaryTranslationEngineTests
     [Fact]
     public async Task Translate_UnknownSourceLanguage_IsUnsupportedLanguage()
     {
-        var (ctx, _) = await SeededContextAsync();
+        var (ctx, _, _) = await SeededContextAsync();
         await using (ctx)
         {
             var result = await new DictionaryTranslationEngine(ctx)
