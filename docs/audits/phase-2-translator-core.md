@@ -269,3 +269,22 @@ Antes de corpus ingestion quedan por blindar (registrados por el usuario):
 
 y’cuando avance al seeding masivo hay que (a) otorgar permisos de ingestión por versión de corpus; (b) impedir mutación de evidencia en versiones Completed con triggers/aplicación; (c) definir proceso de qué grado de evidencia queda “canonical”; (d) revisar el rendimiento del índice CanonicalKey (VIRTUAL) bajo carga.
 
+
+
+---
+
+# FOLLOW-UP 5: cierres restantes antes de seeding masivo
+
+Dirección (documental/IB completado):
+- D1/I4 scheduled: sin inferencias inversa; reverse direction transparente (spanish primary term-index; canonical exposure via LexicalEquivalence over the lexical entry_id in Spanish means).
+- I3: Database constraints `trg_catalogversions_prevent_update_completed`, `trg_catalogversions_prevent_delete_completed`, `trg_lexeq_block_mutation_completed` applied to real MySQL (verifiable from SHOW TRIGGERS).
+- D6/D6+: alternatives in deterministic order, never `Distinct` on TargetText collapse. Primary only if exactly one canonical; 2+ canonical → integrity violation.
+
+Verification (commands real):
+- `dotnet build AtlasBuho.slnx -c Release` → 0 Advertencias / 0 Errores.
+- `dotnet test AtlasBuho.slnx -c Release --no-restore` → 68 correctas / 0 error / 1 skip (scope el 474 reconciliation intacto).
+- db: SHOW INDEX FROM lexicalequivalences WHERE Key_name='UX_LexicalEquivalence_CanonicalPerTarget'; SHOW TRIGGERS 'trg_lexeq_block_mutation_completed', catalogversions triggers; historial __EFMigrationsHistory con la migración LexicalEquivalenceModel registrada.
+
+Riesgos pendientes (declarados explícitos):
+1. Physical Collation enforcement: historial parcial limpio (último ddl temp persisted); la migración oficial se asegura entre commits con EF upgrade París.
+2. Provenance seeding discipline: todo el contenido debe venir desde CatalogVersion por import controlado, no modificaciones fuera del pipeline.

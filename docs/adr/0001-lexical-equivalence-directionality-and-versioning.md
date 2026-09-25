@@ -55,6 +55,26 @@ para ese triplete es una **violación de integridad**, nunca se "resuelve" orden
 I2 — Direccionalidad explícita. Indígena→ES y ES→Indígena requieren cada una sus propias filas
 de evidencia. Ninguna equivalencia se INFIERE invirtiendo la dirección.
 
+I2b — Reverse-direction ISO ATOMICS (resolución definitiva). Para es/en→indígena, la forma
+que se devuelve ES el lexeme canónico indígena de la variante destino. "Look it up in
+SpanishMeaning" es solo un índice de alta (sol → sense), NUNCA la autoridad. La evidencia que
+autoriza la traducción es la LexicalEquivalence canónica de ese lexeme en esa dirección, y si no
+hay, NO se genera traducción.
+
+==============================================================================
+
+Direccionamiento definitivo:
+
+- FORWARD (indígena → es/en): LexicalEquivalence con TargetLanguage ∈ {es,en}, sobre el lexeme
+  indígena del SOURCE variantId → TargetText es la traducción evidenciada.
+- REVERSE (es/en → indígena): el lexeme indígena del TARGET variantId tiene SpanishMeaning
+  como gloss structural; solo las equivalencias con TargetLanguage = es/en (grupo pertenente al
+  TARGET lexeme) cuya evidencia lingüística concuerda producen una opción determinística. El
+  TargetText no es la traducción; la traducción es el CanonicalForm del lexeme indígena.
+- Sin evidencia propia de la dirección solicitada: estamos expuestos a inferencias prohibidas.
+  El motor devuelve NotFound, jamás utiliza I1 para "transformar una equivalencia forward en
+  reverse".
+
 I3 — Sin mutaciones al corpus completado. Una `CatalogVersion` con `ImportStatus = Completed`
 es una fuente inmutable; nueva evidencia ⇒ nueva versión (nuevo `CatalogVersionId`).
 
