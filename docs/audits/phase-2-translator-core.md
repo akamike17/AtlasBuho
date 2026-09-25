@@ -330,7 +330,10 @@ TEST/BUILD evidence after fixes:
 
 Sin embargo hardening final (rfg está committed):
 
-* 474 reconciliation + 60 quarantine intactos (no tocados).
+* Phase-1 reconciliation formal (baseline lógico): 474 documentary baseline; 414 imported;
+  60 quarantined. DB real after tests/ops currently holds 488 quarantine + 352 variants +
+  843 catalog records (with test/pilot rows); the reconciliation document remains the
+  authoritative contract.
 * Engine `dictionary-2.0` con:
   + P0: CatalogVersionId físicamente pinned en TODAS las consultas de LexicalEquivalence (FORWARD y REVERSE).
   + P1: Reverse-direction no usa SpanishMeaning como autoridad. La evidencia es `LexicalEquivalence(TargetText=term, TargetLanguage=es/en, SourceLexemeId=lexeme indigena)`; `Translation` es el `CanonicalForm` del lexeme indigena. Sin evidencia => NotFound.
@@ -351,3 +354,32 @@ Verificación adicional (manual, reproducible sobre la base de datos):
   __EFMigrationsHistory` enumera LexicalEquivalenceModel.
 
 6B cerrado. La fase siguiente puede avanzar a ingesta masiva con estas garantías intactas.
+
+
+---
+
+# FOLLOW-UP 7: CORRECCIÓN DE 3 HUECOS REALES DEL REVISOR
+
+Corregido y verificado contra una BD nueva (atlasbuho_migcheck) en MySQL reaĺ:
+
+1. Migración reproducible: migration 20260925033847_LexicalEquivalenceModel.cs ahora contiene
+   4 triggers separados por migrationBuilder.Sql() (sin DELIMITER client-side; ejecutable por
+   Pomelo). Aplicados en la BD real y en la BD nueva. Se contabilizan:
+   - trg_catalogversions_prevent_update_completed
+   - trg_catalogversions_prevent_delete_completed
+   - trg_lexeq_block_mutation_completed
+   - trg_lexeq_block_delete_completed
+
+2. Único authoritative CatalogVersionId ahora filtrea TODAS las consultas del engine:
+   (`e.CatalogVersionId == latest Completed`, both directions). DatasetBinding es coherente.
+
+3. Reverse-direction evidence es explícita: LexicalEquivalence con TargetText en es/en rodeado
+   compara el indigena lexeme. La autoridad es el CanonicalForm del lexeme indigena ligado,
+   nunca SpanishMeaning.
+
+4. Reconciliación Phase-1: doc actualizado para clarificar: 474 documentary / 414 imported /
+   60 quarantined formal baseline (no DB row count during testing/operación extended
+   environment, currently 488 quarantine rows + 352 variants + 843 catalog records on the live
+   schema — used from ingestion test cycles).
+
+PRAGMA completado: 6B ahora caminable a seeding masivo con reproducibilidad física real.

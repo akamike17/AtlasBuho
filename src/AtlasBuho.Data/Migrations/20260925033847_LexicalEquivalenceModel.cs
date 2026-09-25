@@ -85,26 +85,44 @@ namespace AtlasBuho.Data.Migrations
             migrationBuilder.Sql(
                 "CREATE UNIQUE INDEX UX_LexicalEquivalence_CanonicalPerTarget ON LexicalEquivalences(CanonicalKey);");
 
-            // ADR 0001 I3 — trigger physical enforcement: completed catalog versions are
-            // immutable, and their LexicalEquivalence evidence rows cannot be mutated.
-            migrationBuilder.Sql(
-                "DELIMITER // " +
-                "CREATE TRIGGER trg_catalogversions_prevent_update_completed " +
-                "BEFORE UPDATE ON CatalogVersions FOR EACH ROW " +
-                "BEGIN IF OLD.ImportStatus = 'Completed' THEN " +
-                "SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'CatalogVersion is immutable once Completed'; " +
-                "END IF; END //" +
-                "CREATE TRIGGER trg_catalogversions_prevent_delete_completed " +
-                "BEFORE DELETE ON CatalogVersions FOR EACH ROW " +
-                "BEGIN IF OLD.ImportStatus = 'Completed' THEN " +
-                "SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'CatalogVersion is immutable once Completed'; " +
-                "END IF; END //" +
-                "CREATE TRIGGER trg_lexeq_block_mutation_completed " +
-                "BEFORE UPDATE ON LexicalEquivalences FOR EACH ROW " +
-                "BEGIN IF EXISTS (SELECT 1 FROM CatalogVersions cv WHERE cv.Id = OLD.CatalogVersionId AND cv.ImportStatus = 'Completed') THEN " +
-                "SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'LexicalEquivalence evidence is immutable once its CatalogVersion is Completed'; " +
-                "END IF; END //" +
-                "DELIMITER ;");
+            // ADR 0001 I3 — trigger physical enforcement. Each trigger is built in a separate
+            // migrationBuilder.Sql() call so the migration is executable by the EF Core provider
+            // (Pomelo) without client-specific DELIMITER handling. Four triggers, all inline.
+            migrationBuilder.Sql(@"
+CREATE TRIGGER IF NOT EXISTS trg_catalogversions_prevent_update_completed
+BEFORE UPDATE ON CatalogVersions FOR EACH ROW
+BEGIN
+    IF OLD.ImportStatus = 'Completed' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'CatalogVersion is immutable once Completed';
+    END IF;
+END");
+
+            migrationBuilder.Sql(@"
+CREATE TRIGGER IF NOT EXISTS trg_catalogversions_prevent_delete_completed
+BEFORE DELETE ON CatalogVersions FOR EACH ROW
+BEGIN
+    IF OLD.ImportStatus = 'Completed' THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'CatalogVersion is immutable once Completed';
+    END IF;
+END");
+
+            migrationBuilder.Sql(@"
+CREATE TRIGGER IF NOT EXISTS trg_lexeq_block_mutation_completed
+BEFORE UPDATE ON LexicalEquivalences FOR EACH ROW
+BEGIN
+    IF EXISTS (SELECT 1 FROM CatalogVersions cv WHERE cv.Id = OLD.CatalogVersionId AND cv.ImportStatus = 'Completed') THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'LexicalEquivalence evidence is immutable once its CatalogVersion is Completed';
+    END IF;
+END");
+
+            migrationBuilder.Sql(@"
+CREATE TRIGGER IF NOT EXISTS trg_lexeq_block_delete_completed
+BEFORE DELETE ON LexicalEquivalences FOR EACH ROW
+BEGIN
+    IF EXISTS (SELECT 1 FROM CatalogVersions cv WHERE cv.Id = OLD.CatalogVersionId AND cv.ImportStatus = 'Completed') THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'LexicalEquivalence evidence is immutable once its CatalogVersion is Completed';
+    END IF;
+END");
         }
 
         /// <inheritdoc />
