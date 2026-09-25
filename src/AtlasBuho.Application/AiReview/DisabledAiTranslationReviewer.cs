@@ -47,7 +47,7 @@ public sealed class AiReviewOptionsValidator
             if (options.Provider != null && options.Provider != "Disabled")
             {
                 throw new InvalidOperationException(
-                    "AI is disabled but Provider is set to '{options.Provider}'. " +
+                    $"AI is disabled but Provider is set to '{options.Provider}'. " +
                     "Set Provider = 'Disabled' or leave it null.");
             }
             return;

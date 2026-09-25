@@ -4,6 +4,7 @@ using AtlasBuho.Data;
 using AtlasBuho.Data.Translation;
 using AtlasBuho.Infrastructure.AiProviders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
@@ -47,20 +48,30 @@ public static class TranslationServiceCollectionExtensions
         services.AddScoped<ICandidateExtractor, CandidateExtractor>();
 
         // AI review options (from configuration or defaults)
-        services.AddSingleton(new AiReviewOptions());
+        // Register with Options pattern so IOptions<AiReviewOptions> resolves correctly
+        services.AddOptions<AiReviewOptions>()
+            .Configure<IConfiguration>((options, config) =>
+            {
+                var section = config.GetSection("AtlasBuho:AI");
+                section.Bind(options);
+            });
 
         // AI reviewer (production: external provider, tests: MockAiTranslationReviewer)
-        // When AI is disabled, the handler will operate without a reviewer
+        // Provider selection through configuration (B10.1 §3)
         services.AddScoped<IAiTranslationReviewer>(provider =>
         {
-            var options = provider.GetRequiredService<Microsoft.Extensions.Options.IOptions<AiReviewOptions>>();
+            var options = provider.GetRequiredService<IOptions<AiReviewOptions>>();
             var aiOptions = options.Value;
-            
+
+            // Validate configuration
+            AiReviewOptionsValidator.Validate(aiOptions);
+
             return aiOptions.Provider?.ToLowerInvariant() switch
             {
                 "mock" => new MockAiTranslationReviewer(aiOptions),
                 "disabled" => new DisabledAiTranslationReviewer(),
-                null => new DisabledAiTranslationReviewer(),
+                null => new DisabledAiTranslationReviewer(), // Default to disabled if not specified
+                "" => new DisabledAiTranslationReviewer(),  // Empty string also means disabled
                 _ => throw new InvalidOperationException(
                     $"Unknown AI provider: '{aiOptions.Provider}'. " +
                     $"Valid providers: Mock, Disabled. " +
@@ -98,7 +109,34 @@ public static class TranslationServiceCollectionExtensions
         services.AddScoped<ICandidateExtractor, CandidateExtractor>();
 
         // AI review options (disabled by default in tests unless overridden)
-        services.AddSingleton(new AiReviewOptions { Enabled = false });
+        // Register with Options pattern so IOptions<AiReviewOptions> resolves correctly
+        services.AddOptions<AiReviewOptions>()
+            .Configure<IConfiguration>((options, config) =>
+            {
+                var section = config.GetSection("AtlasBuho:AI");
+                section.Bind(options);
+            });
+
+        // AI reviewer — same provider selection logic as production (IOptions validation applies)
+        services.AddScoped<IAiTranslationReviewer>(provider =>
+        {
+            var options = provider.GetRequiredService<IOptions<AiReviewOptions>>();
+            var aiOptions = options.Value;
+
+            AiReviewOptionsValidator.Validate(aiOptions);
+
+            return aiOptions.Provider?.ToLowerInvariant() switch
+            {
+                "mock" => new MockAiTranslationReviewer(aiOptions),
+                "disabled" => new DisabledAiTranslationReviewer(),
+                null => new DisabledAiTranslationReviewer(),
+                "" => new DisabledAiTranslationReviewer(),
+                _ => throw new InvalidOperationException(
+                    $"Unknown AI provider: '{aiOptions.Provider}'. " +
+                    $"Valid providers: Mock, Disabled. " +
+                    $"External providers must be registered separately.")
+            };
+        });
 
         // Translation orchestrator
         services.AddScoped<TranslationQueryHandler>();
