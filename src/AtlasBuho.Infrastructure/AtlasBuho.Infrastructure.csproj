@@ -7,4 +7,9 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AtlasBuho.Application\AtlasBuho.Application.csproj" />
+    <ProjectReference Include="..\AtlasBuho.Domain\AtlasBuho.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

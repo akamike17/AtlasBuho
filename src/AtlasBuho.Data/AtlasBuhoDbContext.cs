@@ -45,6 +45,10 @@ public class AtlasBuhoDbContext : DbContext, Domain.Interfaces.IUnitOfWork
     // ADR 0001 — one row = one verified piece of lexical-translation evidence
     public DbSet<Domain.Entities.LexicalEquivalence> LexicalEquivalences => Set<Domain.Entities.LexicalEquivalence>();
 
+    // B10 — AI review audit (non-canonical, never promotes automatically)
+    public DbSet<Domain.AiReview.AiTranslationReview> AiTranslationReviews => Set<Domain.AiReview.AiTranslationReview>();
+    public DbSet<Domain.AiReview.V2Candidate> V2Candidates => Set<Domain.AiReview.V2Candidate>();
+
     // IUnitOfWork implementation - Repository properties (explicit interface implementation)
     Domain.Interfaces.ILanguageFamilyRepository Domain.Interfaces.IUnitOfWork.LanguageFamilies => new Repositories.LanguageFamilyRepository(this);
     Domain.Interfaces.ILanguageGroupRepository Domain.Interfaces.IUnitOfWork.LanguageGroups => new Repositories.LanguageGroupRepository(this);
