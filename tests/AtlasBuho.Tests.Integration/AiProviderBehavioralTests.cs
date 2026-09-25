@@ -112,33 +112,36 @@ public class AiProviderBehavioralTests : IDisposable
     [Fact]
     public void TestD_ExternalPluggableProvider_SelectableThroughConfiguration()
     {
-        // Arrange: Create external provider implementation (test-only)
-        var externalReviewer = new TestExternalProvider();
-
-        // Build DI with external provider registered via configuration + override
+        // Arrange: Register external factory in DI (proving extensibility)
+        // This proves the registry allows external providers WITHOUT modifying Domain/Handler
         var services = new ServiceCollection();
         services.AddLogging();
+
+        // External provider configuration
         services.AddSingleton<IConfiguration>(new ConfigurationBuilder()
             .AddInMemoryCollection(new Dictionary<string, string?>
             {
                 ["AtlasBuho:AI:Enabled"] = "true",
                 ["AtlasBuho:AI:Provider"] = "ExternalTestProvider",
-                ["AtlasBuho:AI:Model"] = "test-model-v1",
+                ["AtlasBuho:AI:Model"] = "external-model-v1",
                 ["AtlasBuho:AI:ApiKey"] = "test-placeholder"
             })
             .Build());
+
+        // Register AtlasBuho services (includes default factories)
         services.AddAtlasBuhoTranslationForTesting();
 
-        // Override the default provider registration with external (proves pluggability)
-        services.AddSingleton<IAiTranslationReviewer>(externalReviewer);
+        // Register EXTERNAL factory — this is the key to provider neutrality
+        // External providers can be added without modifying Domain/Handler
+        services.AddSingleton<IAiTranslationReviewerFactory, TestExternalProviderFactory>();
 
         var serviceProvider = services.BuildServiceProvider();
 
-        // Act: Resolve and verify the external provider is selected
-        var resolvedReviewer = serviceProvider.GetRequiredService<IAiTranslationReviewer>();
+        // Act: Resolve through registry (registry resolves by provider name from config)
+        var reviewer = serviceProvider.GetRequiredService<IAiTranslationReviewer>();
 
-        // Assert: External provider is resolved, not Mock
-        Assert.Same(externalReviewer, resolvedReviewer);
+        // Assert: External provider is resolved (proves registry selects by provider name)
+        Assert.IsType<TestExternalProvider>( reviewer);
     }
 
     [Fact]
@@ -260,6 +263,16 @@ public class AiProviderBehavioralTests : IDisposable
         public Task<AiLanguageDetectionResult> DetectLanguageAsync(
             string text, IReadOnlyList<string> knownVariants, CancellationToken ct = default)
             => Task.FromResult(new AiLanguageDetectionResult("test-lang", 0.95, "ExternalTestProvider", "test-model-v1", false, null));
+    }
+
+    // Test factory for external provider (B10.1 §8)
+    public sealed class TestExternalProviderFactory : IAiTranslationReviewerFactory
+    {
+        public bool CanResolve(string providerName)
+            => providerName.Equals("ExternalTestProvider", StringComparison.OrdinalIgnoreCase);
+
+        public IAiTranslationReviewer Create(AiReviewOptions options)
+            => new TestExternalProvider();
     }
 
     private async Task<(Guid LexemeId, Guid EquivalenceId)> SeedTestData(string lexeme, string meaning, string targetLanguage)

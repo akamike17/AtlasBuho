@@ -56,8 +56,17 @@ public static class TranslationServiceCollectionExtensions
                 section.Bind(options);
             });
 
-        // AI reviewer (production: external provider, tests: MockAiTranslationReviewer)
-        // Provider selection through configuration (B10.1 §3)
+        // AI reviewer factories — provider-neutral selection (B10.1 §3)
+        // Register default factories
+        services.AddSingleton<IAiTranslationReviewerFactory, MockAiTranslationReviewerFactory>();
+        services.AddSingleton<IAiTranslationReviewerFactory, DisabledAiTranslationReviewerFactory>();
+
+        // Registry composes factories
+        services.AddSingleton<IAiTranslationReviewerRegistry>(provider =>
+            new AiTranslationReviewerRegistry(
+                provider.GetRequiredService<IEnumerable<IAiTranslationReviewerFactory>>()));
+
+        // AI reviewer resolved through registry (single registration point)
         services.AddScoped<IAiTranslationReviewer>(provider =>
         {
             var options = provider.GetRequiredService<IOptions<AiReviewOptions>>();
@@ -66,17 +75,9 @@ public static class TranslationServiceCollectionExtensions
             // Validate configuration
             AiReviewOptionsValidator.Validate(aiOptions);
 
-            return aiOptions.Provider?.ToLowerInvariant() switch
-            {
-                "mock" => new MockAiTranslationReviewer(aiOptions),
-                "disabled" => new DisabledAiTranslationReviewer(),
-                null => new DisabledAiTranslationReviewer(), // Default to disabled if not specified
-                "" => new DisabledAiTranslationReviewer(),  // Empty string also means disabled
-                _ => throw new InvalidOperationException(
-                    $"Unknown AI provider: '{aiOptions.Provider}'. " +
-                    $"Valid providers: Mock, Disabled. " +
-                    $"External providers must be registered separately.")
-            };
+            // Resolve through registry — provider-neutral selection
+            var registry = provider.GetRequiredService<IAiTranslationReviewerRegistry>();
+            return registry.Resolve(aiOptions.Provider!, aiOptions);
         });
 
         // Translation orchestrator
@@ -117,7 +118,17 @@ public static class TranslationServiceCollectionExtensions
                 section.Bind(options);
             });
 
-        // AI reviewer — same provider selection logic as production (IOptions validation applies)
+        // AI reviewer factories — provider-neutral selection (B10.1 §3)
+        // Register default factories (tests may add more via configuration)
+        services.AddSingleton<IAiTranslationReviewerFactory, MockAiTranslationReviewerFactory>();
+        services.AddSingleton<IAiTranslationReviewerFactory, DisabledAiTranslationReviewerFactory>();
+
+        // Registry composes factories
+        services.AddSingleton<IAiTranslationReviewerRegistry>(provider =>
+            new AiTranslationReviewerRegistry(
+                provider.GetRequiredService<IEnumerable<IAiTranslationReviewerFactory>>()));
+
+        // AI reviewer resolved through registry
         services.AddScoped<IAiTranslationReviewer>(provider =>
         {
             var options = provider.GetRequiredService<IOptions<AiReviewOptions>>();
@@ -125,17 +136,8 @@ public static class TranslationServiceCollectionExtensions
 
             AiReviewOptionsValidator.Validate(aiOptions);
 
-            return aiOptions.Provider?.ToLowerInvariant() switch
-            {
-                "mock" => new MockAiTranslationReviewer(aiOptions),
-                "disabled" => new DisabledAiTranslationReviewer(),
-                null => new DisabledAiTranslationReviewer(),
-                "" => new DisabledAiTranslationReviewer(),
-                _ => throw new InvalidOperationException(
-                    $"Unknown AI provider: '{aiOptions.Provider}'. " +
-                    $"Valid providers: Mock, Disabled. " +
-                    $"External providers must be registered separately.")
-            };
+            var registry = provider.GetRequiredService<IAiTranslationReviewerRegistry>();
+            return registry.Resolve(aiOptions.Provider!, aiOptions);
         });
 
         // Translation orchestrator

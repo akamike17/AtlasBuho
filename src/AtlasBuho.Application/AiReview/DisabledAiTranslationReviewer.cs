@@ -61,24 +61,8 @@ public sealed class AiReviewOptionsValidator
                 "Set Provider to 'Mock' or a valid provider name.");
         }
 
-        // Known providers: Mock, Disabled
-        var knownProviders = new[] { "Mock", "Disabled" };
-        if (!knownProviders.Contains(options.Provider, StringComparer.OrdinalIgnoreCase))
-        {
-            throw new InvalidOperationException(
-                $"Unknown AI provider: '{options.Provider}'. " +
-                $"Valid providers: {string.Join(", ", knownProviders)}. " +
-                $"External providers must be registered separately.");
-        }
-
-        // When Provider = "Mock", validate additional fields
-        if (options.Provider.Equals("Mock", StringComparison.OrdinalIgnoreCase))
-        {
-            if (string.IsNullOrWhiteSpace(options.Model))
-            {
-                throw new InvalidOperationException(
-                    "Mock provider requires a Model name (e.g., 'mock-v1').");
-            }
-        }
+        // Validation of provider name is delegated to the factory registry.
+        // This validator only checks that a provider name is present and non-empty.
+        // External providers must be registered via IAiTranslationReviewerFactory.
     }
 }
