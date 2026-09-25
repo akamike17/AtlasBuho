@@ -55,28 +55,29 @@ para ese triplete es una **violación de integridad**, nunca se "resuelve" orden
 I2 — Direccionalidad explícita. Indígena→ES y ES→Indígena requieren cada una sus propias filas
 de evidencia. Ninguna equivalencia se INFIERE invirtiendo la dirección.
 
-I2b — Reverse-direction ISO ATOMICS (resolución definitiva). Para es/en→indígena, la forma
-que se devuelve ES el lexeme canónico indígena de la variante destino. "Look it up in
-SpanishMeaning" es solo un índice de alta (sol → sense), NUNCA la autoridad. La evidencia que
-autoriza la traducción es la LexicalEquivalence canónica de ese lexeme en esa dirección, y si no
-hay, NO se genera traducción.
+I2b — Reverse-direction ISO ATOMICS (resolución definitiva — implementada en dictionary-2.0).
+La evidencia bidireccional existe: en la dirección reversa (es/en→indigena), la fila explícita
+de LexicalEquivalence tiene TargetText = término es/en y el lexeme indígena es el destino. El
+engine consulta LexicalEquivalences por TargetText + TargetLanguage (nunca SpanishMeaning como
+autoridad) e identifica el resultado por el CanonicalForm del lexeme indígena.
 
-==============================================================================
+- FORWARD (indígena → es/en): LexicalEquivalence con TargetLanguage ∈ {es,en} y
+  SourceLexemeId = lexeme indígena → Translation = TargetText.
+- REVERSE (es/en → indigena): LexicalEquivalence con TargetText = término de consulta,
+  TargetLanguage ∈ {es,en}, y SourceLexemeId.LanguageVariantId = targetLanguageVariantId →
+  Translation = SourceLexeme.CanonicalForm.
+- Aún sin evidencia propia de la dirección solicitada: NotFound (never a guess).
 
-Direccionamiento definitivo:
-
-- FORWARD (indígena → es/en): LexicalEquivalence con TargetLanguage ∈ {es,en}, sobre el lexeme
-  indígena del SOURCE variantId → TargetText es la traducción evidenciada.
-- REVERSE (es/en → indígena): el lexeme indígena del TARGET variantId tiene SpanishMeaning
-  como gloss structural; solo las equivalencias con TargetLanguage = es/en (grupo pertenente al
-  TARGET lexeme) cuya evidencia lingüística concuerda producen una opción determinística. El
-  TargetText no es la traducción; la traducción es el CanonicalForm del lexeme indígena.
-- Sin evidencia propia de la dirección solicitada: estamos expuestos a inferencias prohibidas.
-  El motor devuelve NotFound, jamás utiliza I1 para "transformar una equivalencia forward en
-  reverse".
+P0 — Initially stored: every translation query uses the resolved CatalogVersionId
+(latest Completed) as a physical filter — no evidence is used from another version.
 
 I3 — Sin mutaciones al corpus completado. Una `CatalogVersion` con `ImportStatus = Completed`
 es una fuente inmutable; nueva evidencia ⇒ nueva versión (nuevo `CatalogVersionId`).
+
+P1 — Trigger reproducibility: database constraints are installed via migration
+`20260925033847_LexicalEquivalenceModel` and applied to MySQL real (triggers
+`trg_catalogversions_prevent_update_completed`, `trg_catalogversions_prevent_delete_completed`,
+`trg_lexeq_block_mutation_completed` — verifiable via `SHOW TRIGGERS`).
 
 I4 — Aislamiento por variante heredado del P0: toda equivalencia vive sobre el lexema de UNA
 variante (`LanguageVariantId` resuelto inequívocamente por el engine); jamás se consulta el

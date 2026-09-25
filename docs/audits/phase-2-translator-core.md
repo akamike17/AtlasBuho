@@ -288,3 +288,37 @@ Verification (commands real):
 Riesgos pendientes (declarados explícitos):
 1. Physical Collation enforcement: historial parcial limpio (último ddl temp persisted); la migración oficial se asegura entre commits con EF upgrade París.
 2. Provenance seeding discipline: todo el contenido debe venir desde CatalogVersion por import controlado, no modificaciones fuera del pipeline.
+
+
+---
+
+# FOLLOW-UP 6: P0+P1 FIXES FINAL
+
+*Context:* user review identified two remaining P0s and one P1 before corpus seeding.
+
+## P0 RESUELTO: CatalogVersionId now physically pinned to every query
+
+The engine now resolves the latest Completed CatalogVersionId and uses it as a filter in every
+LexicalEquivalence query (FORWARD and REVERSE directions). The physical Spring is
+`catalogVersionId = resolveCatalogVersion()` — never "any completed version". This keeps the
+dataset reproducible: CatalogVersionId → deterministic evidence.
+
+## P1 RESUELTO: Reverse-direction evidence is fully explicit (no SpanishMeaning dependency)
+
+Reverse direction (es/en→indigena) now queries LexicalEquivalences by TargetText + TargetLanguage
+and identifies the result by SourceLexeme.CanonicalForm (never the SpanishMeaning of the lexeme).
+SpanishMeaning is no longer consulted as a translation source; it remains a passive gloss index.
+Without a matching equivalence row, the direction is NotFound.
+
+## P1 RESUELTO: Trigger reproducibility via migration
+
+Database triggers for CatalogVersion immutability and LexicalEquivalence mutation blocking are
+via migration `20260925033847_LexicalEquivalenceModel` (landing SQL-generated on the migration
+file}, applied to MySQL real and verifiable via `SHOW TRIGGERS`. The repository contains the
+migration file, so the constraints are reproducible on a fresh clone.
+
+--------------------------------------------------------------------------------
+TEST/BUILD evidence after fixes:
+- dotnet build AtlasBuho.slnx -c Release → 0 Advertencias / 0 Errores.
+- dotnet test AtlasBuho.slnx -c Release --no-restore → 68 correctas / 1 omitida preexistente /
+  0 errors (LexicalEquivalenceEngineTests 12/12 OK).

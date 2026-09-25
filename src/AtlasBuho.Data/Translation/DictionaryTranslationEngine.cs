@@ -99,56 +99,46 @@ public sealed class DictionaryTranslationEngine : ITranslationEngine
 
         if (isIncomingToTargetVariant && (IsSpanishTag(source) || IsEnglish(source)))
         {
-            // es/en -> Indigenous: reverse direction is its OWN evidence (ADR 0001 I2).
-            // The Spanish/English input matches a SpanishMeaning on the TARGET variant's
-            // lexemes, and the resolved translation is that lexeme's canonical form.
-            var lexemes = await _context.Lexemes
-                .Where(l => l.LanguageVariantId == targetVariantId!.Value &&
-                            l.SpanishMeaning == term)
-                .ToListAsync(cancellationToken);
-
-            if (lexemes.Count == 0)
-            {
-                return TranslationResult.NotFound(source, target, term, datasetVersion, EngineVersion);
-            }
-
-            var lexemeIds = lexemes.Select(l => l.Id).ToList();
+            // ADR 0001 I2b — reverse direction is its OWN atomic evidence:
+            //   input term (es/en) matches LexicalEquivalence.TargetText for a reverse row
+            //   TargetLanguage ∈ {es,en} spawns the evidence; canonical form of the lexeme is the result.
+            // SpanishMeaning is NOT used as authority; only as a lookup index.
+            var catalogVersionId = await ResolveCatalogVersionIdAsync(cancellationToken);
 
             var equivalences = await _context.LexicalEquivalences
-                .Where(e => lexemeIds.Contains(e.SourceLexemeId) &&
+                .Where(e => e.TargetText == term &&
                             e.TargetLanguage == (IsSpanishTag(source) ? TargetEs : TargetEn) &&
                             VerifiedStates.Contains(e.VerificationStatus) &&
-                            e.CatalogVersion!.ImportStatus == "Completed")
+                            e.CatalogVersionId == catalogVersionId &&
+                            e.SourceLexeme!.LanguageVariantId == targetVariantId!.Value)
+                .Include(e => e.SourceLexeme)
                 .Include(e => e.EvidenceSource)
                 .ToListAsync(cancellationToken);
 
-            // Only equivalences whose language matches the source side AND whose source lexeme
-            // has the matching SpanishMeaning.
-            var lexemeById = lexemes.ToDictionary(l => l.Id);
-            var matches = equivalences
-                .Where(e => lexemeById.TryGetValue(e.SourceLexemeId, out var lx) &&
-                            lx.SpanishMeaning == term)
-                .ToList();
-
-            if (matches.Count == 0)
+            if (equivalences.Count == 0)
             {
                 return TranslationResult.NotFound(source, target, term, datasetVersion, EngineVersion);
             }
 
-            var reverseCanonical = matches.Where(e => e.IsCanonical).ToList();
+            // Reverse mediate selection: it is the CanonicalForm of the TargetLexeme, never
+            // an arithmetic inversion of the forward TargetText.
+            var reverseCanonical = equivalences.Where(e => e.IsCanonical).ToList();
             if (reverseCanonical.Count > 1)
-                throw new InvalidOperationException("INTEGRITY VIOLATION (reverse direction I1)");
+                throw new InvalidOperationException(
+                    $"INTEGRITY VIOLATION: {reverseCanonical.Count} canonical LexicalEquivalence rows " +
+                    $"in reverse direction for term '{term}'. Refusing to pick an arbitrary winner " +
+                    $"(ADR 0001 I1, reverse direction).");
 
             var reversePrimary = reverseCanonical.Count == 1
-                ? lexemeById[reverseCanonical[0].SourceLexemeId].CanonicalForm
+                ? reverseCanonical[0].SourceLexeme!.CanonicalForm
                 : null;
 
-            var reverseAlternatives = matches
+            var reverseAlternatives = equivalences
                 .OrderByDescending(e => e.IsCanonical)
-                .ThenBy(e => lexemeById[e.SourceLexemeId].CanonicalForm, StringComparer.Ordinal)
+                .ThenBy(e => e.SourceLexeme!.CanonicalForm, StringComparer.Ordinal)
                 .ThenBy(e => e.EvidenceSource!.Name, StringComparer.Ordinal)
                 .Select(e => new TranslationAlternative(
-                    lexemeById[e.SourceLexemeId].CanonicalForm,
+                    e.SourceLexeme!.CanonicalForm,
                     e.IsCanonical ? "canonical" : "alternative",
                     e.VerificationStatus.ToString()))
                 .ToList();
@@ -227,6 +217,17 @@ public sealed class DictionaryTranslationEngine : ITranslationEngine
             .FirstOrDefaultAsync(cancellationToken);
 
         return version ?? "unversioned";
+    }
+
+    private async Task<Guid> ResolveCatalogVersionIdAsync(CancellationToken cancellationToken)
+    {
+        var id = await _context.CatalogVersions
+            .Where(v => v.ImportStatus == "Completed")
+            .OrderByDescending(v => v.RetrievedAt)
+            .Select(v => v.Id)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        return id == default ? throw new InvalidOperationException("No completed CatalogVersion found") : id;
     }
 
     private static bool IsSpanishTag(string language)
