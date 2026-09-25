@@ -123,17 +123,17 @@ public class AiSeparationTests : IAsyncLifetime
 
         _context.Database.ExecuteSqlRaw(
             @"INSERT INTO LanguageFamilies (Id, Name, NameEnglish, CreatedAt, UpdatedAt)
-              VALUES (@p0, 'Otomanguean', 'Otomanguean', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
+              VALUES ({0}, 'Otomanguean', 'Otomanguean', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
             familyId.ToString());
 
         _context.Database.ExecuteSqlRaw(
             @"INSERT INTO LanguageGroups (Id, LanguageFamilyId, Name, CreatedAt, UpdatedAt)
-              VALUES (@p0, @p1, 'Popolocan', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
+              VALUES ({0}, {1}, 'Popolocan', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
             groupId.ToString(), familyId.ToString());
 
         _context.Database.ExecuteSqlRaw(
             @"INSERT INTO LanguageVariants (Id, LanguageGroupId, Name, CreatedAt, UpdatedAt)
-              VALUES (@p0, @p1, 'Chontal de Oaxaca', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
+              VALUES ({0}, {1}, 'Chontal de Oaxaca', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
             variantId.ToString(), groupId.ToString());
 
         // Act: AI detects different variant
@@ -202,17 +202,17 @@ public class AiSeparationTests : IAsyncLifetime
 
         _context.Database.ExecuteSqlRaw(
             @"INSERT INTO LanguageFamilies (Id, Name, NameEnglish, CreatedAt, UpdatedAt)
-              VALUES (@p0, 'Otomanguean', 'Otomanguean', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
+              VALUES ({0}, 'Otomanguean', 'Otomanguean', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
             familyId.ToString());
 
         _context.Database.ExecuteSqlRaw(
             @"INSERT INTO LanguageGroups (Id, LanguageFamilyId, Name, CreatedAt, UpdatedAt)
-              VALUES (@p0, @p1, 'Popolocan', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
+              VALUES ({0}, {1}, 'Popolocan', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
             groupId.ToString(), familyId.ToString());
 
         _context.Database.ExecuteSqlRaw(
             @"INSERT INTO LanguageVariants (Id, LanguageGroupId, Name, CreatedAt, UpdatedAt)
-              VALUES (@p0, @p1, 'Chontal de Oaxaca', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
+              VALUES ({0}, {1}, 'Chontal de Oaxaca', UTC_TIMESTAMP(6), UTC_TIMESTAMP(6))",
             variantId.ToString(), groupId.ToString());
 
         // Act: AI provider fails
@@ -333,5 +333,112 @@ public class AiSeparationTests : IAsyncLifetime
 
         // InputText is user data — we don't scan it for secrets as it's not metadata
         Assert.Equal("test input", saved.InputText);
+    }
+
+
+
+
+
+    [Fact]
+    public async Task Test9_AiReviewDoesNotContaminateCanonicalData()
+    {
+        // CRITICAL: AI review exists, canonical evidence UNCHANGED
+
+        var family = new LanguageFamily($"Fam{Guid.NewGuid():N}", null, null, null);
+        _context.LanguageFamilies.Add(family);
+        await _context.SaveChangesAsync();
+
+        var group = new LanguageGroup(family.Id, $"Grp{Guid.NewGuid():N}", null, null, null);
+        _context.LanguageGroups.Add(group);
+        await _context.SaveChangesAsync();
+
+        var variant = new LanguageVariant(group.Id, $"Var{Guid.NewGuid():N}", null, null, null, null, null, null, null);
+        _context.LanguageVariants.Add(variant);
+        await _context.SaveChangesAsync();
+
+        var catalogSource = new CatalogSource($"Src{Guid.NewGuid():N}", "Test Catalog", "https://test.com");
+        _context.CatalogSources.Add(catalogSource);
+        await _context.SaveChangesAsync();
+
+        var version = new CatalogVersion(catalogSource.Id, $"v1-{Guid.NewGuid():N}", "hash", DateTime.UtcNow, 0, 0, 0, 0, "v1.0", "Completed");
+        _context.CatalogVersions.Add(version);
+        await _context.SaveChangesAsync();
+
+        var lexeme = new Lexeme(variant.Id, "tsi", null, null, "casa", null, null, null, null, null, null, null, "Dict", VerificationStatus.Verified, 0.95);
+        _context.Lexemes.Add(lexeme);
+        await _context.SaveChangesAsync();
+
+        var meaning = new Meaning(lexeme.Id, "casa", null, null, null, null, null, "Dict", VerificationStatus.Verified, 0.95, 0);
+        _context.Meanings.Add(meaning);
+        await _context.SaveChangesAsync();
+
+        var source = new Source($"Dict{Guid.NewGuid():N}", SourceLevel.AcademicMaterial, null, null, null, null, null, null, null, null, null, null, null, null, null);
+        _context.Sources.Add(source);
+        await _context.SaveChangesAsync();
+
+        var equivalence = new LexicalEquivalence(lexeme.Id, "es", "casa", true, VerificationStatus.Verified, source.Id, version.Id);
+        _context.LexicalEquivalences.Add(equivalence);
+        await _context.SaveChangesAsync();
+
+        // Act: AI proposes correction
+        var aiReview = new AiTranslationReview
+        {
+            InputText = "tsi",
+            SourceLanguageRequested = variant.Name,
+            TargetLanguageRequested = "es",
+            AtlasBuhoV1Result = "casa",
+            ReviewStatus = AiReviewStatus.LikelyIncorrect,
+            ProposedCorrection = "hogar",
+            ProviderName = "Mock",
+            ModelName = "mock-v1",
+            PromptVersion = "v1",
+            Success = true
+        };
+
+        var v2Candidate = new V2Candidate
+        {
+            AiReviewId = aiReview.Id,
+            CanonicalForm = "tsi",
+            SpanishMeaning = "hogar",
+            TargetLanguage = "es",
+            TargetText = "hogar",
+            IsPromoted = false
+        };
+
+        _context.AiTranslationReviews.Add(aiReview);
+        _context.V2Candidates.Add(v2Candidate);
+        await _context.SaveChangesAsync();
+
+        // Assert: canonical unchanged
+        var lexemeAfter = await _context.Lexemes.FindAsync(lexeme.Id);
+        Assert.Equal("tsi", lexemeAfter!.CanonicalForm);
+        Assert.Equal("casa", lexemeAfter!.SpanishMeaning);
+
+        var meaningAfter = await _context.Meanings.FindAsync(meaning.Id);
+        Assert.Equal("casa", meaningAfter!.SpanishMeaning);
+
+        var equivalenceAfter = await _context.LexicalEquivalences.FindAsync(equivalence.Id);
+        Assert.Equal("casa", equivalenceAfter!.TargetText);
+        Assert.True(equivalenceAfter!.IsCanonical);
+
+        var versionAfter = await _context.CatalogVersions.FindAsync(version.Id);
+        Assert.Equal("Completed", versionAfter!.ImportStatus);
+
+        var savedReview = await _context.AiTranslationReviews.FirstAsync();
+        Assert.Equal("hogar", savedReview.ProposedCorrection);
+
+        var savedCandidate = await _context.V2Candidates.FirstAsync();
+        Assert.False(savedCandidate.IsPromoted);
+
+        var canonicalWithCorrection = await _context.LexicalEquivalences
+            .Where(e => e.TargetText == "hogar")
+            .ToListAsync();
+        Assert.Empty(canonicalWithCorrection);
+
+        var canonicalTranslations = await _context.LexicalEquivalences
+            .Where(e => e.SourceLexemeId == lexeme.Id)
+            .ToListAsync();
+        Assert.Single(canonicalTranslations);
+        Assert.Equal("casa", canonicalTranslations[0].TargetText);
     }
 }

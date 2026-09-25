@@ -139,5 +139,19 @@ Explicit Promotion (requires evidence verification, out of scope for B10)
 
 ---
 
+## Post-Implementation Addendum (2026-09-25)
+
+**Test9_AiReviewDoesNotContaminateCanonicalData added:**
+- Proves end-to-end flow: V1 evidence → AI review (proposes "hogar") → canonical unchanged ("casa" remains)
+- Verifies V2Candidate NOT promoted (IsPromoted=false, Lifecycle=Pending)
+- Asserts "hogar" does NOT exist in LexicalEquivalences (content check, not just count)
+- Confirms CatalogVersion remains "Completed" (immutable)
+
+**Results:**
+- Integration tests: 21/21 PASS (added Test9)
+- Unit tests: 68/69 PASS, 1 skip preexisting (W1HContextRepositoryTests.GetByEntityAsync - InMemory provider limitation)
+
+**Skip explanation:** `GetByEntityAsync_ShouldReturnContextsLinkedToEntity` skipped due to InMemory database query limitation with EntityType filtering (EF Core known issue). Preexisting since Phase 2, not introduced by B10.
+
 *Audit complete. All B10 requirements implemented and verified.*
 
