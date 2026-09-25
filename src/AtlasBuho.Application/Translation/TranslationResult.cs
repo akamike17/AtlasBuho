@@ -41,5 +41,10 @@ public enum TranslationStatus
     NotFound,
     PendingVerification,
     UnsupportedLanguage,
-    InvalidInput
+    InvalidInput,
+
+    /// 6B.md §21/§42: infrastructure/configuration state, NOT a linguistic state. Returned by
+    /// the API layer when the translation engine is not configured (HTTP 503); never produced
+    /// as a translation outcome by ITranslationEngine.
+    ServiceUnavailable
 }

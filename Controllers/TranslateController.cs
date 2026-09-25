@@ -34,7 +34,7 @@ public class TranslateController : ControllerBase
         if (_engine == null)
         {
             return StatusCode(StatusCodes.Status503ServiceUnavailable, new TranslationResult(
-                TranslationStatus.UnsupportedLanguage, request.SourceLanguage ?? string.Empty,
+                TranslationStatus.ServiceUnavailable, request.SourceLanguage ?? string.Empty,
                 request.TargetLanguage ?? string.Empty, request.Text ?? string.Empty,
                 null, null, null, string.Empty, "unavailable",
                 Array.Empty<TranslationAlternative>()));

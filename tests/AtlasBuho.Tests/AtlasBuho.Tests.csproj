@@ -12,6 +12,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AtlasBuho.Application\AtlasBuho.Application.csproj" />
+    <!-- TranslateController lives in the root web project; tests reference it via the shared
+         ASP.NET Core framework so the controller can be unit-tested without hosting. -->
+    <ProjectReference Include="..\..\AtlasBuho.csproj" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
   <ItemGroup>

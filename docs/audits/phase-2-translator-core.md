@@ -189,3 +189,51 @@ CanonicalForm=@term AND VerificationStatus IN (1,2,3,4)
 ```
 
 Tras la prueba los lexemas de test fueron eliminados (`Lexemes` queda de nuevo 0).
+
+
+---
+
+# FOLLOW-UP 3: 503 BODY SEMANTIC CONTRACT + CONTROLLER TESTS
+
+**Fecha:** 2026-09-24 · base: aa83ef0
+
+## Inconsistencia detectada (P1 cola)
+
+HTTP 503 llevaba `TranslationStatus.UnsupportedLanguage` en el body — mezcla de nivel
+infraestructura con nivel lingüístico. Corrección: nuevo `TranslationStatus.ServiceUnavailable`
+(6B.md §21 separa estados; §42 valida estados inválidos) usado EXCLUSIVAMENTE por la capa API
+cuando el engine no está configurado; el contrato de engine nunca lo produce.
+
+```
+request == null  -> 400 InvalidInput
+_engine == null  -> 503 ServiceUnavailable (body.status = ServiceUnavailable)
+engine presente, supported + no match -> 200 NotFound
+engine presente, unsupported lang    -> 422 UnsupportedLanguage
+```
+
+## Tests de controller (6B.md §45 API tests)
+
+`tests/AtlasBuho.Tests/TranslateControllerTests.cs`:
+- `Post_NullRequest_Returns400_InvalidInput`
+- `Post_NullEngine_Returns503_ServiceUnavailable_NotUnsupportedLanguage`
+- `Post_ValidRequest_WithEngine_Returns200`
+
+Para referenciar el controller (proyecto raíz web) sin hostear: `FrameworkReference
+Microsoft.AspNetCore.App` + `ProjectReference ..\..\AtlasBuho.csproj` en el test csproj.
+
+Suite: 67 totales, 66 OK, 1 skip preexistente, 0 errores. Build slnx + csproj raíz: 0/0.
+
+## Aviso explícito a la siguiente iteración — NO iniciar ingesta masiva de Lexemes
+
+Antes de corpus ingestion quedan por blindar (registrados por el usuario):
+
+1. Direccionalidad en el MODELO de datos (A→B no implica B→A; nada de generar reversos en
+   ingesta).
+2. Proveniencia por traducción: dos fuentes con el mismo target text NUNCA se deduplican en
+   evidencia; dedup solo a nivel de PRESENTACIÓN.
+3. Primary vs alternative: el orden alfabético determinista NO es autoridad lingüística;
+   el corpus debe modelar cuál es la traducción canónica por evidencia, o declararlas todas
+   alternatives sin privilegiar una.
+4. Dataset/corpus reproducible: hoy `DatasetVersion = último CatalogVersion Completed` es una
+   aproximación; los Lexemes deben ligarse a una versión/corpus inmutable, o el triplete
+   (dataset, engine, input) deja de ser reproducible tras una mutación silenciosa.
