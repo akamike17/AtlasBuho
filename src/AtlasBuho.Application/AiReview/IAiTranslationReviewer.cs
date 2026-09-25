@@ -131,7 +131,7 @@ public sealed class AiReviewOptions
     /// <summary>Enable/disable AI review (default: false)</summary>
     public bool Enabled { get; set; }
 
-    /// <summary>Provider name (e.g., "OpenAI", "Mock")</summary>
+    /// <summary>Provider name (e.g., "Mock", "Disabled"). External providers must be registered separately.</summary>
     public string Provider { get; set; } = "Mock";
 
     /// <summary>Model name (e.g., "gpt-4")</summary>
@@ -139,6 +139,9 @@ public sealed class AiReviewOptions
 
     /// <summary>API endpoint</summary>
     public string? Endpoint { get; set; }
+
+    /// <summary>API key (NEVER store real keys in code — use environment variables)</summary>
+    public string ApiKey { get; set; } = string.Empty;
 
     /// <summary>Timeout in seconds</summary>
     public int TimeoutSeconds { get; set; } = 30;

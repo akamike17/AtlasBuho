@@ -4,6 +4,7 @@ using AtlasBuho.Data;
 using AtlasBuho.Data.Translation;
 using AtlasBuho.Infrastructure.AiProviders;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
@@ -49,17 +50,22 @@ public static class TranslationServiceCollectionExtensions
         services.AddSingleton(new AiReviewOptions());
 
         // AI reviewer (production: external provider, tests: MockAiTranslationReviewer)
-        // Registered as optional — may be null if AI disabled in configuration
-        services.AddScoped<IAiTranslationReviewer?>(provider =>
+        // When AI is disabled, the handler will operate without a reviewer
+        services.AddScoped<IAiTranslationReviewer>(provider =>
         {
-            var options = provider.GetService<AiReviewOptions>();
-            if (options?.Enabled == true)
+            var options = provider.GetRequiredService<Microsoft.Extensions.Options.IOptions<AiReviewOptions>>();
+            var aiOptions = options.Value;
+            
+            return aiOptions.Provider?.ToLowerInvariant() switch
             {
-                // In real deployment: return configured provider implementation
-                // For now, return null to indicate AI disabled (B10 §10)
-                return null;
-            }
-            return null;
+                "mock" => new MockAiTranslationReviewer(aiOptions),
+                "disabled" => new DisabledAiTranslationReviewer(),
+                null => new DisabledAiTranslationReviewer(),
+                _ => throw new InvalidOperationException(
+                    $"Unknown AI provider: '{aiOptions.Provider}'. " +
+                    $"Valid providers: Mock, Disabled. " +
+                    $"External providers must be registered separately.")
+            };
         });
 
         // Translation orchestrator
