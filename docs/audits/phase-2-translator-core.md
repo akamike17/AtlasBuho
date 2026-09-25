@@ -66,13 +66,6 @@ Traducciones reales requerirán una fase de ingesta léxica (Lexeme/Meaning), qu
 fuera del alcance de este commit.
 
 ## Limitaciones declaradas (no sobreafirmadas)
-
-- `AtlasBuho.csproj` (website PageCatalog scaffold, raíz) está FUERA de la solución y no
-  compila de base (169 errores preexistentes: incluye archivos de tests por default globs).
-  El `TranslateController` de 6B.md §22 y el registro del engine en `Program.cs` se
-  implementaron y luego se REVIRTIERON en este pase porque no había forma de verificar el
-  hosting sin reparar el scaffold completo (no relacionado). Requieren su propio commit,
-  condicionado al fix del csproj raíz.
 - English→Indigenous devuelve NotFound: el dataset no registra evidencia de esa dirección
   (el motor no encadena pivotes invisibles — 6B.md §16).
 - La diacritics/SearchKey (§27) y la capa UI (§23–§36) son trabajo posterior.
@@ -84,3 +77,72 @@ branch:  review/phase-1-inventario-linguistico
 base:    b47e668
 commit:  feat: 6B translator core - deterministic verified dictionary engine (dictionary-1.0)
 ```
+
+---
+
+# 6B.md — FOLLOW-UP: WEB BOUNDARY FIX + TRANSLATE API REAL
+
+**Fecha:** 2026-09-24
+**Commit base:** 46179dd
+
+## Root cause del fallo del website raíz (verificado)
+
+`AtlasBuho.csproj` está en la RAÍZ del repositorio (con `src/`, `tests/`, `catalogs/` como
+hermanos). El SDK `Microsoft.NET.Sdk.Web` aplica default globs (`**/*.cs`), por lo que el
+website compilaba `tests/AtlasBuho.Tests/**/*.cs` (sin referencias a xUnit — CS0246
+FactAttribute ×169) y las migraciones de `src/AtlasBuho.Data/` (que requieren
+`BuildTargetFrameworkAttribute` del proyecto Data). 169 errores preexistentes; ninguno
+introducido por este trabajo. El fix NO movió ni renombró ningún archivo.
+
+## Fix quirúrgico ( AtlasBuho.csproj )
+
+```xml
+<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+<EnableDefaultContentItems>false</EnableDefaultContentItems>
+<UserSecretsId>AtlasBuho</UserSecretsId>
++ Compile Include = Program.cs + Controllers/** + Models/**
++ Content Include  = Views/** wwwroot/** appsettings
++ Content Remove   = Views/**/*.cshtml.css
++ ProjectReference = src/AtlasBuho.Data (Pomelo MySql)
+```
+
+## Evidencia
+
+### Build
+
+```
+dotnet build AtlasBuho.slnx -c Release  →  0 Advertencias, 0 Errores
+dotnet build AtlasBuho.csproj -c Release → 0 Advertencias, 0 Errores   (website raíz compila)
+```
+
+### Tests (sin regresiones)
+
+```
+dotnet test AtlasBuho.slnx -c Release  →  62 totales: 61 correctas, 1 skip (W1HContext preexistente), 0 error
+```
+
+### API REST real contra MySQL Phase-1
+
+Levantado `bin/Release/net8.0/AtlasBuho.exe` (env=Development, UserSecrets `AtlasBuho`) y
+probado con `POST /api/translate`:
+
+```text
+IND zapoteco serrano -> español "bene xono"
+  -> HTTP 422 UnsupportedLanguage  (variante "zapoteco serrano" no existe en el dataset;
+     resultado correcto y honesto: no hay evidencia, no se inventa)
+klingon -> español "hola"
+  -> HTTP 422 UnsupportedLanguage
+input vacío
+  -> HTTP 400 InvalidInput
+zapoteco de Asunción Tlacolulita -> español "bene xono"
+  -> HTTP 200 NotFound   (variante documentaria EXISTE en Phase 1, pero Lexemes=0 en la BD,
+     por lo que la respuesta honesta es NotFound con datasetVersion=CA44013F9399)
+```
+
+Secuencia real de SQL observada en logs EF Core sobre MySQL Phase-1:
+`SELECT EXISTS ... FROM LanguageVariants`; `SELECT VersionNumber FROM CatalogVersions WHERE
+ImportStatus='Completed'`; `SELECT SpanishMeaning, VerificationStatus FROM Lexemes WHERE
+CanonicalForm=… AND VerificationStatus IN (1,2,3,4)`. Reproducible.
+
+Queda fuera (trabajo posterior): ingesta de Lexemes → traducciones reales; capa UI;
+casos Golden (§46).

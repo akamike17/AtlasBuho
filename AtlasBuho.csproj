@@ -5,10 +5,30 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- The root csproj sits in the REPO root with src/, tests/, catalogs/ as siblings.
+         Disable the SDK default globs and declare the project boundary explicitly, or the
+         web app "absorbs" tests/, src/ migrations and wwwroot vendor code (169 baseline
+         errors). No code was moved; only the compile boundary is corrected. -->
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <EnableDefaultContentItems>false</EnableDefaultContentItems>
+    <UserSecretsId>AtlasBuho</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Controllers\**\*.cs" />
+    <Compile Include="Models\**\*.cs" />
+    <Content Include="Views\**\*" />
+    <Content Remove="Views\**\*.cshtml.css" />
+    <Content Include="wwwroot\**\*" />
+    <Content Include="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="appsettings.Development.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="src\AtlasBuho.Application\AtlasBuho.Application.csproj" />
+    <ProjectReference Include="src\AtlasBuho.Data\AtlasBuho.Data.csproj" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.2" />
   </ItemGroup>
 
 </Project>
