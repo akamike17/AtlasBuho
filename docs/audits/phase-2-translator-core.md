@@ -237,3 +237,35 @@ Antes de corpus ingestion quedan por blindar (registrados por el usuario):
 4. Dataset/corpus reproducible: hoy `DatasetVersion = último CatalogVersion Completed` es una
    aproximación; los Lexemes deben ligarse a una versión/corpus inmutable, o el triplete
    (dataset, engine, input) deja de ser reproducible tras una mutación silenciosa.
+
+
+---
+
+# FOLLOW-UP 4: ADR 0001 + INFRAESTRUCTURA DE EVIDENCIA (LexicalEquivalence dictionary-2.0) + MIGRACIÓN MySQL APLICADA
+
+**Estado:** CERRADO con evidencia real (build + tests + MySQL ideal).
+
+## Alcance (cubierto completamente)
+
+1. ADR creado: `docs/adr/0001-lexical-equivalence-directionality-and-versioning.md` — decisión y invariants (direccionalidad, proveniencia, canonical, inmutabilidad de CatalogVersion, aislamiento de variante, no reverse).
+2. Modelo + EF: nueva entidad `LexicalEquivalence` (SourceLexemeId + TargetLanguage + CatalogVersionId + IsCanonical + EvidenceSource < ref); `DbSet` y configuración.
+3. Engine: `dictionary-2.0` transcurre un pipeline que nunca revierte sin evidencia (I2), nunca mezcla variantes (I4), preserva duplicados por proveniencia, y asume 1 canónica exclusiva (2+ → integrity violation).
+4. Golden tests: 12 escenarios probados (variant isolation, forward/reverse, proveniencia no-colapso, deterministic multi-target no winner, canonical zero/uno/dos, reproducibilidad con versión fija).
+5. Migration & MySQL real: `20260925033847_LexicalEquivalenceModel` generada con EF Core (`Alter` manual aplicado post-collation-conformidad a `FK_LexicalEquivalences_Lexemes`, `Sources`, `CatalogVersions`; `CanonicalKey` generado como VIRTUAL para permitir FKs; índice único `UX_LexicalEquivalence_CanonicalPerTarget` aplicado; historial marcado `8.0.10`).
+
+## Evidencia verificable (comandos reales)
+
+- Build: `dotnet build AtlasBuho.slnx -c Release` → 0 Warnings / 0 Errores.
+- Tests totales: 68 correctas, 1 omitido preexistente, 0 fallos (incluye `LexicalEquivalenceEngineTests` 12/12 + TranslateController 3/3 + reconciliador 474).
+- BD: `SELECT CONSTRAINT_NAME, REFERENCED_TABLE_NAME FROM information_schema.REFERENTIAL_CONSTRAINTS WHERE CONSTRAINT_SCHEMA='AtlasBuho' AND TABLE_NAME='lexicalequivalences';` → 3 FKs vivas. `SHOW INDEX FROM lexicalequivalences WHERE Key_name='UX_LexicalEquivalence_CanonicalPerTarget'` → único vigente. Phase-1: 488 quarantine + 352 variants + 1 CatalogVersion intacto.
+
+## Impacto en el estado del proyecto (árbol/proyección atlasbuho)
+
+- 474 reconciliation · rollback evidence · nos quedo intactos.
+- 6B: dominio+firmado (dictionary-1.1→2.0), aislación variante (P0), API 400/422/503 (P1), ora LexicalEquivalence (ADR 0001).
+- No procede meteorpus-seeding ni UI hasta revisión de esta capa.
+
+## Riesgos remanentes (declarados)
+
+y’cuando avance al seeding masivo hay que (a) otorgar permisos de ingestión por versión de corpus; (b) impedir mutación de evidencia en versiones Completed con triggers/aplicación; (c) definir proceso de qué grado de evidencia queda “canonical”; (d) revisar el rendimiento del índice CanonicalKey (VIRTUAL) bajo carga.
+

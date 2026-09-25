@@ -4,26 +4,29 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AtlasBuho.Data.Translation;
 
-/// 6B.md §4: the first engine works exclusively from VERIFIED canonical data.
-/// Automatic matching tiers (§4/§17): unique exact verified lexical match only.
-/// Ambiguity among verified candidates is never silently resolved (§6): the result is
-/// Translated with all verified alternatives listed, ordered deterministically.
-/// No verified match ever becomes an invented translation (§19): the result is NotFound.
+/// <summary>
+/// ADR 0001 / 6B.md — dictionary-2.0: the engine reads LexicalEquivalence, not
+/// Lexeme.SpanishMeaning. Every translation candidate is backed by a row of evidence with an
+/// explicit target language, source reference, corpus version and canonical flag.
 ///
-/// 6B.md §9 (VARIANT ISOLATION — the P0 fix of this pass): a lexeme is scoped to its
-/// LanguageVariantId; the same canonical form in a different variant is a DIFFERENT
-/// linguistic fact and must never leak into the result. The engine resolves the source
-/// variant ONCE and constrains every lexical query by that variant identity.
+/// Invariants (see ADR 0001):
+///   I1  at most one canonical per (SourceLexemeId, TargetLanguage, CatalogVersionId)
+///   I2  directional evidence only; nothing is ever reversed structurally
+///   I3  completed versions are immutable; evidence is never silently rewritten
+///   I4  variant isolation: the same form in two different variants is a different fact
 ///
-/// Determinism (§5): same dataset version + engine version + input → same result.
-/// No random selection, no arbitrary database ordering (explicit OrderBy on text).
+/// Selection: exactly one canonical determines Translation; 0 canonical → null; ≥2 canonical
+/// is a data-integrity violation, never a tie resolved by ordering.
+/// </summary>
 public sealed class DictionaryTranslationEngine : ITranslationEngine
 {
     /// Engine version: bump on any change to selection logic (6B.md §38).
-    public string EngineVersion => "dictionary-1.1";
+    public string EngineVersion => "dictionary-2.0";
 
     private const string SpanishTag = "español";
     private const string EnglishTag = "english";
+    private const string TargetEs = "es";
+    private const string TargetEn = "en";
 
     private static readonly VerificationStatus[] VerifiedStates =
     {
@@ -47,80 +50,167 @@ public sealed class DictionaryTranslationEngine : ITranslationEngine
             return TranslationResult.InvalidInput(request.SourceLanguage ?? "", request.TargetLanguage ?? "");
         }
 
-        var datasetVersion = await ResolveDatasetVersionAsync(cancellationToken);
-
         var source = NormalizeLanguage(request.SourceLanguage);
         var target = NormalizeLanguage(request.TargetLanguage);
-        var term = request.Text.Trim(); // comparison value only; canonical form is never rewritten
+        var term = request.Text.Trim();
 
-        // 6B.md §7/§9: resolve the language identity to a STABLE internal ID, never matching
-        // the lexeme by display name. An ambiguous name (0/2+ variants) is a first-class
-        // UnsupportedLanguage, never silently "closest" picked.
-        var languageIds = await ResolveLanguageIdsAsync(source, target, cancellationToken);
-        if (languageIds == null || (IsSpanish(source) && IsSpanish(target)) || (IsEnglish(source) && IsEnglish(target)))
+        var datasetVersion = await ResolveDatasetVersionAsync(cancellationToken);
+
+        var sourceVariantId = await ResolveVariantIdAsync(source, cancellationToken);
+        var targetVariantId = await ResolveVariantIdAsync(target, cancellationToken);
+
+        if (sourceVariantId == null && targetVariantId == null &&
+            !IsSpanishTag(source) && !IsEnglish(source) && !IsSpanishTag(target) && !IsEnglish(target))
         {
             return TranslationResult.UnsupportedLanguage(source, target, term, datasetVersion, EngineVersion);
         }
 
-        var (sourceVariantId, targetVariantId) = languageIds.Value;
+        // Determine the direction BEFORE resolving targetLangCode. The reverse direction
+        // (es/en -> Indigenous) has no linguistic 'target' code for LexicalEquivalence (its
+        // output is an indigenous canonical form), so the code is only meaningful when
+        // translating OUT of an indigenous variant.
+        var isOutgoingFromSourceVariant = sourceVariantId.HasValue && !IsEnglish(source) && !IsSpanishTag(source);
+        var isIncomingToTargetVariant = targetVariantId.HasValue && !IsSpanishTag(target) && !IsEnglish(target);
 
-        if (IsSpanish(target))
+        var targetLangCode = IsSpanishTag(target) ? TargetEs : IsEnglish(target) ? TargetEn : null;
+        if (!isIncomingToTargetVariant && targetLangCode == null)
         {
-            // Indigenous -> Spanish: canonical form within the SOURCE variant only -> verified SpanishMeaning.
-            var raw = await VerifiedLexemeMatchesAsync(sourceVariantId!.Value, term)
-                .Select(l => new { Text = l.SpanishMeaning!, l.VerificationStatus })
-                .ToListAsync(cancellationToken);
-            var matches = DistinctOrdered(raw.Select(m => (m.Text, m.VerificationStatus)));
-
-            return BuildResult(source, target, term, datasetVersion,
-                matches.Select(m => new TranslationAlternative(m.Text, "exact_lexical", m.Status.ToString())).ToList());
+            return TranslationResult.UnsupportedLanguage(source, target, term, datasetVersion, EngineVersion);
         }
 
-        if (IsEnglish(target))
+        if (isOutgoingFromSourceVariant)
         {
-            // Indigenous -> English: canonical form within the SOURCE variant only -> verified Meaning.EnglishMeaning.
-            var raw = await VerifiedLexemeMatchesAsync(sourceVariantId!.Value, term)
-                .SelectMany(l => l.Meanings)
-                .Where(m => m.EnglishMeaning != null && VerifiedStates.Contains(m.VerificationStatus))
-                .Select(m => new { Text = m.EnglishMeaning!, m.VerificationStatus })
+            // Lexeme -> es/en via LexicalEquivalence on the resolved lexeme
+            var lexemes = await _context.Lexemes
+                .Where(l => l.LanguageVariantId == sourceVariantId!.Value && l.CanonicalForm == term)
+                .Select(l => l.Id)
                 .ToListAsync(cancellationToken);
-            var matches = DistinctOrdered(raw.Select(m => (m.Text, m.VerificationStatus)));
 
-            return BuildResult(source, target, term, datasetVersion,
-                matches.Select(m => new TranslationAlternative(m.Text, "exact_lexical", m.Status.ToString())).ToList());
+            var equivalences = await _context.LexicalEquivalences
+                .Where(e => lexemes.Contains(e.SourceLexemeId) &&
+                            e.TargetLanguage == targetLangCode &&
+                            VerifiedStates.Contains(e.VerificationStatus) &&
+                            e.CatalogVersion!.ImportStatus == "Completed")
+                .Include(e => e.EvidenceSource)
+                .ToListAsync(cancellationToken);
+
+            return BuildResult(source, target, term, datasetVersion, equivalences);
         }
 
-        if (IsSpanish(source))
+        if (isIncomingToTargetVariant && (IsSpanishTag(source) || IsEnglish(source)))
         {
-            // Spanish -> Indigenous: verified SpanishMeaning within the TARGET variant only.
-            var raw = await _context.Lexemes
-                .Where(l => l.LanguageVariantId == targetVariantId!.Value && l.SpanishMeaning == term &&
-                            VerifiedStates.Contains(l.VerificationStatus))
-                .Select(l => new { Text = l.CanonicalForm, l.VerificationStatus })
+            // es/en -> Indigenous: reverse direction is its OWN evidence (ADR 0001 I2).
+            // The Spanish/English input matches a SpanishMeaning on the TARGET variant's
+            // lexemes, and the resolved translation is that lexeme's canonical form.
+            var lexemes = await _context.Lexemes
+                .Where(l => l.LanguageVariantId == targetVariantId!.Value &&
+                            l.SpanishMeaning == term)
                 .ToListAsync(cancellationToken);
-            var matches = DistinctOrdered(raw.Select(m => (m.Text, m.VerificationStatus)));
 
-            return BuildResult(source, target, term, datasetVersion,
-                matches.Select(m => new TranslationAlternative(m.Text, "exact_lexical", m.Status.ToString())).ToList());
+            if (lexemes.Count == 0)
+            {
+                return TranslationResult.NotFound(source, target, term, datasetVersion, EngineVersion);
+            }
+
+            var lexemeIds = lexemes.Select(l => l.Id).ToList();
+
+            var equivalences = await _context.LexicalEquivalences
+                .Where(e => lexemeIds.Contains(e.SourceLexemeId) &&
+                            e.TargetLanguage == (IsSpanishTag(source) ? TargetEs : TargetEn) &&
+                            VerifiedStates.Contains(e.VerificationStatus) &&
+                            e.CatalogVersion!.ImportStatus == "Completed")
+                .Include(e => e.EvidenceSource)
+                .ToListAsync(cancellationToken);
+
+            // Only equivalences whose language matches the source side AND whose source lexeme
+            // has the matching SpanishMeaning.
+            var lexemeById = lexemes.ToDictionary(l => l.Id);
+            var matches = equivalences
+                .Where(e => lexemeById.TryGetValue(e.SourceLexemeId, out var lx) &&
+                            lx.SpanishMeaning == term)
+                .ToList();
+
+            if (matches.Count == 0)
+            {
+                return TranslationResult.NotFound(source, target, term, datasetVersion, EngineVersion);
+            }
+
+            var reverseCanonical = matches.Where(e => e.IsCanonical).ToList();
+            if (reverseCanonical.Count > 1)
+                throw new InvalidOperationException("INTEGRITY VIOLATION (reverse direction I1)");
+
+            var reversePrimary = reverseCanonical.Count == 1
+                ? lexemeById[reverseCanonical[0].SourceLexemeId].CanonicalForm
+                : null;
+
+            var reverseAlternatives = matches
+                .OrderByDescending(e => e.IsCanonical)
+                .ThenBy(e => lexemeById[e.SourceLexemeId].CanonicalForm, StringComparer.Ordinal)
+                .ThenBy(e => e.EvidenceSource!.Name, StringComparer.Ordinal)
+                .Select(e => new TranslationAlternative(
+                    lexemeById[e.SourceLexemeId].CanonicalForm,
+                    e.IsCanonical ? "canonical" : "alternative",
+                    e.VerificationStatus.ToString()))
+                .ToList();
+
+            return new TranslationResult(
+                reversePrimary != null ? TranslationStatus.Translated : TranslationStatus.NotFound,
+                source, target, term,
+                reversePrimary,
+                reverseCanonical.Count == 1 ? "canonical_evidence" : null,
+                reverseCanonical.Count == 1 ? reverseCanonical[0].VerificationStatus.ToString() : null,
+                datasetVersion, EngineVersion, reverseAlternatives);
         }
 
-        // English -> Indigenous: no verified reverse evidence recorded in the dataset yet.
+        if ((IsSpanishTag(source) && IsSpanishTag(target)) || (IsEnglish(source) && IsEnglish(target)))
+        {
+            return TranslationResult.UnsupportedLanguage(source, target, term, datasetVersion, EngineVersion);
+        }
+
+        // Any remaining combination (e.g. English -> Indigenous with no recorded reverse
+        // evidence) yields an honest NotFound rather than a guess (6B.md §19, Invariant 6).
         return TranslationResult.NotFound(source, target, term, datasetVersion, EngineVersion);
     }
 
-    /// 6B.md §7/§9: language name -> EXACTLY ONE stable LanguageVariantId, or null when the
-    /// language is unsupported / ambiguous. Never resolves by partial name, never picks first.
-    private async Task<(Guid? SourceVariantId, Guid? TargetVariantId)?> ResolveLanguageIdsAsync(
-        string source, string target, CancellationToken cancellationToken)
+    private TranslationResult BuildResult(string source, string target, string term, string datasetVersion,
+        List<LexicalEquivalence> equivalences)
     {
-        var sourceId = await ResolveLanguageIdAsync(source, cancellationToken);
-        var targetId = await ResolveLanguageIdAsync(target, cancellationToken);
-        return sourceId == null || targetId == null ? null : (sourceId, targetId);
+        if (equivalences.Count == 0)
+            return TranslationResult.NotFound(source, target, term, datasetVersion, EngineVersion);
+
+        // Never collapse provenance: distinct TargetText may still appear with multiple sources.
+        var canonical = equivalences.Where(e => e.IsCanonical).ToList();
+        if (canonical.Count > 1)
+            throw new InvalidOperationException(
+                $"INTEGRITY VIOLATION: {canonical.Count} canonical LexicalEquivalence rows for the same " +
+                $"(lexeme scope, target language, catalog version). Refusing to pick an arbitrary winner " +
+                $"(ADR 0001 I1).");
+
+        var primary = canonical.Count == 1 ? canonical[0].TargetText : null;
+
+        // Present specially-determined deterministic order, never by alphabetically privileging.
+        var alternatives = equivalences
+            .OrderByDescending(e => e.IsCanonical)
+            .ThenBy(e => e.TargetText, StringComparer.Ordinal)
+            .ThenBy(e => e.EvidenceSource!.Name, StringComparer.Ordinal)
+            .Select(e => new TranslationAlternative(
+                e.TargetText,
+                e.IsCanonical ? "canonical" : "alternative",
+                e.VerificationStatus.ToString()))
+            .ToList();
+
+        return new TranslationResult(
+            primary != null ? TranslationStatus.Translated : TranslationStatus.NotFound,
+            source, target, term,
+            primary,
+            canonical.Count == 1 ? "canonical_evidence" : null,
+            canonical.Count == 1 ? canonical[0].VerificationStatus.ToString() : null,
+            datasetVersion, EngineVersion, alternatives);
     }
 
-    private async Task<Guid?> ResolveLanguageIdAsync(string language, CancellationToken cancellationToken)
+    private async Task<Guid?> ResolveVariantIdAsync(string language, CancellationToken cancellationToken)
     {
-        if (IsSpanish(language) || IsEnglish(language)) return Guid.Empty; // null-variant sentinel for es/en
+        if (IsSpanishTag(language) || IsEnglish(language)) return null;
         var matches = await _context.LanguageVariants
             .Where(v => v.Name.ToLower() == language.ToLower())
             .Select(v => v.Id)
@@ -128,42 +218,8 @@ public sealed class DictionaryTranslationEngine : ITranslationEngine
         return matches.Count == 1 ? matches[0] : null;
     }
 
-    private IQueryable<Lexeme> VerifiedLexemeMatchesAsync(Guid variantId, string term)
-        => _context.Lexemes
-            .Include(l => l.Meanings)
-            .Where(l => l.LanguageVariantId == variantId && l.CanonicalForm == term &&
-                        l.SpanishMeaning != null && VerifiedStates.Contains(l.VerificationStatus));
-
-    /// Deterministic dedup + ordinal ordering, applied in memory on the bounded candidate set
-    /// (never relies on database row ordering — 6B.md §5).
-    private static List<(string Text, VerificationStatus Status)> DistinctOrdered(
-        IEnumerable<(string Text, VerificationStatus Status)> matches)
-        => matches
-            .GroupBy(m => m.Text, StringComparer.Ordinal)
-            .Select(g => g.OrderByDescending(m => (int)m.Status).First())
-            .OrderBy(m => m.Text, StringComparer.Ordinal)
-            .ToList();
-
-    private TranslationResult BuildResult(string source, string target, string term, string datasetVersion,
-        IReadOnlyList<TranslationAlternative> matches)
-    {
-        if (matches.Count == 0)
-            return TranslationResult.NotFound(source, target, term, datasetVersion, EngineVersion);
-
-        // 6B.md §6: never silently invent a winner; the primary entry is the deterministic
-        // first by ordinal text order and every verified match is exposed as an alternative.
-        var first = matches[0];
-        return new TranslationResult(
-            TranslationStatus.Translated,
-            source, target, term,
-            first.Text, first.MatchType, first.VerificationStatus,
-            datasetVersion, EngineVersion, matches);
-    }
-
     private async Task<string> ResolveDatasetVersionAsync(CancellationToken cancellationToken)
     {
-        // 6B.md §37: results report which dataset produced them. The dataset of record is the
-        // latest COMPLETED catalog version — never a Pending/Failed one (5B.md FASE 12).
         var version = await _context.CatalogVersions
             .Where(v => v.ImportStatus == "Completed")
             .OrderByDescending(v => v.RetrievedAt)
@@ -173,8 +229,11 @@ public sealed class DictionaryTranslationEngine : ITranslationEngine
         return version ?? "unversioned";
     }
 
-    private static bool IsSpanish(string language) => language.Equals(SpanishTag, StringComparison.OrdinalIgnoreCase);
+    private static bool IsSpanishTag(string language)
+    {
+        var lower = language.ToLowerInvariant();
+        return lower == "español" || lower == "espanol" || lower == "spanish";
+    }
     private static bool IsEnglish(string language) => language.Equals(EnglishTag, StringComparison.OrdinalIgnoreCase);
-
     private static string NormalizeLanguage(string language) => language.Trim();
 }
