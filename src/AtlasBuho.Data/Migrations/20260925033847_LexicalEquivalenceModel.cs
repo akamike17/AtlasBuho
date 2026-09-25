@@ -79,9 +79,9 @@ namespace AtlasBuho.Data.Migrations
             // unique index enforces I1 at persistence.
             migrationBuilder.Sql(
                 "ALTER TABLE LexicalEquivalences " +
-                "ADD COLUMN CanonicalKey CHAR(64) AS (" +
+                "ADD COLUMN CanonicalKey VARCHAR(200) AS (" +
                 "CASE WHEN IsCanonical=1 THEN CONCAT(HEX(SourceLexemeId), '|', TargetLanguage, '|', HEX(CatalogVersionId)) ELSE NULL END" +
-                ") STORED NULL;");
+                ") VIRTUAL;");
             migrationBuilder.Sql(
                 "CREATE UNIQUE INDEX UX_LexicalEquivalence_CanonicalPerTarget ON LexicalEquivalences(CanonicalKey);");
 
