@@ -1,7 +1,6 @@
 using AtlasBuho.Application.AiReview;
-using AtlasBuho.Infrastructure.AiProviders;
 
-namespace AtlasBuho.Data.Extensions;
+namespace AtlasBuho.Infrastructure.AiProviders;
 
 /// <summary>
 /// Factory for Mock AI provider (B10.1 §5).
