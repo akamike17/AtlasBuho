@@ -322,3 +322,32 @@ TEST/BUILD evidence after fixes:
 - dotnet build AtlasBuho.slnx -c Release → 0 Advertencias / 0 Errores.
 - dotnet test AtlasBuho.slnx -c Release --no-restore → 68 correctas / 1 omitida preexistente /
   0 errors (LexicalEquivalenceEngineTests 12/12 OK).
+
+
+---
+
+# 6B CIERRE FINAL — Phase 2 Translator Core cerrado con evidencias reales
+
+Sin embargo hardening final (rfg está committed):
+
+* 474 reconciliation + 60 quarantine intactos (no tocados).
+* Engine `dictionary-2.0` con:
+  + P0: CatalogVersionId físicamente pinned en TODAS las consultas de LexicalEquivalence (FORWARD y REVERSE).
+  + P1: Reverse-direction no usa SpanishMeaning como autoridad. La evidencia es `LexicalEquivalence(TargetText=term, TargetLanguage=es/en, SourceLexemeId=lexeme indigena)`; `Translation` es el `CanonicalForm` del lexeme indigena. Sin evidencia => NotFound.
+  + I1 invariant: 0 canonical → Translation null; 1 canonical → Translation resuelta; ≥2 → InvalidOperationException (integridad).
+  + I4: variante isolado por Id, no por nombre arbítrario.
+  + 12 golden tests de unit más 3 API controller tests: 68 total, 68 correctas, 1 skip preexistente.
+* Migración EF Core + triggers DB: `20260925033847_LexicalEquivalenceModel.cs` incorpora
+  SQL triggers `trg_catalogversions_prevent_update_completed`,
+  `trg_catalogversions_prevent_delete_completed`,
+  `trg_lexeq_block_mutation_completed`,
+  `trg_lexeq_block_delete_completed`.
+
+Verificación adicional (manual, reproducible sobre la base de datos):
+- BUILD Release: 0 advertencias / 0 errores.
+- TEST: 68/1 (1 skip preexistente).
+- MySQL: `SHOW TRIGGERS` muestra cuatro triggers; `SHOW INDEX FROM lexicalequivalences WHERE
+  Key_name='UX_LexicalEquivalence_CanonicalPerTarget'`; `SELECT MigrationId FROM
+  __EFMigrationsHistory` enumera LexicalEquivalenceModel.
+
+6B cerrado. La fase siguiente puede avanzar a ingesta masiva con estas garantías intactas.

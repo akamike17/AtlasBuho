@@ -78,9 +78,12 @@ public sealed class DictionaryTranslationEngine : ITranslationEngine
             return TranslationResult.UnsupportedLanguage(source, target, term, datasetVersion, EngineVersion);
         }
 
+        var pinnedVersionId = await ResolveCatalogVersionIdAsync(cancellationToken);
+
         if (isOutgoingFromSourceVariant)
         {
-            // Lexeme -> es/en via LexicalEquivalence on the resolved lexeme
+            // Lexeme -> es/en via LexicalEquivalence on the resolved lexeme,
+            // pinned to exactly the resolved CatalogVersionId (no other versions).
             var lexemes = await _context.Lexemes
                 .Where(l => l.LanguageVariantId == sourceVariantId!.Value && l.CanonicalForm == term)
                 .Select(l => l.Id)
@@ -89,6 +92,7 @@ public sealed class DictionaryTranslationEngine : ITranslationEngine
             var equivalences = await _context.LexicalEquivalences
                 .Where(e => lexemes.Contains(e.SourceLexemeId) &&
                             e.TargetLanguage == targetLangCode &&
+                            e.CatalogVersionId == pinnedVersionId &&
                             VerifiedStates.Contains(e.VerificationStatus) &&
                             e.CatalogVersion!.ImportStatus == "Completed")
                 .Include(e => e.EvidenceSource)
@@ -103,13 +107,13 @@ public sealed class DictionaryTranslationEngine : ITranslationEngine
             //   input term (es/en) matches LexicalEquivalence.TargetText for a reverse row
             //   TargetLanguage ∈ {es,en} spawns the evidence; canonical form of the lexeme is the result.
             // SpanishMeaning is NOT used as authority; only as a lookup index.
-            var catalogVersionId = await ResolveCatalogVersionIdAsync(cancellationToken);
+            // (use outer pinnedVersionId)
 
             var equivalences = await _context.LexicalEquivalences
                 .Where(e => e.TargetText == term &&
                             e.TargetLanguage == (IsSpanishTag(source) ? TargetEs : TargetEn) &&
                             VerifiedStates.Contains(e.VerificationStatus) &&
-                            e.CatalogVersionId == catalogVersionId &&
+                            e.CatalogVersionId == pinnedVersionId &&
                             e.SourceLexeme!.LanguageVariantId == targetVariantId!.Value)
                 .Include(e => e.SourceLexeme)
                 .Include(e => e.EvidenceSource)
