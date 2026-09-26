@@ -72,9 +72,26 @@ CatalogRecord                    → estado interno del registro
          │
          └──► ReconciliationResult  → resultado externo (MATCH / MISSING / DUPLICATE /
                                                 CONFLICT / UNRESOLVED / NOT_APPLICABLE)
+                                                FK: CatalogRecordId (NOT NULL)
 ```
 
-Se crea `ReconciliationResultCanon` como entidad separada con los 8 campos §35 (Id, FuenteId, IdentificadorFuente, NombreFuente, VarianteLinguisticaId, Resultado, EvidenciaId, Observaciones). Cada `CatalogRecord` puede tener **0..N** resultados de reconciliación (uno por fuente oficial), nunca al revés. No se elimina ningún valor existente.
+Cardinalidad: **CatalogRecord 1 → 0..N ReconciliationResult** (cada resultado lleva `CatalogRecordId` como FK hacia el registro interno del catálogo). El reverso (ReconciliationResult → CatalogRecord) es siempre N..1 — un resultado pertenece a un único registro interno.
+
+Se crea `ReconciliationResultCanon` como entidad separada con los campos §35 **más** la FK explícita (corrección a la lista del addendum original):
+
+| Campo | Tipo | Nota |
+|-------|------|------|
+| Id | PK | |
+| **CatalogRecordId** | **FK → CatalogRecord (NOT NULL)** | *añadida en esta corrección; cierra la cardinalidad 0..N* |
+| FuenteId | FK → Source (NOT NULL) | §35 |
+| IdentificadorFuente | VARCHAR | §35 |
+| NombreFuente | VARCHAR | §35 |
+| VarianteLinguisticaId | FK → LanguageVariant (NULL permitido solo cuando Resultado = MISSING o NOT_APPLICABLE) | §35 |
+| Resultado | ENUM { MATCH, MISSING, DUPLICATE, CONFLICT, UNRESOLVED, NOT_APPLICABLE } | §35 |
+| EvidenciaId | FK → Evidence (o tabla que resulte de PD-A11) | §35 |
+| Observaciones | TEXT | §35 |
+
+Cada `CatalogRecord` puede tener **0..N** resultados (uno por fuente oficial con la que se haya comparado); sin `CatalogRecordId` la cardinalidad no es implementable. No se elimina ningún valor existente de `CatalogRecordStatus`.
 
 ### PD-A16 — Auditoría como tabla
 **Ajuste:** crear `AuditoriaCanon` { Id, Entidad, EntidadId, Operacion, Usuario, Fecha, AntesJson, DespuesJson, Motivo, FuenteId } con `Operacion` enum { CREATE, UPDATE, DEPRECATE, VERIFY, RECONCILE, REJECT, RESTORE }. Hoy no existe; se monta en Fase B y se activa desde triggers/MySQL, no desde código.
