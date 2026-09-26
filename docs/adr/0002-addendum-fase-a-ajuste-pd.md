@@ -48,7 +48,12 @@ Regla BD.MD §19 cumplida en la entidad espejo, sin alterar la sellada.
 **Ajuste:** añadir enum `TipoFuenteCanon` { INALI, CLIN, ISO, BCP47, PUBLICACION_ACADEMICA, CENSO, DOCUMENTO_GUBERNAMENTAL, DICCIONARIO, GRAMATICA, REPOSITORIO, OTRO } y mapearlo como columna adicional en `Source`. No se renombra la columna actual `Source.Tipo` (string) — se añade una enum, ambas poblándose durante Fase B.
 
 ### PD-A11 — EvidenciaFuente explícita
-**Ajuste:** crear `EvidenciaFuenteCanon` { Id, FuenteId, Pagina, Seccion, TextoEvidencia, Ubicacion, HashEvidencia, FechaExtraccion, Observaciones }. No se renombra `Evidence` actual — `EvidenciaFuenteCanon` es la versión §17 pura; durante Fase B se enlaza.
+**Ajuste (revisión):** **ABIERTO — NO OPCIONAL**. La `Evidence` actual es polimórfica (`SourceId / EntityType / EntityId / Quote / PageReference / SectionReference / Confidence`) y **no garantiza integridad referencial**: un `EntityType = "LanguageVariant"` con un GUID arbitrario no es una FK real. Antes de Fase B hay que decidir **formalmente** entre:
+
+- **A) Evidence genérica (status quo):** una sola tabla polimórfica; validación en código, sin FK duro.
+- **B) Evidence + relaciones explícitas:** tabla separada por entidad que requiera FK real (p.ej. `EvidenciaFamilia`, `EvidenciaAgrupacion`, `EvidenciaVariante`, `EvidenciaCodigo`, `EvidenciaPoblacion`, `EvidenciaLocalidad`, `EvidenciaRelacion`, `EvidenciaLexema`, `EvidenciaSignificado`, `EvidenciaTraduccion`, `EvidenciaPronunciacion`), cada una con FK física a su entidad y a `Source`.
+
+**Bloqueante Fase B.** Sin decisión, Fase B terminaría con relaciones sintéticas tipo `EntityType + EntityId` que no toleran FK real y no impiden orfandad. La decisión A/B debe especificar **qué entidades requieren FK real** y documentarse antes de cualquier DbSet/Configuration.
 
 ### PD-A12 — PhraseTraduccion
 **Ajuste:** definir en Design como `FraseTraduccionCanon` { Id, FraseOrigenId, FraseDestinoId, FuenteId, EstadoVerificacion } pero **bloquear su migración** hasta Fase E (traducción). Hoy `Phrase`/`PhraseLexeme` no lo cubren; queda como deuda explícita.
@@ -60,7 +65,16 @@ Regla BD.MD §19 cumplida en la entidad espejo, sin alterar la sellada.
 **Ajuste:** crear `ImportRecordCanon` { Id, ImportBatchId, NumeroRegistro, TextoOriginal, DatosExtraidosJson, Estado, MotivoRechazo } en Design. `ImportQuarantine` actual queda como subset de resolución humana; `ImportRecordCanon` es el registro **antes** de clasificación. Se materializa en Fase B.
 
 ### PD-A15 — ReconciliacionCatalogo.Result enum
-**Ajuste:** crear `ReconciliacionCatalogoCanon` con `Resultado` enum { MATCH, MISSING, DUPLICATE, CONFLICT, UNRESOLVED, NOT_APPLICABLE } + los 8 campos de §35. `CatalogRecord.Status` actual es interno, ocupa otra palabra; `ReconciliacionCatalogoCanon` es la reconciliación externa contra fuente oficial.
+**Ajuste (revisión):** `CatalogRecordStatus` actual (`Current, Duplicate, Quarantine, Missing, Variant`) **NO se sustituye** — describe el estado del registro **dentro** del catálogo y es la semántica que B10 ya cerró. La reconciliación es **otra dimensión**: resultado de comparar contra la fuente externa oficial.
+
+```
+CatalogRecord                    → estado interno del registro
+         │
+         └──► ReconciliationResult  → resultado externo (MATCH / MISSING / DUPLICATE /
+                                                CONFLICT / UNRESOLVED / NOT_APPLICABLE)
+```
+
+Se crea `ReconciliationResultCanon` como entidad separada con los 8 campos §35 (Id, FuenteId, IdentificadorFuente, NombreFuente, VarianteLinguisticaId, Resultado, EvidenciaId, Observaciones). Cada `CatalogRecord` puede tener **0..N** resultados de reconciliación (uno por fuente oficial), nunca al revés. No se elimina ningún valor existente.
 
 ### PD-A16 — Auditoría como tabla
 **Ajuste:** crear `AuditoriaCanon` { Id, Entidad, EntidadId, Operacion, Usuario, Fecha, AntesJson, DespuesJson, Motivo, FuenteId } con `Operacion` enum { CREATE, UPDATE, DEPRECATE, VERIFY, RECONCILE, REJECT, RESTORE }. Hoy no existe; se monta en Fase B y se activa desde triggers/MySQL, no desde código.
@@ -71,8 +85,27 @@ Regla BD.MD §19 cumplida en la entidad espejo, sin alterar la sellada.
 ### PD-A18 — EstadoVerificacion propagado
 **Ajuste:** no propagar al modelo sellado. El enum se fuerza en TODAS las entidades `*Canon` nuevas; la correlación sellada queda con el campo en la entidad espejo correspondiente.
 
-### PD-A19 — Unknown vs Unverified
-**Ajuste:** alinear por documentación ADR. En `*Canon`, BD.MD §42 se respeta: `Unverified` (candidato sin comprobar) ≠ `Unknown` (la fuente dice que se desconoce). En el modelo sellado el `VerificationStatus.Unknown` actual queda **deprecated** y re-etiquetado semántico `Unverified` en la próxima grande migración; mientras tanto es documentado como "actualmente equivale a Unverified" para no romper tests.
+### PD-A19 — Semántica definitiva de EstadoVerificacion (NULL vs UNKNOWN vs UNVERIFIED vs …)
+**Ajuste (revisión):** **BLOQUEANTE FASE B** — debe quedar cerrado antes de cualquier migración. Semántica definitiva adoptada (BD.MD §19 + §42):
+
+| Valor | Significado canónico |
+|-------|-----------------------|
+| `NULL` | No hay valor almacenado (la columna no se llenó). |
+| `UNKNOWN` | La fuente/documentación establece que el dato es desconocido. |
+| `UNVERIFIED` | Existe un candidato/documentado, pero AtlasBuho aún no lo ha verificado. |
+| `DOCUMENTED` | Existe evidencia documental identificable. |
+| `VERIFIED` | Comprobado contra la fuente correspondiente. |
+| `RECONCILED` | Además reconciliado contra el catálogo/inventario canónico correspondiente. |
+| `DISPUTED` / `DEPRECATED` / `REJECTED` | Mantienen los significados del ADR 0002 / BD.MD §19. |
+
+Consecuencias concretas sobre el modelo sellado:
+
+- `Lexeme.VerificationStatus` y `LexicalEquivalence.VerificationStatus` ya coinciden con esa semántica. No se renombran.
+- El valor actual `VerificationStatus.Unknown` (ADR 0001) queda **semánticamente re-etiquetado** como `Unverified` (la fuente actual NO documenta "se desconoce"; simplemente no está verificado). El string en BD puede permanecer igual para no romper tests; el cambio de nombre es solo semántico y se formaliza en la primera migración que lo toque.
+- En todas las entidades nuevas `*Canon` que entren en Fase B, el enum se llamará **exactamente** como arriba; si una fuente dice "se desconoce", eso es `UNKNOWN` y NULL es solo ausencia.
+- `NULL` se permite solo donde la fuente/BD.MD permiten optional; `UNKNOWN` es un valor positivo y distinto de `NULL`.
+
+Este punto queda **cerrado** como definición; sin este cierre no se firma Fase B.
 
 ---
 
