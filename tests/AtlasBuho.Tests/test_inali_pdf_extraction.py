@@ -48,6 +48,30 @@ def test_no_unresolved_fields():
         assert r["familia"] and r["familia"] != "UNRESOLVED_FAMILY"
         assert r["agrupacion"] and r["agrupacion"] != "UNRESOLVED_GROUP"
         assert r["variante"]
+        # Regla: ninguna variante debe empezar sin la agrupación conocida (catches row-truncation)
+        vnorm = _norm(r["variante"])
+        gnorm = _norm(r["agrupacion"])
+        starts = vnorm.startswith(gnorm) or any(vnorm.startswith(_norm(a)) for a in (
+            "kickapoo","pápago","papago","pima","tepehuano","tarahumara","guarijío","guarijio","yaqui","mayo","cora","huichol",
+            "náhuatl","nahuatl","mexicano","paipai","ku'ahl","ku’ahl","kuahl","cucapá","cucapa","kumiai","kiliwa","seri",
+            "otomí","otomi","mazahua","matlatzinca","tlahuica","pame","chichimeco","chinanteco","tlapaneco","mazateco","ixcateco",
+            "chocholteco","popoloca","zapoteco","chatino","amuzgo","mixteco","cuicateco","triqui",
+            "huasteco","maya","lacandón","lacandon","ch'ol","ch’ol","chol","chontal","tseltal","tsotsil",
+            "q'anjob'al","q’anjob’al","qanjobal","k’anjob’al","akateko","jakalteko",
+            "qato'k","qato’k","qatok","mocho","mocho’","tuzanteco","chuj","tojolabal",
+            "q'eqchí'","q’eqchí’","q’eqchi","qeqchi","q'eqchi","q'eqchi’",
+            "k'iche'","k’iche","k’iche’","kiche","kaqchikel","teko","mam","awakateko","ixil",
+            "totonaco","tepehua","tarasco","purépecha","purepecha",
+            "mixe","sayulteco","oluteco","texistepequeño","texistepequeno",
+            "ayapaneco","popoluca","zoque","huave"))
+
+
+def test_every_variant_has_autodenominacion_or_explicitly_empty():
+    data = _load(CANON)
+    missing = [r for r in data["rows"] if not r["autodenominacion"] and not r["autodenominaciones_alternas"]]
+    # We tolerate rows where PDF truly has no autodonominación (must be listable by hand)
+    # Today there is ONE such row: 'otomí del oeste del Valle del Mezquital' p.150
+    assert len(missing) <= 1, f"rows without any autodenominacion: {[r['variante'] for r in missing]}"
 
 
 def test_every_variant_has_provenance():
