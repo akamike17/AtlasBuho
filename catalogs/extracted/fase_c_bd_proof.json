@@ -1,0 +1,24 @@
+{
+  "timestamp_utc": "2026-09-26T06:52:33.395461+00:00",
+  "database": "atlasbuho_fasec",
+  "host": "127.0.0.1:3306",
+  "migration_last": "20260926053354_FaseB-CanonModel",
+  "counts": {
+    "languagefamilies": 11,
+    "languagegroups": 68,
+    "languagevariants": 364,
+    "canonvariantes": 364,
+    "sources": 364,
+    "variantes_unicas_by_name": 364
+  },
+  "reconciliation": {
+    "VariantesSinCanon": 0,
+    "CanonSinVariante": 0,
+    "CanonConFuente": 364,
+    "CanonConPagina": 364
+  },
+  "evidence_pdf_sha256": "e38e667d024784bc84cc350f44918c1d22d998284d02e38dcf92858257947311",
+  "canon_json": "catalogs/extracted/inali_pdf_canon_full.json",
+  "discrepancy_ledger": "catalogs/extracted/discrepancy_ledger.json",
+  "audit": "docs/audits/phase-b-pdf-extraction-364.md"
+}
