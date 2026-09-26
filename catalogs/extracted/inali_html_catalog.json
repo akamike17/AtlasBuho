@@ -1,0 +1,1808 @@
+{
+  "source": "https://www.inali.gob.mx/sitios/clin-inali/",
+  "extraction_target": "HTML INALI catalogo lenguas indigenas nacionales",
+  "familias": 14,
+  "agrupaciones": 64,
+  "variantes": 235,
+  "autodenominaciones": 197,
+  "rows": [
+    {
+      "familia": "Maya",
+      "agrupacion": "Akateko",
+      "variante": "Akateko",
+      "autodenominaciones": [
+        "Kuti'"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Awakateko",
+      "variante": "Awakateko",
+      "autodenominaciones": [
+        "Qyool (de Aguacatán)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "ch'ol",
+      "variante": "ch'ol del noroeste",
+      "autodenominaciones": [
+        "lakty'añ (del noroeste)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "ch'ol",
+      "variante": "ch'ol del sureste",
+      "autodenominaciones": [
+        "lakty'añ (del sureste)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "chontal de Tabasco",
+      "variante": "[chontal de Tabasco central](https://www.inali.gob.mx/sitios/clin-inali/html/v_chontal_de_tabasco.html#1)",
+      "autodenominaciones": [
+        "yoko t'an (central)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "chontal de Tabasco",
+      "variante": "[chontal de Tabasco del este](https://www.inali.gob.mx/sitios/clin-inali/html/v_chontal_de_tabasco.html#2)",
+      "autodenominaciones": [
+        "yoko t'an (del este)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "chontal de Tabasco",
+      "variante": "[chontal de Tabasco del sureste](https://www.inali.gob.mx/sitios/clin-inali/html/v_chontal_de_tabasco.html#3)",
+      "autodenominaciones": [
+        "yoko t'an (del sureste)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "chontal de Tabasco",
+      "variante": "[chontal de Tabasco del norte](https://www.inali.gob.mx/sitios/clin-inali/html/v_chontal_de_tabasco.html#4)",
+      "autodenominaciones": [
+        "yoko t'an (del norte)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Chuj",
+      "variante": "[Chuj](https://www.inali.gob.mx/sitios/clin-inali/html/v_chuj.html#1)",
+      "autodenominaciones": [
+        "Koti'"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "huasteco",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "huasteco",
+      "variante": "[huasteco del occidente](v_huasteco.html#1)",
+      "autodenominaciones": [
+        "teenek (del occidente)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "huasteco",
+      "variante": "tenek (del occidente)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "huasteco",
+      "variante": "[huasteco del centro](v_huasteco.html#2)",
+      "autodenominaciones": [
+        "teenek (del centro)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "huasteco",
+      "variante": "tenek (del centro)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "huasteco",
+      "variante": "[huasteco de oriente](v_huasteco.html#3)",
+      "autodenominaciones": [
+        "teenek (de oriente)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "huasteco",
+      "variante": "tenek (de oriente)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Ixil",
+      "variante": "Ixil chajuleño",
+      "autodenominaciones": [
+        "Ixil (chajuleño)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Ixil",
+      "variante": "Ixil nebajeño",
+      "autodenominaciones": [
+        "Ixil (nebajeño)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Jakalteko",
+      "variante": "Jakalteko",
+      "autodenominaciones": [
+        "Jakalteko-Popti'"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Kaqchikel",
+      "variante": "Kaqchikel",
+      "autodenominaciones": [
+        "Kaqchikel"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "K'iche'",
+      "variante": "K'iche' (oriental)",
+      "autodenominaciones": [
+        "K'iche' (oriental)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "K'iche'",
+      "variante": "K'iche' (occidental)",
+      "autodenominaciones": [
+        "K'iche' (occidental)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "K'iche'",
+      "variante": "K'iche' (central)",
+      "autodenominaciones": [
+        "K'iche' (central)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "lacandón",
+      "variante": "lacandón",
+      "autodenominaciones": [
+        "jach-t'aan"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Mam",
+      "variante": "Mam de la frontera",
+      "autodenominaciones": [
+        "Qyool (de la frontera)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Mam",
+      "variante": "Mam del norte",
+      "autodenominaciones": [
+        "Qyool (del norte)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Mam",
+      "variante": "Mam del sur",
+      "autodenominaciones": [
+        "Qyool (del sur)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Mam",
+      "variante": "Mam de la Sierra",
+      "autodenominaciones": [
+        "Qyool (de la Sierra)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Mam",
+      "variante": "Mam del Soconusco",
+      "autodenominaciones": [
+        "Qyool Mam"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Mam",
+      "variante": "B'anax Mam",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "maya",
+      "variante": "[maya](https://www.inali.gob.mx/sitios/clin-inali/html/v_maya.html#1)",
+      "autodenominaciones": [
+        "maaya"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "maya",
+      "variante": "maaya t'aan",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "maya",
+      "variante": "maayáa",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "qato'k",
+      "variante": "[mocho'](https://www.inali.gob.mx/sitios/clin-inali/html/v_qatok.html)",
+      "autodenominaciones": [
+        "mocho'"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "qato'k",
+      "variante": "[tuzanteco](https://www.inali.gob.mx/sitios/clin-inali/html/v_qatok.html)",
+      "autodenominaciones": [
+        "muchu'"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Q'eqchi'",
+      "variante": "[Q'eqchi'](https://www.inali.gob.mx/sitios/clin-inali/html/v_qeqchi.html)",
+      "autodenominaciones": [
+        "Q'eqchi'"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Teko",
+      "variante": "[Teko](https://www.inali.gob.mx/sitios/clin-inali/html/v_teko.html#1)",
+      "autodenominaciones": [
+        "Qyool (de Tectitán)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "Teko",
+      "variante": "B'a'aj",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tojolabal",
+      "variante": "tojolabal",
+      "autodenominaciones": [
+        "tojol-ab'al"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tseltal",
+      "variante": "tseltal del occidente",
+      "autodenominaciones": [
+        "bats'il k'op (del occidente)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tseltal",
+      "variante": "tseltal del norte",
+      "autodenominaciones": [
+        "bats'il k'op (del norte)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tseltal",
+      "variante": "tseltal del oriente",
+      "autodenominaciones": [
+        "bats'il k'op (del oriente)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tseltal",
+      "variante": "tseltal del sur",
+      "autodenominaciones": [
+        "bats'il k'op (del sur)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tsotsil",
+      "variante": "tsotsil del este alto",
+      "autodenominaciones": [
+        "bats'i k'op (del este alto)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tsotsil",
+      "variante": "tsotsil del noroeste",
+      "autodenominaciones": [
+        "bats'i k'op (del noroeste)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tsotsil",
+      "variante": "tsotsil del norte bajo",
+      "autodenominaciones": [
+        "bats'i k'op (del norte bajo)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tsotsil",
+      "variante": "tsotsil del centro",
+      "autodenominaciones": [
+        "bats'i k'op (del centro)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tsotsil",
+      "variante": "tsotsil del este bajo",
+      "autodenominaciones": [
+        "bats'i k'op (del este bajo)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tsotsil",
+      "variante": "tsotsil del norte alto",
+      "autodenominaciones": [
+        "bats'i k'op (del norte alto)"
+      ]
+    },
+    {
+      "familia": "Maya",
+      "agrupacion": "tsotsil",
+      "variante": "tsotsil de los Altos",
+      "autodenominaciones": [
+        "bats'i k'op (de los Altos)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "amuzgo",
+      "variante": "amuzgo del norte",
+      "autodenominaciones": [
+        "nomndaa",
+        "nta",
+        "ñondá"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "amuzgo",
+      "variante": "amuzgo del sur",
+      "autodenominaciones": [
+        "nundá'"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "amuzgo",
+      "variante": "amuzgo bajo del este",
+      "autodenominaciones": [
+        "ts'unuma",
+        "jñunnda"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "amuzgo",
+      "variante": "amuzgo alto del este",
+      "autodenominaciones": [
+        "jnò n ' ndá tsjóo n nuà n",
+        "jñon'ndaa",
+        "ñonndaa"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chatino",
+      "variante": "chatino occidental alto",
+      "autodenominaciones": [
+        "cha' jna'a (occidental alto)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chatino",
+      "variante": "chatino occidental bajo",
+      "autodenominaciones": [
+        "cha' jna'a (occidental bajo)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chatino",
+      "variante": "chatino central",
+      "autodenominaciones": [
+        "cha' jna'a (central)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chatino",
+      "variante": "chatino oriental bajo",
+      "autodenominaciones": [
+        "cha' jna'a (oriental bajo)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chatino",
+      "variante": "chatino oriental alto",
+      "autodenominaciones": [
+        "cha' jna'a (oriental alto)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chatino",
+      "variante": "chatino de Zacatepec",
+      "autodenominaciones": [
+        "cha' jna'a (de Zacatepec)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chichimeco jonaz",
+      "variante": "chichimeco jonaz",
+      "autodenominaciones": [
+        "uz á '"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "chinanteco del norte",
+      "autodenominaciones": [
+        "jujmi (del norte)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "jujmi tsa kö 'w++",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "jmiih kia' dzä 'vï ï",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "chinanteco central bajo",
+      "autodenominaciones": [
+        "j+g ki tsomän"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "j+g dsa k+",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "jumi dsa iin+n",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "chinanteco del sureste alto",
+      "autodenominaciones": [
+        "jumi dsa mojai"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "chinanteco del norte",
+      "autodenominaciones": [
+        "jujmi (del norte)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "jujmi tsa kö 'w++",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "jmiih kia' dzä 'vï ï",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "chinanteco central bajo",
+      "autodenominaciones": [
+        "j+g ki tsomän"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "chinanteco del oeste",
+      "autodenominaciones": [
+        "jujma"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "chianateco del oeste central bajo",
+      "autodenominaciones": [
+        "jejmei"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "jejmi",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chinanteco",
+      "variante": "jajmi dzä kï ï'",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chocholteco",
+      "variante": "[chocholteco del oeste](https://www.inali.gob.mx/sitios/clin-inali/html/v_chocholteco.html)",
+      "autodenominaciones": [
+        "ngiba (del oeste)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "chocholteco",
+      "variante": "[chocholteco del este](https://www.inali.gob.mx/sitios/clin-inali/html/v_chocholteco.html)",
+      "autodenominaciones": [
+        "ngiba (del este)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "cuicateco",
+      "variante": "[cuicateco del centro](https://www.inali.gob.mx/sitios/clin-inali/html/v_cuicateco.html#1)",
+      "autodenominaciones": [
+        "dbaku (del centro)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "cuicateco",
+      "variante": "dibaku",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "cuicateco",
+      "variante": "[cuicateco del norte](https://www.inali.gob.mx/sitios/clin-inali/html/v_cuicateco.html#2)",
+      "autodenominaciones": [
+        "duaku"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "cuicateco",
+      "variante": "dubaku (del norte)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "cuicateco",
+      "variante": "[cuicateco del oriente](https://www.inali.gob.mx/sitios/clin-inali/html/v_cuicateco.html#3)",
+      "autodenominaciones": [
+        "dbaku (del oriente)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "cuicateco",
+      "variante": "dubaku (del oriente)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "ixcateco",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "ixcateco",
+      "variante": "[ixcateco](v_ixcateco.html#1)",
+      "autodenominaciones": [
+        "xwja"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "matlatzinca",
+      "variante": "[matlatzinca](https://www.inali.gob.mx/sitios/clin-inali/html/v_matlatzinca.html#1)",
+      "autodenominaciones": [
+        "bot'una"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco del noreste](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#1)",
+      "autodenominaciones": [
+        "en naxijen"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco de la presa bajo](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#2)",
+      "autodenominaciones": [
+        "en ningotsie"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco del este bajo](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#3)",
+      "autodenominaciones": [
+        "ntaxjo"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco del sur](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#4)",
+      "autodenominaciones": [
+        "nne nangui ngaxni"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco del sureste](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#5)",
+      "autodenominaciones": [
+        "enre naxinanda nguifi"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco de Eloxochitlán](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#6)",
+      "autodenominaciones": [
+        "en ngixo"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco del centro](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#7)",
+      "autodenominaciones": [
+        "enna (del centro)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco del suroeste](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#8)",
+      "autodenominaciones": [
+        "ienra naxinandana nnandia"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco de Huehuetlán](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#9)",
+      "autodenominaciones": [
+        "an ndexu"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco de Tecóatl](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#10)",
+      "autodenominaciones": [
+        "enna (de Tecóatl)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco de la presa alto](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#11)",
+      "autodenominaciones": [
+        "enna (de la presa alto)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco del oeste](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#12)",
+      "autodenominaciones": [
+        "enna (del oeste)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco del norte](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#13)",
+      "autodenominaciones": [
+        "en naxo tota"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "en nda xo",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco de Ocopetatillo](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#14)",
+      "autodenominaciones": [
+        "en ndaja"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco de Acatepec](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#15)",
+      "autodenominaciones": [
+        "en naxi llanazo"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "mazateco",
+      "variante": "[mazateco de Puebla](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazateco.html#16)",
+      "autodenominaciones": [
+        "An xo'boo"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "[otomí de la Sierra](v_otomi.html#1)",
+      "autodenominaciones": [
+        "ñuju"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñoju",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "yühu",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "[otomí bajo del noroeste](v_otomi.html#2)",
+      "autodenominaciones": [
+        "hñäñho"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "[otomí del oeste](v_otomi.html#3)",
+      "autodenominaciones": [
+        "ñathó"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "[otomí del oeste del Valle del Mezquital](v_otomi.html#4)",
+      "autodenominaciones": [
+        "ñöhñö"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñähñá",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "[otomí del Valle del Mezquital](v_otomi.html#5)",
+      "autodenominaciones": [
+        "hñähñú"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñänhú (del Valle del Mezquital)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñandú",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñóhnño (del valle del Mezquital)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñanhmu",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "[otomí de Ixtenco](v_otomi.html#6)",
+      "autodenominaciones": [
+        "yühmu"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "[otomí de Tilapa o del sur](v_otomi.html#7)",
+      "autodenominaciones": [
+        "nü'hü"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "[otomí del noroeste](v_otomi.html#8)",
+      "autodenominaciones": [
+        "hñöñho"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñühú",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñanhú",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "[otomí del centro](v_otomi.html#9)",
+      "autodenominaciones": [
+        "hñähñu (del centro)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñöthó",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñható",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "hñothó",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "otomí",
+      "variante": "ñóhnño (del centro)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "pame",
+      "variante": "pame del norte",
+      "autodenominaciones": [
+        "xi'iuy"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "pame",
+      "variante": "pame del centro",
+      "autodenominaciones": [
+        "xi'oi"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "popoloca",
+      "variante": "[popoloca del norte](https://www.inali.gob.mx/sitios/clin-inali/html/v_popoloca.html#1)",
+      "autodenominaciones": [
+        "ngiwa (del norte)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "popoloca",
+      "variante": "ngigua (del norte)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "popoloca",
+      "variante": "[popoloca del centro](https://www.inali.gob.mx/sitios/clin-inali/html/v_popoloca.html#2)",
+      "autodenominaciones": [
+        "ngiba (del centro)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "popoloca",
+      "variante": "[popoloca de oriente](https://www.inali.gob.mx/sitios/clin-inali/html/v_popoloca.html#3)",
+      "autodenominaciones": [
+        "ngiwa (de oriente)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "popoloca",
+      "variante": "ngigua (de oriente)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "popoloca",
+      "variante": "ngiba (de oriente)",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "popoloca",
+      "variante": "[popoloca del poniente](https://www.inali.gob.mx/sitios/clin-inali/html/v_popoloca.html#4)",
+      "autodenominaciones": [
+        "ngiba (del poniente)"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlahuica",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlahuica",
+      "variante": "[tlahuica](v_tlahuica.html#1)",
+      "autodenominaciones": [
+        "pjiekakjoo"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlapaneco",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlapaneco",
+      "variante": "[tlapaneco del sur](v_tlapaneco.html#1)",
+      "autodenominaciones": [
+        "me'phaa tsíndíí"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlapaneco",
+      "variante": "[tlapaneco del oeste](v_tlapaneco.html#2)",
+      "autodenominaciones": [
+        "tlapaneco"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlapaneco",
+      "variante": "[tlapaneco central bajo](v_tlapaneco.html#3)",
+      "autodenominaciones": [
+        "me'phaa xkua ixi ridií"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlapaneco",
+      "variante": "[tlapaneco del suroeste](v_tlapaneco.html#4)",
+      "autodenominaciones": [
+        "me'paa wí'iin"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlapaneco",
+      "variante": "[tlapaneco del este](v_tlapaneco.html#5)",
+      "autodenominaciones": [
+        "me'phaa bátháá"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlapaneco",
+      "variante": "[tlapaneco del centro](v_tlapaneco.html#6)",
+      "autodenominaciones": [
+        "mi'phaa míŋuíí"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlapaneco",
+      "variante": "[tlapaneco del norte](v_tlapaneco.html#7)",
+      "autodenominaciones": [
+        "me'phaa xirágáá"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlapaneco",
+      "variante": "[tlapaneco del noroeste alto](v_tlapaneco.html#8)",
+      "autodenominaciones": [
+        "me'phaa aguaa"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "tlapaneco",
+      "variante": "[tlapaneco del noroeste bajo](v_tlapaneco.html#9)",
+      "autodenominaciones": [
+        "me'phaa xma'íín"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "triqui",
+      "variante": "triqui de San Juan Copala",
+      "autodenominaciones": [
+        "xnánj n u' a"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "triqui",
+      "variante": "triqui de la media",
+      "autodenominaciones": [
+        "stnáj n i'"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "triqui",
+      "variante": "triqui de la alta",
+      "autodenominaciones": [
+        "gu i a'm i nánj nï'ïn"
+      ]
+    },
+    {
+      "familia": "Oto-mangue",
+      "agrupacion": "triqui",
+      "variante": "triqui de la baja",
+      "autodenominaciones": [
+        "tnanj ni'inj"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "ayapaneco",
+      "variante": "ayapaneco",
+      "autodenominaciones": [
+        "numte oote"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "mixe",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "mixe",
+      "variante": "[mixe alto del norte](v_mixe.html#1)",
+      "autodenominaciones": [
+        "ayöök"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "mixe",
+      "variante": "[mixe alto del centro](v_mixe.html#2)",
+      "autodenominaciones": [
+        "ayuujk (alto del centro)"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "mixe",
+      "variante": "[mixe alto del sur](v_mixe.html#3)",
+      "autodenominaciones": [
+        "ayuujk"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "mixe",
+      "variante": "[mixe medio del este](v_mixe.html#4)",
+      "autodenominaciones": [
+        "ayuuk (medio del este)"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "mixe",
+      "variante": "[mixe medio del oeste](v_mixe.html#5)",
+      "autodenominaciones": [
+        "eyuk"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "mixe",
+      "variante": "[mixe bajo](v_mixe.html#6)",
+      "autodenominaciones": [
+        "ayuk"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "oluteco",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "oluteco",
+      "variante": "[oluteco](v_oluteco.html#1)",
+      "autodenominaciones": [
+        "yaakaw+"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "popoluca de la sierra",
+      "variante": "[popoluca de la Sierra](https://www.inali.gob.mx/sitios/clin-inali/html/v_popoluca_de_la_sierra.html)",
+      "autodenominaciones": [
+        "nuntaj + yi'"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "popoluca de la sierra",
+      "variante": "nunta anh+maatyi",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "sayulteco",
+      "variante": "sayulteco",
+      "autodenominaciones": [
+        "t+kmaya'"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "sayulteco",
+      "variante": "yámay",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "texistepequeño",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Mixe-zoque",
+      "agrupacion": "texistepequeño",
+      "variante": "[texistepequeño](v_texistepequeno.html#1)",
+      "autodenominaciones": [
+        "wää 'oot"
+      ]
+    },
+    {
+      "familia": "Chontal de Oaxaca",
+      "agrupacion": "chontal de Oaxaca",
+      "variante": "chontal de Oaxaca alto",
+      "autodenominaciones": [
+        "tsame"
+      ]
+    },
+    {
+      "familia": "Chontal de Oaxaca",
+      "agrupacion": "chontal de Oaxaca",
+      "variante": "chontal de Oaxaca bajo",
+      "autodenominaciones": [
+        "tsome"
+      ]
+    },
+    {
+      "familia": "Chontal de Oaxaca",
+      "agrupacion": "chontal de Oaxaca",
+      "variante": "chontal de Oaxaca de la costa",
+      "autodenominaciones": [
+        "lajltyaygi"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "cora",
+      "variante": "[cora de Rosarito](https://www.inali.gob.mx/sitios/clin-inali/html/v_cora.html#1)",
+      "autodenominaciones": [
+        "rosaríìtu"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "cora",
+      "variante": "[cora de Dolores](https://www.inali.gob.mx/sitios/clin-inali/html/v_cora.html#2)",
+      "autodenominaciones": [
+        "wachí hapwa"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "cora",
+      "variante": "[cora meseño](https://www.inali.gob.mx/sitios/clin-inali/html/v_cora.html#3)",
+      "autodenominaciones": [
+        "yaúhke'ena"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "cora",
+      "variante": "[cora de Jesús María](https://www.inali.gob.mx/sitios/clin-inali/html/v_cora.html#4)",
+      "autodenominaciones": [
+        "chwísita'na"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "cora",
+      "variante": "[cora francisqueño](https://www.inali.gob.mx/sitios/clin-inali/html/v_cora.html#5)",
+      "autodenominaciones": [
+        "kwáaxa'ata"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "cora",
+      "variante": "[cora tereseño](https://www.inali.gob.mx/sitios/clin-inali/html/v_cora.html#6)",
+      "autodenominaciones": [
+        "kwéimarusa'na"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "cora",
+      "variante": "[cora presideño](https://www.inali.gob.mx/sitios/clin-inali/html/v_cora.html#7)",
+      "autodenominaciones": [
+        "múxata'ana"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "cora",
+      "variante": "[cora corapeño](https://www.inali.gob.mx/sitios/clin-inali/html/v_cora.html#8)",
+      "autodenominaciones": [
+        "kuráàpa"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "guarijío",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "guarijío",
+      "variante": "[guarijío del norte](v_guarijio.html#1)",
+      "autodenominaciones": [
+        "warihó"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "guarijío",
+      "variante": "[guarijío del sur](v_guarijio.html#2)",
+      "autodenominaciones": [
+        "makurawe"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "huichol",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "huichol",
+      "variante": "[huichol del norte](v_huichol.html#1)",
+      "autodenominaciones": [
+        "wixárika (del norte)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "huichol",
+      "variante": "[huichol del sur](v_huichol.html#2)",
+      "autodenominaciones": [
+        "wixárika (del sur)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "huichol",
+      "variante": "[huichol del este](v_huichol.html#3)",
+      "autodenominaciones": [
+        "wixárika (del este)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "huichol",
+      "variante": "[huichol del oeste](v_huichol.html#4)",
+      "autodenominaciones": [
+        "wixárika (del oeste)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "mayo",
+      "variante": "[mayo](https://www.inali.gob.mx/sitios/clin-inali/html/v_mayo.html#1)",
+      "autodenominaciones": [
+        "yorem-nokki"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "pápago",
+      "variante": "pápago",
+      "autodenominaciones": [
+        "tohono o'otham",
+        "tohono o'odham"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "pima",
+      "variante": "pima del norte",
+      "autodenominaciones": [
+        "oob no'ok (del norte)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "pima",
+      "variante": "pima del sur",
+      "autodenominaciones": [
+        "oob no'ok (del sur)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "pima",
+      "variante": "pima del este",
+      "autodenominaciones": [
+        "obnók (del este)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tarahumara",
+      "variante": "[tarahumara del oeste](https://www.inali.gob.mx/sitios/clin-inali/html/v_tarahumara.html#1)",
+      "autodenominaciones": [
+        "rarómari raicha"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tarahumara",
+      "variante": "[tarahumara del norte](https://www.inali.gob.mx/sitios/clin-inali/html/v_tarahumara.html#2)",
+      "autodenominaciones": [
+        "ralámuli raicha (del norte)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tarahumara",
+      "variante": "[tarahumara de Cumbres](https://www.inali.gob.mx/sitios/clin-inali/html/v_tarahumara.html#3)",
+      "autodenominaciones": [
+        "ralámuli raicha (de Cumbres)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tarahumara",
+      "variante": "[tarahumara del centro](https://www.inali.gob.mx/sitios/clin-inali/html/v_tarahumara.html#4)",
+      "autodenominaciones": [
+        "ralámuli raicha (del centro)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tarahumara",
+      "variante": "[tarahumara del sur](https://www.inali.gob.mx/sitios/clin-inali/html/v_tarahumara.html#5)",
+      "autodenominaciones": [
+        "rarámari raicha"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tepehuano del norte",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tepehuano del norte",
+      "variante": "[tepehuano del norte](v_tepehuano_del_norte.html#1)",
+      "autodenominaciones": [
+        "odami"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tepehuano del sur",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tepehuano del sur",
+      "variante": "[tepehuano del sur alto](v_tepehuano_del_sur.html#1)",
+      "autodenominaciones": [
+        "au'dam"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tepehuano del sur",
+      "variante": "[tepehuano del sur bajo](v_tepehuano_del_sur.html#2)",
+      "autodenominaciones": [
+        "o'dam (del sur bajo)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "tepehuano del sur",
+      "variante": "[tepehuano del sur central](v_tepehuano_del_sur.html#3)",
+      "autodenominaciones": [
+        "o'dam (del sur central)"
+      ]
+    },
+    {
+      "familia": "Yuto-nahua",
+      "agrupacion": "yaqui",
+      "variante": "[yaqui](https://www.inali.gob.mx/sitios/clin-inali/html/v_yaqui.html)",
+      "autodenominaciones": [
+        "hiak-nooki"
+      ]
+    },
+    {
+      "familia": "Cochimí-yumana>",
+      "agrupacion": "cucapá",
+      "variante": "[cucapá](https://www.inali.gob.mx/sitios/clin-inali/html/v_cucapa.html#1)",
+      "autodenominaciones": [
+        "kuapá"
+      ]
+    },
+    {
+      "familia": "Huave",
+      "agrupacion": "huave",
+      "variante": "---",
+      "autodenominaciones": [
+        "---"
+      ]
+    },
+    {
+      "familia": "Huave",
+      "agrupacion": "huave",
+      "variante": "[huave del oeste](v_huave.html#1)",
+      "autodenominaciones": [
+        "ombeayiüts"
+      ]
+    },
+    {
+      "familia": "Huave",
+      "agrupacion": "huave",
+      "variante": "[huave del este](v_huave.html#2)",
+      "autodenominaciones": [
+        "ombeyajts"
+      ]
+    },
+    {
+      "familia": "Álgica",
+      "agrupacion": "Kickapoo",
+      "variante": "Kickapoo",
+      "autodenominaciones": [
+        "Kickapoo"
+      ]
+    },
+    {
+      "familia": "Cochimí-yumana",
+      "agrupacion": "kiliwa",
+      "variante": "[kiliwa](https://www.inali.gob.mx/sitios/clin-inali/html/v_kiliwa.html)",
+      "autodenominaciones": [
+        "ko'lew"
+      ]
+    },
+    {
+      "familia": "Cochimí-yumana",
+      "agrupacion": "ku'ahl",
+      "variante": "ku'ahl",
+      "autodenominaciones": [
+        "ku'ahl"
+      ]
+    },
+    {
+      "familia": "Cochimí-yumana",
+      "agrupacion": "kumiai",
+      "variante": "kumiai",
+      "autodenominaciones": [
+        "tipai"
+      ]
+    },
+    {
+      "familia": "Cochimí-yumana",
+      "agrupacion": "paipai",
+      "variante": "paipai",
+      "autodenominaciones": [
+        "jaspuy pai"
+      ]
+    },
+    {
+      "familia": "Oto-mangue**",
+      "agrupacion": "mazahua**  **",
+      "variante": "[mazahua de oriente](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazahua.html#1)",
+      "autodenominaciones": [
+        "jnatrjo"
+      ]
+    },
+    {
+      "familia": "Oto-mangue**",
+      "agrupacion": "mazahua**  **",
+      "variante": "[mazahua de occidente](https://www.inali.gob.mx/sitios/clin-inali/html/v_mazahua.html#2)",
+      "autodenominaciones": [
+        "jnatjo"
+      ]
+    },
+    {
+      "familia": "Maya**",
+      "agrupacion": "Q'anjob'al",
+      "variante": "[Q'anjob'al](https://www.inali.gob.mx/sitios/clin-inali/html/v_qanjobal.html)",
+      "autodenominaciones": [
+        "K'anjob'al"
+      ]
+    },
+    {
+      "familia": "Seri",
+      "agrupacion": "seri",
+      "variante": "[seri](https://www.inali.gob.mx/sitios/clin-inali/html/v_seri.html#1)",
+      "autodenominaciones": [
+        "cmiique iitom"
+      ]
+    },
+    {
+      "familia": "Tarasca",
+      "agrupacion": "tarasco",
+      "variante": "[purépecha](https://www.inali.gob.mx/sitios/clin-inali/html/v_tarasco.html#1)",
+      "autodenominaciones": [
+        "p'urhepecha"
+      ]
+    },
+    {
+      "familia": "Tarasca",
+      "agrupacion": "tarasco",
+      "variante": "p'orhepecha",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "tepehua",
+      "variante": "[tepehua del sur](https://www.inali.gob.mx/sitios/clin-inali/html/v_tepehua.html#1)",
+      "autodenominaciones": [
+        "lhiimaqalhqama'"
+      ]
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "tepehua",
+      "variante": "lhiima'alh'ama'",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "tepehua",
+      "variante": "[tepehua del norte](https://www.inali.gob.mx/sitios/clin-inali/html/v_tepehua.html#2)",
+      "autodenominaciones": [
+        "lhichiwíin"
+      ]
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "tepehua",
+      "variante": "[tepehua del oeste](https://www.inali.gob.mx/sitios/clin-inali/html/v_tepehua.html#3)",
+      "autodenominaciones": [
+        "lhiimaasipijni"
+      ]
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "tepehua",
+      "variante": "liimaasipijni",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "totonaco del sureste",
+      "autodenominaciones": [
+        "laakanaachiwíin"
+      ]
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "totonaco central del norte",
+      "autodenominaciones": [
+        "tachaqawaxti"
+      ]
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "tutunakuj",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "tachiwiin",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "totonaco del cerro Xinolatépetl",
+      "autodenominaciones": [
+        "kintachiuinkan"
+      ]
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "totonaco central alto",
+      "autodenominaciones": [
+        "tutunáku (central alto)"
+      ]
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "totonaco de la costa",
+      "autodenominaciones": [
+        "lichiwin tutunaku"
+      ]
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "totonaco del río Necaxa",
+      "autodenominaciones": [
+        "totonaco (del río Necaxa)"
+      ]
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "totonaco central del sur",
+      "autodenominaciones": [
+        "tutunáku (central del sur)"
+      ]
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "tutunakú",
+      "autodenominaciones": []
+    },
+    {
+      "familia": "Totonaco-tepehua",
+      "agrupacion": "totonaco",
+      "variante": "totonaco (central del sur)",
+      "autodenominaciones": []
+    }
+  ]
+}

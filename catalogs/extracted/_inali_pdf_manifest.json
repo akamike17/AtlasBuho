@@ -1,0 +1,21 @@
+{
+  "resource": "Catálogo de las Lenguas Indígenas Nacionales. Variantes Lingüísticas de México con sus autodenominaciones y referencias geoestadísticas.",
+  "resource_url": "https://site.inali.gob.mx/pdf/catalogo_lenguas_indigenas.pdf",
+  "publication": "Diario Oficial de la Federación, tomo DCLII número 9, México 14-enero-2008",
+  "publisher": "Instituto Nacional de Lenguas Indígenas (INALI)",
+  "isbn": "978-607-7538-08-0",
+  "format": "PDF",
+  "file_path": "catalogs/inali/catalogo_lenguas_indigenas.pdf",
+  "file_sha256": "e38e667d024784bc84cc350f44918c1d22d998284d02e38dcf92858257947311",
+  "file_size_bytes": 6822945,
+  "total_pages": 382,
+  "catalog_section_8_pdf_page_index_range": [69, 304],
+  "retrieved_at_utc": "2026-09-25",
+  "retrieval_method": "curl -L -o catalogs/inali/catalogo_lenguas_indigenas.pdf",
+  "license_note": "Documento público del DOF/INALI. Uso documental sin fines comerciales.",
+  "provenance_role": "FUENTE CANÓNICA PRIMARIA para AtlasBuho. Ningún dato se corrige ni se fusiona automáticamente.",
+  "cross_checks_planned": [
+    "catalogs/extracted/inali_html_catalog.json (HTML INALI parcial)",
+    "INEGI Clasificación de lenguas indígenas 2024 (pendiente descarga)"
+  ]
+}
