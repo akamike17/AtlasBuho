@@ -1,0 +1,14 @@
+Mi siguiente objetivo sería exclusivamente:
+0x4D030
+   ↓
+Windows storage stack
+   ↓
+qué recibe realmente
+   ↓
+cómo transforma SPTD
+   ↓
+qué CDB acaba en el dispositivo
+
+Y hay una pregunta particularmente importante:
+
+¿El 0xE0 que vemos en el buffer de 40 bytes llega realmente al dispositivo como byte 9, o el driver/storage stack lo interpreta de otra manera?

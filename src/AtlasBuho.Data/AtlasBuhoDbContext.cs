@@ -49,6 +49,31 @@ public class AtlasBuhoDbContext : DbContext, Domain.Interfaces.IUnitOfWork
     public DbSet<Domain.AiReview.AiTranslationReview> AiTranslationReviews => Set<Domain.AiReview.AiTranslationReview>();
     public DbSet<Domain.AiReview.V2Candidate> V2Candidates => Set<Domain.AiReview.V2Candidate>();
 
+    // === BD.MD Fase B — Canon (ADR 0003) ===
+    public DbSet<Domain.Entities.Design.FamiliaCanon> CanonFamilias => Set<Domain.Entities.Design.FamiliaCanon>();
+    public DbSet<Domain.Entities.Design.AgrupacionCanon> CanonAgrupaciones => Set<Domain.Entities.Design.AgrupacionCanon>();
+    public DbSet<Domain.Entities.Design.VarianteCanon> CanonVariantes => Set<Domain.Entities.Design.VarianteCanon>();
+    public DbSet<Domain.Entities.Design.PaisCanon> CanonPaises => Set<Domain.Entities.Design.PaisCanon>();
+    public DbSet<Domain.Entities.Design.EstadoCanon> CanonEstados => Set<Domain.Entities.Design.EstadoCanon>();
+    public DbSet<Domain.Entities.Design.MunicipioCanon> CanonMunicipios => Set<Domain.Entities.Design.MunicipioCanon>();
+    public DbSet<Domain.Entities.Design.LocalidadCanon> CanonLocalidades => Set<Domain.Entities.Design.LocalidadCanon>();
+    public DbSet<Domain.Entities.Design.PoblacionCanon> CanonPoblaciones => Set<Domain.Entities.Design.PoblacionCanon>();
+    public DbSet<Domain.Entities.Design.VariantePoblacionCanon> CanonVariantePoblacion => Set<Domain.Entities.Design.VariantePoblacionCanon>();
+    public DbSet<Domain.Entities.Design.PoblacionLocalidadCanon> CanonPoblacionLocalidad => Set<Domain.Entities.Design.PoblacionLocalidadCanon>();
+    public DbSet<Domain.Entities.Design.VarianteLocalidadCanon> CanonVarianteLocalidad => Set<Domain.Entities.Design.VarianteLocalidadCanon>();
+    public DbSet<Domain.Entities.Design.CodigoLinguisticoCanon> CanonCodigosLinguisticos => Set<Domain.Entities.Design.CodigoLinguisticoCanon>();
+    public DbSet<Domain.Entities.Design.EvidenciaFamiliaCanon> CanonEvidenciaFamilia => Set<Domain.Entities.Design.EvidenciaFamiliaCanon>();
+    public DbSet<Domain.Entities.Design.EvidenciaAgrupacionCanon> CanonEvidenciaAgrupacion => Set<Domain.Entities.Design.EvidenciaAgrupacionCanon>();
+    public DbSet<Domain.Entities.Design.EvidenciaVarianteCanon> CanonEvidenciaVariante => Set<Domain.Entities.Design.EvidenciaVarianteCanon>();
+    public DbSet<Domain.Entities.Design.EvidenciaCodigoCanon> CanonEvidenciaCodigo => Set<Domain.Entities.Design.EvidenciaCodigoCanon>();
+    public DbSet<Domain.Entities.Design.EvidenciaPoblacionCanon> CanonEvidenciaPoblacion => Set<Domain.Entities.Design.EvidenciaPoblacionCanon>();
+    public DbSet<Domain.Entities.Design.EvidenciaLocalidadCanon> CanonEvidenciaLocalidad => Set<Domain.Entities.Design.EvidenciaLocalidadCanon>();
+    public DbSet<Domain.Entities.Design.ReconciliationResultCanon> CanonReconciliationResults => Set<Domain.Entities.Design.ReconciliationResultCanon>();
+    public DbSet<Domain.Entities.Design.AuditoriaCanon> CanonAuditorias => Set<Domain.Entities.Design.AuditoriaCanon>();
+    public DbSet<Domain.Entities.Design.CorrespondenciaFuenteCanon> CanonCorrespondenciasFuente => Set<Domain.Entities.Design.CorrespondenciaFuenteCanon>();
+    public DbSet<Domain.Entities.Design.ImportRecordCanon> CanonImportRecords => Set<Domain.Entities.Design.ImportRecordCanon>();
+    public DbSet<Domain.Entities.Design.FraseTraduccionCanon> CanonFraseTraduccion => Set<Domain.Entities.Design.FraseTraduccionCanon>();
+
     // IUnitOfWork implementation - Repository properties (explicit interface implementation)
     Domain.Interfaces.ILanguageFamilyRepository Domain.Interfaces.IUnitOfWork.LanguageFamilies => new Repositories.LanguageFamilyRepository(this);
     Domain.Interfaces.ILanguageGroupRepository Domain.Interfaces.IUnitOfWork.LanguageGroups => new Repositories.LanguageGroupRepository(this);
